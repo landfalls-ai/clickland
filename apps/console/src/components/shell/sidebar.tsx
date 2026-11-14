@@ -1,7 +1,7 @@
 import { Link, NavLink } from 'react-router';
 import { Bot, ExternalLink, LogOut } from 'lucide-react';
 import { cn } from '@clickland/ui';
-import { roleOf, signOut } from '@/lib/auth';
+import { roleLine, signOut } from '@/lib/auth';
 import { useViews } from '@/lib/queries';
 import type { Me } from '@/lib/types';
 import { NAV_GROUPS, type NavItem, SETTINGS } from '@/nav';
@@ -117,12 +117,12 @@ export function UserRow({ me }: { me: Me }) {
       </span>
       <div className="min-w-0 flex-1 leading-tight">
         <div className="truncate text-[12px] font-semibold text-t1">{me.user.name}</div>
-        <div className="truncate text-[11px] text-t3" title={me.user.email}>
-          {roleOf(me)}
-          {me.authMode === 'dev' ? ' · dev' : ''}
+        <div className="truncate text-[11px] text-t3" title={me.user.email ?? undefined} data-testid="user-role">
+          {roleLine(me)}
+          {me.user.email ? ` · ${me.user.email}` : ''}
         </div>
       </div>
-      {me.authMode !== 'dev' && (
+      {me.kind === 'person' && (
         <button
           type="button"
           aria-label="Sign out"

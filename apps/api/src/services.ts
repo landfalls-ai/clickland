@@ -2,9 +2,12 @@ import { Agents } from './agents.js';
 import { Alerts } from './alerts.js';
 import type { Clients } from './clients.js';
 import type { Config } from './config.js';
+import { Sessions } from './identity.js';
 import { Keys } from './keys.js';
 import { Knowledge } from './knowledge.js';
 import { Notes } from './notes.js';
+import { OidcClient } from './oidc.js';
+import { Scim, ScimTokens } from './scim.js';
 import { Telemetry } from './telemetry.js';
 import { Usage } from './usage.js';
 import { ValueStore } from './value.js';
@@ -27,6 +30,10 @@ export interface Services {
   value: ValueStore;
   /** Resource usage rollups for Landledger (docs/usage.md). */
   usage: Usage;
+  /** Sign-in through Landbright and console sessions; SCIM and its tokens (docs/identity.md). */
+  sessions: Sessions;
+  scim: Scim;
+  scimTokens: ScimTokens;
 }
 
 export function createServices(config: Config, clients: Clients, fetchImpl: typeof fetch = fetch): Services {
@@ -40,7 +47,26 @@ export function createServices(config: Config, clients: Clients, fetchImpl: type
   const value = new ValueStore(clients.pg);
   const agents = new Agents(clients.ch, value);
   const usage = new Usage(clients.ch);
-  return { config, clients, telemetry, webhooks, alerts, notes, views, knowledge, keys, agents, value, usage };
+  const sessions = new Sessions(clients.pg, config, config.oidc ? new OidcClient(config.oidc, fetchImpl) : null);
+  const scim = new Scim(clients.pg);
+  const scimTokens = new ScimTokens(clients.pg);
+  return {
+    config,
+    clients,
+    telemetry,
+    webhooks,
+    alerts,
+    notes,
+    views,
+    knowledge,
+    keys,
+    agents,
+    value,
+    usage,
+    sessions,
+    scim,
+    scimTokens,
+  };
 }
 
 /** The alert evaluator and the webhook dispatcher: small loops that claim due rows, so replicas can share the work. */
@@ -65,6 +91,7 @@ export function startBackgroundJobs(services: Services, log: (msg: string, err?:
   const stops = [
     loop('alert evaluator', 10_000, () => services.alerts.evaluateDue()),
     loop('webhook dispatcher', 2_000, () => services.webhooks.dispatchDue()),
+    loop('session cleanup', 600_000, () => services.sessions.cleanup().then(() => 0)),
   ];
   return () => {
     stopped = true;

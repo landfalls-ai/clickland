@@ -12,6 +12,7 @@
     "dev:down": "docker --context orbstack compose -p clickland-infra -f deploy/compose.infra.yml down",
     "dev:logs": "docker --context orbstack compose -p clickland-infra -f deploy/compose.infra.yml logs -f",
     "db:migrate": "pnpm --filter @clickland/schema build && pnpm --filter @clickland/schema migrate && docker --context orbstack compose -p clickland-infra -f deploy/compose.infra.yml restart collector",
+    "scim:token": "pnpm --filter @clickland/api scim:token",
     "serve": "nx run-many -t serve --outputStyle=stream",
     "build": "nx run-many -t build --outputStyle=static",
     "typecheck": "nx run-many -t typecheck --outputStyle=static",

@@ -16,5 +16,6 @@
 - [sources.md](sources.md): what sends data to Clickland (the land apps, Docker, Kubernetes) and how
 - [research/land-family-integrations.md](research/land-family-integrations.md): how each land project connects to Clickland (Landfall's war room first), with a phased plan and open questions
 - [agent-value.md](agent-value.md): AI agents from visibility to business value: the inventory, operations, a run's decision path, the value model (outcomes, ROI), quality and safety, alerts, Claude Code's telemetry, and the console spec
+- [identity.md](identity.md): sign-in through Landbright (OIDC), roles from Landbright groups, the SCIM 2.0 server Landbright pushes people and groups to, precedence and deactivation
 - [usage.md](usage.md): resource usage rollups for Landledger: used, requested and allocated CPU and memory, storage, network, node capacity and volume claims, the math, and what is not measured
 - [reference/api.md](reference/api.md): the API contract, with `/api/agents/*`, `/api/value/*` and `/api/usage/rollup`

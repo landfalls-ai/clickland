@@ -3,11 +3,22 @@ import { createHash, randomBytes, timingSafeEqual } from 'node:crypto';
 import type { Sql } from './clients.js';
 import type { Config } from './config.js';
 import { ApiError } from './errors.js';
+import type { Role } from './roles.js';
 
 export interface Principal {
-  /** `key:<name>`, `bootstrap`, `dev` or `oidc:<subject>`. */
+  /** `key:<name>`, `bootstrap`, `dev`, or a signed-in person's email (what `created_by` columns record). */
   name: string;
   scopes: ApiScope[];
+  /** A person signed in through Landbright; absent for keys and dev mode. */
+  person?: {
+    id: string;
+    email: string | null;
+    displayName: string;
+    role: Role;
+    groups: string[];
+    /** sha256 of the session cookie. */
+    sessionId: string;
+  };
 }
 
 export const sha256 = (s: string) => createHash('sha256').update(s).digest('hex');
@@ -24,8 +35,9 @@ const sameString = (a: string, b: string) => {
 };
 
 /**
- * Who is calling. An API key wins; without one, `CLICKLAND_AUTH=dev` lets the local console in as an admin. Keys are
- * stored hashed; the bootstrap key is compared in constant time.
+ * Who is calling, from an API key. Without a key (and without a console session, which the onRequest hook checks
+ * first), only `CLICKLAND_AUTH=dev` lets the local console in as an admin. Keys are stored hashed; the bootstrap key is
+ * compared in constant time.
  */
 export async function authenticate(pg: Sql, config: Config, authorization: string | undefined): Promise<Principal> {
   const match = authorization?.match(/^Bearer\s+(\S+)$/i);

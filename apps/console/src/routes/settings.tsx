@@ -39,6 +39,8 @@ export function SettingsPage() {
           <p className="text-[12px] text-t3">
             Role <b className="text-t2">{roleOf(me.data)}</b>: viewers read; editors also change alerts, notes and
             dashboards; admins also manage API keys and webhooks.
+            {me.data?.kind === 'person' &&
+              ` Your Landbright groups decide it (${(me.data.user.groups ?? []).join(', ') || 'none'}).`}
           </p>
           <div className="flex items-center gap-3">
             <span className="text-[12px] text-t2">Theme</span>

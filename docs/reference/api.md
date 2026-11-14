@@ -7,8 +7,8 @@ schemas in `libs/contracts/src` are the source of truth; this page describes the
   OrbStack cluster.
 - Bodies are JSON. Times are ISO 8601 strings in UTC (`2026-11-14T15:00:00.000Z`), durations are milliseconds.
 - Errors: `{ "error": { "code": "bad_request" | "unauthorized" | "forbidden" | "not_found" | "conflict" |
-  "query_failed" | "assistant_unavailable" | "internal", "message": "…" } }` with the matching HTTP status
-  (`assistant_unavailable` is 503). A search syntax error is
+  "query_failed" | "assistant_unavailable" | "unavailable" | "internal", "message": "…" } }` with the matching HTTP
+  status (`assistant_unavailable` and `unavailable` are 503). A search syntax error is
   `400 bad_request` with `details.position`.
 
 ## Authentication
@@ -26,8 +26,54 @@ schemas in `libs/contracts/src` are the source of truth; this page describes the
 | `admin` | everything, including API keys |
 
 `CLICKLAND_BOOTSTRAP_KEY` (dev: `ck_dev_bootstrap_key_000000000000000`) is an `admin` key that exists while the
-variable is set. The console signs in with OIDC (Landbright) and sends its session cookie instead; with
-`CLICKLAND_AUTH=dev` (local only) the console needs no sign-in.
+variable is set.
+
+People sign in through Landbright (OIDC) and send the `cl_session` cookie instead. Their role comes from their
+Landbright groups ([identity.md](../identity.md#roles)):
+
+- viewer = `read`;
+- editor = `read`, `alerts:write`, `notes:write` and `views:write`;
+- admin = `admin`.
+
+A key wins over a cookie. With neither, the answer is `401`. `CLICKLAND_AUTH=dev` is a dev bypass, off by default and
+loopback only: calls with neither act as an admin.
+
+### Sign-in
+
+| Route | What it does |
+|---|---|
+| `GET /api/auth/login?returnTo=/path` | `302` to Landbright's authorization endpoint (code + PKCE S256), with a 10-minute `cl_login` cookie holding the state. On a host other than the redirect URI's (`127.0.0.1:4711`), it first sends the browser to `http://localhost:4711/api/auth/login` |
+| `GET /api/auth/oidc/callback?code&state&iss` | Checks the state against `cl_login`, exchanges the code (`client_secret_post`), verifies the ID token and reconciles the user. Success: `302` to `returnTo` with `cl_session` (httpOnly, SameSite=Lax). Failure: `302` to `returnTo?signin_error=no_role \| inactive \| expired \| denied \| failed \| unavailable` |
+| `POST /api/auth/logout` | Deletes the session and clears the cookie → `{ "redirect": "<Landbright end_session_endpoint>?client_id&post_logout_redirect_uri&id_token_hint" }` |
+| `GET /api/auth/me` | A person: `{ "kind": "person", "user": { "id", "name", "email", "roles": [role], "groups" }, "role", "scopes", "authMode": "oidc" }`. A key or the dev bypass: `kind` is `key`, `bootstrap` or `dev`, with `role` read from the scopes. Nobody: `401` with `details.signIn` (`available` or `unavailable`), `details.problem` when sign-in is off, and `details.reason: "no_role"` when the session's person is in no Clickland group |
+
+| Variable | Default |
+|---|---|
+| `CLICKLAND_AUTH` | `keys` (`dev`: the dev bypass, loopback only) |
+| `CLICKLAND_OIDC_ENV_FILE` | `~/.config/land-family/clickland-local.env` (Landbright's client file; `none` to skip it) |
+| `CLICKLAND_OIDC_ISSUER`, `CLICKLAND_OIDC_CLIENT_ID`, `CLICKLAND_OIDC_CLIENT_SECRET` | from the client file; `http://localhost:4402/oidc` and `clickland-local` |
+| `CLICKLAND_OIDC_CONSOLE_URL` | `http://localhost:4711` (the redirect URI is `<it>/api/auth/oidc/callback`, the post-logout URI `<it>/`) |
+| `CLICKLAND_OIDC_REDIRECT_URI`, `CLICKLAND_OIDC_POST_LOGOUT_REDIRECT_URI`, `CLICKLAND_OIDC_SCOPES` | override those; scopes `openid email profile roles` |
+| `CLICKLAND_SESSION_HOURS` | `8` |
+
+### SCIM 2.0 (`/scim/v2`)
+
+`Authorization: Bearer cls_…`, a SCIM token. Requests are `application/scim+json` or `application/json`; answers are
+`application/scim+json`, and errors use RFC 7644's shape (`{ "schemas": [...:Error], "status", "scimType"?, "detail"
+}`).
+
+- Discovery: `GET /ServiceProviderConfig`, `/ResourceTypes[/:id]`, `/Schemas[/:id]`.
+- Users: `GET /Users?filter=userName|externalId|displayName|id eq "…"&startIndex&count`, `POST /Users`, and
+  `GET`, `PUT`, `PATCH` and `DELETE /Users/:id`.
+- Groups: `GET /Groups?filter=displayName|externalId|id eq "…"`, `POST /Groups`, and `GET`, `PUT`, `PATCH` and
+  `DELETE /Groups/:id` (`excludedAttributes=members`).
+
+The PATCH forms, the precedence over the sign-in claim, and deactivation (which deletes the person's sessions) are in
+[identity.md](../identity.md#scim).
+
+SCIM tokens: `pnpm scim:token` writes one to `~/.config/land-family/clickland-scim.env`. The admin routes are
+`GET /api/scim/tokens`, `POST /api/scim/tokens` (`{ name? }` → `201 { id, name, prefix, createdAt, token }`, the token
+shown once) and `DELETE /api/scim/tokens/:id`.
 
 ## Health
 
@@ -539,7 +585,7 @@ in the `CLICKLAND_ASSISTANT_AUTH_HEADER` header) and passes its answer through. 
 chat session (`<principal>:<sessionId>`); Landflow's analysts show up as `tool` events; `503 assistant_unavailable` when it is not
 configured or does not answer. The answer's `[[clickland:view:…]]` markers are views the panel draws inline.
 
-`GET /api/auth/me` → `{ "user": { "name", "email", "roles" }, "authMode", "scopes" }` (`401` when not signed in).
+`GET /api/auth/me`: see [Sign-in](#sign-in).
 
 ## API keys
 

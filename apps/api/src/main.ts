@@ -27,4 +27,6 @@ process.on('SIGTERM', () => void shutdown('SIGTERM'));
 
 await app.listen({ port: config.port, host: config.host });
 if (config.authMode === 'dev')
-  app.log.warn('CLICKLAND_AUTH=dev: calls without an API key act as an admin (local only)');
+  app.log.warn('CLICKLAND_AUTH=dev: calls without an API key or a session act as an admin (local only)');
+if (config.oidc) app.log.info(`Sign-in through ${config.oidc.issuer} as ${config.oidc.clientId}`);
+else app.log.warn(`Sign-in with Landbright is off: ${config.oidcProblem}`);

@@ -1,36 +1,38 @@
 import { useQuery } from '@tanstack/react-query';
-import { ApiError, get, send } from './api';
+import { get, send } from './api';
 import type { Me, Role } from './types';
 
 /**
- * Who is signed in. 401 means sign in with Landbright. Until the identity routes exist (404), the console runs as a
- * local developer with every role, as with `CLICKLAND_AUTH=dev`.
+ * Who is signed in (GET /api/auth/me). A 401 is the sign-in page: its details say whether sign-in is available, and
+ * `reason: "no_role"` when the person is signed in at Landbright but in no Clickland group.
  */
-export const DEV_ME: Me = {
-  user: { name: 'Local developer', email: 'dev@clickland.local', roles: ['admin'] },
-  authMode: 'dev',
+export function useMe() {
+  return useQuery({ queryKey: ['me'], queryFn: () => get<Me>('/api/auth/me'), retry: false, staleTime: 60_000 });
+}
+
+/** The groups that give a role, as Landbright names them (docs/identity.md#roles). */
+export const ROLE_GROUPS: Record<Role, string> = {
+  admin: 'Clickland Admins',
+  editor: 'Clickland Editors',
+  viewer: 'Clickland Viewers',
 };
 
-export function useMe() {
-  return useQuery({
-    queryKey: ['me'],
-    queryFn: async () => {
-      try {
-        return await get<Me>('/api/auth/me');
-      } catch (e) {
-        if (e instanceof ApiError && e.status === 404) return DEV_ME;
-        throw e;
-      }
-    },
-    retry: false,
-    staleTime: 60_000,
-  });
-}
+/** Why a sign-in came back without a session (the API redirects to `?signin_error=<code>`). */
+export const SIGN_IN_ERRORS: Record<string, string> = {
+  no_role:
+    'Your Landbright account isn’t in a Clickland group. Ask an admin to add you to Clickland Viewers, Clickland Editors or Clickland Admins.',
+  inactive: 'Your Clickland access is turned off in Landbright. Ask an admin to turn it back on.',
+  expired: 'That sign-in took too long or started in another browser. Try again.',
+  denied: 'Landbright didn’t sign you in.',
+  unavailable: 'Landbright isn’t answering. Try again in a moment.',
+  failed: 'Sign-in didn’t complete. Try again.',
+};
 
 const LEVEL: Record<Role, number> = { viewer: 1, editor: 2, admin: 3 };
 
 /** The strongest role among the user's roles. */
 export function roleOf(me: Me | undefined): Role {
+  if (me?.role) return me.role;
   const roles = (me?.user.roles ?? []).map((r) => r.toLowerCase());
   if (roles.includes('admin')) return 'admin';
   if (roles.includes('editor')) return 'editor';
@@ -49,7 +51,17 @@ export function useCan(ability: Ability): boolean {
 
 /** Starts sign-in at Landbright, coming back to `returnTo`. */
 export function signIn(returnTo = window.location.pathname + window.location.search): void {
-  window.location.assign(`/api/auth/login?returnTo=${encodeURIComponent(returnTo)}`);
+  const back = returnTo.replace(/[?&]signin_error=[^&]*/, '').replace(/^\/?$/, '/') || '/';
+  window.location.assign(`/api/auth/login?returnTo=${encodeURIComponent(back)}`);
+}
+
+/** "Viewer · Landbright", "Admin · API key", "Admin · dev bypass". */
+export function roleLine(me: Me): string {
+  const role = roleOf(me);
+  const label = role[0]!.toUpperCase() + role.slice(1);
+  if (me.kind === 'dev' || me.authMode === 'dev') return `${label} · dev bypass`;
+  if (me.kind === 'key' || me.kind === 'bootstrap') return `${label} · API key`;
+  return label;
 }
 
 export async function signOut(): Promise<void> {

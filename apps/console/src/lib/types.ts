@@ -4,9 +4,13 @@ import type { ApiScope, Signal, View, WebhookEvent } from '@clickland/contracts'
 
 export type Role = 'viewer' | 'editor' | 'admin';
 
+/** GET /api/auth/me: a person signed in through Landbright, an API key, or (CLICKLAND_AUTH=dev) the local developer. */
 export interface Me {
-  user: { name: string; email: string; roles: string[] };
-  authMode: string;
+  kind?: 'person' | 'key' | 'bootstrap' | 'dev';
+  user: { id?: string; name: string; email: string | null; roles: string[]; groups?: string[] };
+  role?: Role;
+  scopes?: ApiScope[];
+  authMode: 'oidc' | 'keys' | 'dev' | string;
 }
 
 export interface FacetField {

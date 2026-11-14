@@ -10,6 +10,7 @@ const STATUS: Record<ErrorCode, number> = {
   conflict: 409,
   query_failed: 502,
   assistant_unavailable: 503,
+  unavailable: 503,
   internal: 500,
 };
 

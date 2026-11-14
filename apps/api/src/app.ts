@@ -15,16 +15,19 @@ import {
   WebhookInput,
   UsageRollupRequest,
 } from '@clickland/contracts';
+import cookie from '@fastify/cookie';
 import cors from '@fastify/cors';
 import { NodeStreamableHTTPServerTransport } from '@modelcontextprotocol/node';
 import Fastify, { type FastifyInstance, type FastifyRequest } from 'fastify';
 import { z } from 'zod';
 import { registerAgentRoutes } from './agent-routes.js';
 import { askAssistant } from './assistant.js';
+import { AUTH_PUBLIC, registerAuthRoutes, SESSION_COOKIE } from './auth-routes.js';
 import { authenticate, type Principal, requireScope } from './auth.js';
 import { ApiError } from './errors.js';
 import { createMcpServer, VERSION } from './mcp.js';
 import type { Services } from './services.js';
+import { registerScim } from './scim.js';
 import { registerSourceProtocol } from './source-protocol.js';
 
 declare module 'fastify' {
@@ -36,10 +39,6 @@ declare module 'fastify' {
 export interface AppOptions {
   /** Where the built MCP App lives (apps/views/dist/view.html). */
   viewHtmlPath: string;
-  /** Signs a request in from something other than an API key (the console's session cookie). */
-  sessionPrincipal?: (request: FastifyRequest) => Promise<Principal | null>;
-  /** Extra routes (sign-in, SCIM) registered before the API's own. */
-  plugins?: ((app: FastifyInstance) => Promise<void> | void)[];
   logger?: boolean;
   fetchImpl?: typeof fetch;
 }
@@ -59,12 +58,15 @@ const Range = z.object({
   from: z.iso.datetime({ offset: true }).optional(),
   to: z.iso.datetime({ offset: true }).optional(),
 });
-const PUBLIC = new Set(['/api/health', '/api/auth/login', '/api/auth/callback', '/api/auth/logout', '/api/auth/me']);
+const PUBLIC = new Set(['/api/health', ...AUTH_PUBLIC]);
 
 export async function buildApp(services: Services, options: AppOptions): Promise<FastifyInstance> {
   const { config, telemetry, alerts, webhooks, notes, views, knowledge, keys } = services;
   const app = Fastify({ logger: options.logger ?? false, bodyLimit: 2 * 1024 * 1024, trustProxy: true });
-  await app.register(cors, { origin: [config.consoleUrl], credentials: true });
+  await app.register(cookie);
+  const origins = new Set([config.consoleUrl]);
+  if (config.oidc) origins.add(new URL(config.oidc.redirectUri).origin);
+  await app.register(cors, { origin: [...origins], credentials: true });
   app.decorateRequest('principal', null as unknown as Principal);
 
   app.setErrorHandler((error, request, reply) => {
@@ -82,22 +84,31 @@ export async function buildApp(services: Services, options: AppOptions): Promise
     reply.status(404).send(new ApiError('not_found', `No route ${request.method} ${request.url.split('?')[0]}`).body()),
   );
 
-  // Who is calling: an API key, else the console's session, else (CLICKLAND_AUTH=dev) the local developer.
+  // Who is calling: an API key, else the console's session (a person signed in through Landbright), else
+  // (CLICKLAND_AUTH=dev only) the local developer.
   app.addHook('onRequest', async (request) => {
     const path = request.url.split('?')[0]!;
     if (!path.startsWith('/api/') || PUBLIC.has(path)) return;
-    if (!request.headers.authorization && options.sessionPrincipal) {
-      const principal = await options.sessionPrincipal(request);
-      if (principal) {
-        request.principal = principal;
+    const token = request.cookies[SESSION_COOKIE];
+    if (!request.headers.authorization && token) {
+      const found = await services.sessions.principal(token);
+      if ('principal' in found) {
+        request.principal = found.principal;
         return;
       }
+      if (config.authMode !== 'dev')
+        throw new ApiError(
+          'unauthorized',
+          found.reason === 'no_role' ? 'You are not in a Clickland group' : 'Your session has ended: sign in again',
+        );
     }
     request.principal = await authenticate(services.clients.pg, config, request.headers.authorization);
   });
   const need = (request: FastifyRequest, scope: ApiScope) => requireScope(request.principal, scope);
 
-  for (const plugin of options.plugins ?? []) await plugin(app);
+  // Sign-in through Landbright (/api/auth/*) and the SCIM server Landbright pushes people and groups to (/scim/v2).
+  registerAuthRoutes(app, services);
+  await registerScim(app, services.scim, services.scimTokens);
 
   // Landfall's Source Protocol (`/v1/*`): Clickland as a remote source in Landfall's war room.
   await registerSourceProtocol(app, services);
@@ -115,28 +126,6 @@ export async function buildApp(services: Services, options: AppOptions): Promise
     const status = clickhouse === 'ok' && postgres === 'ok' ? 'ok' : 'degraded';
     return reply.status(status === 'ok' ? 200 : 503).send({ status, clickhouse, postgres, version: VERSION });
   });
-
-  if (!options.plugins?.length) {
-    // Without the sign-in plugin, "me" says who the API key or dev mode is.
-    app.get('/api/auth/me', async (request, reply) => {
-      try {
-        const principal = await authenticate(services.clients.pg, config, request.headers.authorization);
-        const roles = principal.scopes.includes('admin')
-          ? ['admin']
-          : principal.scopes.some((s) => s.endsWith(':write'))
-            ? ['editor']
-            : ['viewer'];
-        return {
-          user: { name: principal.name === 'dev' ? 'Local developer' : principal.name, email: null, roles },
-          authMode: config.authMode,
-          scopes: principal.scopes,
-        };
-      } catch (error) {
-        if (error instanceof ApiError) return reply.status(error.status).send(error.body());
-        throw error;
-      }
-    });
-  }
 
   // Telemetry ------------------------------------------------------------------------------------------------------
   app.post('/api/search', async (r) => (need(r, 'read'), telemetry.search(parse(SearchRequest, r.body))));
@@ -267,6 +256,19 @@ export async function buildApp(services: Services, options: AppOptions): Promise
   app.delete('/api/keys/:id', async (r, reply) => {
     need(r, 'admin');
     await keys.revoke(parse(Id, r.params).id);
+    return reply.status(204).send();
+  });
+
+  // SCIM tokens (docs/identity.md#scim): the token is in the answer once.
+  app.get('/api/scim/tokens', async (r) => (need(r, 'admin'), { tokens: await services.scimTokens.list() }));
+  app.post('/api/scim/tokens', async (r, reply) => {
+    need(r, 'admin');
+    const { name } = parse(z.object({ name: z.string().min(1).max(200).default('Landbright') }), r.body);
+    return reply.status(201).send(await services.scimTokens.create(name));
+  });
+  app.delete('/api/scim/tokens/:id', async (r, reply) => {
+    need(r, 'admin');
+    await services.scimTokens.revoke(parse(Id, r.params).id);
     return reply.status(204).send();
   });
 

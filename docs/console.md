@@ -43,8 +43,18 @@ one agent).
 `study/console-screens/` holds every page at 1440 and 390 px, taken against live data on 2026-11-14 (the Agents pages
 as `agents-*`, `agent-*` and `view-agent-panels-*`; the phone screens show the first screenful).
 
+## Sign-in and roles
+
+Without a session the console is the sign-in page, **Sign in with Landbright**. When a sign-in comes back without a
+session, the page says why: no Clickland group (with the groups to ask for), access turned off in Landbright,
+Landbright not answering, or sign-in not set up. The user chip in the sidebar (and under More on a phone) shows the
+person, their role and their email, and signs out through Landbright. Settings names the Landbright groups the role
+comes from. A `401` from any call (a deactivation in Landbright ends the session at once) brings the sign-in page
+back. Controls follow the role: viewers read, editors also change alerts, notes and dashboards, and admins also manage
+API keys, webhooks and the agents' settings. See [identity.md](identity.md); the screens are
+`study/console-screens/identity-*`.
+
 ## Known gaps
 
 The API does not yet have: a count-only search (`POST /api/search/count`), a test of an unsaved alert rule, a
-histogram that aggregates a field (p95 of duration), the view's url in `get_view`/`update_view` results, or a redirect
-from `/api/auth/logout`. In dev, `/api/auth/me` has no email.
+histogram that aggregates a field (p95 of duration), or the view's url in `get_view`/`update_view` results.

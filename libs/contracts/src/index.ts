@@ -415,6 +415,7 @@ export interface ApiErrorBody {
       | 'conflict'
       | 'query_failed'
       | 'assistant_unavailable'
+      | 'unavailable'
       | 'internal';
     message: string;
     details?: unknown;
