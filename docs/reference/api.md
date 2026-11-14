@@ -101,9 +101,13 @@ count with a threshold.
 - `direct`: the alert's **route**. Alerts reach Landfall through Landflow's triage by default (`route: "triage"`); a
   `sev1` alert, or one with `direct: true` (meant for alerts about Landflow itself), takes the direct route
   (`route: "direct"`): Clickland posts it to the `landfall` webhooks itself ([../landfall.md](../landfall.md)).
+- All four are optional. A create without them takes `sev3`, `false`, `{}` and `null`; a `PUT` without them keeps
+  the stored values (`"runbookUrl": null` clears the link), so a client that predates them does not erase them.
 
 - `GET /api/alerts` → `{ "alerts": [Alert] }`, each with `states: [{ groupKey, state, value, changedAt, incident }]`.
-- `POST /api/alerts` (`alerts:write`) → `201 Alert`. `GET|PUT|DELETE /api/alerts/:id`.
+- `POST /api/alerts` (`alerts:write`) → `201 Alert`. `GET|PUT|DELETE /api/alerts/:id`. A `PUT` that changes the
+  search (`signal`, `query` or `groupBy`) starts every group again from `ok`; any other change keeps the groups'
+  states and their Landfall rooms.
 - `GET /api/alerts/:id/events?limit=` → `{ "events": [AlertEvent] }` (newest first). An `AlertEvent` is `{ id, alertId,
   groupKey, state, value, threshold, windowStart, windowEnd, createdAt, incident }`.
 - `POST /api/alerts/:id/test` → `{ "groups": [{ "groupKey", "value", "wouldFire" }] }` without changing state.

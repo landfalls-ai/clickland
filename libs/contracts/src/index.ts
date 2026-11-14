@@ -90,13 +90,15 @@ export const AlertInput = z.object({
   windowMinutes: z.number().int().min(1).max(1440),
   intervalMinutes: z.number().int().min(1).max(1440).default(1),
   enabled: z.boolean().default(true),
-  severity: Severity.default('sev3'),
+  // The four below are optional so a client that predates them neither breaks nor erases them: omitted, a create
+  // takes `sev3`, `false`, `{}` and `null`, and a `PUT` keeps the stored value (`runbookUrl: null` clears it).
+  severity: Severity.optional(),
   /**
    * The direct route: send this alert straight to the `landfall` webhooks rather than only through Landflow's triage.
    * sev1 alerts always take it; set it for alerts about Landflow itself.
    */
-  direct: z.boolean().default(false),
-  labels: Labels.default({}),
+  direct: z.boolean().optional(),
+  labels: Labels.optional(),
   runbookUrl: z
     .url({ protocol: /^https?$/ })
     .max(2000)
@@ -318,7 +320,11 @@ export interface PatternResult {
   services: string[];
 }
 
-export interface Alert extends AlertInput {
+export interface Alert extends Omit<AlertInput, 'severity' | 'direct' | 'labels' | 'runbookUrl'> {
+  severity: Severity;
+  direct: boolean;
+  labels: Record<string, string>;
+  runbookUrl: string | null;
   id: string;
   createdBy: string;
   createdAt: string;

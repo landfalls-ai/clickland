@@ -159,6 +159,52 @@ describe.skipIf(!enabled)('API (live stack)', () => {
     }
   });
 
+  it('a PUT that omits severity, labels or runbook keeps them, and keeps the groups (and rooms) unless the search changed', async () => {
+    const rule = {
+      name: 'Test alert edits',
+      signal: 'logs',
+      query: 'service:"clickland-test-nothing-here"',
+      thresholdType: 'below',
+      threshold: 1,
+      windowMinutes: 5,
+      enabled: false,
+    };
+    const plain = await app.inject({ method: 'POST', url: '/api/alerts', headers: auth, payload: rule });
+    expect(plain.json()).toMatchObject({ severity: 'sev3', direct: false, labels: {}, runbookUrl: null });
+    await clients.pg`DELETE FROM alerts WHERE id = ${plain.json().id}`;
+
+    const created = await app.inject({
+      method: 'POST',
+      url: '/api/alerts',
+      headers: auth,
+      payload: { ...rule, severity: 'sev1', labels: { team: 'core' }, runbookUrl: 'https://runbooks.example/x' },
+    });
+    const id = created.json().id as string;
+    const put = (payload: object) => app.inject({ method: 'PUT', url: `/api/alerts/${id}`, headers: auth, payload });
+    try {
+      const [row] = await clients.pg`SELECT * FROM alerts WHERE id = ${id}`;
+      await services.alerts.evaluate(row as never);
+      // An older client (the console's form) sends only the rule.
+      const renamed = await put({ ...rule, name: 'Test alert edits, renamed', threshold: 2 });
+      expect(renamed.statusCode).toBe(200);
+      expect(renamed.json()).toMatchObject({
+        name: 'Test alert edits, renamed',
+        severity: 'sev1',
+        labels: { team: 'core' },
+        runbookUrl: 'https://runbooks.example/x',
+      });
+      expect(renamed.json().states.map((s: { state: string }) => s.state)).toEqual(['firing']);
+
+      const cleared = await put({ ...rule, severity: 'sev4', labels: {}, runbookUrl: null });
+      expect(cleared.json()).toMatchObject({ severity: 'sev4', labels: {}, runbookUrl: null });
+
+      const newSearch = await put({ ...rule, query: 'service:"clickland-test-nothing-else"' });
+      expect(newSearch.json().states).toEqual([]);
+    } finally {
+      await clients.pg`DELETE FROM alerts WHERE id = ${id}`;
+    }
+  });
+
   it("keeps a note's links and returns them in knowledge search", async () => {
     const word = `zqlinks${Date.now()}`;
     const links = [{ label: 'Landfall room', url: 'http://localhost:5173/o/local/incidents/inc_test' }];

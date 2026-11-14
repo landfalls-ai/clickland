@@ -33,9 +33,15 @@ describe('alerts', () => {
 describe('alert severity, labels and runbook', () => {
   const base = { name: 'a', signal: 'logs', thresholdType: 'above', threshold: 1, windowMinutes: 5 };
 
-  it("defaults to sev3 (Landfall's remote default), no labels and no runbook", () => {
-    expect(AlertInput.parse(base)).toMatchObject({ severity: 'sev3', labels: {} });
-    expect(AlertInput.parse(base).runbookUrl).toBeUndefined();
+  it('leaves them out when the client does, so the API can tell "not sent" (keep on PUT) from a value', () => {
+    const parsed = AlertInput.parse(base);
+    expect([parsed.severity, parsed.direct, parsed.labels, parsed.runbookUrl]).toEqual([
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+    ]);
+    expect(AlertInput.parse({ ...base, runbookUrl: null }).runbookUrl).toBeNull();
   });
 
   it("takes Landfall's scale only, label names that are fields, and an http(s) runbook", () => {

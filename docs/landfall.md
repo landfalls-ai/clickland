@@ -73,8 +73,7 @@ node scripts/seed-landfall.mjs --dry-run    # say what it would do
 
 `CLICKLAND_API_URL` (default `http://127.0.0.1:4710`) and `CLICKLAND_API_KEY` (a key with `views:write` and
 `alerts:write`; unset when the API runs without auth). It finds both by name, so running it again changes nothing, and
-a dashboard someone edited keeps their edits unless `--update` is given (which also resets the alert's state, so its
-groups forget their rooms).
+a dashboard someone edited keeps their edits unless `--update` is given.
 
 - **"Landfall"**, a pinned view (a dashboard) over the last hour of `service:core-api`: requests (server spans), errors
   (error spans by kind), p95 latency (`http.server.duration`, p95), the count of error log lines, the latest error
@@ -93,7 +92,8 @@ groups forget their rooms).
   `route: "direct"`); until Landflow's triage skips those, the room could open twice.
 - **Restart the API before adding a `landfall` webhook.** An API process older than the `landfall` format would send
   its deliveries as standard signed webhooks, without the ingest token.
-- **Editing an alert resets its state**, so its groups forget their rooms: the next firing opens a new room unless
-  Landfall still has one open for the same `dedupKey` (it then attaches, and the link comes back).
+- **Changing an alert's search forgets its rooms.** A `PUT` that changes `signal`, `query` or `groupBy` starts the
+  groups again from `ok`, so the event that fires next carries no `pending` link; Landfall still attaches it by
+  `dedupKey` if the room is open, and the link comes back with the answer.
 - **Runbooks travel in the summary.** `SourceTriggerPayload` has no links field; Clickland writes the runbook into
   `summary`. An optional `links[]` there would be Landfall's change to make.

@@ -152,22 +152,34 @@ export class Alerts {
       INSERT INTO alerts (id, name, signal, query, group_by, threshold_type, threshold, window_minutes, interval_minutes,
                           enabled, severity, direct, labels, runbook_url, created_by)
       VALUES (${id}, ${input.name}, ${input.signal}, ${input.query}, ${input.groupBy ?? null}, ${input.thresholdType},
-              ${input.threshold}, ${input.windowMinutes}, ${input.intervalMinutes}, ${input.enabled}, ${input.severity},
-              ${input.direct}, ${this.pg.json(input.labels)}, ${input.runbookUrl ?? null}, ${createdBy})`;
+              ${input.threshold}, ${input.windowMinutes}, ${input.intervalMinutes}, ${input.enabled},
+              ${input.severity ?? 'sev3'}, ${input.direct ?? false}, ${this.pg.json(input.labels ?? {})},
+              ${input.runbookUrl ?? null}, ${createdBy})`;
     return this.get(id);
   }
 
+  /** Replaces the rule. An omitted `severity`, `direct`, `labels` or `runbookUrl` keeps its stored value. */
   async update(id: string, input: AlertInput): Promise<Alert> {
     this.validate(input);
-    const rows = await this.pg`
+    const [before] = await this.pg<Pick<AlertRow, 'signal' | 'query' | 'group_by'>[]>`
+      SELECT signal, query, group_by FROM alerts WHERE id = ${id}`;
+    if (!before) throw notFound('Alert');
+    const pg = this.pg;
+    await pg`
       UPDATE alerts SET name = ${input.name}, signal = ${input.signal}, query = ${input.query}, group_by = ${input.groupBy ?? null},
         threshold_type = ${input.thresholdType}, threshold = ${input.threshold}, window_minutes = ${input.windowMinutes},
-        interval_minutes = ${input.intervalMinutes}, enabled = ${input.enabled}, severity = ${input.severity},
-        direct = ${input.direct}, labels = ${this.pg.json(input.labels)}, runbook_url = ${input.runbookUrl ?? null}, updated_at = now(), next_run_at = now()
-      WHERE id = ${id} RETURNING id`;
-    if (rows.length === 0) throw notFound('Alert');
-    // A changed search makes the old groups meaningless: start again from "ok".
-    await this.pg`DELETE FROM alert_states WHERE alert_id = ${id}`;
+        interval_minutes = ${input.intervalMinutes}, enabled = ${input.enabled},
+        severity = ${input.severity === undefined ? pg`severity` : pg`${input.severity}`},
+        direct = ${input.direct === undefined ? pg`direct` : pg`${input.direct}`},
+        labels = ${input.labels === undefined ? pg`labels` : pg`${pg.json(input.labels)}`},
+        runbook_url = ${input.runbookUrl === undefined ? pg`runbook_url` : pg`${input.runbookUrl}`},
+        updated_at = now(), next_run_at = now()
+      WHERE id = ${id}`;
+    // A changed search makes the old groups meaningless: start again from "ok". Otherwise (a new name, threshold or
+    // severity) the groups keep their state and their Landfall rooms.
+    const searchChanged =
+      before.signal !== input.signal || before.query !== input.query || (before.group_by ?? null) !== (input.groupBy ?? null);
+    if (searchChanged) await pg`DELETE FROM alert_states WHERE alert_id = ${id}`;
     return this.get(id);
   }
 

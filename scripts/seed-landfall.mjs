@@ -4,7 +4,7 @@
 // missing and leaves what exists alone, so a dashboard someone edited keeps their edits.
 //
 //   node scripts/seed-landfall.mjs              # create what is missing
-//   node scripts/seed-landfall.mjs --update     # also reset existing ones to the pack (editing an alert resets its state)
+//   node scripts/seed-landfall.mjs --update     # also reset existing ones to the pack
 //   node scripts/seed-landfall.mjs --dry-run    # say what it would do, change nothing
 //
 // CLICKLAND_API_URL (default http://127.0.0.1:4710) is the API; CLICKLAND_API_KEY a key with `views:write` and
