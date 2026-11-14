@@ -64,11 +64,16 @@ export function PatternsList({
                 </Fragment>
               ))}
             </code>
-            <span className="shrink-0 text-right font-mono text-[12px] font-semibold text-t1">{formatCount(p.count)}</span>
+            <span className="shrink-0 text-right font-mono text-[12px] font-semibold text-t1">
+              {formatCount(p.count)}
+            </span>
           </div>
           <div className="flex items-center gap-2">
             <span className="h-1.5 flex-1 overflow-hidden rounded-full bg-nudim">
-              <span className="block h-full rounded-full bg-viz-1" style={{ width: `${Math.max(1, p.share * 100)}%` }} />
+              <span
+                className="block h-full rounded-full bg-viz-1"
+                style={{ width: `${Math.max(1, p.share * 100)}%` }}
+              />
             </span>
             <span className="w-12 text-right font-mono text-[11px] text-t3">{formatPercent(p.share)}</span>
           </div>

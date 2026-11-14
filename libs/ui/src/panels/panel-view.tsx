@@ -35,7 +35,11 @@ export type PanelType = Panel['type'];
 
 /** Each panel type's name and icon (the editor's type picker uses them too). */
 export const PANEL_TYPES: Record<PanelType, { label: string; icon: LucideIcon; hint: string }> = {
-  timeseries: { label: 'Time series', icon: LineChart, hint: 'Rows over time, optionally one line per value of a field' },
+  timeseries: {
+    label: 'Time series',
+    icon: LineChart,
+    hint: 'Rows over time, optionally one line per value of a field',
+  },
   bar: { label: 'Bar chart', icon: BarChart3, hint: 'Rows per value of a field' },
   stat: { label: 'Stat', icon: Hash, hint: 'How many rows match' },
   logs: { label: 'Logs', icon: Rows3, hint: 'The newest matching log rows' },
@@ -65,10 +69,7 @@ export function PanelView({ panel, range, data, links, refresh = 0, actions, cla
   const Icon = meta?.icon ?? FileText;
   const open = openLink(panel, links);
   return (
-    <Card
-      className={cn('flex min-w-0 flex-col gap-2.5 px-3.5 py-3', className)}
-      testId={`panel-${panel.type}`}
-    >
+    <Card className={cn('flex min-w-0 flex-col gap-2.5 px-3.5 py-3', className)} testId={`panel-${panel.type}`}>
       <header className="flex min-h-7 items-center gap-2">
         <Icon className="size-3.5 shrink-0 text-t3" strokeWidth={1.8} aria-hidden />
         <h3 className="min-w-0 flex-1 truncate text-[13px] font-semibold text-t1" title={panel.title}>
@@ -94,14 +95,18 @@ export function PanelView({ panel, range, data, links, refresh = 0, actions, cla
 
 function openLink(panel: Panel, links?: PanelLinks): { label: string; go: () => void } | null {
   if (!links) return null;
-  if (panel.type === 'trace' && links.openTrace) return { label: 'Open the trace', go: () => links.openTrace!(panel.traceId) };
+  if (panel.type === 'trace' && links.openTrace)
+    return { label: 'Open the trace', go: () => links.openTrace!(panel.traceId) };
   if (!links.openSearch) return null;
   switch (panel.type) {
     case 'timeseries':
     case 'bar':
     case 'stat':
     case 'patterns':
-      return { label: 'Open in Search', go: () => links.openSearch!({ signal: panel.signal ?? 'logs', query: panel.query ?? '' }) };
+      return {
+        label: 'Open in Search',
+        go: () => links.openSearch!({ signal: panel.signal ?? 'logs', query: panel.query ?? '' }),
+      };
     case 'logs':
       return { label: 'Open in Search', go: () => links.openSearch!({ signal: 'logs', query: panel.query ?? '' }) };
     case 'spans':
@@ -163,7 +168,16 @@ function Loading<T>({
 }) {
   if (state.error && state.data === undefined) return <ErrorNote error={state.error} />;
   if (state.data === undefined)
-    return height ? <div style={{ height }} className="animate-pulse-soft rounded-lg bg-nudim" aria-busy="true" aria-label="Loading" /> : <Skeleton lines={lines} />;
+    return height ? (
+      <div
+        style={{ height }}
+        className="animate-pulse-soft rounded-lg bg-nudim"
+        aria-busy="true"
+        aria-label="Loading"
+      />
+    ) : (
+      <Skeleton lines={lines} />
+    );
   return (
     <div className={cn('min-w-0 transition-opacity', state.loading && 'opacity-70')}>
       {state.error && <ErrorNote error={state.error} className="mb-2" />}
@@ -174,7 +188,12 @@ function Loading<T>({
 
 function TimeseriesBody({ panel, range, data, refresh }: Typed<'timeseries'>) {
   const state = useLoad(keyOf(panel, range, refresh), () =>
-    data.histogram({ signal: panel.signal ?? 'logs', query: panel.query ?? '', groupBy: panel.groupBy ?? null, ...range }),
+    data.histogram({
+      signal: panel.signal ?? 'logs',
+      query: panel.query ?? '',
+      groupBy: panel.groupBy ?? null,
+      ...range,
+    }),
   );
   return (
     <Loading state={state} height={200}>
@@ -244,7 +263,10 @@ function SpansBody({ panel, range, data, refresh, links }: Typed<'spans'>) {
     <Loading state={state} lines={6}>
       {(d) => (
         <div className="-mx-1.5 max-h-[420px] overflow-y-auto">
-          <SpanTable rows={d.rows as SpanRow[]} onSelect={links?.openTrace ? (row) => links.openTrace!(row.traceId) : undefined} />
+          <SpanTable
+            rows={d.rows as SpanRow[]}
+            onSelect={links?.openTrace ? (row) => links.openTrace!(row.traceId) : undefined}
+          />
         </div>
       )}
     </Loading>
@@ -253,7 +275,11 @@ function SpansBody({ panel, range, data, refresh, links }: Typed<'spans'>) {
 
 function TraceBody({ panel, data, refresh }: Typed<'trace'>) {
   const state = useLoad(JSON.stringify([panel.traceId, refresh]), () => data.trace(panel.traceId));
-  return <Loading state={state} lines={6}>{(trace) => <TraceWaterfall trace={trace} />}</Loading>;
+  return (
+    <Loading state={state} lines={6}>
+      {(trace) => <TraceWaterfall trace={trace} />}
+    </Loading>
+  );
 }
 
 function ServicesBody({ panel, range, data, refresh, links }: BodyProps) {
@@ -317,7 +343,8 @@ function MetricBody({ panel, range, data, refresh }: Typed<'metric'>) {
           format={
             latency && /duration|latency|time/i.test(panel.metric)
               ? formatDuration
-              : /memory|bytes|filesystem|\.size\b|heap/i.test(panel.metric) && !/fault|percent|utilization/i.test(panel.metric)
+              : /memory|bytes|filesystem|\.size\b|heap/i.test(panel.metric) &&
+                  !/fault|percent|utilization/i.test(panel.metric)
                 ? formatBytes
                 : formatCount
           }

@@ -18,7 +18,8 @@ export function Facets({
   const [closed, setClosed] = useState<Set<string>>(new Set());
   if (error) return <p className="text-[12px] text-rd">{error.message}</p>;
   if (!fields) return loading ? <Skeleton lines={8} /> : null;
-  if (!fields.length) return <p className="text-[12px] text-t3">No facets in this range (they come from 15-minute rollups).</p>;
+  if (!fields.length)
+    return <p className="text-[12px] text-t3">No facets in this range (they come from 15-minute rollups).</p>;
   return (
     <div className="flex flex-col gap-1" data-testid="facets">
       {fields.map((f, i) => {

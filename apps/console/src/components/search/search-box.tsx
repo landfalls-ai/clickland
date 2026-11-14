@@ -57,7 +57,11 @@ export const SearchBox = forwardRef<
           </button>
         )}
       >
-        {(close) => <SyntaxHelp onPick={(example) => (onChange(value.trim() ? `${value.trim()} ${example}` : example), close())} />}
+        {(close) => (
+          <SyntaxHelp
+            onPick={(example) => (onChange(value.trim() ? `${value.trim()} ${example}` : example), close())}
+          />
+        )}
       </Popover>
     </form>
   );

@@ -35,6 +35,9 @@ describe('assistant view markers', () => {
   });
 
   it('lists each view id once', () => {
-    expect(viewIds('[[clickland:view:vw_a]] x [[clickland:view:vw_b]] [[clickland:view:vw_a]]')).toEqual(['vw_a', 'vw_b']);
+    expect(viewIds('[[clickland:view:vw_a]] x [[clickland:view:vw_b]] [[clickland:view:vw_a]]')).toEqual([
+      'vw_a',
+      'vw_b',
+    ]);
   });
 });

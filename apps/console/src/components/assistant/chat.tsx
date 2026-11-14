@@ -33,7 +33,10 @@ export function AssistantChat({ variant, onFold }: { variant: 'card' | 'page'; o
   return (
     <section
       aria-label="Assistant"
-      className={cn('flex min-h-0 flex-col', variant === 'card' ? 'h-full bg-sf' : 'h-[calc(100dvh-52px-56px)] md:h-[calc(100dvh-52px)]')}
+      className={cn(
+        'flex min-h-0 flex-col',
+        variant === 'card' ? 'h-full bg-sf' : 'h-[calc(100dvh-52px-56px)] md:h-[calc(100dvh-52px)]',
+      )}
       data-testid={`assistant-${variant}`}
     >
       {variant === 'card' && (
@@ -73,7 +76,9 @@ export function AssistantChat({ variant, onFold }: { variant: 'card' | 'page'; o
               </>
             }
             action={
-              <Button onClick={() => submit(messages.filter((m) => m.role === 'user').at(-1)?.text ?? 'Hello')}>Try again</Button>
+              <Button onClick={() => submit(messages.filter((m) => m.role === 'user').at(-1)?.text ?? 'Hello')}>
+                Try again
+              </Button>
             }
           />
         ) : messages.length === 0 ? (
@@ -176,7 +181,12 @@ function Message({ message }: { message: ChatMessage }) {
                   {children}
                 </a>
               ) : (
-                <a href={href} target="_blank" rel="noreferrer noopener" className="text-ac underline decoration-acbd underline-offset-2">
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="text-ac underline decoration-acbd underline-offset-2"
+                >
                   {children}
                 </a>
               )

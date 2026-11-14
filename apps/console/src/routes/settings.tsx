@@ -1,7 +1,20 @@
 import { useState } from 'react';
 import { ExternalLink, KeyRound, Plus, Trash2, Webhook as WebhookIcon } from 'lucide-react';
 import { ApiScope, WebhookEvent } from '@clickland/contracts';
-import { Badge, Button, Card, Chip, ErrorNote, Field, formatTime, Input, PickMany, SectionLabel, Select, Skeleton } from '@clickland/ui';
+import {
+  Badge,
+  Button,
+  Card,
+  Chip,
+  ErrorNote,
+  Field,
+  formatTime,
+  Input,
+  PickMany,
+  SectionLabel,
+  Select,
+  Skeleton,
+} from '@clickland/ui';
 import { PageBody, PageHeader } from '@/components/shell/page-header';
 import { UserRow } from '@/components/shell/sidebar';
 import { ThemeToggle } from '@/components/shell/theme-toggle';
@@ -38,7 +51,12 @@ export function SettingsPage() {
             The stock ClickStack UI that ClickHouse embeds, over the same tables: the bridge while Clickland’s own
             screens grow.
           </p>
-          <a href={CLICKSTACK} target="_blank" rel="noreferrer" className="inline-flex w-fit items-center gap-1.5 text-[13px] font-semibold text-ac hover:underline">
+          <a
+            href={CLICKSTACK}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex w-fit items-center gap-1.5 text-[13px] font-semibold text-ac hover:underline"
+          >
             <ExternalLink className="size-3.5" /> Open ClickStack
           </a>
         </Card>
@@ -127,7 +145,12 @@ function NewKey({ onClose }: { onClose: () => void }) {
             <Button variant="ghost" onClick={onClose}>
               Cancel
             </Button>
-            <Button variant="primary" type="submit" loading={create.isPending} disabled={!name.trim() || !scopes.length}>
+            <Button
+              variant="primary"
+              type="submit"
+              loading={create.isPending}
+              disabled={!name.trim() || !scopes.length}
+            >
               Create key
             </Button>
           </>
@@ -142,7 +165,11 @@ function NewKey({ onClose }: { onClose: () => void }) {
             <Input value={name} onChange={(e) => setName(e.target.value)} placeholder="landflow-plugin" autoFocus />
           </Field>
           <Field label="Scopes">
-            <PickMany options={ApiScope.options.map((s) => ({ value: s, label: s }))} value={scopes} onChange={setScopes} />
+            <PickMany
+              options={ApiScope.options.map((s) => ({ value: s, label: s }))}
+              value={scopes}
+              onChange={setScopes}
+            />
           </Field>
           <ErrorNote error={create.error} />
         </div>
@@ -179,7 +206,12 @@ function Webhooks() {
               <span className="min-w-0 flex-1 truncate font-mono text-[12px] text-t1" title={w.url}>
                 {w.url}
               </span>
-              <Button size="icon-sm" variant="ghost" aria-label={`Delete the webhook to ${w.url}`} onClick={() => setDel(w.id)}>
+              <Button
+                size="icon-sm"
+                variant="ghost"
+                aria-label={`Delete the webhook to ${w.url}`}
+                onClick={() => setDel(w.id)}
+              >
                 <Trash2 className="size-3.5" />
               </Button>
             </div>
@@ -232,7 +264,12 @@ function NewWebhook({ onClose }: { onClose: () => void }) {
             <Button variant="ghost" onClick={onClose}>
               Cancel
             </Button>
-            <Button variant="primary" type="submit" loading={create.isPending} disabled={!/^https?:\/\//.test(url) || !events.length}>
+            <Button
+              variant="primary"
+              type="submit"
+              loading={create.isPending}
+              disabled={!/^https?:\/\//.test(url) || !events.length}
+            >
               Create webhook
             </Button>
           </>
@@ -244,10 +281,20 @@ function NewWebhook({ onClose }: { onClose: () => void }) {
       ) : (
         <div className="flex flex-col gap-3">
           <Field label="URL">
-            <Input value={url} onChange={(e) => setUrl(e.target.value)} placeholder="http://127.0.0.1:3000/api/webhooks/…" className="font-mono" autoFocus />
+            <Input
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              placeholder="http://127.0.0.1:3000/api/webhooks/…"
+              className="font-mono"
+              autoFocus
+            />
           </Field>
           <Field label="Events">
-            <PickMany options={WebhookEvent.options.map((e) => ({ value: e, label: e }))} value={events} onChange={setEvents} />
+            <PickMany
+              options={WebhookEvent.options.map((e) => ({ value: e, label: e }))}
+              value={events}
+              onChange={setEvents}
+            />
           </Field>
           <Field label="Only for one alert">
             <Select value={alertId} onChange={(e) => setAlertId(e.target.value)}>

@@ -89,11 +89,7 @@ export function TraceWaterfall({
     setOwn(id);
     onSelect?.(id);
   };
-  const total = Math.max(
-    trace.durationMs,
-    ...ordered.map((o) => o.offsetMs + o.span.durationMs),
-    0.001,
-  );
+  const total = Math.max(trace.durationMs, ...ordered.map((o) => o.offsetMs + o.span.durationMs), 0.001);
   const rows = visibleSpans(ordered, collapsed);
   const selected = ordered.find((o) => o.span.spanId === selectedId)?.span;
   const ticks = [0, 0.25, 0.5, 0.75, 1];
@@ -102,12 +98,17 @@ export function TraceWaterfall({
     <div className={cn('@container flex min-w-0 flex-col gap-3', className)} data-testid="trace-waterfall">
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px] text-t3">
         <span>
-          <span className="font-semibold text-t1">{trace.spans.length}</span> {trace.spans.length === 1 ? 'span' : 'spans'}
+          <span className="font-semibold text-t1">{trace.spans.length}</span>{' '}
+          {trace.spans.length === 1 ? 'span' : 'spans'}
         </span>
         <span>
           <span className="font-mono font-semibold text-t1">{formatDuration(trace.durationMs)}</span>
         </span>
-        {trace.errorCount > 0 && <Badge tone="danger">{trace.errorCount} {trace.errorCount === 1 ? 'error' : 'errors'}</Badge>}
+        {trace.errorCount > 0 && (
+          <Badge tone="danger">
+            {trace.errorCount} {trace.errorCount === 1 ? 'error' : 'errors'}
+          </Badge>
+        )}
         <span className="flex flex-wrap items-center gap-2">
           {trace.services.map((s) => (
             <span key={s} className="inline-flex items-center gap-1">
@@ -126,8 +127,17 @@ export function TraceWaterfall({
               <span
                 key={t}
                 // Phones keep the ends and the middle; the quarter ticks would overlap.
-                className={cn('absolute top-1/2 -translate-y-1/2 font-mono', (t === 0.25 || t === 0.75) && 'hidden @xl:inline')}
-                style={t === 1 ? { right: 0 } : t === 0.5 ? { left: '50%', transform: 'translate(-50%, -50%)' } : { left: `${t * 100}%` }}
+                className={cn(
+                  'absolute top-1/2 -translate-y-1/2 font-mono',
+                  (t === 0.25 || t === 0.75) && 'hidden @xl:inline',
+                )}
+                style={
+                  t === 1
+                    ? { right: 0 }
+                    : t === 0.5
+                      ? { left: '50%', transform: 'translate(-50%, -50%)' }
+                      : { left: `${t * 100}%` }
+                }
               >
                 {t === 0 ? '0' : formatDuration(total * t)}
               </span>
@@ -161,7 +171,10 @@ export function TraceWaterfall({
                   error && 'bg-rddim',
                 )}
               >
-                <div className="flex min-w-0 items-center gap-1 text-[12px]" style={{ paddingLeft: Math.min(depth, 12) * 12 }}>
+                <div
+                  className="flex min-w-0 items-center gap-1 text-[12px]"
+                  style={{ paddingLeft: Math.min(depth, 12) * 12 }}
+                >
                   {childCount ? (
                     <button
                       type="button"
@@ -205,7 +218,11 @@ export function TraceWaterfall({
                       left + width > 70 && left < 15 ? 'font-semibold text-white' : 'text-t2',
                     )}
                     style={
-                      left + width <= 70 ? { left: `${left + width}%` } : left >= 15 ? { right: `${100 - left}%` } : { left: `${left}%` }
+                      left + width <= 70
+                        ? { left: `${left + width}%` }
+                        : left >= 15
+                          ? { right: `${100 - left}%` }
+                          : { left: `${left}%` }
                     }
                   >
                     {formatDuration(span.durationMs)}

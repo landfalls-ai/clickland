@@ -140,8 +140,18 @@ export function renderInline(text: string, link: LinkRenderer, keyPrefix = ''): 
   for (const m of text.matchAll(INLINE)) {
     if (m.index! > last) out.push(text.slice(last, m.index));
     const key = `${keyPrefix}${n++}`;
-    if (m[1]) out.push(<code key={key} className="rounded bg-nudim px-1 py-px font-mono text-[0.92em]">{m[2]}</code>);
-    else if (m[3] ?? m[4]) out.push(<strong key={key} className="font-semibold">{renderInline((m[3] ?? m[4])!, link, `${key}.`)}</strong>);
+    if (m[1])
+      out.push(
+        <code key={key} className="rounded bg-nudim px-1 py-px font-mono text-[0.92em]">
+          {m[2]}
+        </code>,
+      );
+    else if (m[3] ?? m[4])
+      out.push(
+        <strong key={key} className="font-semibold">
+          {renderInline((m[3] ?? m[4])!, link, `${key}.`)}
+        </strong>,
+      );
     else if (m[5]) out.push(<del key={key}>{renderInline(m[5], link, `${key}.`)}</del>);
     else if (m[6] ?? m[7]) out.push(<em key={key}>{renderInline((m[6] ?? m[7])!, link, `${key}.`)}</em>);
     else if (m[8]) {
@@ -171,7 +181,9 @@ function renderBlocks(blocks: Block[], link: LinkRenderer, prefix = ''): ReactNo
     const key = `${prefix}${i}`;
     switch (block.type) {
       case 'heading': {
-        const size = ['text-[17px]', 'text-[15px]', 'text-[14px]', 'text-[13px]', 'text-[13px]', 'text-[12px]'][block.level - 1];
+        const size = ['text-[17px]', 'text-[15px]', 'text-[14px]', 'text-[13px]', 'text-[13px]', 'text-[12px]'][
+          block.level - 1
+        ];
         const Tag = `h${block.level}` as 'h1';
         return (
           <Tag key={key} className={cn('mt-3 font-semibold text-t1 first:mt-0', size)}>
@@ -187,7 +199,10 @@ function renderBlocks(blocks: Block[], link: LinkRenderer, prefix = ''): ReactNo
         );
       case 'code':
         return (
-          <pre key={key} className="my-2 overflow-x-auto rounded-lg border border-hair bg-sf2 p-2.5 font-mono text-[12px] leading-relaxed">
+          <pre
+            key={key}
+            className="my-2 overflow-x-auto rounded-lg border border-hair bg-sf2 p-2.5 font-mono text-[12px] leading-relaxed"
+          >
             <code data-lang={block.lang || undefined}>{block.text}</code>
           </pre>
         );
@@ -222,7 +237,11 @@ function renderBlocks(blocks: Block[], link: LinkRenderer, prefix = ''): ReactNo
               <thead>
                 <tr className="border-b border-hair bg-sf2">
                   {block.head.map((h, j) => (
-                    <th key={j} className="px-2.5 py-1.5 text-left font-semibold" style={{ textAlign: block.align[j] ?? undefined }}>
+                    <th
+                      key={j}
+                      className="px-2.5 py-1.5 text-left font-semibold"
+                      style={{ textAlign: block.align[j] ?? undefined }}
+                    >
                       {renderInline(h, link)}
                     </th>
                   ))}
@@ -232,7 +251,11 @@ function renderBlocks(blocks: Block[], link: LinkRenderer, prefix = ''): ReactNo
                 {block.rows.map((row, r) => (
                   <tr key={r} className="border-b border-hair last:border-0">
                     {block.head.map((_, j) => (
-                      <td key={j} className="px-2.5 py-1.5 align-top" style={{ textAlign: block.align[j] ?? undefined }}>
+                      <td
+                        key={j}
+                        className="px-2.5 py-1.5 align-top"
+                        style={{ textAlign: block.align[j] ?? undefined }}
+                      >
                         {renderInline(row[j] ?? '', link)}
                       </td>
                     ))}

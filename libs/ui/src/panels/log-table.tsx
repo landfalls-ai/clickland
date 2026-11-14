@@ -27,8 +27,7 @@ export interface LogTableProps {
  */
 export function LogTable({ rows, onOpenTrace, onSelect, selected, onPick, empty, className }: LogTableProps) {
   const [open, setOpen] = useState<Set<string>>(new Set());
-  if (!rows.length)
-    return <div className="py-6 text-center text-[12px] text-t3">{empty ?? 'No log rows match.'}</div>;
+  if (!rows.length) return <div className="py-6 text-center text-[12px] text-t3">{empty ?? 'No log rows match.'}</div>;
   const toggle = (row: LogRow) => {
     if (onSelect) return onSelect(row);
     setOpen((prev) => {
@@ -39,7 +38,12 @@ export function LogTable({ rows, onOpenTrace, onSelect, selected, onPick, empty,
     });
   };
   return (
-    <div className={cn('@container min-w-0 text-[12px]', className)} role="table" aria-label="Log rows" data-testid="log-table">
+    <div
+      className={cn('@container min-w-0 text-[12px]', className)}
+      role="table"
+      aria-label="Log rows"
+      data-testid="log-table"
+    >
       <div
         role="row"
         className="hidden h-8 items-center gap-3 border-b border-hair px-2 text-[11px] font-semibold uppercase tracking-[0.06em] text-t3 @2xl:grid @2xl:grid-cols-[14px_96px_64px_minmax(80px,140px)_1fr]"
@@ -94,7 +98,9 @@ export function LogTable({ rows, onOpenTrace, onSelect, selected, onPick, empty,
                 role="cell"
                 className={cn(
                   'col-start-2 min-w-0 font-mono text-[12px] leading-snug text-t1 @2xl:col-start-auto',
-                  expanded ? 'whitespace-pre-wrap break-words' : 'line-clamp-2 break-all @2xl:truncate @2xl:break-normal',
+                  expanded
+                    ? 'whitespace-pre-wrap break-words'
+                    : 'line-clamp-2 break-all @2xl:truncate @2xl:break-normal',
                 )}
               >
                 {row.body}

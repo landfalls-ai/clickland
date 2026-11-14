@@ -4,8 +4,21 @@
     <meta charset="UTF-8" />
     <title>Clickland MCP App sandbox</title>
     <style>
-      html, body { margin: 0; padding: 0; height: 100%; background: transparent; overflow: hidden; }
-      iframe { display: block; width: 100%; height: 100%; border: 0; background: transparent; }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background: transparent;
+        overflow: hidden;
+      }
+      iframe {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        background: transparent;
+      }
     </style>
   </head>
   <body>
@@ -51,8 +64,12 @@
         }
 
         function withCsp(html, csp) {
-          var meta = '<meta http-equiv="Content-Security-Policy" content="' + cspFor(csp).replace(/"/g, '&quot;') + '">';
-          if (/<head[^>]*>/i.test(html)) return html.replace(/<head[^>]*>/i, function (m) { return m + meta; });
+          var meta =
+            '<meta http-equiv="Content-Security-Policy" content="' + cspFor(csp).replace(/"/g, '&quot;') + '">';
+          if (/<head[^>]*>/i.test(html))
+            return html.replace(/<head[^>]*>/i, function (m) {
+              return m + meta;
+            });
           return meta + html;
         }
 
@@ -72,7 +89,10 @@
           }
         });
 
-        window.parent.postMessage({ jsonrpc: '2.0', method: 'ui/notifications/sandbox-proxy-ready', params: {} }, parentOrigin);
+        window.parent.postMessage(
+          { jsonrpc: '2.0', method: 'ui/notifications/sandbox-proxy-ready', params: {} },
+          parentOrigin,
+        );
       })();
     </script>
   </body>

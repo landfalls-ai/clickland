@@ -1,6 +1,18 @@
 import { useEffect, useState } from 'react';
 import { NotebookPen, Plus } from 'lucide-react';
-import { Button, Card, Chip, EmptyState, ErrorNote, Field, formatTime, Input, Markdown, Skeleton, Textarea } from '@clickland/ui';
+import {
+  Button,
+  Card,
+  Chip,
+  EmptyState,
+  ErrorNote,
+  Field,
+  formatTime,
+  Input,
+  Markdown,
+  Skeleton,
+  Textarea,
+} from '@clickland/ui';
 import { SearchBox } from '@/components/search/search-box';
 import { PageBody, PageHeader } from '@/components/shell/page-header';
 import { Dialog } from '@/components/ui/dialog';
@@ -88,7 +100,11 @@ function AddNote({ onClose }: { onClose: () => void }) {
   const [tags, setTags] = useState('');
   const [traces, setTraces] = useState('');
   const create = useWrite(api.createNote, ['notes']);
-  const split = (s: string) => s.split(/[,\s]+/).map((x) => x.trim()).filter(Boolean);
+  const split = (s: string) =>
+    s
+      .split(/[,\s]+/)
+      .map((x) => x.trim())
+      .filter(Boolean);
   return (
     <Dialog
       title="Add a note"

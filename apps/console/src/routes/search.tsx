@@ -53,7 +53,10 @@ export function SearchPage() {
   const { from: rangeFrom, to: rangeTo } = range;
   const bounds = useMemo(() => resolve({ from: rangeFrom, to: rangeTo }, runAt), [rangeFrom, rangeTo, runAt]);
   const facetBounds = useMemo(
-    () => ({ from: new Date(Math.floor(Date.parse(bounds.from) / 60_000) * 60_000).toISOString(), to: new Date(Math.ceil(Date.parse(bounds.to) / 60_000) * 60_000).toISOString() }),
+    () => ({
+      from: new Date(Math.floor(Date.parse(bounds.from) / 60_000) * 60_000).toISOString(),
+      to: new Date(Math.ceil(Date.parse(bounds.to) / 60_000) * 60_000).toISOString(),
+    }),
     [bounds.from, bounds.to],
   );
 
@@ -97,7 +100,8 @@ export function SearchPage() {
   });
   const histogram = useQuery({
     queryKey: ['histogram', signal, query, bounds.from, bounds.to, groupBy],
-    queryFn: () => send<SeriesResponse>('POST', '/api/search/histogram', { signal, query, ...bounds, groupBy: groupBy || null }),
+    queryFn: () =>
+      send<SeriesResponse>('POST', '/api/search/histogram', { signal, query, ...bounds, groupBy: groupBy || null }),
     placeholderData: keepPreviousData,
     retry: quiet,
   });
@@ -111,9 +115,13 @@ export function SearchPage() {
   useEffect(() => {
     const el = sentinel.current;
     if (!el || live || typeof IntersectionObserver === 'undefined') return;
-    const io = new IntersectionObserver((entries) => {
-      if (entries[0]?.isIntersecting && results.hasNextPage && !results.isFetchingNextPage) void results.fetchNextPage();
-    }, { rootMargin: '400px' });
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting && results.hasNextPage && !results.isFetchingNextPage)
+          void results.fetchNextPage();
+      },
+      { rootMargin: '400px' },
+    );
     io.observe(el);
     return () => io.disconnect();
   }, [results, live]);
@@ -170,7 +178,9 @@ export function SearchPage() {
             onSubmit={() => update({ query: draft.trim() })}
             invalid={Boolean(syntax)}
             className="md:flex-1"
-            placeholder={signal === 'traces' ? 'service:api duration:>500 status:error' : 'level:error service:api timeout'}
+            placeholder={
+              signal === 'traces' ? 'service:api duration:>500 status:error' : 'level:error service:api timeout'
+            }
           />
           <div className="flex items-center gap-2">
             <TimeRangePicker
@@ -223,7 +233,11 @@ export function SearchPage() {
                 className="h-7 w-32 font-mono text-[12px] md:w-40"
               />
               <datalist id="facet-fields">
-                {['service', signal === 'logs' ? 'level' : 'status', ...(facets.data?.fields.map((f) => f.field) ?? [])].map((f) => (
+                {[
+                  'service',
+                  signal === 'logs' ? 'level' : 'status',
+                  ...(facets.data?.fields.map((f) => f.field) ?? []),
+                ].map((f) => (
                   <option key={f} value={f} />
                 ))}
               </datalist>
@@ -300,7 +314,9 @@ export function SearchPage() {
       )}
       {selected && (
         <Drawer
-          title={'body' in selected ? `${selected.service} · ${selected.severity}` : `${selected.service} · ${selected.name}`}
+          title={
+            'body' in selected ? `${selected.service} · ${selected.severity}` : `${selected.service} · ${selected.name}`
+          }
           onClose={() => setSelected(null)}
           actions={
             selected.traceId ? (
@@ -312,7 +328,9 @@ export function SearchPage() {
         >
           {'body' in selected ? (
             <div className="flex flex-col gap-3">
-              <pre className="whitespace-pre-wrap break-words rounded-lg bg-sf2 p-2.5 font-mono text-[12px] text-t1">{selected.body}</pre>
+              <pre className="whitespace-pre-wrap break-words rounded-lg bg-sf2 p-2.5 font-mono text-[12px] text-t1">
+                {selected.body}
+              </pre>
               <LogDetail row={selected} onOpenTrace={openTrace} onPick={(k, v) => pick(k, v)} />
             </div>
           ) : (

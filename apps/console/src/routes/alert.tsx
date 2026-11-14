@@ -110,7 +110,10 @@ export function AlertPage() {
                     </Button>
                   )}
                   {(isNew || dirty) && (
-                    <Button onClick={() => void save(true)} loading={(create.isPending || update.isPending) && test.isIdle}>
+                    <Button
+                      onClick={() => void save(true)}
+                      loading={(create.isPending || update.isPending) && test.isIdle}
+                    >
                       <FlaskConical className="size-3.5" /> {isNew ? 'Create and test' : 'Save and test'}
                     </Button>
                   )}
@@ -120,7 +123,11 @@ export function AlertPage() {
                     </Button>
                   )}
                   {(isNew || dirty) && (
-                    <Button variant="primary" onClick={() => void save(false)} loading={create.isPending || update.isPending}>
+                    <Button
+                      variant="primary"
+                      onClick={() => void save(false)}
+                      loading={create.isPending || update.isPending}
+                    >
                       {isNew ? 'Create alert' : 'Save'}
                     </Button>
                   )}
@@ -143,7 +150,10 @@ export function AlertPage() {
               ) : (
                 <div className="flex flex-col">
                   {test.data?.groups.map((g) => (
-                    <div key={g.groupKey} className="flex items-center gap-2 border-b border-hair py-1.5 text-[13px] last:border-0">
+                    <div
+                      key={g.groupKey}
+                      className="flex items-center gap-2 border-b border-hair py-1.5 text-[13px] last:border-0"
+                    >
                       <span className="min-w-0 flex-1 truncate font-mono text-t1">{g.groupKey || '(all rows)'}</span>
                       <span className="font-mono text-t2">{formatCount(g.value)}</span>
                       <Badge tone={g.wouldFire ? 'danger' : 'success'}>{g.wouldFire ? 'would fire' : 'ok'}</Badge>
@@ -157,7 +167,10 @@ export function AlertPage() {
             <Card>
               <SectionLabel className="mb-2">Now</SectionLabel>
               {alert.data.states.map((s) => (
-                <div key={s.groupKey} className="flex items-center gap-2 border-b border-hair py-1.5 text-[13px] last:border-0">
+                <div
+                  key={s.groupKey}
+                  className="flex items-center gap-2 border-b border-hair py-1.5 text-[13px] last:border-0"
+                >
                   <Badge tone={s.state === 'firing' ? 'danger' : 'success'}>{s.state}</Badge>
                   <span className="min-w-0 flex-1 truncate font-mono text-t1">{s.groupKey || '(all rows)'}</span>
                   <span className="font-mono text-t2">{formatCount(s.value)}</span>
@@ -178,13 +191,20 @@ export function AlertPage() {
               ) : (
                 <ol className="flex flex-col" data-testid="alert-events">
                   {events.data.events.map((e) => (
-                    <li key={e.id} className="flex flex-wrap items-center gap-x-2 gap-y-0.5 border-b border-hair py-1.5 text-[13px] last:border-0">
-                      <Badge tone={e.state === 'firing' ? 'danger' : 'success'}>{e.state === 'firing' ? 'fired' : 'resolved'}</Badge>
+                    <li
+                      key={e.id}
+                      className="flex flex-wrap items-center gap-x-2 gap-y-0.5 border-b border-hair py-1.5 text-[13px] last:border-0"
+                    >
+                      <Badge tone={e.state === 'firing' ? 'danger' : 'success'}>
+                        {e.state === 'firing' ? 'fired' : 'resolved'}
+                      </Badge>
                       <span className="font-mono text-t1">{e.groupKey || '(all rows)'}</span>
                       <span className="font-mono text-t2">
                         {formatCount(e.value)} / {formatCount(e.threshold)}
                       </span>
-                      <span className="ml-auto text-[11px] text-t3">{formatTime(e.createdAt, { date: true, ms: false })}</span>
+                      <span className="ml-auto text-[11px] text-t3">
+                        {formatTime(e.createdAt, { date: true, ms: false })}
+                      </span>
                     </li>
                   ))}
                 </ol>

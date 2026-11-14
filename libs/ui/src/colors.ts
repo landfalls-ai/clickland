@@ -45,7 +45,10 @@ export function withAlpha(color: string, alpha: number): string {
   }
   const rgb = /^rgba?\(([^)]+)\)$/i.exec(color.trim());
   if (rgb) {
-    const parts = rgb[1]!.split(/[\s,/]+/).filter(Boolean).slice(0, 3);
+    const parts = rgb[1]!
+      .split(/[\s,/]+/)
+      .filter(Boolean)
+      .slice(0, 3);
     return `rgba(${parts.join(', ')}, ${alpha})`;
   }
   return color;

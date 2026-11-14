@@ -58,10 +58,21 @@ export function PatternsPage() {
       />
       <PageBody className="flex flex-col gap-3">
         <div className="flex flex-col gap-2 md:flex-row md:items-center">
-          <SearchBox value={query} onChange={setQuery} onSubmit={submit} className="md:flex-1" invalid={run.error instanceof ApiError && run.error.status === 400} />
+          <SearchBox
+            value={query}
+            onChange={setQuery}
+            onSubmit={submit}
+            className="md:flex-1"
+            invalid={run.error instanceof ApiError && run.error.status === 400}
+          />
           <div className="flex items-center gap-2">
             <TimeRangePicker value={range} onChange={setRange} className="min-w-0 flex-1 md:flex-none" />
-            <Select value={String(sample)} onChange={(e) => setSample(Number(e.target.value))} aria-label="Sample size" className="w-32">
+            <Select
+              value={String(sample)}
+              onChange={(e) => setSample(Number(e.target.value))}
+              aria-label="Sample size"
+              className="w-32"
+            >
               {[1000, 5000, 10000, 20000].map((n) => (
                 <option key={n} value={n}>
                   {n.toLocaleString('en-US')} rows
@@ -74,7 +85,11 @@ export function PatternsPage() {
           </div>
         </div>
         {run.error && (
-          <QueryError query={query} message={run.error.message} position={run.error instanceof ApiError ? run.error.position : undefined} />
+          <QueryError
+            query={query}
+            message={run.error.message}
+            position={run.error instanceof ApiError ? run.error.position : undefined}
+          />
         )}
         <Card>
           {run.isLoading ? (
@@ -84,7 +99,9 @@ export function PatternsPage() {
               patterns={run.data.patterns}
               meta={{ sampled: run.data.sampled, total: run.data.total }}
               onSelect={(p) =>
-                navigate(`/search?${new URLSearchParams({ signal, query: exampleQuery(submitted ?? '', p.example), from: range.from, to: range.to })}`)
+                navigate(
+                  `/search?${new URLSearchParams({ signal, query: exampleQuery(submitted ?? '', p.example), from: range.from, to: range.to })}`,
+                )
               }
             />
           ) : (

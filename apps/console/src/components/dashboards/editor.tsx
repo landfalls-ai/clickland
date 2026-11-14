@@ -50,12 +50,18 @@ export function DashboardEditor({
     <div className="flex flex-col gap-4" data-testid="dashboard-editor">
       <div className="grid grid-cols-1 gap-3 md:grid-cols-[minmax(0,1fr)_220px]">
         <Field label="Name">
-          <Input value={spec.title} onChange={(e) => onChange({ ...spec, title: e.target.value })} aria-label="Dashboard name" />
+          <Input
+            value={spec.title}
+            onChange={(e) => onChange({ ...spec, title: e.target.value })}
+            aria-label="Dashboard name"
+          />
         </Field>
         <Field label="Time range">
           <Select
             value={relativeMinutes === null ? 'fixed' : String(relativeMinutes)}
-            onChange={(e) => e.target.value !== 'fixed' && onChange({ ...spec, range: { lastMinutes: Number(e.target.value) } })}
+            onChange={(e) =>
+              e.target.value !== 'fixed' && onChange({ ...spec, range: { lastMinutes: Number(e.target.value) } })
+            }
             aria-label="Time range"
           >
             {relativeMinutes !== null && !RANGES.some((r) => r.minutes === relativeMinutes) && (
@@ -145,14 +151,22 @@ export function DashboardEditor({
                 </div>
                 <button
                   type="button"
-                  onClick={() => onChange(updatePanel(spec, i, { ...panel, width: panel.width === 'full' ? 'half' : 'full' }))}
+                  onClick={() =>
+                    onChange(updatePanel(spec, i, { ...panel, width: panel.width === 'full' ? 'half' : 'full' }))
+                  }
                   title="Width"
                   aria-label={`Width of ${panel.title}: ${panel.width ?? 'half'}`}
                   className="hidden h-6 rounded-full border border-hair px-2 text-[11px] text-t2 hover:border-bd md:block"
                 >
                   {panel.width === 'full' ? 'full' : 'half'}
                 </button>
-                <Button size="icon-sm" variant="ghost" aria-label={`Move ${panel.title} up`} disabled={i === 0} onClick={() => onChange(movePanel(spec, i, i - 1))}>
+                <Button
+                  size="icon-sm"
+                  variant="ghost"
+                  aria-label={`Move ${panel.title} up`}
+                  disabled={i === 0}
+                  onClick={() => onChange(movePanel(spec, i, i - 1))}
+                >
                   <ArrowUp className="size-3.5" />
                 </Button>
                 <Button
@@ -164,10 +178,20 @@ export function DashboardEditor({
                 >
                   <ArrowDown className="size-3.5" />
                 </Button>
-                <Button size="icon-sm" variant="ghost" aria-label={`Edit ${panel.title}`} onClick={() => setEditing({ index: i, panel })}>
+                <Button
+                  size="icon-sm"
+                  variant="ghost"
+                  aria-label={`Edit ${panel.title}`}
+                  onClick={() => setEditing({ index: i, panel })}
+                >
                   <Pencil className="size-3.5" />
                 </Button>
-                <Button size="icon-sm" variant="ghost" aria-label={`Remove ${panel.title}`} onClick={() => onChange(removePanel(spec, i))}>
+                <Button
+                  size="icon-sm"
+                  variant="ghost"
+                  aria-label={`Remove ${panel.title}`}
+                  onClick={() => onChange(removePanel(spec, i))}
+                >
                   <Trash2 className="size-3.5" />
                 </Button>
               </li>
@@ -183,7 +207,9 @@ export function DashboardEditor({
       )}
       {editing && !('picking' in editing) && (
         <Dialog
-          title={editing.index === null ? `New ${PANEL_TYPES[editing.panel.type].label.toLowerCase()} panel` : 'Edit panel'}
+          title={
+            editing.index === null ? `New ${PANEL_TYPES[editing.panel.type].label.toLowerCase()} panel` : 'Edit panel'
+          }
           onClose={() => {
             setEditing(null);
             setProblem(null);
@@ -202,7 +228,11 @@ export function DashboardEditor({
           }
         >
           <div className="flex flex-col gap-3">
-            <PanelForm value={editing.panel} onChange={(panel) => setEditing({ ...editing, panel })} metrics={metrics} />
+            <PanelForm
+              value={editing.panel}
+              onChange={(panel) => setEditing({ ...editing, panel })}
+              metrics={metrics}
+            />
             <ErrorNote error={problem} />
           </div>
         </Dialog>

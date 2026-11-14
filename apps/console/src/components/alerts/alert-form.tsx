@@ -70,7 +70,12 @@ export function AlertForm({
         </Field>
       </div>
       <Field label="Search" hint="The rows the alert counts, in the search language.">
-        <Input value={value.query} onChange={(e) => set('query', e.target.value)} className="font-mono" spellCheck={false} />
+        <Input
+          value={value.query}
+          onChange={(e) => set('query', e.target.value)}
+          className="font-mono"
+          spellCheck={false}
+        />
       </Field>
       <Field label="Group by" hint="Optional: count per value of a field (each value fires on its own).">
         <Input
@@ -93,13 +98,32 @@ export function AlertForm({
           />
         </Field>
         <Field label="Threshold">
-          <Input type="number" inputMode="decimal" value={Number.isFinite(value.threshold) ? value.threshold : ''} onChange={(e) => set('threshold', e.target.valueAsNumber)} />
+          <Input
+            type="number"
+            inputMode="decimal"
+            value={Number.isFinite(value.threshold) ? value.threshold : ''}
+            onChange={(e) => set('threshold', e.target.valueAsNumber)}
+          />
         </Field>
         <Field label="Window (min)">
-          <Input type="number" inputMode="numeric" min={1} max={1440} value={value.windowMinutes || ''} onChange={(e) => set('windowMinutes', e.target.valueAsNumber)} />
+          <Input
+            type="number"
+            inputMode="numeric"
+            min={1}
+            max={1440}
+            value={value.windowMinutes || ''}
+            onChange={(e) => set('windowMinutes', e.target.valueAsNumber)}
+          />
         </Field>
         <Field label="Every (min)">
-          <Input type="number" inputMode="numeric" min={1} max={1440} value={value.intervalMinutes || ''} onChange={(e) => set('intervalMinutes', e.target.valueAsNumber)} />
+          <Input
+            type="number"
+            inputMode="numeric"
+            min={1}
+            max={1440}
+            value={value.intervalMinutes || ''}
+            onChange={(e) => set('intervalMinutes', e.target.valueAsNumber)}
+          />
         </Field>
       </div>
       {touched && !check.ok && !readOnly && <p className="text-[12px] text-warn">{check.message}</p>}

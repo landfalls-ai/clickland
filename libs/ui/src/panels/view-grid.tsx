@@ -67,7 +67,13 @@ export function ViewGrid({
               <Clock className="size-3.5 text-t3" />
               {formatRange(spec.range)}
             </span>
-            <Button size="icon-sm" variant="ghost" aria-label="Refresh" title="Refresh" onClick={() => setTick((t) => t + 1)}>
+            <Button
+              size="icon-sm"
+              variant="ghost"
+              aria-label="Refresh"
+              title="Refresh"
+              onClick={() => setTick((t) => t + 1)}
+            >
               <RefreshCw className="size-3.5" />
             </Button>
             {actions}

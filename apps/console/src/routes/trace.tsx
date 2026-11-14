@@ -3,7 +3,16 @@ import { Link, useNavigate, useParams } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
 import { Search, Waypoints } from 'lucide-react';
 import type { LogRow, SearchResponse } from '@clickland/contracts';
-import { Card, EmptyState, ErrorNote, formatTime, LogTable, SectionLabel, Skeleton, TraceWaterfall } from '@clickland/ui';
+import {
+  Card,
+  EmptyState,
+  ErrorNote,
+  formatTime,
+  LogTable,
+  SectionLabel,
+  Skeleton,
+  TraceWaterfall,
+} from '@clickland/ui';
 import { PageBody, PageHeader } from '@/components/shell/page-header';
 import { CopyButton } from '@/components/ui/copy-button';
 import { ApiError, quiet, send } from '@/lib/api';
@@ -28,7 +37,13 @@ export function TracePage() {
   const logQuery = `trace_id:${id}`;
   const logs = useQuery({
     queryKey: ['trace-logs', id, logWindow?.from],
-    queryFn: () => send<SearchResponse<LogRow>>('POST', '/api/search', { signal: 'logs', query: logQuery, ...logWindow!, limit: 200 }),
+    queryFn: () =>
+      send<SearchResponse<LogRow>>('POST', '/api/search', {
+        signal: 'logs',
+        query: logQuery,
+        ...logWindow!,
+        limit: 200,
+      }),
     enabled: Boolean(logWindow),
     retry: quiet,
   });
@@ -47,7 +62,9 @@ export function TracePage() {
             <CopyButton text={id} label="Copy the trace id" />
           </span>
         }
-        actions={trace.data && <span className="text-[12px] text-t3">{formatTime(trace.data.startedAt, { date: true })}</span>}
+        actions={
+          trace.data && <span className="text-[12px] text-t3">{formatTime(trace.data.startedAt, { date: true })}</span>
+        }
       />
       <PageBody className="flex flex-col gap-4">
         {trace.isLoading ? (
@@ -72,7 +89,10 @@ export function TracePage() {
           <Card className="px-1.5 py-2">
             <div className="flex items-center gap-2 px-2 pb-2">
               <SectionLabel>{spanId ? 'Logs of the selected span' : 'Logs of this trace'}</SectionLabel>
-              <Link to={searchHref} className="ml-auto inline-flex items-center gap-1 text-[12px] text-ac hover:underline">
+              <Link
+                to={searchHref}
+                className="ml-auto inline-flex items-center gap-1 text-[12px] text-ac hover:underline"
+              >
                 <Search className="size-3.5" /> Open in Search
               </Link>
             </div>

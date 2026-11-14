@@ -6,7 +6,14 @@ import { afterEach, vi } from 'vitest';
 vi.stubGlobal(
   'matchMedia',
   (query: string) =>
-    ({ matches: false, media: query, addEventListener() {}, removeEventListener() {}, addListener() {}, removeListener() {} }) as unknown as MediaQueryList,
+    ({
+      matches: false,
+      media: query,
+      addEventListener() {},
+      removeEventListener() {},
+      addListener() {},
+      removeListener() {},
+    }) as unknown as MediaQueryList,
 );
 
 afterEach(() => cleanup());

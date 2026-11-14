@@ -44,8 +44,8 @@ export function AppShell() {
         title="Can’t reach the Clickland API"
         hint={
           <>
-            The console sends <code className="font-mono text-[12px]">/api</code> to the API on 127.0.0.1:4710. Start it,
-            and the infrastructure with <code className="font-mono text-[12px]">pnpm dev:up</code>.
+            The console sends <code className="font-mono text-[12px]">/api</code> to the API on 127.0.0.1:4710. Start
+            it, and the infrastructure with <code className="font-mono text-[12px]">pnpm dev:up</code>.
             <span className="mt-1 block text-[12px] text-t3">{me.error.message}</span>
           </>
         }
@@ -68,7 +68,10 @@ function Frame({ me }: { me: NonNullable<ReturnType<typeof useMe>['data']> }) {
       </main>
       {!onAssistantPage &&
         (assistant.open ? (
-          <aside className="sticky top-0 hidden h-dvh w-[340px] shrink-0 border-l border-hair md:block lg:w-[400px]" data-testid="assistant-side">
+          <aside
+            className="sticky top-0 hidden h-dvh w-[340px] shrink-0 border-l border-hair md:block lg:w-[400px]"
+            data-testid="assistant-side"
+          >
             <AssistantChat variant="card" onFold={() => assistant.setOpen(false)} />
           </aside>
         ) : (

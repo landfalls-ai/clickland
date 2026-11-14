@@ -79,4 +79,3 @@ export const qs = (params: Record<string, string | number | boolean | null | und
 /** Retry server errors twice; never retry a 4xx (it won't change). */
 export const quiet = (failureCount: number, error: Error) =>
   !(error instanceof ApiError && error.status >= 400 && error.status < 500) && failureCount < 2;
-

@@ -55,7 +55,13 @@ export function fakeData(overrides: Partial<DataSource> = {}) {
   const series = {
     bucketSeconds: 60,
     series: [
-      { key: 'api', points: [[T0, 4], [at(60_000), 6]] as [string, number][] },
+      {
+        key: 'api',
+        points: [
+          [T0, 4],
+          [at(60_000), 6],
+        ] as [string, number][],
+      },
       { key: 'worker', points: [[T0, 1]] as [string, number][] },
     ],
   };
@@ -88,7 +94,13 @@ export function fakeData(overrides: Partial<DataSource> = {}) {
       calls.push(['patterns', req]);
       return {
         patterns: [
-          { template: 'Connection to <*> refused after <NUM> ms', count: 812, share: 0.41, example: 'Connection to db refused after 30 ms', services: ['api'] },
+          {
+            template: 'Connection to <*> refused after <NUM> ms',
+            count: 812,
+            share: 0.41,
+            example: 'Connection to db refused after 30 ms',
+            services: ['api'],
+          },
         ],
         sampled: 5000,
         total: 9120,

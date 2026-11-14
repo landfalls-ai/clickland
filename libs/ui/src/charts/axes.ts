@@ -24,7 +24,8 @@ export function timeTicks(self: uPlot, splits: number[]): string[] {
     if (span <= 10 * 60) return formatTime(s * 1000, { ms: false });
     if (span <= 36 * 3600) return `${pad(d.getHours())}:${pad(d.getMinutes())}`;
     const day = `${d.toLocaleString('en-US', { month: 'short' })} ${d.getDate()}`;
-    if (span <= 4 * 86400) return d.getHours() === 0 && d.getMinutes() === 0 ? day : `${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    if (span <= 4 * 86400)
+      return d.getHours() === 0 && d.getMinutes() === 0 ? day : `${pad(d.getHours())}:${pad(d.getMinutes())}`;
     return day;
   });
 }

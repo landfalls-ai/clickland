@@ -4,7 +4,15 @@ import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import type { ViewSpec } from '@clickland/contracts';
 import { DashboardEditor } from '@/components/dashboards/editor';
-import { addPanel, convertPanel, movePanel, newPanel, removePanel, updatePanel, withIds } from '@/components/dashboards/spec-ops';
+import {
+  addPanel,
+  convertPanel,
+  movePanel,
+  newPanel,
+  removePanel,
+  updatePanel,
+  withIds,
+} from '@/components/dashboards/spec-ops';
 
 const spec = (): ViewSpec => ({
   title: 'Checkout',
@@ -33,7 +41,14 @@ describe('spec edits', () => {
 
   it('keeps the title, width and search when a panel changes type', () => {
     const bar = convertPanel(spec().panels[0]!, 'bar');
-    expect(bar).toMatchObject({ id: 'a', type: 'bar', title: 'Errors', width: 'half', query: 'level:error', groupBy: 'service' });
+    expect(bar).toMatchObject({
+      id: 'a',
+      type: 'bar',
+      title: 'Errors',
+      width: 'half',
+      query: 'level:error',
+      groupBy: 'service',
+    });
   });
 
   it('gives panels ids only when some lack one', () => {

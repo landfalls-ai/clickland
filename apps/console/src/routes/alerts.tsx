@@ -11,7 +11,8 @@ import { useAlerts } from '@/lib/queries';
 export function alertState(alert: Alert): { label: string; tone: Tone } {
   if (!alert.enabled) return { label: 'off', tone: 'muted' };
   const firing = alert.states.filter((s) => s.state === 'firing').length;
-  if (firing) return { label: alert.groupBy && alert.states.length > 1 ? `firing · ${firing}` : 'firing', tone: 'danger' };
+  if (firing)
+    return { label: alert.groupBy && alert.states.length > 1 ? `firing · ${firing}` : 'firing', tone: 'danger' };
   if (!alert.states.length) return { label: 'pending', tone: 'neutral' };
   return { label: 'ok', tone: 'success' };
 }
@@ -21,7 +22,8 @@ export function AlertsPage() {
   const canEdit = useCan('edit');
   const navigate = useNavigate();
   const list = [...(alerts.data?.alerts ?? [])].sort(
-    (a, b) => Number(alertState(b).tone === 'danger') - Number(alertState(a).tone === 'danger') || a.name.localeCompare(b.name),
+    (a, b) =>
+      Number(alertState(b).tone === 'danger') - Number(alertState(a).tone === 'danger') || a.name.localeCompare(b.name),
   );
   return (
     <>

@@ -47,7 +47,8 @@ export function formatterForUnit(unit: string, name = ''): (n: number) => string
   if (/^(By|bytes?)$/i.test(unit)) return formatBytes;
   if (unit === 'ms') return formatDuration;
   if (unit === 's') return (n) => formatDuration(n * 1000);
-  if (unit === '1' && /utilization|percent|ratio/i.test(name)) return (n) => (/percent/i.test(name) ? `${trim(n)}%` : formatPercent(n));
+  if (unit === '1' && /utilization|percent|ratio/i.test(name))
+    return (n) => (/percent/i.test(name) ? `${trim(n)}%` : formatPercent(n));
   if (/duration|latency/i.test(name)) return formatDuration;
   return formatCount;
 }

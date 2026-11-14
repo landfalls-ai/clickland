@@ -23,7 +23,12 @@ export function SpanTable({
   if (!rows.length) return <div className="py-6 text-center text-[12px] text-t3">{empty ?? 'No spans match.'}</div>;
   const slowest = Math.max(...rows.map((r) => r.durationMs), 0.001);
   return (
-    <div className={cn('@container min-w-0 text-[12px]', className)} role="table" aria-label="Spans" data-testid="span-table">
+    <div
+      className={cn('@container min-w-0 text-[12px]', className)}
+      role="table"
+      aria-label="Spans"
+      data-testid="span-table"
+    >
       <div
         role="row"
         className="hidden h-8 items-center gap-3 border-b border-hair px-2 text-[11px] font-semibold uppercase tracking-[0.06em] text-t3 @2xl:grid @2xl:grid-cols-[96px_minmax(80px,140px)_1fr_120px_64px]"
@@ -65,7 +70,11 @@ export function SpanTable({
                 <span className="truncate">{row.service}</span>
               </span>
             </div>
-            <span role="cell" className="row-start-2 min-w-0 truncate font-mono text-t1 @2xl:row-start-auto" title={row.name}>
+            <span
+              role="cell"
+              className="row-start-2 min-w-0 truncate font-mono text-t1 @2xl:row-start-auto"
+              title={row.name}
+            >
               {row.name}
             </span>
             <span role="cell" className="row-span-2 flex items-center gap-2 @2xl:row-span-1">

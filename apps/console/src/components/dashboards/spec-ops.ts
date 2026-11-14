@@ -26,7 +26,14 @@ export function newPanel(type: PanelType, id: string = shortId()): Panel {
     case 'patterns':
       return { ...base, type, title: 'Error patterns', signal: 'logs', query: 'level:error' };
     case 'metric':
-      return { ...base, type, title: 'Metric', metric: '', metricType: 'gauge', aggregation: 'avg' } as unknown as Panel;
+      return {
+        ...base,
+        type,
+        title: 'Metric',
+        metric: '',
+        metricType: 'gauge',
+        aggregation: 'avg',
+      } as unknown as Panel;
     case 'markdown':
       return { ...base, type, title: 'Notes', text: '' };
   }
@@ -69,7 +76,9 @@ export function movePanel(spec: ViewSpec, from: number, to: number): ViewSpec {
 
 /** Gives every panel an id (stable keys while editing; the contract allows them). */
 export function withIds(spec: ViewSpec): ViewSpec {
-  return spec.panels.every((p) => p.id) ? spec : { ...spec, panels: spec.panels.map((p) => (p.id ? p : { ...p, id: shortId() })) };
+  return spec.panels.every((p) => p.id)
+    ? spec
+    : { ...spec, panels: spec.panels.map((p) => (p.id ? p : { ...p, id: shortId() })) };
 }
 
 /** A panel checked against the contract: the parsed panel, or the first problem. */

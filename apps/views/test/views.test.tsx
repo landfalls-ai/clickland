@@ -6,7 +6,11 @@ import { mcpDataSource } from '../src/mcp-data';
 import { viewFromToolResult } from '../src/tool-result';
 import { ViewScreen } from '../src/view-screen';
 
-const spec = { title: 'Checkout', range: { lastMinutes: 60 }, panels: [{ type: 'markdown', title: 'Finding', text: 'Hi' }] };
+const spec = {
+  title: 'Checkout',
+  range: { lastMinutes: 60 },
+  panels: [{ type: 'markdown', title: 'Finding', text: 'Hi' }],
+};
 
 describe('viewFromToolResult', () => {
   it('reads a view from render_view / get_view', () => {
@@ -30,7 +34,13 @@ describe('viewFromToolResult', () => {
   it('turns a search_logs result into a one-panel logs view of the same query', () => {
     const view = viewFromToolResult({
       name: 'search_logs',
-      arguments: { signal: 'logs', query: 'level:error', from: '2026-11-14T14:00:00.000Z', to: '2026-11-14T15:00:00.000Z', limit: 20 },
+      arguments: {
+        signal: 'logs',
+        query: 'level:error',
+        from: '2026-11-14T14:00:00.000Z',
+        to: '2026-11-14T15:00:00.000Z',
+        limit: 20,
+      },
       result: { structuredContent: { rows: [], nextCursor: null } },
     });
     expect(view.id).toBeNull();
@@ -40,11 +50,17 @@ describe('viewFromToolResult', () => {
 
   it('turns search_traces, get_trace, list_services and query_metric into their panels', () => {
     const r = { structuredContent: {} };
-    expect(viewFromToolResult({ name: 'search_traces', arguments: { query: 'x' }, result: r }).spec.panels[0]!.type).toBe('spans');
     expect(
-      viewFromToolResult({ name: 'get_trace', result: { structuredContent: { traceId: 'abc', spans: [] } } }).spec.panels[0],
+      viewFromToolResult({ name: 'search_traces', arguments: { query: 'x' }, result: r }).spec.panels[0]!.type,
+    ).toBe('spans');
+    expect(
+      viewFromToolResult({ name: 'get_trace', result: { structuredContent: { traceId: 'abc', spans: [] } } }).spec
+        .panels[0],
     ).toMatchObject({ type: 'trace', traceId: 'abc' });
-    expect(viewFromToolResult({ name: 'list_services', result: { structuredContent: { services: [] } } }).spec.panels[0]!.type).toBe('services');
+    expect(
+      viewFromToolResult({ name: 'list_services', result: { structuredContent: { services: [] } } }).spec.panels[0]!
+        .type,
+    ).toBe('services');
     expect(
       viewFromToolResult({
         name: 'query_metric',
@@ -55,7 +71,12 @@ describe('viewFromToolResult', () => {
   });
 
   it('reports a tool error', () => {
-    expect(() => viewFromToolResult({ name: 'get_view', result: { isError: true, content: [{ type: 'text', text: 'not_found' }] } })).toThrow('not_found');
+    expect(() =>
+      viewFromToolResult({
+        name: 'get_view',
+        result: { isError: true, content: [{ type: 'text', text: 'not_found' }] },
+      }),
+    ).toThrow('not_found');
   });
 });
 
@@ -98,7 +119,13 @@ describe('mcpDataSource', () => {
 
 describe('host theme', () => {
   it('maps host variables onto the land tokens and leaves the rest', () => {
-    expect(landVariables({ '--color-background-primary': '#111', '--color-text-danger': 'red', '--font-sans': 'Inter' } as never)).toEqual({
+    expect(
+      landVariables({
+        '--color-background-primary': '#111',
+        '--color-text-danger': 'red',
+        '--font-sans': 'Inter',
+      } as never),
+    ).toEqual({
       '--bg': '#111',
       '--sf': '#111',
       '--rd': 'red',

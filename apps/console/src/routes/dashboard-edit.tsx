@@ -45,7 +45,12 @@ export function DashboardEditPage() {
         const created = await create.mutateAsync({ spec, pinned: true });
         navigate(`/dashboards/${created.id}`, { replace: true });
       } else {
-        await update.mutateAsync({ id: id!, spec, title: spec.title, ...(force ? {} : { version: view.data?.version }) });
+        await update.mutateAsync({
+          id: id!,
+          spec,
+          title: spec.title,
+          ...(force ? {} : { version: view.data?.version }),
+        });
         navigate(`/dashboards/${id}`);
       }
     } catch (e) {
@@ -69,7 +74,13 @@ export function DashboardEditPage() {
             <Button size="sm" variant="ghost" onClick={() => navigate(isNew ? '/dashboards' : `/dashboards/${id}`)}>
               Cancel
             </Button>
-            <Button size="sm" variant="primary" disabled={!spec.panels.length || !spec.title.trim()} loading={busy} onClick={() => void save()}>
+            <Button
+              size="sm"
+              variant="primary"
+              disabled={!spec.panels.length || !spec.title.trim()}
+              loading={busy}
+              onClick={() => void save()}
+            >
               Save
             </Button>
           </>
@@ -79,7 +90,10 @@ export function DashboardEditPage() {
         <Card className="xl:sticky xl:top-[68px]">
           <DashboardEditor spec={spec} onChange={setDraft} metrics={metrics.data?.metrics} />
           {conflict && (
-            <div role="alert" className="mt-3 flex flex-col gap-2 rounded-[10px] border border-warnbd bg-warndim p-3 text-[12px] text-warn">
+            <div
+              role="alert"
+              className="mt-3 flex flex-col gap-2 rounded-[10px] border border-warnbd bg-warndim p-3 text-[12px] text-warn"
+            >
               Someone saved this dashboard while you were editing.
               <div className="flex gap-2">
                 <Button

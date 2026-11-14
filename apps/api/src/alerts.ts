@@ -178,7 +178,9 @@ export class Alerts {
     // A changed search makes the old groups meaningless: start again from "ok". Otherwise (a new name, threshold or
     // severity) the groups keep their state and their Landfall rooms.
     const searchChanged =
-      before.signal !== input.signal || before.query !== input.query || (before.group_by ?? null) !== (input.groupBy ?? null);
+      before.signal !== input.signal ||
+      before.query !== input.query ||
+      (before.group_by ?? null) !== (input.groupBy ?? null);
     if (searchChanged) await pg`DELETE FROM alert_states WHERE alert_id = ${id}`;
     return this.get(id);
   }

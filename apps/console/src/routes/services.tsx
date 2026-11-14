@@ -48,7 +48,11 @@ export function ServicesPage() {
           ) : (
             <ServicesTable
               services={services.data ?? []}
-              onSelect={(name) => navigate(`/services/${encodeURIComponent(name)}?${new URLSearchParams({ from: params.get('from') ?? range.from, to: params.get('to') ?? range.to })}`)}
+              onSelect={(name) =>
+                navigate(
+                  `/services/${encodeURIComponent(name)}?${new URLSearchParams({ from: params.get('from') ?? range.from, to: params.get('to') ?? range.to })}`,
+                )
+              }
             />
           )}
         </Card>

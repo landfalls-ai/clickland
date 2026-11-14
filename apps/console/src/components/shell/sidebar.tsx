@@ -88,7 +88,12 @@ export function Sidebar({ me }: { me: Me }) {
 
       <div className="mt-auto flex flex-col gap-0.5 pt-3">
         <NavRow item={SETTINGS} />
-        <a href="http://127.0.0.1:28123/clickstack" target="_blank" rel="noreferrer" className={rowClass({ isActive: false })}>
+        <a
+          href="http://127.0.0.1:28123/clickstack"
+          target="_blank"
+          rel="noreferrer"
+          className={rowClass({ isActive: false })}
+        >
           <ExternalLink className="size-[18px] shrink-0" strokeWidth={1.7} />
           <span className="truncate">ClickStack</span>
         </a>

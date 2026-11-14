@@ -6,7 +6,10 @@ import type { Me, Role } from './types';
  * Who is signed in. 401 means sign in with Landbright. Until the identity routes exist (404), the console runs as a
  * local developer with every role, as with `CLICKLAND_AUTH=dev`.
  */
-export const DEV_ME: Me = { user: { name: 'Local developer', email: 'dev@clickland.local', roles: ['admin'] }, authMode: 'dev' };
+export const DEV_ME: Me = {
+  user: { name: 'Local developer', email: 'dev@clickland.local', roles: ['admin'] },
+  authMode: 'dev',
+};
 
 export function useMe() {
   return useQuery({

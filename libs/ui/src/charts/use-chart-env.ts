@@ -5,10 +5,13 @@ export function useThemeVersion(): number {
   const [version, setVersion] = useState(0);
   useEffect(() => {
     const bump = () => setVersion((v) => v + 1);
-    const observer =
-      typeof MutationObserver !== 'undefined' ? new MutationObserver(bump) : undefined;
-    observer?.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'style', 'class'] });
-    const media = typeof window.matchMedia === 'function' ? window.matchMedia('(prefers-color-scheme: dark)') : undefined;
+    const observer = typeof MutationObserver !== 'undefined' ? new MutationObserver(bump) : undefined;
+    observer?.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme', 'style', 'class'],
+    });
+    const media =
+      typeof window.matchMedia === 'function' ? window.matchMedia('(prefers-color-scheme: dark)') : undefined;
     media?.addEventListener?.('change', bump);
     return () => {
       observer?.disconnect();

@@ -48,7 +48,10 @@ export function BarChart({
       legend: { show: false },
       padding: [8, 8, 0, 0],
       cursor: { drag: { x: false, y: false }, points: { show: false } },
-      scales: { x: { time: false, range: [-0.5, items.length - 0.5] }, y: { range: (_u, _min, max) => [0, max > 0 ? max * 1.1 : 1] } },
+      scales: {
+        x: { time: false, range: [-0.5, items.length - 0.5] },
+        y: { range: (_u, _min, max) => [0, max > 0 ? max * 1.1 : 1] },
+      },
       axes: [
         {
           stroke: t3,

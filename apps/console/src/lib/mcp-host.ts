@@ -66,7 +66,9 @@ export function viewHtml(): Promise<string> {
  * Where the sandbox proxy lives: the same server under the other loopback name, so its origin differs from the
  * console's (an MCP App must never share the host's origin). VITE_CLICKLAND_SANDBOX_URL overrides it.
  */
-export function sandboxUrl(location: Pick<Location, 'protocol' | 'hostname' | 'port' | 'origin'> = window.location): URL {
+export function sandboxUrl(
+  location: Pick<Location, 'protocol' | 'hostname' | 'port' | 'origin'> = window.location,
+): URL {
   const override = import.meta.env.VITE_CLICKLAND_SANDBOX_URL as string | undefined;
   if (override) return new URL(override);
   const other = location.hostname === 'localhost' ? '127.0.0.1' : 'localhost';

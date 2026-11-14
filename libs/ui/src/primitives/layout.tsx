@@ -13,7 +13,11 @@ export function Card({
   testId?: string;
 }) {
   return (
-    <div data-testid={testId} className={cn('rounded-2xl border border-hair bg-sf px-4 py-3.5', className)} style={style}>
+    <div
+      data-testid={testId}
+      className={cn('rounded-2xl border border-hair bg-sf px-4 py-3.5', className)}
+      style={style}
+    >
       {children}
     </div>
   );
@@ -62,7 +66,10 @@ export function EmptyState({
 export function ErrorNote({ error, className }: { error: unknown; className?: string }) {
   if (!error) return null;
   return (
-    <p role="alert" className={cn('rounded-[10px] border border-rdbd bg-rddim px-3 py-2 text-[12px] text-rd', className)}>
+    <p
+      role="alert"
+      className={cn('rounded-[10px] border border-rdbd bg-rddim px-3 py-2 text-[12px] text-rd', className)}
+    >
       {error instanceof Error ? error.message : String(error)}
     </p>
   );
@@ -99,7 +106,12 @@ export function KeyValues({
   const entries = Object.entries(values).sort(([a], [b]) => a.localeCompare(b));
   if (!entries.length) return <p className="text-[12px] text-t3">{empty}</p>;
   return (
-    <dl className={cn('grid grid-cols-1 gap-x-4 font-mono text-[12px] md:grid-cols-[minmax(120px,max-content)_1fr]', className)}>
+    <dl
+      className={cn(
+        'grid grid-cols-1 gap-x-4 font-mono text-[12px] md:grid-cols-[minmax(120px,max-content)_1fr]',
+        className,
+      )}
+    >
       {entries.map(([k, v]) => (
         <div key={k} className="contents">
           <dt className="truncate pt-1 text-t3 md:py-0.5" title={k}>

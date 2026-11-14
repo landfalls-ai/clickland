@@ -6,7 +6,9 @@ import { formatCount, formatDuration, formatPercent } from '../src/format';
 
 describe('Markdown', () => {
   it('parses headings, lists, code, quotes and tables', () => {
-    const blocks = parseBlocks('# Title\n\nSome *text*\n\n- a\n- b\n  - nested\n\n```sql\nSELECT 1\n```\n\n> quoted\n\n| a | b |\n|---|--:|\n| 1 | 2 |');
+    const blocks = parseBlocks(
+      '# Title\n\nSome *text*\n\n- a\n- b\n  - nested\n\n```sql\nSELECT 1\n```\n\n> quoted\n\n| a | b |\n|---|--:|\n| 1 | 2 |',
+    );
     expect(blocks.map((b) => b.type)).toEqual(['heading', 'paragraph', 'list', 'code', 'quote', 'table']);
     const list = blocks[2] as Extract<(typeof blocks)[number], { type: 'list' }>;
     expect(list.items).toHaveLength(2);
@@ -14,7 +16,9 @@ describe('Markdown', () => {
   });
 
   it('never renders raw HTML or unsafe links', () => {
-    const { container } = render(<Markdown text={'<img src=x onerror=alert(1)> [x](javascript:alert(1)) [ok](https://example.com)'} />);
+    const { container } = render(
+      <Markdown text={'<img src=x onerror=alert(1)> [x](javascript:alert(1)) [ok](https://example.com)'} />,
+    );
     expect(container.querySelector('img')).toBeNull();
     expect(container.textContent).toContain('<img src=x onerror=alert(1)>');
     const links = container.querySelectorAll('a');

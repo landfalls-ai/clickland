@@ -12,7 +12,11 @@ export interface LoadedView {
 export interface ToolCall {
   name?: string;
   arguments?: Record<string, unknown>;
-  result: { structuredContent?: Record<string, unknown>; content?: Array<{ type: string; text?: string }>; isError?: boolean };
+  result: {
+    structuredContent?: Record<string, unknown>;
+    content?: Array<{ type: string; text?: string }>;
+    isError?: boolean;
+  };
 }
 
 type Obj = Record<string, unknown>;
@@ -66,7 +70,8 @@ export function viewFromToolResult(call: ToolCall): LoadedView {
   const rawSpec = isObj(view.spec) ? view.spec : Array.isArray(view.panels) ? view : null;
   if (rawSpec) {
     const parsed = ViewSpec.safeParse(rawSpec);
-    if (!parsed.success) throw new Error(`The view is not valid: ${parsed.error.issues[0]?.message ?? 'unknown problem'}`);
+    if (!parsed.success)
+      throw new Error(`The view is not valid: ${parsed.error.issues[0]?.message ?? 'unknown problem'}`);
     return {
       spec: parsed.data,
       id: str(view.id) ?? str(sc.id) ?? null,
@@ -80,7 +85,9 @@ export function viewFromToolResult(call: ToolCall): LoadedView {
 
   if (name === 'get_trace' || (Array.isArray(sc.spans) && str(sc.traceId))) {
     const traceId = str(sc.traceId) ?? str(args.traceId) ?? '';
-    return loaded(oneOf({ type: 'trace', title: `Trace ${traceId.slice(0, 12)}`, traceId }, args, `Trace ${traceId.slice(0, 12)}`));
+    return loaded(
+      oneOf({ type: 'trace', title: `Trace ${traceId.slice(0, 12)}`, traceId }, args, `Trace ${traceId.slice(0, 12)}`),
+    );
   }
   if (name === 'list_services' || Array.isArray(sc.services)) {
     return loaded(oneOf({ type: 'services', title: 'Services' }, args, 'Services'));

@@ -64,7 +64,10 @@ export function toolStatus(status: string | undefined): ToolStatus {
 
 /** A tool's name as people read it: `Logs_analyst` → "Logs analyst", `search_logs` → "search logs". */
 export function toolLabel(name: string): string {
-  const words = name.replace(/[_-]+/g, ' ').replace(/([a-z])([A-Z])/g, '$1 $2').trim();
+  const words = name
+    .replace(/[_-]+/g, ' ')
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .trim();
   return words ? words[0]!.toUpperCase() + words.slice(1).toLowerCase() : name;
 }
 
@@ -84,7 +87,11 @@ export function applyEvent(message: ChatMessage, event: unknown): ChatMessage {
       return { ...message, tools };
     }
     case 'done':
-      return { ...message, done: true, tools: message.tools.map((t) => (t.status === 'running' ? { ...t, status: 'done' } : t)) };
+      return {
+        ...message,
+        done: true,
+        tools: message.tools.map((t) => (t.status === 'running' ? { ...t, status: 'done' } : t)),
+      };
     case 'error':
       return { ...message, done: true, error: e.message ?? 'The assistant failed.' };
     default:
@@ -162,7 +169,8 @@ export function AssistantProvider({ children }: { children: ReactNode }) {
         }
         setUnavailable(null);
         if (!response.body) throw new Error('The assistant sent no answer.');
-        for await (const event of readEvents(response.body, controller.signal)) update(answerId, (m) => applyEvent(m, event));
+        for await (const event of readEvents(response.body, controller.signal))
+          update(answerId, (m) => applyEvent(m, event));
         update(answerId, (m) => ({ ...m, done: true }));
       } catch (e) {
         if (e instanceof DOMException && e.name === 'AbortError') {

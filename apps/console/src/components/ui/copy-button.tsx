@@ -36,7 +36,9 @@ export function OnceSecret({ label, value }: { label: string; value: string }) {
     <div className="flex flex-col gap-1.5 rounded-xl border border-warnbd bg-warndim p-3" data-testid="once-secret">
       <span className="text-[12px] font-semibold text-warn">{label} — copy it now; it won’t be shown again.</span>
       <div className="flex items-center gap-2">
-        <code className="min-w-0 flex-1 break-all rounded-lg bg-sf px-2 py-1.5 font-mono text-[12px] text-t1">{value}</code>
+        <code className="min-w-0 flex-1 break-all rounded-lg bg-sf px-2 py-1.5 font-mono text-[12px] text-t1">
+          {value}
+        </code>
         <CopyButton text={value} label={`Copy the ${label.toLowerCase()}`} />
       </div>
     </div>

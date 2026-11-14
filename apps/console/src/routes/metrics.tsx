@@ -2,7 +2,18 @@ import { useMemo, useState } from 'react';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { ChartLine } from 'lucide-react';
 import { MetricAggregation } from '@clickland/contracts';
-import { Card, EmptyState, ErrorNote, Field, formatterForUnit, Input, Select, Skeleton, TimeSeriesChart, cn } from '@clickland/ui';
+import {
+  Card,
+  EmptyState,
+  ErrorNote,
+  Field,
+  formatterForUnit,
+  Input,
+  Select,
+  Skeleton,
+  TimeSeriesChart,
+  cn,
+} from '@clickland/ui';
 import { PageBody, PageHeader } from '@/components/shell/page-header';
 import { TimeRangePicker } from '@/components/time-range-picker';
 import { quiet } from '@/lib/api';
@@ -42,7 +53,9 @@ export function MetricsPage() {
 
   const set = (next: Record<string, string>) => {
     const p = new URLSearchParams(params);
-    for (const [k, v] of Object.entries(next)) if (v) p.set(k, v); else p.delete(k);
+    for (const [k, v] of Object.entries(next))
+      if (v) p.set(k, v);
+      else p.delete(k);
     setParams(p);
   };
 
@@ -63,7 +76,9 @@ export function MetricsPage() {
   });
 
   const needle = filter.toLowerCase();
-  const visible = metrics.filter((m) => m.name.toLowerCase().includes(needle) || m.services.some((s) => s.toLowerCase().includes(needle)));
+  const visible = metrics.filter(
+    (m) => m.name.toLowerCase().includes(needle) || m.services.some((s) => s.toLowerCase().includes(needle)),
+  );
   const format = metric ? formatterForUnit(metric.unit, metric.name) : undefined;
 
   return (
@@ -71,8 +86,17 @@ export function MetricsPage() {
       <PageHeader title="Metrics" actions={<TimeRangePicker value={range} onChange={setRange} />} />
       <PageBody className="flex flex-col gap-3 md:flex-row md:items-start">
         <Card className="flex flex-col gap-2 px-2 py-2 md:w-72 md:shrink-0">
-          <Input value={filter} onChange={(e) => setFilter(e.target.value)} placeholder="Filter metrics" aria-label="Filter metrics" />
-          <div className="max-h-[220px] overflow-y-auto md:max-h-[calc(100dvh-180px)]" role="listbox" aria-label="Metrics">
+          <Input
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+            placeholder="Filter metrics"
+            aria-label="Filter metrics"
+          />
+          <div
+            className="max-h-[220px] overflow-y-auto md:max-h-[calc(100dvh-180px)]"
+            role="listbox"
+            aria-label="Metrics"
+          >
             {names.isLoading ? (
               <Skeleton lines={8} className="p-2" />
             ) : names.error ? (
@@ -99,7 +123,9 @@ export function MetricsPage() {
                   <span className="text-[11px] text-t3">
                     {m.type}
                     {m.unit ? ` · ${m.unit}` : ''}
-                    {m.services.length ? ` · ${m.services.length > 2 ? `${m.services.length} services` : m.services.join(', ')}` : ''}
+                    {m.services.length
+                      ? ` · ${m.services.length > 2 ? `${m.services.length} services` : m.services.join(', ')}`
+                      : ''}
                   </span>
                 </button>
               ))
@@ -109,7 +135,11 @@ export function MetricsPage() {
         <div className="flex min-w-0 flex-1 flex-col gap-3">
           {!metric ? (
             <Card>
-              <EmptyState icon={<ChartLine className="size-5" />} title="Pick a metric" hint="Every OpenTelemetry metric the collector stored in this range." />
+              <EmptyState
+                icon={<ChartLine className="size-5" />}
+                title="Pick a metric"
+                hint="Every OpenTelemetry metric the collector stored in this range."
+              />
             </Card>
           ) : (
             <>

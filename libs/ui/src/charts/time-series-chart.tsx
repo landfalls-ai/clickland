@@ -45,7 +45,12 @@ export function TimeSeriesChart({
   const from = range?.from;
   const to = range?.to;
   const aligned = useMemo(
-    () => alignSeries(data.series, missing, data.bucketSeconds ? { bucketSeconds: data.bucketSeconds, from, to } : undefined),
+    () =>
+      alignSeries(
+        data.series,
+        missing,
+        data.bucketSeconds ? { bucketSeconds: data.bucketSeconds, from, to } : undefined,
+      ),
     [data, missing, from, to],
   );
   const zoom = useLatest(onZoom);
@@ -75,7 +80,15 @@ export function TimeSeriesChart({
       },
       scales: { x: { time: true }, y: { range: (_u, min, max) => [Math.min(0, min), max > 0 ? max * 1.08 : 1] } },
       axes: [
-        { stroke: t3, font, grid: { stroke: hair, width: 1 }, ticks: { stroke: hair, width: 1 }, size: 28, space: 64, values: timeTicks },
+        {
+          stroke: t3,
+          font,
+          grid: { stroke: hair, width: 1 },
+          ticks: { stroke: hair, width: 1 },
+          size: 28,
+          space: 64,
+          values: timeTicks,
+        },
         {
           stroke: t3,
           font,
@@ -126,8 +139,7 @@ export function TimeSeriesChart({
   }
   const at = hover !== null && hover >= 0 && hover < aligned.xs.length ? hover : null;
   const items = aligned.keys.map((key, i) => {
-    const value =
-      at === null ? aligned.ys[i]!.reduce<number>((s, v) => s + (v ?? 0), 0) : (aligned.ys[i]![at] ?? NaN);
+    const value = at === null ? aligned.ys[i]!.reduce<number>((s, v) => s + (v ?? 0), 0) : (aligned.ys[i]![at] ?? NaN);
     return { key, colorIndex: i, value: format(value), hidden: hidden.has(key) };
   });
   // A legend total only makes sense for counts; for gauges show the last value instead.
@@ -142,7 +154,9 @@ export function TimeSeriesChart({
     <div ref={box} className={className} data-testid="timeseries-chart">
       <div ref={target} style={{ height }} />
       <Legend
-        caption={at === null ? (missing === null ? 'latest' : 'total') : formatTime(aligned.xs[at]! * 1000, { ms: false })}
+        caption={
+          at === null ? (missing === null ? 'latest' : 'total') : formatTime(aligned.xs[at]! * 1000, { ms: false })
+        }
         items={items}
         onToggle={
           aligned.keys.length > 1

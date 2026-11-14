@@ -6,7 +6,10 @@ const empty: ChatMessage = { id: 'a', role: 'assistant', text: '', tools: [], do
 
 describe('assistant stream events', () => {
   it('appends text deltas', () => {
-    const m = [{ type: 'text', delta: 'Hel' }, { type: 'text', delta: 'lo' }].reduce(applyEvent, empty);
+    const m = [
+      { type: 'text', delta: 'Hel' },
+      { type: 'text', delta: 'lo' },
+    ].reduce(applyEvent, empty);
     expect(m.text).toBe('Hello');
   });
 

@@ -56,12 +56,23 @@ export function PanelForm({
 
   const signal = 'signal' in value && (
     <Field label="Signal">
-      <Segmented label="Signal" value={(p.signal as 'logs' | 'traces') ?? 'logs'} onChange={(s) => set({ signal: s })} options={signalOptions} />
+      <Segmented
+        label="Signal"
+        value={(p.signal as 'logs' | 'traces') ?? 'logs'}
+        onChange={(s) => set({ signal: s })}
+        options={signalOptions}
+      />
     </Field>
   );
   const query = 'query' in value && (
     <Field label="Search" hint="The search language, as in Search.">
-      <Input value={(p.query as string) ?? ''} onChange={(e) => set({ query: e.target.value })} className="font-mono" spellCheck={false} aria-label="Panel search" />
+      <Input
+        value={(p.query as string) ?? ''}
+        onChange={(e) => set({ query: e.target.value })}
+        className="font-mono"
+        spellCheck={false}
+        aria-label="Panel search"
+      />
     </Field>
   );
   const groupBy = (value.type === 'timeseries' || value.type === 'bar' || value.type === 'metric') && (
@@ -77,7 +88,14 @@ export function PanelForm({
   );
   const limit = (value.type === 'logs' || value.type === 'spans') && (
     <Field label="Rows">
-      <Input type="number" min={1} max={200} value={(p.limit as number) ?? 25} onChange={(e) => set({ limit: e.target.valueAsNumber })} aria-label="Rows" />
+      <Input
+        type="number"
+        min={1}
+        max={200}
+        value={(p.limit as number) ?? 25}
+        onChange={(e) => set({ limit: e.target.valueAsNumber })}
+        aria-label="Rows"
+      />
     </Field>
   );
   const metric = value.type === 'metric' && (
@@ -104,14 +122,22 @@ export function PanelForm({
       {row(
         <>
           <Field label="Metric type">
-            <Select value={value.metricType} onChange={(e) => set({ metricType: e.target.value })} aria-label="Metric type">
+            <Select
+              value={value.metricType}
+              onChange={(e) => set({ metricType: e.target.value })}
+              aria-label="Metric type"
+            >
               {MetricType.options.map((t) => (
                 <option key={t}>{t}</option>
               ))}
             </Select>
           </Field>
           <Field label="Aggregation">
-            <Select value={value.aggregation} onChange={(e) => set({ aggregation: e.target.value })} aria-label="Aggregation">
+            <Select
+              value={value.aggregation}
+              onChange={(e) => set({ aggregation: e.target.value })}
+              aria-label="Aggregation"
+            >
               {MetricAggregation.options.map((a) => (
                 <option key={a}>{a}</option>
               ))}
@@ -120,7 +146,12 @@ export function PanelForm({
         </>,
       )}
       <Field label="Service">
-        <Input value={value.service ?? ''} onChange={(e) => set({ service: e.target.value || null })} placeholder="all services" aria-label="Service" />
+        <Input
+          value={value.service ?? ''}
+          onChange={(e) => set({ service: e.target.value || null })}
+          placeholder="all services"
+          aria-label="Service"
+        />
       </Field>
     </>
   );
@@ -130,7 +161,11 @@ export function PanelForm({
       {row(
         <>
           <Field label="Type">
-            <Select value={value.type} onChange={(e) => onChange(convertPanel(value, e.target.value as PanelType))} aria-label="Type">
+            <Select
+              value={value.type}
+              onChange={(e) => onChange(convertPanel(value, e.target.value as PanelType))}
+              aria-label="Type"
+            >
               {(Object.keys(PANEL_TYPES) as PanelType[]).map((t) => (
                 <option key={t} value={t}>
                   {PANEL_TYPES[t].label}
@@ -161,7 +196,12 @@ export function PanelForm({
       {metric}
       {value.type === 'trace' && (
         <Field label="Trace id">
-          <Input value={value.traceId} onChange={(e) => set({ traceId: e.target.value.trim() })} className="font-mono" aria-label="Trace id" />
+          <Input
+            value={value.traceId}
+            onChange={(e) => set({ traceId: e.target.value.trim() })}
+            className="font-mono"
+            aria-label="Trace id"
+          />
         </Field>
       )}
       {value.type === 'markdown' && (

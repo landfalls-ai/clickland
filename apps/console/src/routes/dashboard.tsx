@@ -49,7 +49,12 @@ export function ViewPage({ kind }: { kind: 'dashboard' | 'view' }) {
               </Button>
             )}
             {canEdit && !pinned && (
-              <Button size="sm" variant="primary" loading={pin.isPending} onClick={() => pin.mutate({ id, pinned: true, version: view.data.version })}>
+              <Button
+                size="sm"
+                variant="primary"
+                loading={pin.isPending}
+                onClick={() => pin.mutate({ id, pinned: true, version: view.data.version })}
+              >
                 <LayoutDashboard className="size-3.5" /> Save as dashboard
               </Button>
             )}

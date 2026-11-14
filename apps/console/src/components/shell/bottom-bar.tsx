@@ -17,9 +17,7 @@ export function BottomBar({ me }: { me: Me }) {
   const inRest = rest.some((p) => pathname.startsWith(p.href));
   return (
     <>
-      {more && (
-        <div className="fixed inset-0 z-40 bg-overlay md:hidden" onClick={() => setMoreOn(null)} aria-hidden />
-      )}
+      {more && <div className="fixed inset-0 z-40 bg-overlay md:hidden" onClick={() => setMoreOn(null)} aria-hidden />}
       {more && (
         <div
           role="dialog"
@@ -45,7 +43,10 @@ export function BottomBar({ me }: { me: Me }) {
                 to={item.href}
                 onClick={() => setMoreOn(null)}
                 className={({ isActive }) =>
-                  cn('flex h-11 items-center gap-3 rounded-lg px-3 text-[14px]', isActive ? 'bg-acdim font-semibold' : 'text-t1')
+                  cn(
+                    'flex h-11 items-center gap-3 rounded-lg px-3 text-[14px]',
+                    isActive ? 'bg-acdim font-semibold' : 'text-t1',
+                  )
                 }
               >
                 <Icon className="size-5 text-t2" strokeWidth={1.7} />
@@ -53,7 +54,12 @@ export function BottomBar({ me }: { me: Me }) {
               </NavLink>
             );
           })}
-          <a href="http://127.0.0.1:28123/clickstack" target="_blank" rel="noreferrer" className="flex h-11 items-center gap-3 rounded-lg px-3 text-[14px] text-t1">
+          <a
+            href="http://127.0.0.1:28123/clickstack"
+            target="_blank"
+            rel="noreferrer"
+            className="flex h-11 items-center gap-3 rounded-lg px-3 text-[14px] text-t1"
+          >
             <ExternalLink className="size-5 text-t2" strokeWidth={1.7} /> ClickStack (embedded)
           </a>
           <div className="flex flex-col gap-3 px-3 pb-3 pt-2">

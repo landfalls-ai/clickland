@@ -38,12 +38,20 @@ describe('orderSpans', () => {
   it('computes offsets from timestamps when the API sends none', () => {
     const s = span('x', '', 0, 5);
     const t = span('y', 'x', 30, 5);
-    const ordered = orderSpans([{ ...t, offsetMs: undefined }, { ...s, offsetMs: undefined }]);
+    const ordered = orderSpans([
+      { ...t, offsetMs: undefined },
+      { ...s, offsetMs: undefined },
+    ]);
     expect(ordered.map((o) => o.offsetMs)).toEqual([0, 30]);
   });
 
   it('hides the descendants of a collapsed span', () => {
-    const ordered = orderSpans([span('root', '', 0, 100), span('c1', 'root', 10, 40), span('g1', 'c1', 15, 5), span('c2', 'root', 60, 10)]);
+    const ordered = orderSpans([
+      span('root', '', 0, 100),
+      span('c1', 'root', 10, 40),
+      span('g1', 'c1', 15, 5),
+      span('c2', 'root', 60, 10),
+    ]);
     expect(visibleSpans(ordered, new Set(['c1'])).map((o) => o.span.spanId)).toEqual(['root', 'c1', 'c2']);
   });
 });

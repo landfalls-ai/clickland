@@ -14,7 +14,8 @@ export function openFromApp(url: string, navigate: (to: string) => void) {
   try {
     const target = new URL(url, window.location.origin);
     const local = ['localhost', '127.0.0.1'].includes(target.hostname) && target.port === window.location.port;
-    if (target.origin === window.location.origin || local) return navigate(`${target.pathname}${target.search}${target.hash}`);
+    if (target.origin === window.location.origin || local)
+      return navigate(`${target.pathname}${target.search}${target.hash}`);
     if (/^https?:$/.test(target.protocol)) window.open(target.href, '_blank', 'noopener,noreferrer');
   } catch {
     // Not a URL: ignore.
@@ -88,7 +89,12 @@ export function ViewEmbed({ id }: { id: string }) {
               <Check className="size-3.5" /> Dashboard
             </span>
           ) : (
-            <Button size="sm" variant="primary" loading={save.isPending} onClick={() => save.mutate({ id, pinned: true })}>
+            <Button
+              size="sm"
+              variant="primary"
+              loading={save.isPending}
+              onClick={() => save.mutate({ id, pinned: true })}
+            >
               <LayoutDashboard className="size-3.5" /> Save as dashboard
             </Button>
           ))}

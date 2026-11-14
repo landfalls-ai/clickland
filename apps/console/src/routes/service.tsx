@@ -35,7 +35,10 @@ export function latencySeries(rows: SpanRow[], bucketSeconds: number, percentile
     .sort(([a], [b]) => a - b)
     .map(([t, ds]): [string, number] => {
       const sorted = ds.sort((a, b) => a - b);
-      return [new Date(t * 1000).toISOString(), sorted[Math.min(sorted.length - 1, Math.ceil(percentile * sorted.length) - 1)]!];
+      return [
+        new Date(t * 1000).toISOString(),
+        sorted[Math.min(sorted.length - 1, Math.ceil(percentile * sorted.length) - 1)]!,
+      ];
     });
   return { bucketSeconds, series: [{ key: `p${Math.round(percentile * 100)}`, points }] };
 }
@@ -94,7 +97,12 @@ export function ServicePage() {
     queryFn: async () => {
       const logs = await httpData.patterns({ signal: 'logs', query: `${svc} level:error`, ...bounds, sample: 5000 });
       if (logs.patterns.length) return { ...logs, signal: 'logs' as const, query: `${svc} level:error` };
-      const spans = await httpData.patterns({ signal: 'traces', query: `${svc} status:error`, ...bounds, sample: 5000 });
+      const spans = await httpData.patterns({
+        signal: 'traces',
+        query: `${svc} status:error`,
+        ...bounds,
+        sample: 5000,
+      });
       return { ...spans, signal: 'traces' as const, query: `${svc} status:error` };
     },
     placeholderData: keepPreviousData,
@@ -118,7 +126,11 @@ export function ServicePage() {
       <PageHeader
         title={
           <span className="flex items-center gap-2">
-            <Link to={`/services?${new URLSearchParams({ from: range.from, to: range.to })}`} aria-label="All services" className="text-t3 hover:text-t1">
+            <Link
+              to={`/services?${new URLSearchParams({ from: range.from, to: range.to })}`}
+              aria-label="All services"
+              className="text-t3 hover:text-t1"
+            >
               <ArrowLeft className="size-4" />
             </Link>
             {name}
@@ -132,24 +144,45 @@ export function ServicePage() {
             <Stat label="Requests" value={me ? formatCount(me.requests) : none} />
           </Card>
           <Card>
-            <Stat label="Error rate" value={me ? formatPercent(me.errorRate) : none} tone={me && me.errorRate >= 0.01 ? 'danger' : undefined} />
+            <Stat
+              label="Error rate"
+              value={me ? formatPercent(me.errorRate) : none}
+              tone={me && me.errorRate >= 0.01 ? 'danger' : undefined}
+            />
           </Card>
           <Card>
-            <Stat label="p95" value={me ? formatDuration(me.p95Ms) : none} sub={me ? `p50 ${formatDuration(me.p50Ms)}` : undefined} />
+            <Stat
+              label="p95"
+              value={me ? formatDuration(me.p95Ms) : none}
+              sub={me ? `p50 ${formatDuration(me.p50Ms)}` : undefined}
+            />
           </Card>
           <Card>
-            <Stat label="Log errors" value={me ? formatCount(me.logErrors) : none} tone={me && me.logErrors > 0 ? 'danger' : undefined} />
+            <Stat
+              label="Log errors"
+              value={me ? formatCount(me.logErrors) : none}
+              tone={me && me.logErrors > 0 ? 'danger' : undefined}
+            />
           </Card>
         </div>
         <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
           <Card className="px-3">
             <div className="mb-1 flex items-center">
               <SectionLabel>Errors over time</SectionLabel>
-              <Link to={search('traces', `${svc} status:error`)} className="ml-auto text-[12px] text-ac hover:underline">
+              <Link
+                to={search('traces', `${svc} status:error`)}
+                className="ml-auto text-[12px] text-ac hover:underline"
+              >
                 Search
               </Link>
             </div>
-            {errors.data ? <TimeSeriesChart data={errors.data} height={170} range={bounds} /> : errors.error ? <ErrorNote error={errors.error} /> : <Skeleton lines={5} />}
+            {errors.data ? (
+              <TimeSeriesChart data={errors.data} height={170} range={bounds} />
+            ) : errors.error ? (
+              <ErrorNote error={errors.error} />
+            ) : (
+              <Skeleton lines={5} />
+            )}
           </Card>
           <Card className="px-3">
             <div className="mb-1 flex items-center gap-2">
@@ -169,7 +202,11 @@ export function ServicePage() {
           <Card className="px-3">
             <div className="mb-1 flex items-center gap-2">
               <SectionLabel>Top error patterns</SectionLabel>
-              {patterns.data && <span className="text-[11px] text-t3">{patterns.data.signal === 'logs' ? 'error logs' : 'error spans'}</span>}
+              {patterns.data && (
+                <span className="text-[11px] text-t3">
+                  {patterns.data.signal === 'logs' ? 'error logs' : 'error spans'}
+                </span>
+              )}
             </div>
             {patterns.data ? (
               <PatternsList
