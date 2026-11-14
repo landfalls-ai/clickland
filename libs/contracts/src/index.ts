@@ -91,6 +91,11 @@ export const AlertInput = z.object({
   intervalMinutes: z.number().int().min(1).max(1440).default(1),
   enabled: z.boolean().default(true),
   severity: Severity.default('sev3'),
+  /**
+   * The direct route: send this alert straight to the `landfall` webhooks rather than only through Landflow's triage.
+   * sev1 alerts always take it; set it for alerts about Landflow itself.
+   */
+  direct: z.boolean().default(false),
   labels: Labels.default({}),
   runbookUrl: z
     .url({ protocol: /^https?$/ })
@@ -102,12 +107,38 @@ export type AlertInput = z.infer<typeof AlertInput>;
 export const WebhookEvent = z.enum(['alert.firing', 'alert.resolved', 'note.created']);
 export type WebhookEvent = z.infer<typeof WebhookEvent>;
 
-export const WebhookInput = z.object({
-  url: z.url({ protocol: /^https?$/ }),
-  events: z.array(WebhookEvent).min(1),
-  alertId: z.string().nullish(),
-  description: z.string().max(500).default(''),
-});
+/**
+ * `standard`: Clickland's own payload, signed (Standard Webhooks). `landfall`: Landfall's `SourceTriggerPayload`
+ * posted to its `POST /triggers` with the organisation's ingest token, for alerts on the direct route only.
+ */
+export const WebhookFormat = z.enum(['standard', 'landfall']);
+export type WebhookFormat = z.infer<typeof WebhookFormat>;
+
+export const WebhookInput = z
+  .object({
+    url: z.url({ protocol: /^https?$/ }),
+    events: z.array(WebhookEvent).min(1),
+    alertId: z.string().nullish(),
+    description: z.string().max(500).default(''),
+    format: WebhookFormat.default('standard'),
+    /** For `landfall`: the ingest token (`POST /o/:slug/triggers/ingest-token`) and the remote-source connection id. */
+    landfall: z.object({ ingestToken: z.string().min(1).max(500), connectionId: z.string().min(1).max(200) }).nullish(),
+  })
+  .superRefine((w, ctx) => {
+    if (w.format !== 'landfall') return;
+    if (!w.landfall)
+      ctx.addIssue({
+        code: 'custom',
+        path: ['landfall'],
+        message: 'a landfall webhook needs ingestToken and connectionId',
+      });
+    if (w.events.includes('note.created'))
+      ctx.addIssue({
+        code: 'custom',
+        path: ['events'],
+        message: 'a landfall webhook takes alert.firing and alert.resolved',
+      });
+  });
 export type WebhookInput = z.infer<typeof WebhookInput>;
 
 export const NoteInput = z.object({
@@ -284,7 +315,26 @@ export interface Alert extends AlertInput {
   createdBy: string;
   createdAt: string;
   updatedAt: string;
-  states: { groupKey: string; state: 'ok' | 'firing'; value: number; changedAt: string }[];
+  states: {
+    groupKey: string;
+    state: 'ok' | 'firing';
+    value: number;
+    changedAt: string;
+    /** The Landfall room this group's alert last opened or attached to (the direct route). */
+    incident: IncidentLink | null;
+  }[];
+}
+
+/**
+ * Where an alert event went in Landfall: the room (`id`, `url`) and what Landfall did (`outcome`). `pending` is a
+ * firing that will attach to the group's existing room once Landfall answers.
+ */
+export interface IncidentLink {
+  system: 'landfall';
+  id: string | null;
+  url: string | null;
+  outcome: 'opened' | 'attached' | 'recorded' | 'ignored' | 'suppressed' | 'pending';
+  at: string;
 }
 
 export interface AlertEvent {
@@ -297,6 +347,8 @@ export interface AlertEvent {
   windowStart: string;
   windowEnd: string;
   createdAt: string;
+  /** The Landfall room this event opened, attached to or recorded a recovery on (the direct route), or null. */
+  incident: IncidentLink | null;
 }
 
 export interface Note extends Omit<NoteInput, 'author'> {

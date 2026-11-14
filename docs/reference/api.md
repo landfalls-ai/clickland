@@ -89,7 +89,8 @@ count with a threshold.
 ```json
 { "name": "API errors", "signal": "logs", "query": "service:api level:error", "groupBy": null,
   "thresholdType": "above", "threshold": 10, "windowMinutes": 5, "intervalMinutes": 1, "enabled": true,
-  "severity": "sev2", "labels": { "team": "core" }, "runbookUrl": "https://runbooks.example/api-errors" }
+  "severity": "sev2", "direct": false, "labels": { "team": "core" },
+  "runbookUrl": "https://runbooks.example/api-errors" }
 ```
 
 - `severity`: `sev1` (the worst) to `sev4`, Landfall's own scale; default `sev3`, which is also what Landfall assumes
@@ -97,21 +98,39 @@ count with a threshold.
 - `labels`: up to 30 `name: value` pairs (a name is a field name: letters, digits, `_ . - /`). They ride in the
   webhook and become Landfall entity hints (`team:core`).
 - `runbookUrl`: an `http(s)` link, or `null`.
+- `direct`: the alert's **route**. Alerts reach Landfall through Landflow's triage by default (`route: "triage"`); a
+  `sev1` alert, or one with `direct: true` (meant for alerts about Landflow itself), takes the direct route
+  (`route: "direct"`): Clickland posts it to the `landfall` webhooks itself ([../landfall.md](../landfall.md)).
 
-- `GET /api/alerts` → `{ "alerts": [Alert] }`, each with `states: [{ groupKey, state, value, changedAt }]`.
+- `GET /api/alerts` → `{ "alerts": [Alert] }`, each with `states: [{ groupKey, state, value, changedAt, incident }]`.
 - `POST /api/alerts` (`alerts:write`) → `201 Alert`. `GET|PUT|DELETE /api/alerts/:id`.
-- `GET /api/alerts/:id/events?limit=` → `{ "events": [AlertEvent] }` (newest first).
+- `GET /api/alerts/:id/events?limit=` → `{ "events": [AlertEvent] }` (newest first). An `AlertEvent` is `{ id, alertId,
+  groupKey, state, value, threshold, windowStart, windowEnd, createdAt, incident }`.
 - `POST /api/alerts/:id/test` → `{ "groups": [{ "groupKey", "value", "wouldFire" }] }` without changing state.
 
 The evaluator runs every alert when it is due, and on each change of a group's state (`ok` → `firing`, `firing` →
 `ok`) it records an `AlertEvent` and sends `alert.firing` or `alert.resolved` to the matching webhooks.
 
+`incident` is the Landfall room a direct-route event went to, or `null`:
+`{ "system": "landfall", "id": "…", "url": "http://localhost:5173/o/…/incidents/…", "outcome", "at" }`. `outcome` is
+Landfall's answer: `opened` (a new room), `attached` (a repeat on the open room), `recorded` (a recovery on it),
+`ignored` or `suppressed`; `pending` until Landfall answers. A group's state keeps its room, so the next firing of
+that group shows the room at once and Landfall attaches it there (same dedup key). Editing an alert starts its groups
+again from `ok` and forgets their rooms.
+
 ## Webhooks
 
 - `POST /api/webhooks` (`webhooks:write`) — `{ "url", "events": ["alert.firing", "alert.resolved", "note.created"],
-  "alertId": null, "description": "" }` → `201 { "id": "wh_…", "secret": "whsec_…", … }`. The secret is returned
-  only here.
-- `GET /api/webhooks` → `{ "webhooks": [{ id, url, events, alertId, description, createdAt }] }`.
+  "alertId": null, "description": "", "format": "standard" }` → `201 { "id": "wh_…", "secret": "whsec_…", … }`. The
+  secret is returned only here.
+- `format`: `standard` (default; Clickland's payload, signed) or `landfall`. A `landfall` webhook posts Landfall's
+  `SourceTriggerPayload` to Landfall's `POST /triggers` (`url`, e.g. `http://127.0.0.1:3001/triggers`) with
+  `Authorization: Bearer <ingest token>`, only for alert events on the direct route, and takes only `alert.firing`
+  and `alert.resolved`. It needs `"landfall": { "ingestToken", "connectionId" }`: the organisation's ingest token
+  (`POST /o/:slug/triggers/ingest-token` in Landfall) and the id of Clickland's remote-source connection there. The
+  token is never returned; its `secret` is unused.
+- `GET /api/webhooks` → `{ "webhooks": [{ id, url, events, alertId, description, format, landfall: { connectionId } |
+  null, createdAt }] }`.
   `GET /api/webhooks/:id` → one, or `404`. `DELETE /api/webhooks/:id` → `204` (`404` when already gone).
 - `GET /api/webhooks/:id/deliveries` → `{ "deliveries": [{ id, eventId, type, status, attempts, lastError, createdAt,
   deliveredAt }] }` (newest 50).
@@ -135,18 +154,37 @@ Deliveries follow [Standard Webhooks](https://www.standardwebhooks.com/):
                "severity": "sev2", "labels": { "team": "core" }, "runbookUrl": "https://runbooks.example/api-errors" },
     "eventId": "ae_…",
     "status": "firing",
+    "route": "triage",
     "groupKey": "",
     "value": 42,
     "fingerprint": "al_…:",
     "window": { "from": "…", "to": "…" },
     "url": "http://127.0.0.1:4711/alerts/al_…",
     "searchUrl": "http://127.0.0.1:4711/search?signal=logs&query=…&from=…&to=…",
-    "samples": [LogRow]
+    "samples": [LogRow],
+    "incident": null
   }
 }
 ```
 
-`samples` holds up to 5 matching rows from the window. `note.created` has `data: { "note": Note }`.
+`samples` holds up to 5 matching rows from the window. `route` is `direct` for an alert Clickland also sends straight
+to Landfall: a Landflow triage flow should not open a second room for it. `incident` is the group's Landfall room
+when it has one (see Alerts). `note.created` has `data: { "note": Note }`.
+
+A `landfall` webhook's body, for the same event (a resolve sends `"kind": "recovery"`, which Landfall records on the
+room as `trigger.recovered`; it never closes a room):
+
+```json
+{ "landfallSource": "remote", "connectionId": "…", "title": "API errors", "severity": "sev2",
+  "occurredAt": "2026-11-14T15:03:00.000Z", "entityHints": ["service:api", "team:core"], "dedupKey": "al_…:",
+  "summary": "42 matching log rows in the last 5 min (alert when above 10 in 5 min).\nSearch: service:api level:error\nOpen in Clickland: http://127.0.0.1:4711/search?…\nRunbook: https://runbooks.example/api-errors",
+  "url": "http://127.0.0.1:4711/alerts/al_…", "kind": "trigger" }
+```
+
+`entityHints` hold the service (the group when grouped by service, else the search's `service:` term, else a
+sample's), the group when grouped by another field, then the labels. Landfall's answer (`TriggerResult`) is stored
+as the event's `incident`; a refusal (for example `422` when the connection is not healthy) stays on the delivery's
+`lastError` and is retried.
 
 ## Views (MCP UI)
 

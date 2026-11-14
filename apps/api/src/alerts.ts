@@ -1,9 +1,10 @@
-import type { Alert, AlertEvent, AlertInput, Severity } from '@clickland/contracts';
+import type { Alert, AlertEvent, AlertInput, IncidentLink, Severity } from '@clickland/contracts';
 import type { TimeRange } from '@clickland/query';
 import type { Sql } from './clients.js';
 import type { Config } from './config.js';
 import { notFound } from './errors.js';
 import { newId } from './ids.js';
+import { routeOf, toTriggerPayload } from './landfall.js';
 import { type Telemetry, wrapSearchErrors } from './telemetry.js';
 import type { Webhooks } from './webhooks.js';
 import { compileSearch, SIGNALS } from '@clickland/query';
@@ -20,13 +21,21 @@ type AlertRow = {
   interval_minutes: number;
   enabled: boolean;
   severity: Severity;
+  direct: boolean;
   labels: Record<string, string>;
   runbook_url: string | null;
   created_by: string;
   created_at: Date;
   updated_at: Date;
 };
-type StateRow = { alert_id: string; group_key: string; state: 'ok' | 'firing'; value: number; changed_at: Date };
+type StateRow = {
+  alert_id: string;
+  group_key: string;
+  state: 'ok' | 'firing';
+  value: number;
+  changed_at: Date;
+  incident: IncidentLink | null;
+};
 type EventRow = {
   id: string;
   alert_id: string;
@@ -37,6 +46,7 @@ type EventRow = {
   window_start: Date;
   window_end: Date;
   created_at: Date;
+  incident: IncidentLink | null;
 };
 
 const toAlert = (r: AlertRow, states: StateRow[]): Alert => ({
@@ -51,6 +61,7 @@ const toAlert = (r: AlertRow, states: StateRow[]): Alert => ({
   intervalMinutes: r.interval_minutes,
   enabled: r.enabled,
   severity: r.severity,
+  direct: r.direct,
   labels: r.labels ?? {},
   runbookUrl: r.runbook_url,
   createdBy: r.created_by,
@@ -58,7 +69,13 @@ const toAlert = (r: AlertRow, states: StateRow[]): Alert => ({
   updatedAt: r.updated_at.toISOString(),
   states: states
     .filter((s) => s.alert_id === r.id)
-    .map((s) => ({ groupKey: s.group_key, state: s.state, value: s.value, changedAt: s.changed_at.toISOString() })),
+    .map((s) => ({
+      groupKey: s.group_key,
+      state: s.state,
+      value: s.value,
+      changedAt: s.changed_at.toISOString(),
+      incident: s.incident ?? null,
+    })),
 });
 
 export const toEvent = (r: EventRow): AlertEvent => ({
@@ -71,6 +88,7 @@ export const toEvent = (r: EventRow): AlertEvent => ({
   windowStart: r.window_start.toISOString(),
   windowEnd: r.window_end.toISOString(),
   createdAt: r.created_at.toISOString(),
+  incident: r.incident ?? null,
 });
 
 export const breaches = (type: 'above' | 'below', value: number, threshold: number) =>
@@ -132,10 +150,10 @@ export class Alerts {
     const id = newId('al');
     await this.pg`
       INSERT INTO alerts (id, name, signal, query, group_by, threshold_type, threshold, window_minutes, interval_minutes,
-                          enabled, severity, labels, runbook_url, created_by)
+                          enabled, severity, direct, labels, runbook_url, created_by)
       VALUES (${id}, ${input.name}, ${input.signal}, ${input.query}, ${input.groupBy ?? null}, ${input.thresholdType},
               ${input.threshold}, ${input.windowMinutes}, ${input.intervalMinutes}, ${input.enabled}, ${input.severity},
-              ${this.pg.json(input.labels)}, ${input.runbookUrl ?? null}, ${createdBy})`;
+              ${input.direct}, ${this.pg.json(input.labels)}, ${input.runbookUrl ?? null}, ${createdBy})`;
     return this.get(id);
   }
 
@@ -145,7 +163,7 @@ export class Alerts {
       UPDATE alerts SET name = ${input.name}, signal = ${input.signal}, query = ${input.query}, group_by = ${input.groupBy ?? null},
         threshold_type = ${input.thresholdType}, threshold = ${input.threshold}, window_minutes = ${input.windowMinutes},
         interval_minutes = ${input.intervalMinutes}, enabled = ${input.enabled}, severity = ${input.severity},
-        labels = ${this.pg.json(input.labels)}, runbook_url = ${input.runbookUrl ?? null}, updated_at = now(), next_run_at = now()
+        direct = ${input.direct}, labels = ${this.pg.json(input.labels)}, runbook_url = ${input.runbookUrl ?? null}, updated_at = now(), next_run_at = now()
       WHERE id = ${id} RETURNING id`;
     if (rows.length === 0) throw notFound('Alert');
     // A changed search makes the old groups meaningless: start again from "ok".
@@ -241,9 +259,14 @@ export class Alerts {
         continue;
       }
       await this.upsertState(row.id, groupKey, state, value);
+      // On the direct route, the group's room (if it has one) is where this event goes: Landfall attaches a firing
+      // with the same dedup key to the open room, and records a recovery on it. Shown as pending until it answers.
+      const room = routeOf(row) === 'direct' ? before.get(groupKey)?.incident : null;
+      const carried = room?.id ? { ...room, outcome: 'pending' as const, at: new Date().toISOString() } : null;
       const [event] = await this.pg<EventRow[]>`
-        INSERT INTO alert_events (id, alert_id, group_key, state, value, threshold, window_start, window_end)
-        VALUES (${newId('ae')}, ${row.id}, ${groupKey}, ${state}, ${value}, ${row.threshold}, ${range.from}, ${range.to})
+        INSERT INTO alert_events (id, alert_id, group_key, state, value, threshold, window_start, window_end, incident)
+        VALUES (${newId('ae')}, ${row.id}, ${groupKey}, ${state}, ${value}, ${row.threshold}, ${range.from}, ${range.to},
+                ${carried ? this.pg.json(carried as never) : null})
         RETURNING *`;
       const alertEvent = toEvent(event!);
       changed.push(alertEvent);
@@ -274,33 +297,38 @@ export class Alerts {
       from: range.from.toISOString(),
       to: range.to.toISOString(),
     })}`;
-    await this.webhooks.enqueue(
-      event.state === 'firing' ? 'alert.firing' : 'alert.resolved',
-      {
-        alert: {
-          id: row.id,
-          name: row.name,
-          signal: row.signal,
-          query: row.query,
-          groupBy: row.group_by,
-          thresholdType: row.threshold_type,
-          threshold: row.threshold,
-          windowMinutes: row.window_minutes,
-          severity: row.severity,
-          labels: row.labels ?? {},
-          runbookUrl: row.runbook_url,
-        },
-        eventId: event.id,
-        status: event.state,
-        groupKey: event.groupKey,
-        value: event.value,
-        fingerprint: `${row.id}:${event.groupKey}`,
-        window: { from: event.windowStart, to: event.windowEnd },
-        url: `${this.config.consoleUrl}/alerts/${row.id}`,
-        searchUrl,
-        samples,
+    const route = routeOf(row);
+    const data = {
+      alert: {
+        id: row.id,
+        name: row.name,
+        signal: row.signal,
+        query: row.query,
+        groupBy: row.group_by,
+        thresholdType: row.threshold_type,
+        threshold: row.threshold,
+        windowMinutes: row.window_minutes,
+        severity: row.severity,
+        direct: row.direct,
+        labels: row.labels ?? {},
+        runbookUrl: row.runbook_url,
       },
-      row.id,
-    );
+      eventId: event.id,
+      status: event.state,
+      route,
+      groupKey: event.groupKey,
+      value: event.value,
+      fingerprint: `${row.id}:${event.groupKey}`,
+      window: { from: event.windowStart, to: event.windowEnd },
+      url: `${this.config.consoleUrl}/alerts/${row.id}`,
+      searchUrl,
+      samples,
+      incident: event.incident,
+    };
+    await this.webhooks.enqueue(event.state === 'firing' ? 'alert.firing' : 'alert.resolved', data, row.id, {
+      alertEventId: event.id,
+      route,
+      trigger: (connectionId) => toTriggerPayload({ ...data, occurredAt: event.createdAt }, connectionId),
+    });
   }
 }

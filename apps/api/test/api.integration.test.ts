@@ -139,6 +139,7 @@ describe.skipIf(!enabled)('API (live stack)', () => {
       events: ['alert.firing'],
       alertId: alert.id,
       description: 'test',
+      format: 'standard',
     });
     try {
       const [row] = await clients.pg`SELECT * FROM alerts WHERE id = ${alert.id}`;
