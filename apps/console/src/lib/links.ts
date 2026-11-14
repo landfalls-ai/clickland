@@ -18,6 +18,8 @@ export function useConsoleLinks(range: RangeInput): PanelLinks {
       openTrace: (traceId) => navigate(`/traces/${traceId}`),
       openSearch: ({ signal, query }) => navigate(`/search?${new URLSearchParams({ signal, query, ...r })}`),
       openService: (name) => navigate(`/services/${encodeURIComponent(name)}?${new URLSearchParams(r)}`),
+      openAgent: (id) => navigate(`/agents/${encodeURIComponent(id)}`),
+      openRun: (traceId) => navigate(`/agents/runs/${traceId}`),
     };
   }, [navigate, key]);
 }

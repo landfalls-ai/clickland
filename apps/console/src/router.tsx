@@ -1,5 +1,11 @@
 import { Navigate, type RouteObject } from 'react-router';
 import { AppShell } from './components/shell/app-shell';
+import { AgentPage } from './routes/agents/agent';
+import { AgentListPage } from './routes/agents/list';
+import { RunPage } from './routes/agents/run';
+import { AgentSafetyPage } from './routes/agents/safety';
+import { AgentSettingsPage } from './routes/agents/settings';
+import { AgentValuePage } from './routes/agents/value';
 import { AlertPage } from './routes/alert';
 import { AlertsPage } from './routes/alerts';
 import { AssistantPage } from './routes/assistant';
@@ -35,6 +41,12 @@ export const routes: RouteObject[] = [
       { path: 'dashboards/:id', element: <ViewPage kind="dashboard" /> },
       { path: 'dashboards/:id/edit', element: <DashboardEditPage /> },
       { path: 'views/:id', element: <ViewPage kind="view" /> },
+      { path: 'agents', element: <AgentValuePage /> },
+      { path: 'agents/list', element: <AgentListPage /> },
+      { path: 'agents/safety', element: <AgentSafetyPage /> },
+      { path: 'agents/settings', element: <AgentSettingsPage /> },
+      { path: 'agents/runs/:traceId', element: <RunPage /> },
+      { path: 'agents/:id', element: <AgentPage /> },
       { path: 'assistant', element: <AssistantPage /> },
       { path: 'notes', element: <NotesPage /> },
       { path: 'settings', element: <SettingsPage /> },

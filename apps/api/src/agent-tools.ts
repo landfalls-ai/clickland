@@ -79,6 +79,7 @@ export function registerAgentTools(tool: Tool, services: Services): void {
       title: 'List AI agents',
       description:
         'Every AI agent seen in telemetry (Landflow agents, kagent over A2A, Claude Code, the Landfall investigator): runs, success rate, latency, tokens, cost, errors, rate limits, retries, loops, models and tools. Default: the last 7 days.',
+      ui: true,
       inputSchema: z.object(period),
     },
     async (a) => {
@@ -128,6 +129,7 @@ export function registerAgentTools(tool: Tool, services: Services): void {
       title: 'AI agent value',
       description:
         'What the AI agents are worth in a period: value, cost, net value, ROI and cost per outcome, per agent, per team and per outcome, each with how it was computed. Answers "what is our AI worth this week?" (default: the last 7 days). Filter with agent (id or name) or team.',
+      ui: true,
       inputSchema: z.object({
         ...period,
         agent: z.string().max(700).optional(),
@@ -146,6 +148,7 @@ export function registerAgentTools(tool: Tool, services: Services): void {
       title: 'An agent run’s decision path',
       description:
         'The decision path of one trace: agents, model calls, tool calls and sub-agents as nodes (latency, tokens, cost, errors, retries, loops) with edges from each step to the step that called it.',
+      ui: true,
       inputSchema: z.object({ traceId: z.string().regex(/^[0-9a-fA-F]{1,64}$/) }),
     },
     async (a) => result(await agents.graph(a.traceId)),

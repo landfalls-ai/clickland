@@ -427,8 +427,8 @@ words, and the services the question names. The shape is what Landflow's knowled
 take `{ "lastDays"? (default 7), "from"?, "to"?, "service"? }`, `get_agent` and `agent_value` also `agent` (an id or a
 name), `agent_value` also `team`, and `run_graph` takes `{ "traceId" }`. `agent_value` answers in words with the
 arithmetic, and carries the whole report as structured content. The server supports the MCP Apps extension
-(`io.modelcontextprotocol/ui`): `render_view`, `search_logs`, `search_traces`, `get_trace`, `list_services` and
-`query_metric` declare `ui://clickland/view` as their UI, so a host that supports MCP Apps draws the result as a live
+(`io.modelcontextprotocol/ui`): `render_view`, `search_logs`, `search_traces`, `get_trace`, `list_services`,
+`query_metric`, `list_agents`, `agent_value` and `run_graph` declare `ui://clickland/view` as their UI, so a host that supports MCP Apps draws the result as a live
 view; other hosts get the same structured content as JSON text.
 
 ## Landfall Source Protocol (`/v1`)

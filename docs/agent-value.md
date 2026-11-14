@@ -479,18 +479,12 @@ Add "From a template" to the existing new-alert flow: `GET /api/agents/alert-tem
   width, the hero card and the top three agents.
 - `run_graph` (`traceId`): `run_graph`. Draw the vertical tree at any width.
 
-The four tools are plain tools today. Once the view app draws their results, set `ui: true` on them in
-`apps/api/src/agent-tools.ts` so a host that supports MCP Apps shows them as a view.
+`list_agents`, `agent_value` and `run_graph` have `ui: true` in `apps/api/src/agent-tools.ts`, so a host that
+supports MCP Apps shows them as a view; `get_agent` stays plain (no panel draws one agent).
 
 The dashboard editor needs the three types in its panel type list, with the fields above.
 
-**Do this first, with the merge.** The three types are already in the `Panel` union, so two places stop
-type-checking until they know them:
-
-- `PANEL_TYPES` in `libs/ui/src/panels/panel-view.tsx` (a `Record<PanelType, …>`): add a label, an icon and a hint
-  for `agents`, `agent_value` and `run_graph`.
-- `newPanel` in `apps/console/src/components/dashboards/spec-ops.ts` (a `switch` with no default): add the three
-  cases. `run_graph` starts with an empty `traceId`, like `trace`.
-
-At run time nothing breaks before that: `PanelBody` already shows "This panel type isn’t supported here" for a type
-it does not know.
+**Built.** The three types are in `PANEL_TYPES` (`libs/ui`) and the editor's `newPanel` and panel form; the pages
+above are `apps/console/src/routes/agents/`, the shared cards and run graph `libs/ui/src/agents/`, and
+`list_agents`, `agent_value` and `run_graph` declare the view as their UI. Not built: the agent page's 'Open in
+trace' opens the trace page, not the span (the trace page has no span parameter yet).

@@ -204,6 +204,49 @@ export function PanelForm({
           />
         </Field>
       )}
+      {(value.type === 'agents' || value.type === 'agent_value') && (
+        <Field label="Service" hint="A service name, or a prefix ending in * (demo-*)">
+          <Input
+            value={value.service ?? ''}
+            onChange={(e) => set({ service: e.target.value.trim() || null })}
+            placeholder="all services"
+            className="font-mono"
+            aria-label="Service"
+          />
+        </Field>
+      )}
+      {value.type === 'agent_value' &&
+        row(
+          <>
+            <Field label="Agent" hint="An ag_… id">
+              <Input
+                value={value.agent ?? ''}
+                onChange={(e) => set({ agent: e.target.value.trim() || null })}
+                placeholder="every agent"
+                className="font-mono"
+                aria-label="Agent"
+              />
+            </Field>
+            <Field label="Team">
+              <Input
+                value={value.team ?? ''}
+                onChange={(e) => set({ team: e.target.value.trim() || null })}
+                placeholder="every team"
+                aria-label="Team"
+              />
+            </Field>
+          </>,
+        )}
+      {value.type === 'run_graph' && (
+        <Field label="Trace id" hint="The run's trace (from an agent's recent runs)">
+          <Input
+            value={value.traceId}
+            onChange={(e) => set({ traceId: e.target.value.trim() })}
+            className="font-mono"
+            aria-label="Trace id"
+          />
+        </Field>
+      )}
       {value.type === 'markdown' && (
         <Field label="Text" hint="Markdown: **bold**, lists, links, tables.">
           <Textarea rows={6} value={value.text} onChange={(e) => set({ text: e.target.value })} aria-label="Text" />

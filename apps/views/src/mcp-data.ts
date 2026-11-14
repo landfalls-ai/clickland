@@ -1,5 +1,12 @@
-import type { SearchResponse, SeriesResponse, ServiceSummary, TraceResponse } from '@clickland/contracts';
-import type { DataSource, PatternsResponse } from '@clickland/ui';
+import type {
+  RunGraphResponse,
+  SearchResponse,
+  SeriesResponse,
+  ServiceSummary,
+  TraceResponse,
+  ValueReportResponse,
+} from '@clickland/contracts';
+import type { AgentCardData, DataSource, PatternsResponse } from '@clickland/ui';
 import { structured, type ToolCall } from './tool-result';
 
 /** Calls one of the server's tools through the host (`App.callServerTool`). */
@@ -33,5 +40,20 @@ export function mcpDataSource(callTool: CallTool): DataSource {
       if (typeof n !== 'number') throw new Error('count returned no number.');
       return n;
     },
+    agents: ({ from, to, service }) =>
+      call<{ agents: AgentCardData[]; truncated: boolean }>(callTool, 'list_agents', {
+        from,
+        to,
+        ...(service ? { service } : {}),
+      }),
+    agentValue: ({ from, to, agent, team, service }) =>
+      call<ValueReportResponse>(callTool, 'agent_value', {
+        from,
+        to,
+        ...(agent ? { agent } : {}),
+        ...(team ? { team } : {}),
+        ...(service ? { service } : {}),
+      }),
+    runGraph: (traceId) => call<RunGraphResponse>(callTool, 'run_graph', { traceId }),
   };
 }

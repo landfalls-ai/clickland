@@ -23,6 +23,28 @@ describe('viewFromToolResult', () => {
     expect(view.spec.panels[0]!.width).toBe('half');
   });
 
+  it('turns the agent tools into one-panel agent views', () => {
+    const graph = viewFromToolResult({
+      name: 'run_graph',
+      arguments: { traceId: 'abc123' },
+      result: { structuredContent: { traceId: 'abc123', nodes: [], edges: [] } },
+    });
+    expect(graph.spec.panels[0]).toMatchObject({ type: 'run_graph', traceId: 'abc123', width: 'full' });
+    const value = viewFromToolResult({
+      name: 'agent_value',
+      arguments: { lastDays: 30, team: 'platform' },
+      result: { structuredContent: { totals: {}, agents: [] } },
+    });
+    expect(value.spec.panels[0]).toMatchObject({ type: 'agent_value', team: 'platform' });
+    expect(value.spec.range).toEqual({ lastMinutes: 30 * 1440 });
+    const list = viewFromToolResult({
+      name: 'list_agents',
+      arguments: {},
+      result: { structuredContent: { agents: [], spansRead: 0 } },
+    });
+    expect(list.spec).toMatchObject({ title: 'AI agents', range: { lastMinutes: 7 * 1440 } });
+  });
+
   it('reads a view from JSON text when there is no structured content', () => {
     const view = viewFromToolResult({
       name: 'get_view',

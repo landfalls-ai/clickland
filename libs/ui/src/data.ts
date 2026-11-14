@@ -1,11 +1,14 @@
 import type {
   PatternResult,
+  RunGraphResponse,
+  ValueReportResponse,
   SearchResponse,
   SeriesResponse,
   ServiceSummary,
   Signal,
   TraceResponse,
 } from '@clickland/contracts';
+import type { AgentCardData } from './agents/cards';
 import type { TimeBounds } from './time';
 
 export interface SearchQuery extends TimeBounds {
@@ -54,6 +57,14 @@ export interface DataSource {
   patterns(req: PatternsQuery): Promise<PatternsResponse>;
   /** How many rows match (a stat panel). */
   total(req: Omit<HistogramQuery, 'groupBy'>): Promise<number>;
+  /** The AI agents seen in the range (an `agents` panel). Without it the panel says it isn't supported. */
+  agents?(req: TimeBounds & { service?: string | null }): Promise<{ agents: AgentCardData[]; truncated: boolean }>;
+  /** The value report (an `agent_value` panel). */
+  agentValue?(
+    req: TimeBounds & { agent?: string | null; team?: string | null; service?: string | null },
+  ): Promise<ValueReportResponse>;
+  /** One run's decision path (a `run_graph` panel). */
+  runGraph?(traceId: string): Promise<RunGraphResponse>;
 }
 
 /** Links out of a panel. Each is optional: without one the panel shows no link. */
@@ -61,4 +72,8 @@ export interface PanelLinks {
   openTrace?: (traceId: string) => void;
   openSearch?: (search: { signal: Signal; query: string }) => void;
   openService?: (name: string) => void;
+  /** An agent's page (its `ag_…` id). */
+  openAgent?: (id: string) => void;
+  /** A run's decision path (its trace id). */
+  openRun?: (traceId: string) => void;
 }

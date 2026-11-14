@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router';
-import { Bell, Plus } from 'lucide-react';
+import { Bell, LayoutTemplate, Plus } from 'lucide-react';
 import type { Alert } from '@clickland/contracts';
 import { Badge, Button, Card, EmptyState, ErrorNote, Skeleton, type Tone } from '@clickland/ui';
 import { describeAlert } from '@/components/alerts/alert-form';
+import { AlertTemplatesDialog } from '@/components/alerts/alert-templates';
 import { PageBody, PageHeader } from '@/components/shell/page-header';
 import { useCan } from '@/lib/auth';
 import { useAlerts } from '@/lib/queries';
@@ -21,6 +23,7 @@ export function AlertsPage() {
   const alerts = useAlerts();
   const canEdit = useCan('edit');
   const navigate = useNavigate();
+  const [templates, setTemplates] = useState(false);
   const list = [...(alerts.data?.alerts ?? [])].sort(
     (a, b) =>
       Number(alertState(b).tone === 'danger') - Number(alertState(a).tone === 'danger') || a.name.localeCompare(b.name),
@@ -31,9 +34,14 @@ export function AlertsPage() {
         title="Alerts"
         actions={
           canEdit && (
-            <Button variant="primary" onClick={() => navigate('/alerts/new')}>
-              <Plus className="size-3.5" /> New alert
-            </Button>
+            <>
+              <Button onClick={() => setTemplates(true)}>
+                <LayoutTemplate className="size-3.5" /> From a template
+              </Button>
+              <Button variant="primary" onClick={() => navigate('/alerts/new')}>
+                <Plus className="size-3.5" /> New alert
+              </Button>
+            </>
           )
         }
       />
@@ -72,6 +80,7 @@ export function AlertsPage() {
           </div>
         )}
       </PageBody>
+      {templates && <AlertTemplatesDialog onClose={() => setTemplates(false)} />}
     </>
   );
 }

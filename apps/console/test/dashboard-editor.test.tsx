@@ -125,3 +125,11 @@ describe('DashboardEditor', () => {
     expect(last().title).toBe('Payments');
   });
 });
+
+describe('agent panel types', () => {
+  it('newPanel makes agents, agent_value and run_graph panels', () => {
+    expect(newPanel('agents', 'x')).toMatchObject({ type: 'agents', title: 'Agents', width: 'full' });
+    expect(newPanel('agent_value', 'x')).toMatchObject({ type: 'agent_value', width: 'full' });
+    expect(newPanel('run_graph', 'x')).toMatchObject({ type: 'run_graph', traceId: '' });
+  });
+});

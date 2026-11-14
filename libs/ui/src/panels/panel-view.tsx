@@ -21,6 +21,9 @@ import { cn } from '../cn';
 import { totals } from '../charts/align';
 import { BarChart } from '../charts/bar-chart';
 import { TimeSeriesChart } from '../charts/time-series-chart';
+import { AgentCards, ValueSummary } from '../agents/cards';
+import { agentIdOf } from '../agents/format';
+import { RunGraph } from '../agents/run-graph';
 import type { DataSource, PanelLinks } from '../data';
 import { formatBytes, formatCount, formatDuration } from '../format';
 import { Card, ErrorNote, Skeleton } from '../primitives/layout';
@@ -103,6 +106,8 @@ function openLink(panel: Panel, links?: PanelLinks): { label: string; go: () => 
   if (!links) return null;
   if (panel.type === 'trace' && links.openTrace)
     return { label: 'Open the trace', go: () => links.openTrace!(panel.traceId) };
+  if (panel.type === 'run_graph' && links.openRun)
+    return { label: 'Open the run', go: () => links.openRun!(panel.traceId) };
   if (!links.openSearch) return null;
   switch (panel.type) {
     case 'timeseries':
@@ -148,6 +153,12 @@ export function PanelBody(props: BodyProps) {
       return <MetricBody {...props} panel={panel} />;
     case 'markdown':
       return <Markdown text={panel.text} />;
+    case 'agents':
+      return <AgentsBody {...props} panel={panel} />;
+    case 'agent_value':
+      return <AgentValueBody {...props} panel={panel} />;
+    case 'run_graph':
+      return <RunGraphBody {...props} panel={panel} />;
     default:
       return <p className="text-[12px] text-t3">This panel type isn’t supported here.</p>;
   }
@@ -356,6 +367,59 @@ function MetricBody({ panel, range, data, refresh }: Typed<'metric'>) {
           }
         />
       )}
+    </Loading>
+  );
+}
+
+const unsupported = <p className="text-[12px] text-t3">This panel type isn’t supported here.</p>;
+
+function AgentsBody({ panel, range, data, refresh, links }: Typed<'agents'>) {
+  const state = useLoad(keyOf(panel, range, refresh), () =>
+    data.agents ? data.agents({ ...range, service: panel.service ?? null }) : Promise.reject(new Error('unsupported')),
+  );
+  if (!data.agents) return unsupported;
+  return (
+    <Loading state={state} lines={6}>
+      {(d) => <AgentCards agents={d.agents} onOpen={links?.openAgent} />}
+    </Loading>
+  );
+}
+
+function AgentValueBody({ panel, range, data, refresh, links }: Typed<'agent_value'>) {
+  const state = useLoad(keyOf(panel, range, refresh), () =>
+    data.agentValue
+      ? data.agentValue({
+          ...range,
+          agent: panel.agent ?? null,
+          team: panel.team ?? null,
+          service: panel.service ?? null,
+        })
+      : Promise.reject(new Error('unsupported')),
+  );
+  if (!data.agentValue) return unsupported;
+  const open = links?.openAgent;
+  return (
+    <Loading state={state} lines={6}>
+      {(report) => (
+        <ValueSummary
+          report={report}
+          compact={(panel.width ?? 'half') === 'half'}
+          onOpenAgent={open ? (row) => open(agentIdOf(row.key)) : undefined}
+        />
+      )}
+    </Loading>
+  );
+}
+
+function RunGraphBody({ panel, data, refresh, links }: Typed<'run_graph'>) {
+  const state = useLoad(JSON.stringify([panel.traceId, refresh]), () =>
+    data.runGraph ? data.runGraph(panel.traceId) : Promise.reject(new Error('unsupported')),
+  );
+  if (!data.runGraph) return unsupported;
+  const open = links?.openTrace;
+  return (
+    <Loading state={state} lines={6}>
+      {(graph) => <RunGraph graph={graph} wide={false} onSelect={open ? () => open(graph.traceId) : undefined} />}
     </Loading>
   );
 }

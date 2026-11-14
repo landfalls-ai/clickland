@@ -47,6 +47,13 @@ function rangeOf(args: Obj): RangeInput {
   return { lastMinutes: 60 };
 }
 
+/** The agent tools take `lastDays` (default 7) where the others take minutes. */
+function agentArgs(args: Obj): Obj {
+  if (str(args.from) && str(args.to)) return args;
+  const days = typeof args.lastDays === 'number' ? args.lastDays : 7;
+  return { lastMinutes: days * 1440 };
+}
+
 function oneOf(panel: PanelInput, args: Obj, title: string): ViewSpec {
   return ViewSpec.parse({ title, range: rangeOf(args), panels: [{ ...panel, width: 'full' }] });
 }
@@ -87,6 +94,27 @@ export function viewFromToolResult(call: ToolCall): LoadedView {
     const traceId = str(sc.traceId) ?? str(args.traceId) ?? '';
     return loaded(
       oneOf({ type: 'trace', title: `Trace ${traceId.slice(0, 12)}`, traceId }, args, `Trace ${traceId.slice(0, 12)}`),
+    );
+  }
+  // The agent tools (docs/agent-value.md): one panel of the matching type.
+  if (name === 'run_graph' || (Array.isArray(sc.nodes) && Array.isArray(sc.edges) && str(sc.traceId))) {
+    const traceId = str(sc.traceId) ?? str(args.traceId) ?? '';
+    const title = `Run ${traceId.slice(0, 12)}`;
+    return loaded(oneOf({ type: 'run_graph', title, traceId }, args, title));
+  }
+  if (name === 'agent_value' || (isObj(sc.totals) && Array.isArray(sc.agents))) {
+    const panel: PanelInput = {
+      type: 'agent_value',
+      title: 'AI agent value',
+      agent: str(args.agent) ?? null,
+      team: str(args.team) ?? null,
+      service: str(args.service) ?? null,
+    };
+    return loaded(oneOf(panel, agentArgs(args), 'AI agent value'));
+  }
+  if (name === 'list_agents' || (Array.isArray(sc.agents) && 'spansRead' in sc)) {
+    return loaded(
+      oneOf({ type: 'agents', title: 'AI agents', service: str(args.service) ?? null }, agentArgs(args), 'AI agents'),
     );
   }
   if (name === 'list_services' || Array.isArray(sc.services)) {

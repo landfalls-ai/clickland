@@ -80,6 +80,8 @@ export function ViewApp() {
         openSearch: ({ signal, query }: { signal: Signal; query: string }) =>
           open(`${consoleOrigin}/search?${new URLSearchParams({ signal, query })}`),
         openService: (name) => open(`${consoleOrigin}/services/${encodeURIComponent(name)}`),
+        openAgent: (id) => open(`${consoleOrigin}/agents/${encodeURIComponent(id)}`),
+        openRun: (traceId) => open(`${consoleOrigin}/agents/runs/${traceId}`),
       }
     : undefined;
 

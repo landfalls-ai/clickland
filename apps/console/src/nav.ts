@@ -1,6 +1,7 @@
 import {
   Bell,
   Bot,
+  BrainCircuit,
   ChartLine,
   LayoutDashboard,
   type LucideIcon,
@@ -37,6 +38,10 @@ export const NAV_GROUPS: Array<{ label: string; items: NavItem[] }> = [
       { href: '/dashboards', label: 'Dashboards', icon: LayoutDashboard, bar: true },
       { href: '/notes', label: 'Notes', icon: NotebookPen },
     ],
+  },
+  {
+    label: 'AI',
+    items: [{ href: '/agents', label: 'Agents', icon: BrainCircuit }],
   },
 ];
 

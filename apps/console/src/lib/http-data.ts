@@ -1,4 +1,12 @@
-import type { SearchResponse, SeriesResponse, ServiceSummary, TraceResponse } from '@clickland/contracts';
+import type {
+  AgentsResponse,
+  RunGraphResponse,
+  SearchResponse,
+  SeriesResponse,
+  ServiceSummary,
+  TraceResponse,
+  ValueReportResponse,
+} from '@clickland/contracts';
 import type { DataSource, PatternsResponse } from '@clickland/ui';
 import { get, qs, send } from './api';
 
@@ -15,4 +23,8 @@ export const httpData: DataSource = {
     const histogram = await send<SeriesResponse>('POST', '/api/search/histogram', { ...req, groupBy: null });
     return histogram.series.reduce((sum, s) => sum + s.points.reduce((a, [, v]) => a + v, 0), 0);
   },
+  agents: ({ from, to, service }) => get<AgentsResponse>(`/api/agents${qs({ from, to, service })}`),
+  agentValue: ({ from, to, agent, team, service }) =>
+    get<ValueReportResponse>(`/api/agents/value${qs({ from, to, agent, team, service })}`),
+  runGraph: (traceId) => get<RunGraphResponse>(`/api/agents/runs/${encodeURIComponent(traceId)}/graph`),
 };
