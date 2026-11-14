@@ -8,6 +8,7 @@ import {
   PatternsRequest,
   SearchRequest,
   ViewSpec,
+  UsageRollupRequest,
 } from '@clickland/contracts';
 import { registerAppResource, registerAppTool, RESOURCE_MIME_TYPE } from '@modelcontextprotocol/ext-apps/server';
 import { McpServer, type CallToolResult } from '@modelcontextprotocol/server';
@@ -299,6 +300,19 @@ export function createMcpServer(services: Services, principal: Principal, viewHt
 
   // AI agents: list_agents, get_agent, agent_value, run_graph (agent-tools.ts).
   registerAgentTools(tool, services);
+
+  // Resource usage for Landledger (docs/usage.md).
+  tool(
+    'usage_rollup',
+    {
+      title: 'Resource usage rollup',
+      description:
+        'Resource usage per hour or day for pricing (Landledger prices it; no rates here): per row CPU core-hours and memory GiB-hours used, requested and allocated (max(request, usage) per 30 s, as OpenCost), storage GiB-hours and Docker network GB, as six-decimal strings; node capacity (allocatable core-hours and GiB-hours) and persistent volume claims. Group by cluster, namespace, workload kind and name, deployment, pod, container, service, compose project or service, or a pod label (`k8s.pod.label.<key>`). Containers Kubernetes runs count once (from the kubelet). `coverage` lists buckets without data and what is not measured (egress, pod network).',
+      inputSchema: UsageRollupRequest,
+      scope: 'usage:read',
+    },
+    async (a) => ok(await services.usage.rollup(a)),
+  );
 
   registerAppResource(
     server,

@@ -7,3 +7,4 @@ export * from './trace.js';
 export * from './agents.js';
 export * from './agent-safety.js';
 export * from './agent-value.js';
+export * from './usage.js';

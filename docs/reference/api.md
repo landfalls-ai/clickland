@@ -17,7 +17,8 @@ schemas in `libs/contracts/src` are the source of truth; this page describes the
 
 | Scope | Allows |
 |---|---|
-| `read` | every `GET`, search, traces, metrics, patterns, services, knowledge search, the Landfall Source Protocol (`/v1`) |
+| `read` | every `GET`, search, traces, metrics, patterns, services, knowledge search, the Landfall Source Protocol (`/v1`), and usage rollups |
+| `usage:read` | usage rollups (`POST /api/usage/rollup`, MCP `usage_rollup`) and nothing else: the key Landledger holds. `read` and `admin` include it |
 | `alerts:write` | create, change, delete alerts |
 | `webhooks:write` | create and delete webhook subscriptions |
 | `notes:write` | add notes |
@@ -418,12 +419,53 @@ It searches notes (Postgres full text), recent alert events, log patterns among 
 words, and the services the question names. The shape is what Landflow's knowledge-base tools return
 (`pageContent`, `metadata`, `score`).
 
+## Resource usage
+
+`POST /api/usage/rollup` (`usage:read`; `read` and `admin` include it): CPU, memory, storage and network used,
+requested and allocated per hour or day, node capacity and volume claims. Landledger prices them; Clickland sends no
+prices. The math, the double-count rule and what is not measured are in [usage.md](../usage.md).
+
+```json
+{ "from": "2026-11-14T00:00:00Z", "to": "2026-11-15T00:00:00Z", "granularity": "day",
+  "groupBy": ["k8s.cluster.name", "k8s.namespace.name", "k8s.workload.kind", "k8s.workload.name",
+              "k8s.container.name", "compose.project", "compose.service", "k8s.pod.label.team"],
+  "source": "all" }
+```
+
+- `granularity`: `hour` (at most 31 days) or `day` (at most 366). Buckets are UTC and clipped to the range.
+- `groupBy` (up to 12, none repeated): `k8s.cluster.name`, `k8s.namespace.name`, `k8s.workload.kind`,
+  `k8s.workload.name`, `k8s.deployment.name`, `k8s.pod.name`, `k8s.container.name`, `service.name`, `container.name`,
+  `compose.project`, `compose.service`, or a pod label `k8s.pod.label.<key>`. A source without the key gives `''`.
+- `source`: `kubernetes`, `docker` or `all` (default).
+
+```json
+{ "rows": [{ "start", "end", "source": "kubernetes" | "docker", "group": { "<key>": "<value>" },
+             "cpuCoreHours", "cpuRequestedCoreHours", "cpuAllocatedCoreHours",
+             "memoryGiBHours", "memoryRequestedGiBHours", "memoryAllocatedGiBHours",
+             "storageGiBHours" (Kubernetes; null for Docker), "networkRxGB", "networkTxGB" (Docker; null for Kubernetes),
+             "networkEgressGB": null, "samples" }],
+  "capacity": [{ "start", "end", "cluster", "node", "cpuAllocatableCoreHours", "memoryAllocatableGiBHours", "samples" }],
+  "volumes": [{ "start", "end", "cluster", "namespace", "claim", "capacityGiBHours", "usedGiBHours",
+                "sharesNodeFilesystem", "samples" }],
+  "coverage": { "from", "to", "granularity", "stepSeconds": 30, "maxGapSeconds": 90,
+                "sources": [{ "source", "firstSample", "lastSample", "samples", "buckets": { "expected", "withData" },
+                              "missingBuckets": [], "gapSeconds", "networkSamples" }],
+                "capacity": { "samples", "nodes" }, "volumes": { "samples", "claims" },
+                "missing": [{ "field", "reason", "fix"? }], "notes": [] } }
+```
+
+Quantities are decimal strings with six decimals (`"1.492300"`): core-hours, GiB-hours (2^30 bytes for an hour), GB
+(10^9 bytes). Allocated is, per 30 s interval, the larger of the container's request and its usage, summed (as
+OpenCost); Docker has no requests, so its allocated equals used. `400` for an invalid body (a range that is empty or
+too long, an unknown key).
+
 ## MCP
 
 `POST /api/mcp`: a stateless Streamable HTTP MCP server, same API keys and scopes. Tools: `search_logs`, `search_traces`,
 `histogram`, `count`, `get_trace`, `list_services`, `query_metric`, `list_metrics`, `event_patterns`, `list_alerts`, `search_knowledge`,
 `add_note`, `render_view`, `update_view`, `add_panel`, `remove_panel`, `list_dashboards`, `get_view`, and for AI agents
-`list_agents`, `get_agent`, `agent_value` and `run_graph`. Each takes the matching endpoint's body; the agent tools
+`list_agents`, `get_agent`, `agent_value` and `run_graph`, and `usage_rollup` (`usage:read`, the body of
+`POST /api/usage/rollup`). Each takes the matching endpoint's body; the agent tools
 take `{ "lastDays"? (default 7), "from"?, "to"?, "service"? }`, `get_agent` and `agent_value` also `agent` (an id or a
 name), `agent_value` also `team`, and `run_graph` takes `{ "traceId" }`. `agent_value` answers in words with the
 arithmetic, and carries the whole report as structured content. The server supports the MCP Apps extension

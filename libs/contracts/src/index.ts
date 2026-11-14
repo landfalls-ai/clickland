@@ -3,6 +3,7 @@ import { z } from 'zod';
 
 export * from './landfall.js';
 export * from './agents.js';
+export * from './usage.js';
 
 export const Signal = z.enum(['logs', 'traces']);
 export type Signal = z.infer<typeof Signal>;
@@ -172,7 +173,15 @@ export const KnowledgeSearchRequest = z.object({
   limit: z.number().int().min(1).max(25).default(8),
 });
 
-export const ApiScope = z.enum(['read', 'alerts:write', 'webhooks:write', 'notes:write', 'views:write', 'admin']);
+export const ApiScope = z.enum([
+  'read',
+  'usage:read',
+  'alerts:write',
+  'webhooks:write',
+  'notes:write',
+  'views:write',
+  'admin',
+]);
 export type ApiScope = z.infer<typeof ApiScope>;
 export const ApiKeyInput = z.object({ name: z.string().min(1).max(200), scopes: z.array(ApiScope).min(1) });
 

@@ -27,8 +27,10 @@ Everything goes to the collector (compose project `clickland-infra`): OTLP/HTTP 
   - It reads the Docker socket and the logs read-only, as root, in its own container, so the main collector stays
     unprivileged. Clickland's own collectors are left out, so their logs never feed back.
 - **Kubernetes** (`deploy/k8s/cluster-metrics`, namespace `clickland-dev`): kubelet stats (node, pod, container
-  CPU, memory, filesystem, network) and cluster state (deployments, replicas, pod phases, restarts, node conditions)
-  every 30 s under service `kubernetes`, and every Kubernetes event as a log under `kubernetes-events` (`WARN` for
+  CPU, memory, filesystem, network; volumes with their claim) and cluster state (deployments, replicas, pod phases, restarts, node conditions, container requests and limits,
+  node allocatable) every 30 s under service `kubernetes`. The `k8s_attributes` processor adds each pod's owner (`k8s.deployment.name`,
+  replicaset, statefulset, daemonset, job, cronjob) and labels (`k8s.pod.label.<key>`) to them, for
+  [usage rollups](usage.md). Every Kubernetes event goes in as a log under `kubernetes-events` (`WARN` for
   warnings). Read-only ClusterRole. `kubectl --context orbstack apply -k deploy/k8s/cluster-metrics`.
 - **Pod logs** (`deploy/k8s/cluster-metrics/node-logs.yaml`, DaemonSet `clickland-node-logs`): every pod's stdout
   and stderr from `/var/log/pods`, with namespace, pod, container, workload and app labels; the service is the

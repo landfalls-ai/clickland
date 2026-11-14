@@ -13,6 +13,7 @@ import {
   SearchRequest,
   UpdateViewRequest,
   WebhookInput,
+  UsageRollupRequest,
 } from '@clickland/contracts';
 import cors from '@fastify/cors';
 import { NodeStreamableHTTPServerTransport } from '@modelcontextprotocol/node';
@@ -271,6 +272,12 @@ export async function buildApp(services: Services, options: AppOptions): Promise
 
   // AI agents and their value (agent-routes.ts).
   registerAgentRoutes(app, services, { need, parse });
+
+  // Resource usage for Landledger (docs/usage.md): a key with only usage:read can call nothing else.
+  app.post('/api/usage/rollup', async (r) => {
+    need(r, 'usage:read');
+    return services.usage.rollup(parse(UsageRollupRequest, r.body));
+  });
 
   // MCP (stateless Streamable HTTP) ------------------------------------------------------------------------------------
   app.post('/api/mcp', async (request, reply) => {

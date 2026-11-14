@@ -6,6 +6,7 @@ import { Keys } from './keys.js';
 import { Knowledge } from './knowledge.js';
 import { Notes } from './notes.js';
 import { Telemetry } from './telemetry.js';
+import { Usage } from './usage.js';
 import { ValueStore } from './value.js';
 import { Views } from './views.js';
 import { Webhooks } from './webhooks.js';
@@ -24,6 +25,8 @@ export interface Services {
   /** AI agents and their value (docs/agent-value.md). */
   agents: Agents;
   value: ValueStore;
+  /** Resource usage rollups for Landledger (docs/usage.md). */
+  usage: Usage;
 }
 
 export function createServices(config: Config, clients: Clients, fetchImpl: typeof fetch = fetch): Services {
@@ -36,7 +39,8 @@ export function createServices(config: Config, clients: Clients, fetchImpl: type
   const keys = new Keys(clients.pg);
   const value = new ValueStore(clients.pg);
   const agents = new Agents(clients.ch, value);
-  return { config, clients, telemetry, webhooks, alerts, notes, views, knowledge, keys, agents, value };
+  const usage = new Usage(clients.ch);
+  return { config, clients, telemetry, webhooks, alerts, notes, views, knowledge, keys, agents, value, usage };
 }
 
 /** The alert evaluator and the webhook dispatcher: small loops that claim due rows, so replicas can share the work. */

@@ -45,7 +45,11 @@ export async function authenticate(pg: Sql, config: Config, authorization: strin
   throw new ApiError('unauthorized', 'Send an API key: Authorization: Bearer ck_…');
 }
 
+/** Scopes another scope also grants: `read` can read usage rollups (it can read the raw metrics anyway). */
+const IMPLIED_BY: Partial<Record<ApiScope, ApiScope[]>> = { 'usage:read': ['read'] };
+
 export function requireScope(principal: Principal, scope: ApiScope): void {
   if (principal.scopes.includes('admin') || principal.scopes.includes(scope)) return;
+  if (IMPLIED_BY[scope]?.some((s) => principal.scopes.includes(s))) return;
   throw new ApiError('forbidden', `This needs the ${scope} scope`);
 }

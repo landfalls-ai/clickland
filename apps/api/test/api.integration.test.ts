@@ -234,6 +234,54 @@ describe.skipIf(!enabled)('API (live stack)', () => {
     }
   });
 
+  it('serves usage rollups to a usage:read key, and nothing else to it', async () => {
+    const key = (
+      await app.inject({
+        method: 'POST',
+        url: '/api/keys',
+        headers: auth,
+        payload: { name: 'test-usage', scopes: ['usage:read'] },
+      })
+    ).json();
+    const usage = { authorization: `Bearer ${key.key}` };
+    const to = new Date();
+    const from = new Date(to.getTime() - 3600_000);
+    const res = await app.inject({
+      method: 'POST',
+      url: '/api/usage/rollup',
+      headers: usage,
+      payload: {
+        from: from.toISOString(),
+        to: to.toISOString(),
+        granularity: 'hour',
+        groupBy: ['k8s.namespace.name', 'k8s.workload.name', 'compose.project'],
+      },
+    });
+    expect(res.statusCode).toBe(200);
+    const body = res.json();
+    expect(body.coverage.sources.map((s: { source: string }) => s.source)).toEqual(['kubernetes', 'docker']);
+    expect(body.coverage.missing.map((m: { field: string }) => m.field)).toContain('networkEgressGB');
+    for (const row of body.rows) {
+      expect(row.cpuCoreHours).toMatch(/^\d+\.\d{6}$/);
+      expect(Number(row.cpuAllocatedCoreHours)).toBeGreaterThanOrEqual(Number(row.cpuCoreHours) - 1e-6);
+      expect(Object.keys(row.group)).toEqual(['k8s.namespace.name', 'k8s.workload.name', 'compose.project']);
+    }
+    expect(Array.isArray(body.capacity)).toBe(true);
+    const bad = await app.inject({
+      method: 'POST',
+      url: '/api/usage/rollup',
+      headers: usage,
+      payload: { from: to.toISOString(), to: from.toISOString(), granularity: 'hour' },
+    });
+    expect(bad.statusCode).toBe(400);
+    expect(
+      (await app.inject({ method: 'POST', url: '/api/search', headers: usage, payload: { signal: 'logs' } }))
+        .statusCode,
+    ).toBe(403);
+    await app.inject({ method: 'DELETE', url: `/api/keys/${key.id}`, headers: auth });
+    await clients.pg`DELETE FROM api_keys WHERE id = ${key.id}`;
+  });
+
   it('serves MCP: tools/list includes the view tools', async () => {
     const res = await app.inject({
       method: 'POST',
@@ -248,7 +296,14 @@ describe.skipIf(!enabled)('API (live stack)', () => {
     });
     const names = res.json().result.tools.map((t: { name: string }) => t.name);
     expect(names).toEqual(
-      expect.arrayContaining(['search_logs', 'render_view', 'update_view', 'list_dashboards', 'search_knowledge']),
+      expect.arrayContaining([
+        'search_logs',
+        'render_view',
+        'update_view',
+        'list_dashboards',
+        'search_knowledge',
+        'usage_rollup',
+      ]),
     );
     const render = res.json().result.tools.find((t: { name: string }) => t.name === 'render_view');
     expect(render._meta.ui.resourceUri).toBe('ui://clickland/view');

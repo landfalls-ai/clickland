@@ -1,7 +1,9 @@
 # clickland-cluster-metrics: the OrbStack cluster's metrics and events, sent to Clickland's collector.
-#   kubelet_stats node, pod and container CPU, memory, filesystem and network (from the kubelet)
+#   kubelet_stats node, pod and container CPU, memory, filesystem and network, and volume capacity (from the kubelet)
 #   k8s_cluster   deployments, replicas, pod phases, container restarts and readiness, namespaces
 #   k8s_objects   Kubernetes events, as logs (service.name "kubernetes-events")
+# k8s_attributes adds each pod's workload owner and labels (k8s.pod.label.<key>) to the metrics, for usage rollups
+# (docs/usage.md).
 # One replica: OrbStack has one node. With more nodes, kubeletstats belongs in a DaemonSet.
 # Apply: kubectl --context orbstack apply -k deploy/k8s/cluster-metrics
 apiVersion: v1
@@ -71,7 +73,10 @@ data:
         auth_type: serviceAccount
         endpoint: https://${env:K8S_NODE_NAME}:10250
         insecure_skip_verify: true
-        metric_groups: [node, pod, container]
+        # volume: k8s.volume.capacity / available per volume, with its claim (k8s.persistentvolumeclaim.name).
+        metric_groups: [node, pod, container, volume]
+        # k8s.volume.type, and for a claim k8s.persistentvolumeclaim.name (read from the pod's spec).
+        extra_metadata_labels: [k8s.volume.type]
         metrics:
           k8s.pod.cpu_limit_utilization: { enabled: true }
           k8s.pod.memory_limit_utilization: { enabled: true }
@@ -90,6 +95,25 @@ data:
       memory_limiter:
         check_interval: 5s
         limit_mib: 200
+      # Each pod's owner and labels: k8s.deployment.name (and the other workloads), k8s.pod.label.<key>.
+      k8s_attributes:
+        auth_type: serviceAccount
+        passthrough: false
+        filter:
+          node_from_env_var: K8S_NODE_NAME
+        extract:
+          metadata:
+            - k8s.deployment.name
+            - k8s.replicaset.name
+            - k8s.statefulset.name
+            - k8s.daemonset.name
+            - k8s.job.name
+            - k8s.cronjob.name
+          labels:
+            - { tag_name: k8s.pod.label.$$1, key_regex: (.*), from: pod }
+        pod_association:
+          - sources: [{ from: resource_attribute, name: k8s.pod.uid }]
+          - sources: [{ from: resource_attribute, name: k8s.pod.name }, { from: resource_attribute, name: k8s.namespace.name }]
       resource/metrics:
         attributes:
           - { key: service.name, value: kubernetes, action: upsert }
@@ -124,7 +148,7 @@ data:
       pipelines:
         metrics:
           receivers: [kubelet_stats, k8s_cluster]
-          processors: [memory_limiter, resource/metrics, batch]
+          processors: [memory_limiter, k8s_attributes, resource/metrics, batch]
           exporters: [otlp_http]
         logs:
           receivers: [k8s_objects]
