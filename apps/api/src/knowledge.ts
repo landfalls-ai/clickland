@@ -78,7 +78,7 @@ export class Knowledge {
     const maxRank = Math.max(...notes.map((n) => n.rank), 0.0001);
     for (const n of notes) {
       results.push({
-        pageContent: `Note: ${n.title}\n${n.service ? `Service: ${n.service}\n` : ''}${n.tags.length ? `Tags: ${n.tags.join(', ')}\n` : ''}By ${n.author} on ${n.createdAt}\n\n${n.body}`,
+        pageContent: `Note: ${n.title}\n${n.service ? `Service: ${n.service}\n` : ''}${n.tags.length ? `Tags: ${n.tags.join(', ')}\n` : ''}${n.links.length ? `Links: ${n.links.map((l) => `${l.label} <${l.url}>`).join(', ')}\n` : ''}By ${n.author} on ${n.createdAt}\n\n${n.body}`,
         score: 0.55 + 0.4 * (n.rank / maxRank),
         metadata: {
           kind: 'note',
@@ -86,6 +86,7 @@ export class Knowledge {
           service: n.service ?? undefined,
           id: n.id,
           url: `${this.config.consoleUrl}/notes/${n.id}`,
+          ...(n.links.length ? { links: n.links } : {}),
         },
       });
     }

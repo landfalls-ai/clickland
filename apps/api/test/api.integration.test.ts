@@ -5,7 +5,7 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { buildApp } from '../src/app.js';
 import { createClients } from '../src/clients.js';
 import { configFromEnv } from '../src/config.js';
-import { createServices } from '../src/services.js';
+import { scopedServices } from './scoped.js';
 
 const enabled = (process.env.CLICKLAND_INTEGRATION ?? '').split(',').includes('db');
 const config = {
@@ -16,7 +16,7 @@ const auth = { authorization: `Bearer ${config.bootstrapKey}` };
 
 describe.skipIf(!enabled)('API (live stack)', () => {
   const clients = createClients(config);
-  const services = createServices(config, clients);
+  const services = scopedServices(config, clients);
   let app: Awaited<ReturnType<typeof buildApp>>;
   const created: string[] = [];
 
@@ -141,6 +141,7 @@ describe.skipIf(!enabled)('API (live stack)', () => {
       description: 'test',
       format: 'standard',
     });
+    services.webhooks.allowed.add(hook.id);
     try {
       const [row] = await clients.pg`SELECT * FROM alerts WHERE id = ${alert.id}`;
       const events = await services.alerts.evaluate(row as never);
@@ -155,6 +156,35 @@ describe.skipIf(!enabled)('API (live stack)', () => {
     } finally {
       await clients.pg`DELETE FROM webhooks WHERE id = ${hook.id}`;
       await clients.pg`DELETE FROM alerts WHERE id = ${alert.id}`;
+    }
+  });
+
+  it("keeps a note's links and returns them in knowledge search", async () => {
+    const word = `zqlinks${Date.now()}`;
+    const links = [{ label: 'Landfall room', url: 'http://localhost:5173/o/local/incidents/inc_test' }];
+    const res = await app.inject({
+      method: 'POST',
+      url: '/api/notes',
+      headers: auth,
+      payload: { title: `Postmortem ${word}`, body: 'Checkout timed out.', service: 'checkout', links },
+    });
+    expect(res.statusCode).toBe(201);
+    const note = res.json();
+    try {
+      expect(note.links).toEqual(links);
+      const found = await app.inject({
+        method: 'POST',
+        url: '/api/knowledge/search',
+        headers: auth,
+        payload: { query: word },
+      });
+      const result = found.json().results.find((r: { metadata: { id?: string } }) => r.metadata.id === note.id);
+      expect(result.metadata).toMatchObject({ kind: 'note', links });
+      expect(result.pageContent).toContain('Links: Landfall room <http://localhost:5173/o/local/incidents/inc_test>');
+      const listed = await app.inject({ url: `/api/notes?q=${word}`, headers: auth });
+      expect(listed.json().notes[0].links).toEqual(links);
+    } finally {
+      await clients.pg`DELETE FROM notes WHERE id = ${note.id}`;
     }
   });
 

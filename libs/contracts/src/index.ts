@@ -141,6 +141,12 @@ export const WebhookInput = z
   });
 export type WebhookInput = z.infer<typeof WebhookInput>;
 
+export const NoteLink = z.object({
+  label: z.string().min(1).max(200),
+  url: z.url({ protocol: /^https?$/ }).max(2000),
+});
+export type NoteLink = z.infer<typeof NoteLink>;
+
 export const NoteInput = z.object({
   title: z.string().min(1).max(300),
   body: z.string().min(1).max(50_000),
@@ -152,6 +158,8 @@ export const NoteInput = z.object({
     .default([]),
   alertEventId: z.string().nullish(),
   author: z.string().max(200).nullish(),
+  /** Where the note points: the Landfall room it came from, a dashboard, a pull request. */
+  links: z.array(NoteLink).max(20).default([]),
 });
 export type NoteInput = z.infer<typeof NoteInput>;
 
@@ -366,6 +374,8 @@ export interface KnowledgeResult {
     service?: string;
     url?: string;
     id?: string;
+    /** A note's links (`{ label, url }`), e.g. the Landfall room it came from. */
+    links?: { label: string; url: string }[];
   };
 }
 

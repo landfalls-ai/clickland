@@ -1,4 +1,4 @@
-import type { Note, NoteInput } from '@clickland/contracts';
+import type { Note, NoteInput, NoteLink } from '@clickland/contracts';
 import type { Sql } from './clients.js';
 import { newId } from './ids.js';
 import type { Webhooks } from './webhooks.js';
@@ -11,6 +11,7 @@ type Row = {
   tags: string[];
   trace_ids: string[];
   alert_event_id: string | null;
+  links: NoteLink[] | null;
   author: string;
   created_at: Date;
   rank?: number;
@@ -24,6 +25,7 @@ const toNote = (r: Row): Note => ({
   tags: r.tags,
   traceIds: r.trace_ids,
   alertEventId: r.alert_event_id,
+  links: r.links ?? [],
   author: r.author,
   createdAt: r.created_at.toISOString(),
 });
@@ -64,9 +66,10 @@ export class Notes {
 
   async create(input: NoteInput, author: string): Promise<Note> {
     const [row] = await this.pg<Row[]>`
-      INSERT INTO notes (id, title, body, service, tags, trace_ids, alert_event_id, author)
+      INSERT INTO notes (id, title, body, service, tags, trace_ids, alert_event_id, author, links)
       VALUES (${newId('nt')}, ${input.title}, ${input.body}, ${input.service ?? null}, ${input.tags},
-              ${input.traceIds.map((t) => t.toLowerCase())}, ${input.alertEventId ?? null}, ${input.author ?? author})
+              ${input.traceIds.map((t) => t.toLowerCase())}, ${input.alertEventId ?? null}, ${input.author ?? author},
+              ${this.pg.json(input.links as never)})
       RETURNING *`;
     const note = toNote(row!);
     await this.webhooks.enqueue('note.created', { note });

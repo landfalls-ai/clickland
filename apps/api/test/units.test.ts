@@ -1,4 +1,4 @@
-import { AlertInput } from '@clickland/contracts';
+import { AlertInput, NoteInput } from '@clickland/contracts';
 import { createHmac } from 'node:crypto';
 import { describe, expect, it } from 'vitest';
 import { breaches, groupSearch, groupValues } from '../src/alerts.js';
@@ -51,6 +51,18 @@ describe('alert severity, labels and runbook', () => {
     expect(AlertInput.safeParse({ ...base, runbookUrl: 'javascript:alert(1)' }).success).toBe(false);
     const many = Object.fromEntries(Array.from({ length: 31 }, (_, i) => [`k${i}`, 'v']));
     expect(AlertInput.safeParse({ ...base, labels: many }).success).toBe(false);
+  });
+});
+
+describe('note links', () => {
+  const note = { title: 't', body: 'b' };
+
+  it('default to none, and take a label and an http(s) URL', () => {
+    expect(NoteInput.parse(note).links).toEqual([]);
+    const links = [{ label: 'Landfall room', url: 'http://localhost:5173/o/local/incidents/inc_1' }];
+    expect(NoteInput.parse({ ...note, links }).links).toEqual(links);
+    expect(NoteInput.safeParse({ ...note, links: [{ label: '', url: 'https://x.example' }] }).success).toBe(false);
+    expect(NoteInput.safeParse({ ...note, links: [{ label: 'x', url: 'file:///etc/passwd' }] }).success).toBe(false);
   });
 });
 

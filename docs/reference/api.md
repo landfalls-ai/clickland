@@ -245,7 +245,9 @@ What people and agents learned about an incident or a service: Clickland's long-
 
 - `GET /api/notes?service=&q=&limit=` → `{ "notes": [Note] }`.
 - `POST /api/notes` (`notes:write`) — `{ "title", "body" (Markdown), "service"?, "tags": [], "traceIds": [],
-  "alertEventId"?, "author"? }` → `201 Note` (`{ id, …, createdAt }`).
+  "alertEventId"?, "author"?, "links": [{ "label", "url" }] }` → `201 Note` (`{ id, …, createdAt }`).
+- `links`: up to 20 `{ label, url }` (`http(s)`), where the note points: the Landfall room a postmortem came from, a
+  dashboard, a pull request. MCP's `add_note` takes them too.
 
 ## Knowledge search
 
@@ -255,9 +257,11 @@ What people and agents learned about an incident or a service: Clickland's long-
 ```json
 { "results": [{ "pageContent": "…", "score": 0.83,
                 "metadata": { "kind": "note" | "alert" | "pattern" | "service" | "log",
-                              "title": "…", "service": "api", "url": "…", "id": "…" } }] }
+                              "title": "…", "service": "api", "url": "…", "id": "…",
+                              "links": [{ "label": "Landfall room", "url": "…" }] } }] }
 ```
 
+A note's result carries its `links` in `metadata` (only when it has some) and lists them in `pageContent`.
 It searches notes (Postgres full text), recent alert events, log patterns among the log rows matching the question's
 words, and the services the question names. The shape is what Landflow's knowledge-base tools return
 (`pageContent`, `metadata`, `score`).

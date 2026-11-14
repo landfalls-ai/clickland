@@ -9,8 +9,8 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { buildApp } from '../src/app.js';
 import { createClients } from '../src/clients.js';
 import { configFromEnv } from '../src/config.js';
-import { createServices } from '../src/services.js';
 import { haveOpenApi, validateAgainst } from './landfall-openapi.js';
+import { scopedServices } from './scoped.js';
 
 const enabled = (process.env.CLICKLAND_INTEGRATION ?? '').split(',').includes('db');
 const config = {
@@ -60,7 +60,7 @@ function fakeLandfall() {
 
 describe.skipIf(!enabled)('the direct route to Landfall (live stack, fake Landfall)', () => {
   const clients = createClients(config);
-  const services = createServices(config, clients);
+  const services = scopedServices(config, clients);
   const landfall = fakeLandfall();
   let app: Awaited<ReturnType<typeof buildApp>>;
   let triggersUrl = '';
@@ -108,6 +108,7 @@ describe.skipIf(!enabled)('the direct route to Landfall (live stack, fake Landfa
     const res = await app.inject({ method: 'POST', url: '/api/webhooks', headers: auth, payload });
     expect(res.statusCode).toBe(201);
     hookIds.push(res.json().id);
+    services.webhooks.allowed.add(res.json().id);
     return res.json() as { id: string };
   };
 
@@ -231,6 +232,13 @@ describe.skipIf(!enabled)('the direct route to Landfall (live stack, fake Landfa
       // The catch-all hooks see every alert while they exist: remove them before other tests run.
       await clients.pg`DELETE FROM webhooks WHERE id = ANY (${[direct.id, standard.id]})`;
     }
+  });
+
+  it("sent nothing to anyone else's webhooks", async () => {
+    const [{ n }] = await clients.pg<{ n: number }[]>`
+      SELECT count(*)::int AS n FROM webhook_deliveries
+      WHERE payload->'data'->'alert'->>'id' = ANY (${alertIds}) AND NOT (webhook_id = ANY (${hookIds}))`;
+    expect(n).toBe(0);
   });
 
   it('a refusal from Landfall stays on the delivery, with its reason, for a retry', async () => {

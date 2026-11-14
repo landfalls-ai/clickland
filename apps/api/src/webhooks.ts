@@ -109,6 +109,16 @@ export class Webhooks {
     if (rows.length === 0) throw notFound('Webhook');
   }
 
+  /** The subscriptions that want an event: its type, and every alert or this one. */
+  protected async subscribers(
+    type: WebhookEvent,
+    alertId: string | null,
+  ): Promise<{ id: string; format: WebhookFormat; connection_id: string | null }[]> {
+    return await this.pg<{ id: string; format: WebhookFormat; connection_id: string | null }[]>`
+      SELECT id, format, connection_id FROM webhooks
+      WHERE ${type} = ANY (events) AND (alert_id IS NULL OR alert_id = ${alertId})`;
+  }
+
   /**
    * Queues one event for every subscription that wants it; the dispatcher sends them. Returns the event id.
    * A `standard` webhook gets Clickland's payload. A `landfall` webhook gets Landfall's trigger body, and only for an
@@ -122,9 +132,7 @@ export class Webhooks {
   ): Promise<{ eventId: string; deliveries: number }> {
     const eventId = newId('evt');
     const payload = { type, id: eventId, timestamp: new Date().toISOString(), data };
-    const hooks = await this.pg<{ id: string; format: WebhookFormat; connection_id: string | null }[]>`
-      SELECT id, format, connection_id FROM webhooks
-      WHERE ${type} = ANY (events) AND (alert_id IS NULL OR alert_id = ${alertId})`;
+    const hooks = await this.subscribers(type, alertId);
     let deliveries = 0;
     for (const hook of hooks) {
       let body: unknown = payload;

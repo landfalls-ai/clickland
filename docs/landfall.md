@@ -54,3 +54,9 @@ What happens then, for an alert on the direct route:
 
 The standard webhook payload carries `data.route` (`direct` or `triage`), so a Landflow triage flow can skip opening a
 room for an alert Clickland already sent.
+
+## Postmortems as notes with the room's link
+
+A note can point at the room it came from: `POST /api/notes` with `"links": [{ "label": "Landfall room", "url":
+"<the room's workspaceUrl>" }]`. Knowledge search returns the links in the result's `metadata.links`, so the next
+alert on that service finds the note and the room behind it (Landflow's postmortem-to-note flow can write these).
