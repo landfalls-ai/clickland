@@ -483,3 +483,14 @@ The four tools are plain tools today. Once the view app draws their results, set
 `apps/api/src/agent-tools.ts` so a host that supports MCP Apps shows them as a view.
 
 The dashboard editor needs the three types in its panel type list, with the fields above.
+
+**Do this first, with the merge.** The three types are already in the `Panel` union, so two places stop
+type-checking until they know them:
+
+- `PANEL_TYPES` in `libs/ui/src/panels/panel-view.tsx` (a `Record<PanelType, …>`): add a label, an icon and a hint
+  for `agents`, `agent_value` and `run_graph`.
+- `newPanel` in `apps/console/src/components/dashboards/spec-ops.ts` (a `switch` with no default): add the three
+  cases. `run_graph` starts with an empty `traceId`, like `trace`.
+
+At run time nothing breaks before that: `PanelBody` already shows "This panel type isn’t supported here" for a type
+it does not know.
