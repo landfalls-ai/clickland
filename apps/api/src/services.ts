@@ -1,3 +1,4 @@
+import { Agents } from './agents.js';
 import { Alerts } from './alerts.js';
 import type { Clients } from './clients.js';
 import type { Config } from './config.js';
@@ -5,6 +6,7 @@ import { Keys } from './keys.js';
 import { Knowledge } from './knowledge.js';
 import { Notes } from './notes.js';
 import { Telemetry } from './telemetry.js';
+import { ValueStore } from './value.js';
 import { Views } from './views.js';
 import { Webhooks } from './webhooks.js';
 
@@ -19,6 +21,9 @@ export interface Services {
   views: Views;
   knowledge: Knowledge;
   keys: Keys;
+  /** AI agents and their value (docs/agent-value.md). */
+  agents: Agents;
+  value: ValueStore;
 }
 
 export function createServices(config: Config, clients: Clients, fetchImpl: typeof fetch = fetch): Services {
@@ -29,7 +34,9 @@ export function createServices(config: Config, clients: Clients, fetchImpl: type
   const views = new Views(clients.pg, config);
   const knowledge = new Knowledge(telemetry, notes, alerts, config);
   const keys = new Keys(clients.pg);
-  return { config, clients, telemetry, webhooks, alerts, notes, views, knowledge, keys };
+  const value = new ValueStore(clients.pg);
+  const agents = new Agents(clients.ch, value);
+  return { config, clients, telemetry, webhooks, alerts, notes, views, knowledge, keys, agents, value };
 }
 
 /** The alert evaluator and the webhook dispatcher: small loops that claim due rows, so replicas can share the work. */

@@ -18,6 +18,7 @@ import cors from '@fastify/cors';
 import { NodeStreamableHTTPServerTransport } from '@modelcontextprotocol/node';
 import Fastify, { type FastifyInstance, type FastifyRequest } from 'fastify';
 import { z } from 'zod';
+import { registerAgentRoutes } from './agent-routes.js';
 import { askAssistant } from './assistant.js';
 import { authenticate, type Principal, requireScope } from './auth.js';
 import { ApiError } from './errors.js';
@@ -263,6 +264,9 @@ export async function buildApp(services: Services, options: AppOptions): Promise
     await keys.revoke(parse(Id, r.params).id);
     return reply.status(204).send();
   });
+
+  // AI agents and their value (agent-routes.ts).
+  registerAgentRoutes(app, services, { need, parse });
 
   // MCP (stateless Streamable HTTP) ------------------------------------------------------------------------------------
   app.post('/api/mcp', async (request, reply) => {
