@@ -1,0 +1,63 @@
+# Clickland's local infrastructure (compose project clickland-infra, OrbStack only).
+#   pnpm dev:up && pnpm db:migrate
+# Ports: ClickHouse HTTP 28123 / native 29000, OTLP gRPC 24317 / HTTP 24318, Postgres 25432.
+name: clickland-infra
+
+x-env: &env
+  CLICKLAND_CH_ADMIN_PASSWORD: ${CLICKLAND_CH_ADMIN_PASSWORD:-clickland-dev-admin}
+  CLICKLAND_CH_INGEST_PASSWORD: ${CLICKLAND_CH_INGEST_PASSWORD:-clickland-dev-ingest}
+
+services:
+  clickhouse:
+    image: clickhouse/clickhouse-server:26.10.3.7-alpine
+    environment:
+      <<: *env
+      CLICKHOUSE_SKIP_USER_SETUP: '1'
+    ports:
+      - '127.0.0.1:28123:8123'
+      - '127.0.0.1:29000:9000'
+    volumes:
+      - clickhouse-data:/var/lib/clickhouse
+      - ./clickhouse/users.d/clickland.xml:/etc/clickhouse-server/users.d/clickland.xml:ro
+      - ./clickhouse/config.d/clickland.xml:/etc/clickhouse-server/config.d/clickland.xml:ro
+    ulimits:
+      nofile: { soft: 262144, hard: 262144 }
+    healthcheck:
+      test: ['CMD', 'wget', '-qO-', 'http://127.0.0.1:8123/ping']
+      interval: 3s
+      retries: 40
+
+  collector:
+    image: otel/opentelemetry-collector-contrib:0.162.0
+    command: ['--config=/etc/clickland/config.yaml']
+    environment:
+      <<: *env
+      CLICKLAND_CLICKHOUSE_ENDPOINT: tcp://clickhouse:9000?dial_timeout=10s
+      CLICKLAND_CH_DATABASE: clickland
+      CLICKLAND_CLICKHOUSE_METRICS_TARGET: clickhouse:9363
+    ports:
+      - '127.0.0.1:24317:4317'
+      - '127.0.0.1:24318:4318'
+    volumes:
+      - ./collector/config.yaml:/etc/clickland/config.yaml:ro
+    depends_on:
+      clickhouse: { condition: service_healthy }
+
+  postgres:
+    image: postgres:18-alpine
+    environment:
+      POSTGRES_USER: clickland
+      POSTGRES_PASSWORD: ${CLICKLAND_PG_PASSWORD:-clickland-dev}
+      POSTGRES_DB: clickland
+    ports:
+      - '127.0.0.1:25432:5432'
+    volumes:
+      - postgres-data:/var/lib/postgresql
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-U', 'clickland']
+      interval: 3s
+      retries: 40
+
+volumes:
+  clickhouse-data:
+  postgres-data:

@@ -1,0 +1,19 @@
+<clickhouse>
+  <!-- ClickHouse watches itself (research.md §5): Prometheus metrics for the collector to scrape. -->
+  <prometheus>
+    <endpoint>/metrics</endpoint>
+    <port>9363</port>
+    <metrics>true</metrics>
+    <events>true</events>
+    <asynchronous_metrics>true</asynchronous_metrics>
+  </prometheus>
+  <!-- A small result cache for repeated dashboard queries with bucket-rounded bounds (research.md §3). -->
+  <query_cache>
+    <max_size_in_bytes>268435456</max_size_in_bytes>
+    <max_entries>1024</max_entries>
+  </query_cache>
+  <logger>
+    <level>information</level>
+    <console>1</console>
+  </logger>
+</clickhouse>

@@ -1,0 +1,74 @@
+# clickland-collector: OTLP in, ClickHouse out (research.md §2, decision D3).
+# The tables already exist (libs/schema migrations), so the exporter never creates its own (create_schema: false).
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+        cors:
+          allowed_origins: ['http://localhost:*', 'http://127.0.0.1:*']
+  # ClickHouse's own metrics (config.d/clickland.xml serves them on :9363).
+  prometheus:
+    config:
+      scrape_configs:
+        - job_name: clickhouse
+          scrape_interval: 30s
+          static_configs:
+            - targets: ['${env:CLICKLAND_CLICKHOUSE_METRICS_TARGET}']
+              labels:
+                service_name: clickhouse
+
+processors:
+  memory_limiter:
+    check_interval: 5s
+    limit_mib: 1500
+    spike_limit_mib: 512
+  # ClickHouse prefers few, large inserts: ClickStack's tuning (config.yaml:171-185).
+  batch:
+    send_batch_size: 10000
+    send_batch_max_size: 0
+    timeout: 5s
+  resource/defaults:
+    attributes:
+      - key: service.name
+        value: unknown_service
+        action: insert
+
+exporters:
+  clickhouse:
+    endpoint: ${env:CLICKLAND_CLICKHOUSE_ENDPOINT}
+    database: ${env:CLICKLAND_CH_DATABASE}
+    username: clickland_ingest
+    password: ${env:CLICKLAND_CH_INGEST_PASSWORD}
+    create_schema: false
+    timeout: 10s
+    retry_on_failure:
+      enabled: true
+      initial_interval: 5s
+      max_interval: 30s
+      max_elapsed_time: 300s
+
+extensions:
+  health_check:
+    endpoint: 0.0.0.0:13133
+
+service:
+  extensions: [health_check]
+  telemetry:
+    logs:
+      level: info
+  pipelines:
+    logs:
+      receivers: [otlp]
+      processors: [memory_limiter, resource/defaults, batch]
+      exporters: [clickhouse]
+    traces:
+      receivers: [otlp]
+      processors: [memory_limiter, resource/defaults, batch]
+      exporters: [clickhouse]
+    metrics:
+      receivers: [otlp, prometheus]
+      processors: [memory_limiter, resource/defaults, batch]
+      exporters: [clickhouse]

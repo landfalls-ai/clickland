@@ -11,3 +11,7 @@ node_modules/
 # Source graphs copy string literals out of upstream (including test fixtures that look like secrets): regenerate with
 # scripts/study-source-graph.sh
 /study/clickstack-source-graph/
+
+.nx/
+dist/
+coverage/

@@ -1,0 +1,16 @@
+<!-- Clickland's ClickHouse users. Passwords come from the environment (deploy/.env.example has the dev ones).
+     clickland_admin runs migrations; clickland_ingest is the collector (INSERT only, granted in migration 0008);
+     clickland_api is the API (the clickland_api profile from migration 0007: read-only with limits). -->
+<clickhouse>
+  <users>
+    <default remove="remove"/>
+    <clickland_admin>
+      <password from_env="CLICKLAND_CH_ADMIN_PASSWORD"/>
+      <networks><ip>::/0</ip></networks>
+      <access_management>1</access_management>
+      <named_collection_control>1</named_collection_control>
+      <profile>default</profile>
+      <quota>default</quota>
+    </clickland_admin>
+  </users>
+</clickhouse>
