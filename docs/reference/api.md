@@ -229,8 +229,10 @@ view; other hosts get the same structured content as JSON text.
 `POST /api/assistant/chat` (`read`) — `{ "sessionId", "message" }` → `text/event-stream` of
 `{ "type": "text", "delta" }`, `{ "type": "tool", "name", "status": "started" | "done" | "failed" }`, `{ "type": "done",
 "runId"? }` and `{ "type": "error", "message" }`. Clickland forwards the message to the Landflow chat flow of the
-observability assistant (`CLICKLAND_ASSISTANT_URL`, with `CLICKLAND_ASSISTANT_SECRET` in the
-`CLICKLAND_ASSISTANT_AUTH_HEADER` header) and passes its answer through; `503 assistant_unavailable` when it is not
+observability assistant (`CLICKLAND_ASSISTANT_URL`, e.g. `http://landflow-host.landflow-dev.svc.cluster.local:3000/chat/clickland-assistant`;
+`CLICKLAND_ASSISTANT_BASIC_AUTH=clickland:<password>` for the chat trigger's Basic Auth, or `CLICKLAND_ASSISTANT_SECRET`
+in the `CLICKLAND_ASSISTANT_AUTH_HEADER` header) and passes its answer through. Each person gets their own Landflow
+chat session (`<principal>:<sessionId>`); Landflow's analysts show up as `tool` events; `503 assistant_unavailable` when it is not
 configured or does not answer. The answer's `[[clickland:view:…]]` markers are views the panel draws inline.
 
 `GET /api/auth/me` → `{ "user": { "name", "email", "roles" }, "authMode", "scopes" }` (`401` when not signed in).

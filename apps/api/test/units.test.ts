@@ -93,14 +93,56 @@ describe('assistant', () => {
     ]);
   });
 
-  it('passes a stream through', async () => {
-    const sse =
-      'data: {"type":"text","delta":"Hel"}\n\ndata: {"type":"tool","name":"search_logs","status":"started"}\n\ndata: {"type":"text","delta":"lo"}\n\ndata: {"type":"done"}\n\n';
+  it("maps Landflow's stream: items are text, tools nest, done's output is not repeated", async () => {
+    const frames = [
+      { type: 'begin', metadata: {} },
+      { type: 'item', content: 'Hel' },
+      { type: 'tool', tool: { id: 't1', name: 'Logs_analyst', status: 'started', input: { reason: 'errors' } } },
+      { type: 'tool', tool: { id: 't1', name: 'Logs_analyst', status: 'finished' } },
+      { type: 'item', content: 'lo' },
+      { type: 'end', metadata: {} },
+      { type: 'done', executionId: 'ex_1', sessionId: 's', status: 'success', output: 'Hello' },
+    ];
+    const sse = frames.map((f) => `data: ${JSON.stringify(f)}\n\n`).join('');
+    let body: { sessionId: string } | undefined;
+    const fetchImpl = (async (_u: string, init: RequestInit) => {
+      body = JSON.parse(String(init.body));
+      return new Response(sse, { headers: { 'content-type': 'text/event-stream' } });
+    }) as unknown as typeof fetch;
+    const out = [];
+    for await (const e of askAssistant(config, { sessionId: 'chat 1', message: 'hi', user: 'oidc:a@b' }, fetchImpl))
+      out.push(e);
+    expect(body?.sessionId).toBe('oidc:a_b:chat_1');
+    expect(out).toEqual([
+      { type: 'text', delta: 'Hel' },
+      { type: 'tool', name: 'Logs_analyst', status: 'started' },
+      { type: 'tool', name: 'Logs_analyst', status: 'done' },
+      { type: 'text', delta: 'lo' },
+      { type: 'done', runId: 'ex_1' },
+    ]);
+  });
+
+  it('reports a failed run', async () => {
+    const sse = `data: ${JSON.stringify({ type: 'done', status: 'error', error: { message: 'model refused' } })}\n\n`;
     const fetchImpl = (async () =>
       new Response(sse, { headers: { 'content-type': 'text/event-stream' } })) as unknown as typeof fetch;
     const out = [];
     for await (const e of askAssistant(config, { sessionId: 's', message: 'hi', user: 'dev' }, fetchImpl)) out.push(e);
-    expect(out.map((e) => e.type)).toEqual(['text', 'tool', 'text', 'done']);
+    expect(out).toEqual([
+      { type: 'error', message: 'model refused' },
+      { type: 'done', runId: undefined },
+    ]);
+  });
+
+  it('sends Basic Auth for the chat trigger', async () => {
+    let auth: string | null = null;
+    const fetchImpl = (async (_u: string, init: RequestInit) => {
+      auth = new Headers(init.headers).get('authorization');
+      return new Response('{"output":"ok"}', { headers: { 'content-type': 'application/json' } });
+    }) as unknown as typeof fetch;
+    const basic = { ...config, assistantSecret: null, assistantBasicAuth: 'clickland:pw' };
+    for await (const _ of askAssistant(basic, { sessionId: 's', message: 'hi', user: 'dev' }, fetchImpl)) void _;
+    expect(auth).toBe(`Basic ${Buffer.from('clickland:pw').toString('base64')}`);
   });
 
   it('finds the text in common answer shapes', () => {

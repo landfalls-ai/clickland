@@ -1,7 +1,10 @@
 # What sends data to Clickland
 
-Everything goes to the collector (compose project `clickland-infra`): OTLP/HTTP on `127.0.0.1:24318`, gRPC on
-`127.0.0.1:24317`; from containers and pods on this OrbStack engine, `http://host.orb.internal:24318`.
+Everything goes to the collector (compose project `clickland-infra`): OTLP/HTTP on `127.0.0.1:4318` and
+`127.0.0.1:24318`, gRPC on `127.0.0.1:4317` and `127.0.0.1:24317`. The standard ports mean an app's default
+(`OTEL_EXPORTER_OTLP_ENDPOINT=http://127.0.0.1:4318`) needs no change. From pods, use
+`http://clickland-collector.clickland-dev:4318`: `deploy/k8s/bridge` points `clickland-collector`, `clickland-api` and
+`clickland-console` in `clickland-dev` at this machine (`host.orb.internal`) until Clickland runs in the cluster.
 
 ## The land apps
 

@@ -17,6 +17,8 @@ export interface Config {
   assistantUrl: string | null;
   assistantAuthHeader: string | null;
   assistantSecret: string | null;
+  /** `user:password` for the chat trigger's Basic Auth. */
+  assistantBasicAuth: string | null;
   /** Off in tests: the alert evaluator and webhook dispatcher loops. */
   backgroundJobs: boolean;
 }
@@ -38,6 +40,7 @@ export function configFromEnv(env: NodeJS.ProcessEnv = process.env): Config {
     assistantUrl: env.CLICKLAND_ASSISTANT_URL ?? null,
     assistantAuthHeader: env.CLICKLAND_ASSISTANT_AUTH_HEADER ?? null,
     assistantSecret: env.CLICKLAND_ASSISTANT_SECRET ?? null,
+    assistantBasicAuth: env.CLICKLAND_ASSISTANT_BASIC_AUTH ?? null,
     backgroundJobs: env.CLICKLAND_BACKGROUND_JOBS !== 'off',
   };
 }
