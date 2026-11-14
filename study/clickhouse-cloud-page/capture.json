@@ -1,0 +1,6511 @@
+{
+  "a11y": {
+    "images_without_alt": 0,
+    "landmarks": {
+      "banner": 1,
+      "contentinfo": 5,
+      "main": 1
+    },
+    "lang": "en-US",
+    "unnamed_controls": 0,
+    "unnamed_examples": []
+  },
+  "assets": {
+    "images": [
+      {
+        "h": 42,
+        "w": 70
+      },
+      {
+        "h": 32,
+        "w": 32
+      },
+      {
+        "h": 75,
+        "w": 75
+      },
+      {
+        "h": 41,
+        "w": 49
+      },
+      {
+        "h": 150,
+        "w": 150
+      },
+      {
+        "h": 48,
+        "w": 48
+      },
+      {
+        "h": 28,
+        "w": 37
+      },
+      {
+        "h": 30,
+        "w": 80
+      },
+      {
+        "h": 28,
+        "w": 37
+      },
+      {
+        "h": 40,
+        "w": 57
+      },
+      {
+        "h": 28,
+        "w": 37
+      },
+      {
+        "h": 39,
+        "w": 128
+      },
+      {
+        "h": 28,
+        "w": 37
+      },
+      {
+        "h": 23,
+        "w": 155
+      },
+      {
+        "h": 34,
+        "w": 151
+      },
+      {
+        "h": 56,
+        "w": 85
+      },
+      {
+        "h": 56,
+        "w": 151
+      },
+      {
+        "h": 56,
+        "w": 134
+      },
+      {
+        "h": 56,
+        "w": 64
+      },
+      {
+        "h": 56,
+        "w": 106
+      },
+      {
+        "h": 36,
+        "w": 200
+      },
+      {
+        "h": 24,
+        "w": 150
+      },
+      {
+        "h": 56,
+        "w": 241
+      },
+      {
+        "h": 56,
+        "w": 78
+      },
+      {
+        "h": 56,
+        "w": 120
+      },
+      {
+        "h": 56,
+        "w": 134
+      },
+      {
+        "h": 56,
+        "w": 101
+      },
+      {
+        "h": 56,
+        "w": 51
+      },
+      {
+        "h": 56,
+        "w": 200
+      },
+      {
+        "h": 56,
+        "w": 129
+      },
+      {
+        "h": 56,
+        "w": 70
+      },
+      {
+        "h": 56,
+        "w": 138
+      },
+      {
+        "h": 56,
+        "w": 93
+      },
+      {
+        "h": 56,
+        "w": 139
+      },
+      {
+        "h": 56,
+        "w": 191
+      },
+      {
+        "h": 56,
+        "w": 157
+      },
+      {
+        "h": 38,
+        "w": 320
+      },
+      {
+        "h": 56,
+        "w": 197
+      },
+      {
+        "h": 26,
+        "w": 90
+      },
+      {
+        "h": 38,
+        "w": 129
+      },
+      {
+        "h": 41,
+        "w": 170
+      },
+      {
+        "h": 41,
+        "w": 222
+      },
+      {
+        "h": 56,
+        "w": 111
+      },
+      {
+        "h": 41,
+        "w": 202
+      },
+      {
+        "h": 21,
+        "w": 106
+      },
+      {
+        "h": 23,
+        "w": 204
+      },
+      {
+        "h": 35,
+        "w": 132
+      },
+      {
+        "h": 41,
+        "w": 246
+      },
+      {
+        "h": 56,
+        "w": 153
+      },
+      {
+        "h": 35,
+        "w": 110
+      },
+      {
+        "h": 25,
+        "w": 201
+      },
+      {
+        "h": 35,
+        "w": 139
+      },
+      {
+        "h": 33,
+        "w": 135
+      },
+      {
+        "h": 39,
+        "w": 118
+      },
+      {
+        "h": 40,
+        "w": 127
+      },
+      {
+        "h": 45,
+        "w": 300
+      },
+      {
+        "h": 17,
+        "w": 151
+      },
+      {
+        "h": 36,
+        "w": 140
+      },
+      {
+        "h": 38,
+        "w": 98
+      },
+      {
+        "h": 40,
+        "w": 219
+      },
+      {
+        "h": 22,
+        "w": 180
+      },
+      {
+        "h": 40,
+        "w": 139
+      },
+      {
+        "h": 41,
+        "w": 175
+      },
+      {
+        "h": 38,
+        "w": 176
+      },
+      {
+        "h": 40,
+        "w": 136
+      },
+      {
+        "h": 40,
+        "w": 172
+      },
+      {
+        "h": 40,
+        "w": 100
+      },
+      {
+        "h": 27,
+        "w": 102
+      },
+      {
+        "h": 36,
+        "w": 180
+      },
+      {
+        "h": 41,
+        "w": 163
+      },
+      {
+        "h": 40,
+        "w": 113
+      },
+      {
+        "h": 41,
+        "w": 100
+      },
+      {
+        "h": 40,
+        "w": 110
+      },
+      {
+        "h": 40,
+        "w": 138
+      },
+      {
+        "h": 38,
+        "w": 140
+      },
+      {
+        "h": 34,
+        "w": 151
+      },
+      {
+        "h": 56,
+        "w": 85
+      },
+      {
+        "h": 56,
+        "w": 151
+      },
+      {
+        "h": 56,
+        "w": 134
+      },
+      {
+        "h": 56,
+        "w": 64
+      },
+      {
+        "h": 56,
+        "w": 106
+      },
+      {
+        "h": 36,
+        "w": 200
+      },
+      {
+        "h": 24,
+        "w": 150
+      },
+      {
+        "h": 56,
+        "w": 241
+      },
+      {
+        "h": 56,
+        "w": 78
+      },
+      {
+        "h": 56,
+        "w": 120
+      },
+      {
+        "h": 56,
+        "w": 134
+      },
+      {
+        "h": 56,
+        "w": 101
+      },
+      {
+        "h": 56,
+        "w": 51
+      },
+      {
+        "h": 56,
+        "w": 200
+      },
+      {
+        "h": 56,
+        "w": 129
+      },
+      {
+        "h": 56,
+        "w": 70
+      },
+      {
+        "h": 56,
+        "w": 138
+      },
+      {
+        "h": 56,
+        "w": 93
+      },
+      {
+        "h": 56,
+        "w": 139
+      },
+      {
+        "h": 56,
+        "w": 191
+      },
+      {
+        "h": 56,
+        "w": 157
+      },
+      {
+        "h": 38,
+        "w": 320
+      },
+      {
+        "h": 56,
+        "w": 197
+      },
+      {
+        "h": 26,
+        "w": 90
+      },
+      {
+        "h": 38,
+        "w": 129
+      },
+      {
+        "h": 41,
+        "w": 170
+      },
+      {
+        "h": 41,
+        "w": 222
+      },
+      {
+        "h": 56,
+        "w": 111
+      },
+      {
+        "h": 41,
+        "w": 202
+      },
+      {
+        "h": 21,
+        "w": 106
+      },
+      {
+        "h": 23,
+        "w": 204
+      },
+      {
+        "h": 35,
+        "w": 132
+      },
+      {
+        "h": 41,
+        "w": 246
+      },
+      {
+        "h": 56,
+        "w": 153
+      },
+      {
+        "h": 35,
+        "w": 110
+      },
+      {
+        "h": 25,
+        "w": 201
+      },
+      {
+        "h": 35,
+        "w": 139
+      },
+      {
+        "h": 33,
+        "w": 135
+      },
+      {
+        "h": 39,
+        "w": 118
+      },
+      {
+        "h": 40,
+        "w": 127
+      },
+      {
+        "h": 45,
+        "w": 300
+      },
+      {
+        "h": 17,
+        "w": 151
+      },
+      {
+        "h": 36,
+        "w": 140
+      },
+      {
+        "h": 38,
+        "w": 98
+      },
+      {
+        "h": 40,
+        "w": 219
+      },
+      {
+        "h": 22,
+        "w": 180
+      },
+      {
+        "h": 40,
+        "w": 139
+      },
+      {
+        "h": 41,
+        "w": 175
+      },
+      {
+        "h": 38,
+        "w": 176
+      },
+      {
+        "h": 40,
+        "w": 136
+      },
+      {
+        "h": 40,
+        "w": 172
+      },
+      {
+        "h": 40,
+        "w": 100
+      },
+      {
+        "h": 27,
+        "w": 102
+      },
+      {
+        "h": 36,
+        "w": 180
+      },
+      {
+        "h": 41,
+        "w": 163
+      },
+      {
+        "h": 40,
+        "w": 113
+      },
+      {
+        "h": 41,
+        "w": 100
+      },
+      {
+        "h": 40,
+        "w": 110
+      },
+      {
+        "h": 40,
+        "w": 138
+      },
+      {
+        "h": 38,
+        "w": 140
+      },
+      {
+        "h": 298,
+        "w": 580
+      },
+      {
+        "h": 445,
+        "w": 550
+      },
+      {
+        "h": 369,
+        "w": 691
+      },
+      {
+        "h": 416,
+        "w": 456
+      },
+      {
+        "h": 140,
+        "w": 300
+      }
+    ]
+  },
+  "design": {
+    "backgrounds": [
+      {
+        "count": 5,
+        "value": "#faff69"
+      },
+      {
+        "count": 4,
+        "value": "#16161680"
+      },
+      {
+        "count": 3,
+        "value": "#1d1d1d"
+      },
+      {
+        "count": 2,
+        "value": "#131312"
+      },
+      {
+        "count": 2,
+        "value": "#141414"
+      },
+      {
+        "count": 2,
+        "value": "#151515cc"
+      },
+      {
+        "count": 2,
+        "value": "#0a0a0a"
+      },
+      {
+        "count": 2,
+        "value": "#ffffff26"
+      },
+      {
+        "count": 1,
+        "value": "#166534"
+      },
+      {
+        "count": 1,
+        "value": "#151515e6"
+      },
+      {
+        "count": 1,
+        "value": "#151515"
+      }
+    ],
+    "font_sizes": [
+      {
+        "count": 24,
+        "value": "16px"
+      },
+      {
+        "count": 16,
+        "value": "14px"
+      },
+      {
+        "count": 6,
+        "value": "36px"
+      },
+      {
+        "count": 3,
+        "value": "18px"
+      },
+      {
+        "count": 2,
+        "value": "48px"
+      }
+    ],
+    "font_weights": [
+      {
+        "count": 37,
+        "value": "400"
+      },
+      {
+        "count": 10,
+        "value": "600"
+      },
+      {
+        "count": 4,
+        "value": "500"
+      }
+    ],
+    "fonts": [
+      {
+        "count": 38,
+        "value": "Inter, sans-serif"
+      },
+      {
+        "count": 8,
+        "value": "basier, \"basier Fallback\""
+      },
+      {
+        "count": 5,
+        "value": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\""
+      }
+    ],
+    "max_widths": [
+      {
+        "count": 11,
+        "value": "1280px"
+      },
+      {
+        "count": 3,
+        "value": "768px"
+      },
+      {
+        "count": 1,
+        "value": "336px"
+      },
+      {
+        "count": 1,
+        "value": "896px"
+      }
+    ],
+    "radii": [
+      {
+        "count": 14,
+        "value": "8px"
+      },
+      {
+        "count": 4,
+        "value": "4px"
+      },
+      {
+        "count": 1,
+        "value": "10px"
+      },
+      {
+        "count": 1,
+        "value": "9999px"
+      }
+    ],
+    "shadows": [
+      {
+        "count": 1,
+        "value": "oklch(0.9668 0.1928 110.78 / 0.07) 0px 0px 800px 480px"
+      },
+      {
+        "count": 1,
+        "value": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px"
+      },
+      {
+        "count": 1,
+        "value": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -4px"
+      }
+    ],
+    "spacing": [
+      {
+        "count": 67,
+        "value": "16px"
+      },
+      {
+        "count": 32,
+        "value": "32px"
+      },
+      {
+        "count": 25,
+        "value": "24px"
+      },
+      {
+        "count": 19,
+        "value": "64px"
+      },
+      {
+        "count": 12,
+        "value": "96px"
+      },
+      {
+        "count": 10,
+        "value": "8px"
+      },
+      {
+        "count": 8,
+        "value": "12px"
+      },
+      {
+        "count": 8,
+        "value": "10px"
+      },
+      {
+        "count": 5,
+        "value": "2px"
+      },
+      {
+        "count": 4,
+        "value": "-1px"
+      },
+      {
+        "count": 4,
+        "value": "28px"
+      },
+      {
+        "count": 3,
+        "value": "4px"
+      },
+      {
+        "count": 3,
+        "value": "48px"
+      },
+      {
+        "count": 2,
+        "value": "7.2px"
+      },
+      {
+        "count": 1,
+        "value": "81.3438px"
+      },
+      {
+        "count": 1,
+        "value": "0.203125px"
+      },
+      {
+        "count": 1,
+        "value": "39.8906px"
+      },
+      {
+        "count": 1,
+        "value": "40px"
+      }
+    ],
+    "text_colors": [
+      {
+        "count": 24,
+        "value": "#dfdfdf"
+      },
+      {
+        "count": 10,
+        "value": "#ffffff"
+      },
+      {
+        "count": 10,
+        "value": "#a0a0a0"
+      },
+      {
+        "count": 3,
+        "value": "#000000"
+      },
+      {
+        "count": 2,
+        "value": "#f4f692"
+      },
+      {
+        "count": 2,
+        "value": "#151515"
+      }
+    ]
+  },
+  "forms": [],
+  "headings": [
+    {
+      "level": 1,
+      "text": "Fast. Efficient. Effortless."
+    },
+    {
+      "level": 2,
+      "text": "Start your free trial"
+    },
+    {
+      "level": 2,
+      "text": "Easy start"
+    },
+    {
+      "level": 2,
+      "text": "Interactive SQL console"
+    },
+    {
+      "level": 2,
+      "text": "Reliability"
+    },
+    {
+      "level": 2,
+      "text": "Performance without compromising on cost"
+    },
+    {
+      "level": 2,
+      "text": "Get started for free"
+    }
+  ],
+  "lang": "en-US",
+  "layouts": [
+    {
+      "blocks": [
+        {
+          "background": "#151515cc",
+          "column": {
+            "max_w": 1280,
+            "pad": [
+              32,
+              32
+            ],
+            "w": 1280,
+            "x": 80
+          },
+          "h": 73,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "header",
+          "w": 1440,
+          "y": 995
+        },
+        {
+          "column": {
+            "max_w": 1280,
+            "pad": [
+              32,
+              32
+            ],
+            "w": 1280,
+            "x": 80
+          },
+          "h": 3593,
+          "heading": "Fast. Efficient. Effortless.",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 4,
+          "tag": "main",
+          "w": 1440,
+          "y": 73
+        },
+        {
+          "background": "#0a0a0a",
+          "column": {
+            "max_w": 1280,
+            "pad": [
+              32,
+              32
+            ],
+            "w": 1280,
+            "x": 80
+          },
+          "h": 544,
+          "heading": "Fast. Efficient. Effortless.",
+          "pad": [
+            96,
+            0,
+            96,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 1440,
+          "y": 73
+        },
+        {
+          "background": "#0a0a0a",
+          "column": {
+            "max_w": 1280,
+            "pad": [
+              32,
+              32
+            ],
+            "w": 1280,
+            "x": 80
+          },
+          "h": 670,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 4,
+          "tag": "section",
+          "w": 1440,
+          "y": 617
+        },
+        {
+          "background": "#16161680",
+          "h": 373,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "article",
+          "w": 274,
+          "y": 649
+        },
+        {
+          "h": 29,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "footer",
+          "w": 240,
+          "y": 975
+        },
+        {
+          "background": "#16161680",
+          "h": 373,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "article",
+          "w": 274,
+          "y": 649
+        },
+        {
+          "h": 39,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "footer",
+          "w": 240,
+          "y": 966
+        },
+        {
+          "background": "#16161680",
+          "h": 373,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "article",
+          "w": 274,
+          "y": 649
+        },
+        {
+          "h": 38,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "footer",
+          "w": 240,
+          "y": 966
+        },
+        {
+          "background": "#16161680",
+          "h": 373,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "article",
+          "w": 274,
+          "y": 649
+        },
+        {
+          "column": {
+            "max_w": 1280,
+            "pad": [
+              32,
+              32
+            ],
+            "w": 1280,
+            "x": 80
+          },
+          "h": 296,
+          "heading": "Easy start",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 1440,
+          "y": 1383
+        },
+        {
+          "column": {
+            "max_w": 1280,
+            "pad": [
+              32,
+              32
+            ],
+            "w": 1280,
+            "x": 80
+          },
+          "h": 466,
+          "heading": "Interactive SQL console",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 1440,
+          "y": 1775
+        },
+        {
+          "column": {
+            "max_w": 1280,
+            "pad": [
+              32,
+              32
+            ],
+            "w": 1280,
+            "x": 80
+          },
+          "h": 308,
+          "heading": "Reliability",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 1440,
+          "y": 2337
+        },
+        {
+          "column": {
+            "max_w": 1280,
+            "pad": [
+              32,
+              32
+            ],
+            "w": 1280,
+            "x": 80
+          },
+          "h": 547,
+          "heading": "Performance without compromising on cost",
+          "pad": [
+            0,
+            32,
+            0,
+            32
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 1280,
+          "y": 2740
+        },
+        {
+          "column": {
+            "max_w": 1280,
+            "pad": [
+              32,
+              32
+            ],
+            "w": 1280,
+            "x": 80
+          },
+          "h": 283,
+          "heading": "Get started for free",
+          "pad": [
+            0,
+            32,
+            0,
+            32
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 1280,
+          "y": 3383
+        },
+        {
+          "background": "#151515",
+          "column": {
+            "max_w": 1280,
+            "pad": [
+              32,
+              32
+            ],
+            "w": 1280,
+            "x": 80
+          },
+          "h": 84,
+          "pad": [
+            32,
+            0,
+            32,
+            0
+          ],
+          "per_row": 2,
+          "tag": "footer",
+          "w": 1440,
+          "y": 3762
+        }
+      ],
+      "page_h": 3846,
+      "page_w": 1440,
+      "type": {
+        "body": 18,
+        "h1": 48,
+        "h2": 36,
+        "h3": 0
+      },
+      "width": 1440
+    },
+    {
+      "blocks": [
+        {
+          "background": "#151515cc",
+          "column": {
+            "max_w": 1280,
+            "pad": [
+              16,
+              16
+            ],
+            "w": 390,
+            "x": 0
+          },
+          "h": 73,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "header",
+          "w": 390,
+          "y": 1061
+        },
+        {
+          "column": {
+            "max_w": 1280,
+            "pad": [
+              16,
+              16
+            ],
+            "w": 390,
+            "x": 0
+          },
+          "h": 4178,
+          "heading": "Fast. Efficient. Effortless.",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 13,
+          "tag": "main",
+          "w": 390,
+          "y": 73
+        },
+        {
+          "background": "#0a0a0a",
+          "column": {
+            "max_w": 1280,
+            "pad": [
+              16,
+              16
+            ],
+            "w": 390,
+            "x": 0
+          },
+          "h": 850,
+          "heading": "Fast. Efficient. Effortless.",
+          "pad": [
+            64,
+            0,
+            64,
+            0
+          ],
+          "per_row": 2,
+          "tag": "section",
+          "w": 390,
+          "y": 73
+        },
+        {
+          "background": "#0a0a0a",
+          "column": {
+            "max_w": 1280,
+            "pad": [
+              16,
+              16
+            ],
+            "w": 390,
+            "x": 0
+          },
+          "h": 626,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 13,
+          "tag": "section",
+          "w": 390,
+          "y": 923
+        },
+        {
+          "background": "#16161680",
+          "h": 372,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "article",
+          "w": 296,
+          "y": 955
+        },
+        {
+          "h": 29,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "footer",
+          "w": 262,
+          "y": 1281
+        },
+        {
+          "background": "#16161680",
+          "h": 372,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "article",
+          "w": 296,
+          "y": 955
+        },
+        {
+          "h": 39,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "footer",
+          "w": 262,
+          "y": 1272
+        },
+        {
+          "background": "#16161680",
+          "h": 372,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "article",
+          "w": 296,
+          "y": 955
+        },
+        {
+          "h": 38,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "footer",
+          "w": 262,
+          "y": 1272
+        },
+        {
+          "background": "#16161680",
+          "h": 372,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "article",
+          "w": 296,
+          "y": 955
+        },
+        {
+          "column": {
+            "max_w": 1280,
+            "pad": [
+              16,
+              16
+            ],
+            "w": 390,
+            "x": 0
+          },
+          "h": 486,
+          "heading": "Easy start",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 390,
+          "y": 1613
+        },
+        {
+          "column": {
+            "max_w": 1280,
+            "pad": [
+              16,
+              16
+            ],
+            "w": 390,
+            "x": 0
+          },
+          "h": 640,
+          "heading": "Interactive SQL console",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 390,
+          "y": 2163
+        },
+        {
+          "column": {
+            "max_w": 1280,
+            "pad": [
+              16,
+              16
+            ],
+            "w": 390,
+            "x": 0
+          },
+          "h": 517,
+          "heading": "Reliability",
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 390,
+          "y": 2867
+        },
+        {
+          "column": {
+            "max_w": 1280,
+            "pad": [
+              16,
+              16
+            ],
+            "w": 390,
+            "x": 0
+          },
+          "h": 527,
+          "heading": "Performance without compromising on cost",
+          "pad": [
+            0,
+            16,
+            0,
+            16
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 390,
+          "y": 3448
+        },
+        {
+          "column": {
+            "max_w": 1280,
+            "pad": [
+              16,
+              16
+            ],
+            "w": 390,
+            "x": 0
+          },
+          "h": 212,
+          "heading": "Get started for free",
+          "pad": [
+            0,
+            16,
+            0,
+            16
+          ],
+          "per_row": 1,
+          "tag": "section",
+          "w": 390,
+          "y": 4039
+        },
+        {
+          "background": "#151515",
+          "column": {
+            "max_w": 1280,
+            "pad": [
+              16,
+              16
+            ],
+            "w": 390,
+            "x": 0
+          },
+          "h": 188,
+          "pad": [
+            32,
+            0,
+            32,
+            0
+          ],
+          "per_row": 1,
+          "tag": "footer",
+          "w": 390,
+          "y": 4315
+        }
+      ],
+      "page_h": 4503,
+      "page_w": 390,
+      "type": {
+        "body": 18,
+        "h1": 36,
+        "h2": 24,
+        "h3": 0
+      },
+      "width": 390
+    }
+  ],
+  "links": [
+    {
+      "href": "https://clickhouse.com/legal/cookie-policy",
+      "text": "Learn more"
+    },
+    {
+      "href": "https://clickhouse.com/campaigns/clickhouse-cloud",
+      "text": "Skip to content"
+    },
+    {
+      "href": "https://clickhouse.com/",
+      "text": "Go to homepage"
+    },
+    {
+      "href": "https://aws.amazon.com/marketplace/pp/prodview-p4gwofrqpkltu",
+      "text": ""
+    },
+    {
+      "href": "https://console.cloud.google.com/marketplace/product/clickhouse-public/clickhouse-cloud",
+      "text": ""
+    },
+    {
+      "href": "https://azuremarketplace.microsoft.com/en-us/marketplace/apps/clickhouse.clickhouse_cloud",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/cloud/bring-your-own-cloud",
+      "text": ""
+    },
+    {
+      "href": "https://console.clickhouse.cloud/signUp",
+      "text": "Create a free account"
+    },
+    {
+      "href": "https://console.clickhouse.cloud/",
+      "text": "Sign up with Google"
+    },
+    {
+      "href": "https://console.clickhouse.cloud/",
+      "text": "Sign up with Microsoft"
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/videos/lyft-user-story",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/langchain-why-we-choose-clickhouse-to-power-langchain",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/nyc-meetup-report-real-time-slicing-and-dicing-reporting-with-clickhouse",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/trackingplan-web-analytics-with-clickhouse",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/serving-real-time-analytics-across-marketplaces-at-adevinta",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/weights-and-biases-scale-ai-development",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/behind-the-scenes-how-clickhouse-helps-vimeo-power-video-analytics-at-scale",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/videos/funnel-analytics-and-distributed-queries-in-clickhouse",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/unlocking-the-power-of-onchain-analytics-how-nansen-transformed-their-data-infrastructure-with-clickhouse-cloud",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/poolside-using-clickhouse-to-build-next-gen-ai-for-software-development",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/hifis-migration-from-bigquery-to-clickhouse",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/videos/ramp",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/transforming-ad-tech-how-cognitiv-uses-clickhouse-to-build-better-machine-learning-models",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/prefect-event-driven-workflow-orchestration-powered-by-clickhouse",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/how-trip.com-migrated-from-elasticsearch-and-built-a-50pb-logging-solution-with-clickhouse",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/videos/sierraai",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/seeing-the-big-picture-shopees-journey-to-distributed-tracing-with-clickhouse",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/clickhouse-replaces-postgres-to-power-real-time-analytics-in-common-room-customer-portal",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/tekion-adopts-clickhouse-cloud-to-power-application-performance-and-metrics-monitoring",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/videos/scaling-graphite-with-clickhouse",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/why-astronomer-chose-clickhouse-to-power-its-new-data-observability-platform-astro-observe",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/corsearch-replaces-mysql-with-clickhouse-for-content-and-brand-protection",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/upollos-journey-from-bigquery-to-clickhouse",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/amp-clickhouse-oss-to-clickhouse-cloud",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/electrum-driving-net-zero-carbon-future-with-clickhouse",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/how-memorial-sloan-kettering-cancer-center-is-using-clickhouse-to-accelerate-cancer-research",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/migrating-to-clickhouse-cloud-in-just-three-months-with-no-downtime-a-120-terabyte-data-journey-and-its-benefits",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/videos/vantage",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/how-solarwinds-uses-clickhouse-for-realtime-observability-at-scale",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/longbridge-technology-simplifies-their-architecture-and-achieves-10x-performance-boost-with-clickhouse",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/how-harvey-uses-clickhouse-for-proactive-threat-detection",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/observing-in-style-how-poizon-rebuilt-its-data-platform-with-clickhouse-enterprise-edition",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/how-real-estate-analytics-made-its-data-pipeline-50x-faster-with-clickhouse",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/scaling-observabilty-for-thousands-of-gpus-at-character-ai",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/videos/lyft-user-story",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/langchain-why-we-choose-clickhouse-to-power-langchain",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/nyc-meetup-report-real-time-slicing-and-dicing-reporting-with-clickhouse",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/trackingplan-web-analytics-with-clickhouse",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/serving-real-time-analytics-across-marketplaces-at-adevinta",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/weights-and-biases-scale-ai-development",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/behind-the-scenes-how-clickhouse-helps-vimeo-power-video-analytics-at-scale",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/videos/funnel-analytics-and-distributed-queries-in-clickhouse",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/unlocking-the-power-of-onchain-analytics-how-nansen-transformed-their-data-infrastructure-with-clickhouse-cloud",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/poolside-using-clickhouse-to-build-next-gen-ai-for-software-development",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/hifis-migration-from-bigquery-to-clickhouse",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/videos/ramp",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/transforming-ad-tech-how-cognitiv-uses-clickhouse-to-build-better-machine-learning-models",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/prefect-event-driven-workflow-orchestration-powered-by-clickhouse",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/how-trip.com-migrated-from-elasticsearch-and-built-a-50pb-logging-solution-with-clickhouse",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/videos/sierraai",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/seeing-the-big-picture-shopees-journey-to-distributed-tracing-with-clickhouse",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/clickhouse-replaces-postgres-to-power-real-time-analytics-in-common-room-customer-portal",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/tekion-adopts-clickhouse-cloud-to-power-application-performance-and-metrics-monitoring",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/videos/scaling-graphite-with-clickhouse",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/why-astronomer-chose-clickhouse-to-power-its-new-data-observability-platform-astro-observe",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/corsearch-replaces-mysql-with-clickhouse-for-content-and-brand-protection",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/upollos-journey-from-bigquery-to-clickhouse",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/amp-clickhouse-oss-to-clickhouse-cloud",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/electrum-driving-net-zero-carbon-future-with-clickhouse",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/how-memorial-sloan-kettering-cancer-center-is-using-clickhouse-to-accelerate-cancer-research",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/migrating-to-clickhouse-cloud-in-just-three-months-with-no-downtime-a-120-terabyte-data-journey-and-its-benefits",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/videos/vantage",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/how-solarwinds-uses-clickhouse-for-realtime-observability-at-scale",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/longbridge-technology-simplifies-their-architecture-and-achieves-10x-performance-boost-with-clickhouse",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/how-harvey-uses-clickhouse-for-proactive-threat-detection",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/user-stories",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/observing-in-style-how-poizon-rebuilt-its-data-platform-with-clickhouse-enterprise-edition",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/how-real-estate-analytics-made-its-data-pipeline-50x-faster-with-clickhouse",
+      "text": ""
+    },
+    {
+      "href": "https://clickhouse.com/blog/scaling-observabilty-for-thousands-of-gpus-at-character-ai",
+      "text": ""
+    },
+    {
+      "href": "https://console.clickhouse.cloud/signUp",
+      "text": "Create a free account"
+    },
+    {
+      "href": "https://clickhouse.com/legal/trademark-policy",
+      "text": "Trademark"
+    },
+    {
+      "href": "https://clickhouse.com/legal/privacy-policy",
+      "text": "Privacy"
+    },
+    {
+      "href": "https://trust.clickhouse.com/",
+      "text": "Security"
+    },
+    {
+      "href": "https://clickhouse.com/legal",
+      "text": "Legal"
+    },
+    {
+      "href": "https://clickhouse.com/legal/cookie-policy",
+      "text": "Cookie policy"
+    }
+  ],
+  "outline": [
+    {
+      "background": "#141414",
+      "box": {
+        "h": 257,
+        "w": 336,
+        "x": 14,
+        "y": 1791
+      },
+      "color": "#ffffff",
+      "depth": 2,
+      "font": "14px 400",
+      "role": "dialog",
+      "tag": "div",
+      "text": "This website uses cookies to ensure you get the best experience on our website. Learn more Allow cookies Dismiss Cookie preferences"
+    },
+    {
+      "box": {
+        "h": 18,
+        "w": 73,
+        "x": 39,
+        "y": 1851
+      },
+      "color": "#f4f692",
+      "depth": 5,
+      "font": "14px 400",
+      "href": "https://clickhouse.com/legal/cookie-policy",
+      "tag": "a",
+      "text": "Learn more"
+    },
+    {
+      "background": "#166534",
+      "box": {
+        "h": 46,
+        "w": 286,
+        "x": 39,
+        "y": 1884
+      },
+      "color": "#ffffff",
+      "depth": 4,
+      "font": "14px 400",
+      "href": "",
+      "role": "button",
+      "tag": "a",
+      "text": "Allow cookies"
+    },
+    {
+      "background": "#141414",
+      "box": {
+        "h": 46,
+        "w": 286,
+        "x": 39,
+        "y": 1930
+      },
+      "color": "#ffffff",
+      "depth": 4,
+      "font": "14px 400",
+      "href": "",
+      "role": "button",
+      "tag": "a",
+      "text": "Dismiss"
+    },
+    {
+      "box": {
+        "h": 46,
+        "w": 286,
+        "x": 39,
+        "y": 1976
+      },
+      "color": "#f4f692",
+      "depth": 4,
+      "font": "14px 400",
+      "href": "",
+      "id": "securitiCmpCookiePrefBtn",
+      "role": "button",
+      "tag": "a",
+      "text": "Cookie preferences"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 108,
+        "y": 1992
+      },
+      "color": "#f4f692",
+      "depth": 6,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 1,
+        "w": 1,
+        "x": -1,
+        "y": -1
+      },
+      "color": "#dfdfdf",
+      "depth": 2,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/campaigns/clickhouse-cloud",
+      "tag": "a",
+      "text": "Skip to content"
+    },
+    {
+      "background": "#151515cc",
+      "box": {
+        "h": 73,
+        "w": 1440,
+        "x": 0,
+        "y": 1161
+      },
+      "color": "#dfdfdf",
+      "depth": 2,
+      "display": "block",
+      "font": "16px 400",
+      "tag": "header"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 135,
+        "x": 653,
+        "y": 1177
+      },
+      "color": "#dfdfdf",
+      "depth": 4,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/",
+      "tag": "a"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 135,
+        "x": 653,
+        "y": 1177
+      },
+      "color": "#ffffff",
+      "depth": 5,
+      "font": "16px 400",
+      "role": "img",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 3593,
+        "w": 1440,
+        "x": 0,
+        "y": 73
+      },
+      "color": "#dfdfdf",
+      "depth": 2,
+      "display": "block",
+      "font": "16px 400",
+      "id": "main",
+      "tag": "main"
+    },
+    {
+      "background": "#0a0a0a",
+      "box": {
+        "h": 544,
+        "w": 1440,
+        "x": 0,
+        "y": 73
+      },
+      "color": "#dfdfdf",
+      "depth": 3,
+      "display": "block",
+      "font": "16px 400",
+      "tag": "section"
+    },
+    {
+      "box": {
+        "h": 120,
+        "w": 576,
+        "x": 112,
+        "y": 181
+      },
+      "color": "#ffffff",
+      "depth": 7,
+      "font": "48px 600",
+      "tag": "h1",
+      "text": "Fast. Efficient. Effortless."
+    },
+    {
+      "box": {
+        "h": 81,
+        "w": 576,
+        "x": 112,
+        "y": 317
+      },
+      "color": "#a0a0a0",
+      "depth": 7,
+      "font": "18px 400",
+      "tag": "p",
+      "text": "ClickHouse Cloud: the fastest, most cost-efficient way to build real-time analytics, observability, and AI-powered data applications. Fully managed, with sub-second query performance at any scale."
+    },
+    {
+      "box": {
+        "h": 56,
+        "w": 56,
+        "x": 112,
+        "y": 430
+      },
+      "color": "#dfdfdf",
+      "depth": 7,
+      "font": "16px 400",
+      "href": "https://aws.amazon.com/marketplace/pp/prodview-p4gwofrqpkltu",
+      "tag": "a"
+    },
+    {
+      "alt": "AWS",
+      "box": {
+        "h": 48,
+        "w": 48,
+        "x": 116,
+        "y": 434
+      },
+      "color": "#00000000",
+      "depth": 8,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/_next/static/immutable/media/aws.0ii8z8p65jx2x.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 56,
+        "w": 56,
+        "x": 184,
+        "y": 430
+      },
+      "color": "#dfdfdf",
+      "depth": 7,
+      "font": "16px 400",
+      "href": "https://console.cloud.google.com/marketplace/product/clickhouse-public/clickhouse-cloud",
+      "tag": "a"
+    },
+    {
+      "alt": "GCP",
+      "box": {
+        "h": 48,
+        "w": 48,
+        "x": 188,
+        "y": 434
+      },
+      "color": "#00000000",
+      "depth": 8,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/_next/static/immutable/media/gcp.2z-30ck9n7dg0.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 56,
+        "w": 56,
+        "x": 256,
+        "y": 430
+      },
+      "color": "#dfdfdf",
+      "depth": 7,
+      "font": "16px 400",
+      "href": "https://azuremarketplace.microsoft.com/en-us/marketplace/apps/clickhouse.clickhouse_cloud",
+      "tag": "a"
+    },
+    {
+      "alt": "Azure",
+      "box": {
+        "h": 48,
+        "w": 48,
+        "x": 260,
+        "y": 434
+      },
+      "color": "#00000000",
+      "depth": 8,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/_next/static/immutable/media/azure.0vpwwz_vn5_gv.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 56,
+        "w": 56,
+        "x": 328,
+        "y": 430
+      },
+      "color": "#dfdfdf",
+      "depth": 7,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/cloud/bring-your-own-cloud",
+      "tag": "a"
+    },
+    {
+      "alt": "Bring Your Own Cloud",
+      "box": {
+        "h": 48,
+        "w": 48,
+        "x": 332,
+        "y": 434
+      },
+      "color": "#00000000",
+      "depth": 8,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/_next/static/immutable/media/byoc.3pfnn6518rkxp.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 24,
+        "w": 576,
+        "x": 112,
+        "y": 486
+      },
+      "color": "#dfdfdf",
+      "depth": 6,
+      "font": "16px 400",
+      "tag": "p",
+      "text": "Available on all three major cloud marketplaces."
+    },
+    {
+      "box": {
+        "h": 45,
+        "w": 526,
+        "x": 777,
+        "y": 194
+      },
+      "color": "#ffffff",
+      "depth": 9,
+      "font": "36px 600",
+      "tag": "h2",
+      "text": "Start your free trial"
+    },
+    {
+      "box": {
+        "h": 27,
+        "w": 526,
+        "x": 777,
+        "y": 239
+      },
+      "color": "#a0a0a0",
+      "depth": 9,
+      "font": "18px 400",
+      "tag": "p",
+      "text": "Free 30 day trial with $300 in credits."
+    },
+    {
+      "background": "#faff69",
+      "box": {
+        "h": 46,
+        "w": 526,
+        "x": 777,
+        "y": 298
+      },
+      "color": "#151515",
+      "depth": 8,
+      "font": "16px 500",
+      "href": "https://console.clickhouse.cloud/signUp",
+      "tag": "a",
+      "text": "Create a free account"
+    },
+    {
+      "background": "#1d1d1d",
+      "box": {
+        "h": 42,
+        "w": 526,
+        "x": 777,
+        "y": 396
+      },
+      "color": "#dfdfdf",
+      "depth": 8,
+      "font": "14px 500",
+      "href": "https://console.clickhouse.cloud/",
+      "tag": "a",
+      "text": "Sign up with Google"
+    },
+    {
+      "alt": "",
+      "box": {
+        "h": 20,
+        "w": 20,
+        "x": 958,
+        "y": 407
+      },
+      "color": "#00000000",
+      "depth": 9,
+      "font": "14px 500",
+      "src": "https://clickhouse.com/_next/static/immutable/media/google.1qtvjc3a406f9.svg",
+      "tag": "img"
+    },
+    {
+      "background": "#1d1d1d",
+      "box": {
+        "h": 42,
+        "w": 526,
+        "x": 777,
+        "y": 454
+      },
+      "color": "#dfdfdf",
+      "depth": 8,
+      "font": "14px 500",
+      "href": "https://console.clickhouse.cloud/",
+      "tag": "a",
+      "text": "Sign up with Microsoft"
+    },
+    {
+      "alt": "",
+      "box": {
+        "h": 20,
+        "w": 20,
+        "x": 950,
+        "y": 465
+      },
+      "color": "#00000000",
+      "depth": 9,
+      "font": "14px 500",
+      "src": "https://clickhouse.com/_next/static/immutable/media/microsoft.0f1_if3ug-lbb.svg",
+      "tag": "img"
+    },
+    {
+      "background": "#0a0a0a",
+      "box": {
+        "h": 670,
+        "w": 1440,
+        "x": 0,
+        "y": 617
+      },
+      "color": "#dfdfdf",
+      "depth": 3,
+      "display": "block",
+      "font": "16px 400",
+      "tag": "section"
+    },
+    {
+      "box": {
+        "h": 64,
+        "w": 1440,
+        "x": 0,
+        "y": 761
+      },
+      "color": "#faff69",
+      "depth": 6,
+      "font": "16px 400",
+      "tag": "svg"
+    },
+    {
+      "background": "#16161680",
+      "box": {
+        "h": 373,
+        "w": 274,
+        "x": 136,
+        "y": 649
+      },
+      "color": "#dfdfdf",
+      "depth": 10,
+      "display": "block",
+      "font": "16px 400",
+      "tag": "article"
+    },
+    {
+      "alt": "Quote icon",
+      "box": {
+        "h": 28,
+        "w": 37,
+        "x": 153,
+        "y": 674
+      },
+      "color": "#00000000",
+      "depth": 12,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/_next/static/immutable/media/quote.0yo_nyhel-n95.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 144,
+        "w": 240,
+        "x": 153,
+        "y": 718
+      },
+      "color": "#dfdfdf",
+      "depth": 14,
+      "font": "16px 400",
+      "tag": "p",
+      "text": "Moving to ClickHouse, we managed to get 70% cheaper costs and improved our search performance by 10x. We're doing more and storing more with less."
+    },
+    {
+      "box": {
+        "h": 29,
+        "w": 240,
+        "x": 153,
+        "y": 975
+      },
+      "color": "#dfdfdf",
+      "depth": 12,
+      "display": "flex",
+      "flex": "column",
+      "font": "16px 400",
+      "tag": "footer"
+    },
+    {
+      "alt": "canva",
+      "box": {
+        "h": 29,
+        "w": 80,
+        "x": 153,
+        "y": 975
+      },
+      "color": "#00000000",
+      "depth": 13,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/canva_d76adbabe9.svg",
+      "tag": "img"
+    },
+    {
+      "background": "#16161680",
+      "box": {
+        "h": 373,
+        "w": 274,
+        "x": 434,
+        "y": 649
+      },
+      "color": "#dfdfdf",
+      "depth": 10,
+      "display": "block",
+      "font": "16px 400",
+      "tag": "article"
+    },
+    {
+      "alt": "Quote icon",
+      "box": {
+        "h": 28,
+        "w": 37,
+        "x": 451,
+        "y": 674
+      },
+      "color": "#00000000",
+      "depth": 12,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/_next/static/immutable/media/quote.0yo_nyhel-n95.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 216,
+        "w": 240,
+        "x": 451,
+        "y": 718
+      },
+      "color": "#dfdfdf",
+      "depth": 14,
+      "font": "16px 400",
+      "tag": "p",
+      "text": "We needed something to slice and dice real-time data, like rides and driver hours across cities and regions where Lyft runs. Using ClickHouse resulted into a lot of performance benefits for us with hu"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 240,
+        "x": 451,
+        "y": 966
+      },
+      "color": "#dfdfdf",
+      "depth": 12,
+      "display": "flex",
+      "flex": "column",
+      "font": "16px 400",
+      "tag": "footer"
+    },
+    {
+      "alt": "lyft",
+      "box": {
+        "h": 39,
+        "w": 57,
+        "x": 451,
+        "y": 966
+      },
+      "color": "#00000000",
+      "depth": 13,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/lyft_906ce23fdc.svg",
+      "tag": "img"
+    },
+    {
+      "background": "#16161680",
+      "box": {
+        "h": 373,
+        "w": 274,
+        "x": 732,
+        "y": 649
+      },
+      "color": "#dfdfdf",
+      "depth": 10,
+      "display": "block",
+      "font": "16px 400",
+      "tag": "article"
+    },
+    {
+      "alt": "Quote icon",
+      "box": {
+        "h": 28,
+        "w": 37,
+        "x": 749,
+        "y": 674
+      },
+      "color": "#00000000",
+      "depth": 12,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/_next/static/immutable/media/quote.0yo_nyhel-n95.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 216,
+        "w": 240,
+        "x": 749,
+        "y": 718
+      },
+      "color": "#dfdfdf",
+      "depth": 14,
+      "font": "16px 400",
+      "tag": "p",
+      "text": "We've consistently run into scaling and performance bottlenecks that limited our ability to deliver the kind of analytics features our users needed. ClickHouse gave us the breakthrough we needed to de"
+    },
+    {
+      "box": {
+        "h": 38,
+        "w": 240,
+        "x": 749,
+        "y": 966
+      },
+      "color": "#dfdfdf",
+      "depth": 12,
+      "display": "flex",
+      "flex": "column",
+      "font": "16px 400",
+      "tag": "footer"
+    },
+    {
+      "alt": "gitlab",
+      "box": {
+        "h": 38,
+        "w": 128,
+        "x": 749,
+        "y": 966
+      },
+      "color": "#00000000",
+      "depth": 13,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/gitlab_606b5d2ffb.svg",
+      "tag": "img"
+    },
+    {
+      "background": "#16161680",
+      "box": {
+        "h": 373,
+        "w": 274,
+        "x": 1030,
+        "y": 649
+      },
+      "color": "#dfdfdf",
+      "depth": 10,
+      "display": "block",
+      "font": "16px 400",
+      "tag": "article"
+    },
+    {
+      "alt": "Quote icon",
+      "box": {
+        "h": 28,
+        "w": 37,
+        "x": 1047,
+        "y": 674
+      },
+      "color": "#00000000",
+      "depth": 12,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/_next/static/immutable/media/quote.0yo_nyhel-n95.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 192,
+        "w": 240,
+        "x": 1047,
+        "y": 718
+      },
+      "color": "#dfdfdf",
+      "depth": 14,
+      "font": "16px 400",
+      "tag": "p",
+      "text": "Previously, querying the last 10 minutes would take 1-2 minutes. With ClickStack, it was just a case of how fast I could blink. The performance is real. When you're digging into logs during an inciden"
+    },
+    {
+      "box": {
+        "h": 23,
+        "w": 240,
+        "x": 1047,
+        "y": 982
+      },
+      "color": "#dfdfdf",
+      "depth": 12,
+      "display": "flex",
+      "flex": "column",
+      "font": "16px 400",
+      "tag": "footer"
+    },
+    {
+      "alt": "characterai",
+      "box": {
+        "h": 23,
+        "w": 155,
+        "x": 1047,
+        "y": 982
+      },
+      "color": "#00000000",
+      "depth": 13,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/characterai_c5985a2833.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 21,
+        "w": 1216,
+        "x": 112,
+        "y": 1114
+      },
+      "color": "#000000",
+      "depth": 7,
+      "font": "14px 600",
+      "tag": "p",
+      "text": "CLICKHOUSE CLOUD IS TRUSTED BY ORGANIZATIONS THAT WORK WITH DATA SCALE"
+    },
+    {
+      "box": {
+        "h": 34,
+        "w": 151,
+        "x": -96,
+        "y": 1182
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "meta",
+      "box": {
+        "h": 34,
+        "w": 151,
+        "x": -96,
+        "y": 1182
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/meta_9f582e8e5f.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 73,
+        "x": 119,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by ebay",
+      "box": {
+        "h": 48,
+        "w": 73,
+        "x": 119,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_ebay_7dd3883842.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 129,
+        "x": 256,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by microsoft",
+      "box": {
+        "h": 48,
+        "w": 129,
+        "x": 256,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_microsoft_e9aa6af7ab.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 115,
+        "x": 450,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by spotify",
+      "box": {
+        "h": 48,
+        "w": 115,
+        "x": 450,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_spotify_32c0f01d76.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 55,
+        "x": 628,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/videos/lyft-user-story",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by lyft",
+      "box": {
+        "h": 48,
+        "w": 55,
+        "x": 628,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_lyft_596cb8757f.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 91,
+        "x": 747,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by hubspot",
+      "box": {
+        "h": 48,
+        "w": 91,
+        "x": 747,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_hubspot_9f26e263c1.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 36,
+        "w": 200,
+        "x": 902,
+        "y": 1181
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/langchain-why-we-choose-clickhouse-to-power-langchain",
+      "tag": "a"
+    },
+    {
+      "alt": "langchain logo 1",
+      "box": {
+        "h": 36,
+        "w": 200,
+        "x": 902,
+        "y": 1181
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/langchain_logo_1_1e23793e69.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 24,
+        "w": 150,
+        "x": 1166,
+        "y": 1187
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "instacart logo 1",
+      "box": {
+        "h": 24,
+        "w": 150,
+        "x": 1166,
+        "y": 1187
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/instacart_logo_1_ef7bb3b645.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 207,
+        "x": 1380,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by contentsquare",
+      "box": {
+        "h": 48,
+        "w": 207,
+        "x": 1380,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_contentsquare_bfc3a95c9e.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 67,
+        "x": 1651,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by cisco",
+      "box": {
+        "h": 48,
+        "w": 67,
+        "x": 1651,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_cisco_f3dc337b62.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 103,
+        "x": 1781,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by nginx",
+      "box": {
+        "h": 48,
+        "w": 103,
+        "x": 1781,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_nginx_8a94641c8c.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 115,
+        "x": 1948,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by cloudflare",
+      "box": {
+        "h": 48,
+        "w": 115,
+        "x": 1948,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_cloudflare_74f4bc587e.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 87,
+        "x": 2127,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/nyc-meetup-report-real-time-slicing-and-dicing-reporting-with-clickhouse",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by rokt",
+      "box": {
+        "h": 48,
+        "w": 87,
+        "x": 2127,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_rokt_66bd8a7f52.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 44,
+        "x": 2278,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by fisker",
+      "box": {
+        "h": 48,
+        "w": 44,
+        "x": 2278,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_fisker_86170377b2.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 171,
+        "x": 2385,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/trackingplan-web-analytics-with-clickhouse",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by trackingplan",
+      "box": {
+        "h": 48,
+        "w": 171,
+        "x": 2385,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_trackingplan_5b83d6c4cd.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 111,
+        "x": 2621,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/serving-real-time-analytics-across-marketplaces-at-adevinta",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by adevinta",
+      "box": {
+        "h": 48,
+        "w": 111,
+        "x": 2621,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_adevinta_534745a01e.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 60,
+        "x": 2795,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by ibm",
+      "box": {
+        "h": 48,
+        "w": 60,
+        "x": 2795,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_ibm_21b6e36895.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 118,
+        "x": 2919,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by gitlab",
+      "box": {
+        "h": 48,
+        "w": 118,
+        "x": 2919,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_gitlab_2c2904bdb2.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 80,
+        "x": 3102,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by mux",
+      "box": {
+        "h": 48,
+        "w": 80,
+        "x": 3102,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_mux_23ad0faaa5.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 119,
+        "x": 3245,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by netapp",
+      "box": {
+        "h": 48,
+        "w": 119,
+        "x": 3245,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_netapp_0a850a883a.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 164,
+        "x": 3429,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by servicenow",
+      "box": {
+        "h": 48,
+        "w": 164,
+        "x": 3429,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_servicenow_739afc9282.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 135,
+        "x": 3656,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by posthog",
+      "box": {
+        "h": 48,
+        "w": 135,
+        "x": 3656,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_posthog_b6eb41ddb8.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 38,
+        "w": 320,
+        "x": 3855,
+        "y": 1180
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/weights-and-biases-scale-ai-development",
+      "tag": "a"
+    },
+    {
+      "alt": "weights and biases full",
+      "box": {
+        "h": 38,
+        "w": 320,
+        "x": 3855,
+        "y": 1180
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/weights_and_biases_full_6a8e4d8d35.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 169,
+        "x": 4239,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by deutsche bank",
+      "box": {
+        "h": 48,
+        "w": 169,
+        "x": 4239,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_deutsche_bank_2b245b5b17.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 26,
+        "w": 90,
+        "x": 4472,
+        "y": 1186
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/behind-the-scenes-how-clickhouse-helps-vimeo-power-video-analytics-at-scale",
+      "tag": "a"
+    },
+    {
+      "alt": "vimeo logo userstories",
+      "box": {
+        "h": 26,
+        "w": 90,
+        "x": 4472,
+        "y": 1186
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/vimeo_logo_userstories_7ed2d7c19c.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 38,
+        "w": 129,
+        "x": 4626,
+        "y": 1180
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/videos/funnel-analytics-and-distributed-queries-in-clickhouse",
+      "tag": "a"
+    },
+    {
+      "alt": "klaviyo black",
+      "box": {
+        "h": 38,
+        "w": 129,
+        "x": 4626,
+        "y": 1180
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/klaviyo_black_19bddb4bb1.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 41,
+        "w": 170,
+        "x": 4819,
+        "y": 1178
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/unlocking-the-power-of-onchain-analytics-how-nansen-transformed-their-data-infrastructure-with-clickhouse-cloud",
+      "tag": "a"
+    },
+    {
+      "alt": "nansen",
+      "box": {
+        "h": 41,
+        "w": 170,
+        "x": 4819,
+        "y": 1178
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/nansen_946382124a.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 41,
+        "w": 222,
+        "x": 5053,
+        "y": 1178
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/poolside-using-clickhouse-to-build-next-gen-ai-for-software-development",
+      "tag": "a"
+    },
+    {
+      "alt": "poolside",
+      "box": {
+        "h": 41,
+        "w": 222,
+        "x": 5053,
+        "y": 1178
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/poolside_1c835dc37f.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 95,
+        "x": 5339,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by sony",
+      "box": {
+        "h": 48,
+        "w": 95,
+        "x": 5339,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_sony_2117ab6ef9.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 41,
+        "w": 202,
+        "x": 5498,
+        "y": 1178
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/hifis-migration-from-bigquery-to-clickhouse",
+      "tag": "a"
+    },
+    {
+      "alt": "block logo black min",
+      "box": {
+        "h": 41,
+        "w": 202,
+        "x": 5498,
+        "y": 1178
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/block_logo_black_min_2f6978c0c1.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 21,
+        "w": 106,
+        "x": 5764,
+        "y": 1188
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "vercel",
+      "box": {
+        "h": 21,
+        "w": 106,
+        "x": 5764,
+        "y": 1188
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/vercel_fa4c139b66.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 23,
+        "w": 204,
+        "x": 5934,
+        "y": 1187
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "olive young",
+      "box": {
+        "h": 23,
+        "w": 204,
+        "x": 5934,
+        "y": 1187
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/olive_young_93574968b0.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 35,
+        "w": 132,
+        "x": 6202,
+        "y": 1181
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/videos/ramp",
+      "tag": "a"
+    },
+    {
+      "alt": "ramp",
+      "box": {
+        "h": 35,
+        "w": 132,
+        "x": 6202,
+        "y": 1181
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/ramp_1db2955d50.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 41,
+        "w": 246,
+        "x": 6398,
+        "y": 1178
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/transforming-ad-tech-how-cognitiv-uses-clickhouse-to-build-better-machine-learning-models",
+      "tag": "a"
+    },
+    {
+      "alt": "cognitiv",
+      "box": {
+        "h": 41,
+        "w": 246,
+        "x": 6398,
+        "y": 1178
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/cognitiv_94d115644c.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 131,
+        "x": 6708,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by statsig",
+      "box": {
+        "h": 48,
+        "w": 131,
+        "x": 6708,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_statsig_041ca89e1e.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 35,
+        "w": 110,
+        "x": 6903,
+        "y": 1181
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "didi",
+      "box": {
+        "h": 35,
+        "w": 110,
+        "x": 6903,
+        "y": 1181
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/didi_e12c39680b.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 201,
+        "x": 7077,
+        "y": 1186
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/prefect-event-driven-workflow-orchestration-powered-by-clickhouse",
+      "tag": "a"
+    },
+    {
+      "alt": "prefect logo",
+      "box": {
+        "h": 25,
+        "w": 201,
+        "x": 7077,
+        "y": 1186
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/prefect_logo_42849dddbe.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 35,
+        "w": 139,
+        "x": 7342,
+        "y": 1181
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "cursor",
+      "box": {
+        "h": 35,
+        "w": 139,
+        "x": 7342,
+        "y": 1181
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/cursor_136f34ab68.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 33,
+        "w": 135,
+        "x": 7545,
+        "y": 1182
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/how-trip.com-migrated-from-elasticsearch-and-built-a-50pb-logging-solution-with-clickhouse",
+      "tag": "a"
+    },
+    {
+      "alt": "trip com logo 1",
+      "box": {
+        "h": 33,
+        "w": 135,
+        "x": 7545,
+        "y": 1182
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/Trip_com_logo_1_4cd2a2bf27.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 118,
+        "x": 7744,
+        "y": 1179
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/videos/sierraai",
+      "tag": "a"
+    },
+    {
+      "alt": "sierra",
+      "box": {
+        "h": 39,
+        "w": 118,
+        "x": 7744,
+        "y": 1179
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/sierra_321b705206.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 127,
+        "x": 7926,
+        "y": 1179
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/seeing-the-big-picture-shopees-journey-to-distributed-tracing-with-clickhouse",
+      "tag": "a"
+    },
+    {
+      "alt": "shopee logo 1",
+      "box": {
+        "h": 40,
+        "w": 127,
+        "x": 7926,
+        "y": 1179
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/shopee_logo_1_f68ba1df69.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 151,
+        "x": 8181,
+        "y": 1190
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/tekion-adopts-clickhouse-cloud-to-power-application-performance-and-metrics-monitoring",
+      "tag": "a"
+    },
+    {
+      "alt": "teckion logo 1",
+      "box": {
+        "h": 17,
+        "w": 151,
+        "x": 8181,
+        "y": 1190
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/teckion_logo_1_13bcd52b4b.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 36,
+        "w": 140,
+        "x": 8396,
+        "y": 1181
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "whatnot",
+      "box": {
+        "h": 36,
+        "w": 140,
+        "x": 8396,
+        "y": 1181
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/whatnot_b6c297442a.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 38,
+        "w": 98,
+        "x": 8600,
+        "y": 1180
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/videos/scaling-graphite-with-clickhouse",
+      "tag": "a"
+    },
+    {
+      "alt": "fastly carousel",
+      "box": {
+        "h": 38,
+        "w": 98,
+        "x": 8600,
+        "y": 1180
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/fastly_carousel_be77939630.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 219,
+        "x": 8762,
+        "y": 1179
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/why-astronomer-chose-clickhouse-to-power-its-new-data-observability-platform-astro-observe",
+      "tag": "a"
+    },
+    {
+      "alt": "astonomer d6b1876f31",
+      "box": {
+        "h": 40,
+        "w": 219,
+        "x": 8762,
+        "y": 1179
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/astonomer_d6b1876f31_606414fa24.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 22,
+        "w": 180,
+        "x": 9045,
+        "y": 1188
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/corsearch-replaces-mysql-with-clickhouse-for-content-and-brand-protection",
+      "tag": "a"
+    },
+    {
+      "alt": "corsearch logo",
+      "box": {
+        "h": 22,
+        "w": 180,
+        "x": 9045,
+        "y": 1188
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/corsearch_logo_b67fc34ee9.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 139,
+        "x": 9289,
+        "y": 1179
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/upollos-journey-from-bigquery-to-clickhouse",
+      "tag": "a"
+    },
+    {
+      "alt": "upollo 1",
+      "box": {
+        "h": 40,
+        "w": 139,
+        "x": 9289,
+        "y": 1179
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/upollo_1_5b302120ad.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 41,
+        "w": 175,
+        "x": 9492,
+        "y": 1178
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/amp-clickhouse-oss-to-clickhouse-cloud",
+      "tag": "a"
+    },
+    {
+      "alt": "amp",
+      "box": {
+        "h": 41,
+        "w": 175,
+        "x": 9492,
+        "y": 1178
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/amp_d170d43f74.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 38,
+        "w": 176,
+        "x": 9731,
+        "y": 1180
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/electrum-driving-net-zero-carbon-future-with-clickhouse",
+      "tag": "a"
+    },
+    {
+      "alt": "electrum",
+      "box": {
+        "h": 38,
+        "w": 176,
+        "x": 9731,
+        "y": 1180
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/electrum_ffcca287a1.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 136,
+        "x": 9971,
+        "y": 1179
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "spoton",
+      "box": {
+        "h": 40,
+        "w": 136,
+        "x": 9971,
+        "y": 1179
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/spoton_d78dc818fe.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 172,
+        "x": 10171,
+        "y": 1179
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/how-memorial-sloan-kettering-cancer-center-is-using-clickhouse-to-accelerate-cancer-research",
+      "tag": "a"
+    },
+    {
+      "alt": "mskcc 159a51fd5d",
+      "box": {
+        "h": 40,
+        "w": 172,
+        "x": 10171,
+        "y": 1179
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/mskcc_159a51fd5d_05a5a8c972.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 100,
+        "x": 10407,
+        "y": 1179
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/migrating-to-clickhouse-cloud-in-just-three-months-with-no-downtime-a-120-terabyte-data-journey-and-its-benefits",
+      "tag": "a"
+    },
+    {
+      "alt": "azur games",
+      "box": {
+        "h": 40,
+        "w": 100,
+        "x": 10407,
+        "y": 1179
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/azur_games_808e0a358a.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 27,
+        "w": 102,
+        "x": 10571,
+        "y": 1185
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/videos/vantage",
+      "tag": "a"
+    },
+    {
+      "alt": "vantage logo black",
+      "box": {
+        "h": 27,
+        "w": 102,
+        "x": 10571,
+        "y": 1185
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/vantage_logo_black_e5022f7336.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 36,
+        "w": 180,
+        "x": 10737,
+        "y": 1181
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/how-solarwinds-uses-clickhouse-for-realtime-observability-at-scale",
+      "tag": "a"
+    },
+    {
+      "alt": "solarwinds 76ad8bad7f",
+      "box": {
+        "h": 36,
+        "w": 180,
+        "x": 10737,
+        "y": 1181
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/solarwinds_76ad8bad7f_100b26114c.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 41,
+        "w": 163,
+        "x": 10981,
+        "y": 1178
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/longbridge-technology-simplifies-their-architecture-and-achieves-10x-performance-boost-with-clickhouse",
+      "tag": "a"
+    },
+    {
+      "alt": "longbridge logo a5b9c10d39",
+      "box": {
+        "h": 41,
+        "w": 163,
+        "x": 10981,
+        "y": 1178
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/longbridge_logo_a5b9c10d39_06cea9ccd9.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 113,
+        "x": 11208,
+        "y": 1179
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/how-harvey-uses-clickhouse-for-proactive-threat-detection",
+      "tag": "a"
+    },
+    {
+      "alt": "harvey d075e8174c",
+      "box": {
+        "h": 40,
+        "w": 113,
+        "x": 11208,
+        "y": 1179
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/harvey_d075e8174c_668bdfaf9a.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 41,
+        "w": 100,
+        "x": 11385,
+        "y": 1178
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "rbc logo",
+      "box": {
+        "h": 41,
+        "w": 100,
+        "x": 11385,
+        "y": 1178
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/rbc_logo_4aaac37282.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 110,
+        "x": 11549,
+        "y": 1179
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/observing-in-style-how-poizon-rebuilt-its-data-platform-with-clickhouse-enterprise-edition",
+      "tag": "a"
+    },
+    {
+      "alt": "poizon c9aa5431c5",
+      "box": {
+        "h": 40,
+        "w": 110,
+        "x": 11549,
+        "y": 1179
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/poizon_c9aa5431c5_fc90e5bbf0.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 138,
+        "x": 11723,
+        "y": 1179
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/how-real-estate-analytics-made-its-data-pipeline-50x-faster-with-clickhouse",
+      "tag": "a"
+    },
+    {
+      "alt": "rea logo 830fcadc53",
+      "box": {
+        "h": 40,
+        "w": 138,
+        "x": 11723,
+        "y": 1179
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/rea_logo_830fcadc53_d4251b9a35.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 38,
+        "w": 140,
+        "x": 11925,
+        "y": 1180
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/scaling-observabilty-for-thousands-of-gpus-at-character-ai",
+      "tag": "a"
+    },
+    {
+      "alt": "character 3a9027ce90",
+      "box": {
+        "h": 38,
+        "w": 140,
+        "x": 11925,
+        "y": 1180
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/character_3a9027ce90_4085d9ac89.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 34,
+        "w": 151,
+        "x": 12129,
+        "y": 1182
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "meta",
+      "box": {
+        "h": 34,
+        "w": 151,
+        "x": 12129,
+        "y": 1182
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/meta_9f582e8e5f.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 73,
+        "x": 12344,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by ebay",
+      "box": {
+        "h": 48,
+        "w": 73,
+        "x": 12344,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_ebay_7dd3883842.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 129,
+        "x": 12481,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by microsoft",
+      "box": {
+        "h": 48,
+        "w": 129,
+        "x": 12481,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_microsoft_e9aa6af7ab.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 115,
+        "x": 12674,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by spotify",
+      "box": {
+        "h": 48,
+        "w": 115,
+        "x": 12674,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_spotify_32c0f01d76.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 55,
+        "x": 12853,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/videos/lyft-user-story",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by lyft",
+      "box": {
+        "h": 48,
+        "w": 55,
+        "x": 12853,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_lyft_596cb8757f.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 91,
+        "x": 12972,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by hubspot",
+      "box": {
+        "h": 48,
+        "w": 91,
+        "x": 12972,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_hubspot_9f26e263c1.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 36,
+        "w": 200,
+        "x": 13127,
+        "y": 1181
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/langchain-why-we-choose-clickhouse-to-power-langchain",
+      "tag": "a"
+    },
+    {
+      "alt": "langchain logo 1",
+      "box": {
+        "h": 36,
+        "w": 200,
+        "x": 13127,
+        "y": 1181
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/langchain_logo_1_1e23793e69.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 24,
+        "w": 150,
+        "x": 13391,
+        "y": 1187
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "instacart logo 1",
+      "box": {
+        "h": 24,
+        "w": 150,
+        "x": 13391,
+        "y": 1187
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/instacart_logo_1_ef7bb3b645.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 207,
+        "x": 13605,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by contentsquare",
+      "box": {
+        "h": 48,
+        "w": 207,
+        "x": 13605,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_contentsquare_bfc3a95c9e.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 67,
+        "x": 13875,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by cisco",
+      "box": {
+        "h": 48,
+        "w": 67,
+        "x": 13875,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_cisco_f3dc337b62.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 103,
+        "x": 14006,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by nginx",
+      "box": {
+        "h": 48,
+        "w": 103,
+        "x": 14006,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_nginx_8a94641c8c.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 115,
+        "x": 14173,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by cloudflare",
+      "box": {
+        "h": 48,
+        "w": 115,
+        "x": 14173,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_cloudflare_74f4bc587e.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 87,
+        "x": 14352,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/nyc-meetup-report-real-time-slicing-and-dicing-reporting-with-clickhouse",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by rokt",
+      "box": {
+        "h": 48,
+        "w": 87,
+        "x": 14352,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_rokt_66bd8a7f52.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 44,
+        "x": 14502,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by fisker",
+      "box": {
+        "h": 48,
+        "w": 44,
+        "x": 14502,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_fisker_86170377b2.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 171,
+        "x": 14610,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/trackingplan-web-analytics-with-clickhouse",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by trackingplan",
+      "box": {
+        "h": 48,
+        "w": 171,
+        "x": 14610,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_trackingplan_5b83d6c4cd.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 111,
+        "x": 14845,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/serving-real-time-analytics-across-marketplaces-at-adevinta",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by adevinta",
+      "box": {
+        "h": 48,
+        "w": 111,
+        "x": 14845,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_adevinta_534745a01e.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 60,
+        "x": 15020,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by ibm",
+      "box": {
+        "h": 48,
+        "w": 60,
+        "x": 15020,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_ibm_21b6e36895.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 118,
+        "x": 15144,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by gitlab",
+      "box": {
+        "h": 48,
+        "w": 118,
+        "x": 15144,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_gitlab_2c2904bdb2.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 80,
+        "x": 15326,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by mux",
+      "box": {
+        "h": 48,
+        "w": 80,
+        "x": 15326,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_mux_23ad0faaa5.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 119,
+        "x": 15470,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by netapp",
+      "box": {
+        "h": 48,
+        "w": 119,
+        "x": 15470,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_netapp_0a850a883a.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 164,
+        "x": 15653,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by servicenow",
+      "box": {
+        "h": 48,
+        "w": 164,
+        "x": 15653,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_servicenow_739afc9282.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 135,
+        "x": 15881,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by posthog",
+      "box": {
+        "h": 48,
+        "w": 135,
+        "x": 15881,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_posthog_b6eb41ddb8.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 38,
+        "w": 320,
+        "x": 16079,
+        "y": 1180
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/weights-and-biases-scale-ai-development",
+      "tag": "a"
+    },
+    {
+      "alt": "weights and biases full",
+      "box": {
+        "h": 38,
+        "w": 320,
+        "x": 16079,
+        "y": 1180
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/weights_and_biases_full_6a8e4d8d35.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 169,
+        "x": 16463,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by deutsche bank",
+      "box": {
+        "h": 48,
+        "w": 169,
+        "x": 16463,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_deutsche_bank_2b245b5b17.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 26,
+        "w": 90,
+        "x": 16696,
+        "y": 1186
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/behind-the-scenes-how-clickhouse-helps-vimeo-power-video-analytics-at-scale",
+      "tag": "a"
+    },
+    {
+      "alt": "vimeo logo userstories",
+      "box": {
+        "h": 26,
+        "w": 90,
+        "x": 16696,
+        "y": 1186
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/vimeo_logo_userstories_7ed2d7c19c.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 38,
+        "w": 129,
+        "x": 16850,
+        "y": 1180
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/videos/funnel-analytics-and-distributed-queries-in-clickhouse",
+      "tag": "a"
+    },
+    {
+      "alt": "klaviyo black",
+      "box": {
+        "h": 38,
+        "w": 129,
+        "x": 16850,
+        "y": 1180
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/klaviyo_black_19bddb4bb1.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 41,
+        "w": 170,
+        "x": 17043,
+        "y": 1178
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/unlocking-the-power-of-onchain-analytics-how-nansen-transformed-their-data-infrastructure-with-clickhouse-cloud",
+      "tag": "a"
+    },
+    {
+      "alt": "nansen",
+      "box": {
+        "h": 41,
+        "w": 170,
+        "x": 17043,
+        "y": 1178
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/nansen_946382124a.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 41,
+        "w": 222,
+        "x": 17277,
+        "y": 1178
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/poolside-using-clickhouse-to-build-next-gen-ai-for-software-development",
+      "tag": "a"
+    },
+    {
+      "alt": "poolside",
+      "box": {
+        "h": 41,
+        "w": 222,
+        "x": 17277,
+        "y": 1178
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/poolside_1c835dc37f.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 95,
+        "x": 17563,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by sony",
+      "box": {
+        "h": 48,
+        "w": 95,
+        "x": 17563,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_sony_2117ab6ef9.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 41,
+        "w": 202,
+        "x": 17722,
+        "y": 1178
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/hifis-migration-from-bigquery-to-clickhouse",
+      "tag": "a"
+    },
+    {
+      "alt": "block logo black min",
+      "box": {
+        "h": 41,
+        "w": 202,
+        "x": 17722,
+        "y": 1178
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/block_logo_black_min_2f6978c0c1.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 21,
+        "w": 106,
+        "x": 17988,
+        "y": 1188
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "vercel",
+      "box": {
+        "h": 21,
+        "w": 106,
+        "x": 17988,
+        "y": 1188
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/vercel_fa4c139b66.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 23,
+        "w": 204,
+        "x": 18158,
+        "y": 1187
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "olive young",
+      "box": {
+        "h": 23,
+        "w": 204,
+        "x": 18158,
+        "y": 1187
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/olive_young_93574968b0.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 35,
+        "w": 132,
+        "x": 18426,
+        "y": 1181
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/videos/ramp",
+      "tag": "a"
+    },
+    {
+      "alt": "ramp",
+      "box": {
+        "h": 35,
+        "w": 132,
+        "x": 18426,
+        "y": 1181
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/ramp_1db2955d50.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 41,
+        "w": 246,
+        "x": 18622,
+        "y": 1178
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/transforming-ad-tech-how-cognitiv-uses-clickhouse-to-build-better-machine-learning-models",
+      "tag": "a"
+    },
+    {
+      "alt": "cognitiv",
+      "box": {
+        "h": 41,
+        "w": 246,
+        "x": 18622,
+        "y": 1178
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/cognitiv_94d115644c.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 131,
+        "x": 18932,
+        "y": 1175
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "trusted by statsig",
+      "box": {
+        "h": 48,
+        "w": 131,
+        "x": 18932,
+        "y": 1175
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/trusted_by_statsig_041ca89e1e.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 35,
+        "w": 110,
+        "x": 19128,
+        "y": 1181
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "didi",
+      "box": {
+        "h": 35,
+        "w": 110,
+        "x": 19128,
+        "y": 1181
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/didi_e12c39680b.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 201,
+        "x": 19302,
+        "y": 1186
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/prefect-event-driven-workflow-orchestration-powered-by-clickhouse",
+      "tag": "a"
+    },
+    {
+      "alt": "prefect logo",
+      "box": {
+        "h": 25,
+        "w": 201,
+        "x": 19302,
+        "y": 1186
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/prefect_logo_42849dddbe.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 35,
+        "w": 139,
+        "x": 19567,
+        "y": 1181
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "cursor",
+      "box": {
+        "h": 35,
+        "w": 139,
+        "x": 19567,
+        "y": 1181
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/cursor_136f34ab68.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 33,
+        "w": 135,
+        "x": 19770,
+        "y": 1182
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/how-trip.com-migrated-from-elasticsearch-and-built-a-50pb-logging-solution-with-clickhouse",
+      "tag": "a"
+    },
+    {
+      "alt": "trip com logo 1",
+      "box": {
+        "h": 33,
+        "w": 135,
+        "x": 19770,
+        "y": 1182
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/Trip_com_logo_1_4cd2a2bf27.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 39,
+        "w": 118,
+        "x": 19969,
+        "y": 1179
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/videos/sierraai",
+      "tag": "a"
+    },
+    {
+      "alt": "sierra",
+      "box": {
+        "h": 39,
+        "w": 118,
+        "x": 19969,
+        "y": 1179
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/sierra_321b705206.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 127,
+        "x": 20151,
+        "y": 1179
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/seeing-the-big-picture-shopees-journey-to-distributed-tracing-with-clickhouse",
+      "tag": "a"
+    },
+    {
+      "alt": "shopee logo 1",
+      "box": {
+        "h": 40,
+        "w": 127,
+        "x": 20151,
+        "y": 1179
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/shopee_logo_1_f68ba1df69.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 151,
+        "x": 20406,
+        "y": 1190
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/tekion-adopts-clickhouse-cloud-to-power-application-performance-and-metrics-monitoring",
+      "tag": "a"
+    },
+    {
+      "alt": "teckion logo 1",
+      "box": {
+        "h": 17,
+        "w": 151,
+        "x": 20406,
+        "y": 1190
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/teckion_logo_1_13bcd52b4b.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 36,
+        "w": 140,
+        "x": 20621,
+        "y": 1181
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "whatnot",
+      "box": {
+        "h": 36,
+        "w": 140,
+        "x": 20621,
+        "y": 1181
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/whatnot_b6c297442a.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 38,
+        "w": 98,
+        "x": 20825,
+        "y": 1180
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/videos/scaling-graphite-with-clickhouse",
+      "tag": "a"
+    },
+    {
+      "alt": "fastly carousel",
+      "box": {
+        "h": 38,
+        "w": 98,
+        "x": 20825,
+        "y": 1180
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/fastly_carousel_be77939630.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 219,
+        "x": 20987,
+        "y": 1179
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/why-astronomer-chose-clickhouse-to-power-its-new-data-observability-platform-astro-observe",
+      "tag": "a"
+    },
+    {
+      "alt": "astonomer d6b1876f31",
+      "box": {
+        "h": 40,
+        "w": 219,
+        "x": 20987,
+        "y": 1179
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/astonomer_d6b1876f31_606414fa24.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 22,
+        "w": 180,
+        "x": 21270,
+        "y": 1188
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/corsearch-replaces-mysql-with-clickhouse-for-content-and-brand-protection",
+      "tag": "a"
+    },
+    {
+      "alt": "corsearch logo",
+      "box": {
+        "h": 22,
+        "w": 180,
+        "x": 21270,
+        "y": 1188
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/corsearch_logo_b67fc34ee9.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 139,
+        "x": 21514,
+        "y": 1179
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/upollos-journey-from-bigquery-to-clickhouse",
+      "tag": "a"
+    },
+    {
+      "alt": "upollo 1",
+      "box": {
+        "h": 40,
+        "w": 139,
+        "x": 21514,
+        "y": 1179
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/upollo_1_5b302120ad.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 41,
+        "w": 175,
+        "x": 21717,
+        "y": 1178
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/amp-clickhouse-oss-to-clickhouse-cloud",
+      "tag": "a"
+    },
+    {
+      "alt": "amp",
+      "box": {
+        "h": 41,
+        "w": 175,
+        "x": 21717,
+        "y": 1178
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/amp_d170d43f74.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 38,
+        "w": 176,
+        "x": 21956,
+        "y": 1180
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/electrum-driving-net-zero-carbon-future-with-clickhouse",
+      "tag": "a"
+    },
+    {
+      "alt": "electrum",
+      "box": {
+        "h": 38,
+        "w": 176,
+        "x": 21956,
+        "y": 1180
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/electrum_ffcca287a1.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 136,
+        "x": 22196,
+        "y": 1179
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "spoton",
+      "box": {
+        "h": 40,
+        "w": 136,
+        "x": 22196,
+        "y": 1179
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/spoton_d78dc818fe.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 172,
+        "x": 22396,
+        "y": 1179
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/how-memorial-sloan-kettering-cancer-center-is-using-clickhouse-to-accelerate-cancer-research",
+      "tag": "a"
+    },
+    {
+      "alt": "mskcc 159a51fd5d",
+      "box": {
+        "h": 40,
+        "w": 172,
+        "x": 22396,
+        "y": 1179
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/mskcc_159a51fd5d_05a5a8c972.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 100,
+        "x": 22632,
+        "y": 1179
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/migrating-to-clickhouse-cloud-in-just-three-months-with-no-downtime-a-120-terabyte-data-journey-and-its-benefits",
+      "tag": "a"
+    },
+    {
+      "alt": "azur games",
+      "box": {
+        "h": 40,
+        "w": 100,
+        "x": 22632,
+        "y": 1179
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/azur_games_808e0a358a.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 27,
+        "w": 102,
+        "x": 22796,
+        "y": 1185
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/videos/vantage",
+      "tag": "a"
+    },
+    {
+      "alt": "vantage logo black",
+      "box": {
+        "h": 27,
+        "w": 102,
+        "x": 22796,
+        "y": 1185
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/vantage_logo_black_e5022f7336.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 36,
+        "w": 180,
+        "x": 22962,
+        "y": 1181
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/how-solarwinds-uses-clickhouse-for-realtime-observability-at-scale",
+      "tag": "a"
+    },
+    {
+      "alt": "solarwinds 76ad8bad7f",
+      "box": {
+        "h": 36,
+        "w": 180,
+        "x": 22962,
+        "y": 1181
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/solarwinds_76ad8bad7f_100b26114c.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 41,
+        "w": 163,
+        "x": 23206,
+        "y": 1178
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/longbridge-technology-simplifies-their-architecture-and-achieves-10x-performance-boost-with-clickhouse",
+      "tag": "a"
+    },
+    {
+      "alt": "longbridge logo a5b9c10d39",
+      "box": {
+        "h": 41,
+        "w": 163,
+        "x": 23206,
+        "y": 1178
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/longbridge_logo_a5b9c10d39_06cea9ccd9.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 113,
+        "x": 23433,
+        "y": 1179
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/how-harvey-uses-clickhouse-for-proactive-threat-detection",
+      "tag": "a"
+    },
+    {
+      "alt": "harvey d075e8174c",
+      "box": {
+        "h": 40,
+        "w": 113,
+        "x": 23433,
+        "y": 1179
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/harvey_d075e8174c_668bdfaf9a.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 41,
+        "w": 100,
+        "x": 23610,
+        "y": 1178
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/user-stories",
+      "tag": "a"
+    },
+    {
+      "alt": "rbc logo",
+      "box": {
+        "h": 41,
+        "w": 100,
+        "x": 23610,
+        "y": 1178
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/rbc_logo_4aaac37282.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 110,
+        "x": 23774,
+        "y": 1179
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/observing-in-style-how-poizon-rebuilt-its-data-platform-with-clickhouse-enterprise-edition",
+      "tag": "a"
+    },
+    {
+      "alt": "poizon c9aa5431c5",
+      "box": {
+        "h": 40,
+        "w": 110,
+        "x": 23774,
+        "y": 1179
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/poizon_c9aa5431c5_fc90e5bbf0.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 40,
+        "w": 138,
+        "x": 23948,
+        "y": 1179
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/how-real-estate-analytics-made-its-data-pipeline-50x-faster-with-clickhouse",
+      "tag": "a"
+    },
+    {
+      "alt": "rea logo 830fcadc53",
+      "box": {
+        "h": 40,
+        "w": 138,
+        "x": 23948,
+        "y": 1179
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/rea_logo_830fcadc53_d4251b9a35.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 38,
+        "w": 140,
+        "x": 24150,
+        "y": 1180
+      },
+      "color": "#dfdfdf",
+      "depth": 9,
+      "font": "16px 400",
+      "href": "https://clickhouse.com/blog/scaling-observabilty-for-thousands-of-gpus-at-character-ai",
+      "tag": "a"
+    },
+    {
+      "alt": "character 3a9027ce90",
+      "box": {
+        "h": 38,
+        "w": 140,
+        "x": 24150,
+        "y": 1180
+      },
+      "color": "#00000000",
+      "depth": 10,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/character_3a9027ce90_4085d9ac89.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 296,
+        "w": 1440,
+        "x": 0,
+        "y": 1383
+      },
+      "color": "#dfdfdf",
+      "depth": 3,
+      "display": "block",
+      "font": "16px 400",
+      "tag": "section"
+    },
+    {
+      "box": {
+        "h": 45,
+        "w": 540,
+        "x": 148,
+        "y": 1396
+      },
+      "color": "#ffffff",
+      "depth": 8,
+      "font": "36px 600",
+      "tag": "h2",
+      "text": "Easy start"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 540,
+        "x": 148,
+        "y": 1457
+      },
+      "color": "#dfdfdf",
+      "depth": 8,
+      "font": "16px 400",
+      "tag": "p",
+      "text": "All the speed and power that you expect from ClickHouse available in a cloud offering."
+    },
+    {
+      "box": {
+        "h": 144,
+        "w": 540,
+        "x": 148,
+        "y": 1521
+      },
+      "color": "#dfdfdf",
+      "depth": 8,
+      "display": "block",
+      "font": "16px 400",
+      "tag": "ul"
+    },
+    {
+      "alt": "easy start",
+      "box": {
+        "h": 296,
+        "w": 576,
+        "x": 752,
+        "y": 1383
+      },
+      "color": "#00000000",
+      "depth": 6,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/easy_start_0852c3425b.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 466,
+        "w": 1440,
+        "x": 0,
+        "y": 1775
+      },
+      "color": "#dfdfdf",
+      "depth": 3,
+      "display": "block",
+      "font": "16px 400",
+      "tag": "section"
+    },
+    {
+      "box": {
+        "h": 45,
+        "w": 540,
+        "x": 788,
+        "y": 1861
+      },
+      "color": "#ffffff",
+      "depth": 8,
+      "font": "36px 600",
+      "tag": "h2",
+      "text": "Interactive SQL console"
+    },
+    {
+      "box": {
+        "h": 72,
+        "w": 540,
+        "x": 788,
+        "y": 1922
+      },
+      "color": "#dfdfdf",
+      "depth": 8,
+      "font": "16px 400",
+      "tag": "p",
+      "text": "The fastest and easiest way to connect, explore, and visualize your ClickHouse Cloud databases. Seamlessly load your data and start querying in just a few clicks."
+    },
+    {
+      "box": {
+        "h": 144,
+        "w": 540,
+        "x": 788,
+        "y": 2010
+      },
+      "color": "#dfdfdf",
+      "depth": 8,
+      "display": "block",
+      "font": "16px 400",
+      "tag": "ul"
+    },
+    {
+      "alt": "sql console",
+      "box": {
+        "h": 466,
+        "w": 576,
+        "x": 112,
+        "y": 1775
+      },
+      "color": "#00000000",
+      "depth": 6,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/sql_console_a3a0f4ba4a.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 308,
+        "w": 1440,
+        "x": 0,
+        "y": 2337
+      },
+      "color": "#dfdfdf",
+      "depth": 3,
+      "display": "block",
+      "font": "16px 400",
+      "tag": "section"
+    },
+    {
+      "box": {
+        "h": 45,
+        "w": 540,
+        "x": 148,
+        "y": 2356
+      },
+      "color": "#ffffff",
+      "depth": 8,
+      "font": "36px 600",
+      "tag": "h2",
+      "text": "Reliability"
+    },
+    {
+      "box": {
+        "h": 48,
+        "w": 540,
+        "x": 148,
+        "y": 2417
+      },
+      "color": "#dfdfdf",
+      "depth": 8,
+      "font": "16px 400",
+      "tag": "p",
+      "text": "Reliable by default, each service is automatically replicated across multiple availability zones."
+    },
+    {
+      "box": {
+        "h": 144,
+        "w": 540,
+        "x": 148,
+        "y": 2481
+      },
+      "color": "#dfdfdf",
+      "depth": 8,
+      "display": "block",
+      "font": "16px 400",
+      "tag": "ul"
+    },
+    {
+      "alt": "reliability",
+      "box": {
+        "h": 308,
+        "w": 576,
+        "x": 752,
+        "y": 2337
+      },
+      "color": "#00000000",
+      "depth": 6,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/reliability_fe2e3b73b3.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 547,
+        "w": 1280,
+        "x": 80,
+        "y": 2740
+      },
+      "color": "#dfdfdf",
+      "depth": 3,
+      "display": "block",
+      "font": "16px 400",
+      "tag": "section"
+    },
+    {
+      "box": {
+        "h": 45,
+        "w": 896,
+        "x": 272,
+        "y": 2740
+      },
+      "color": "#ffffff",
+      "depth": 5,
+      "font": "36px 600",
+      "tag": "h2",
+      "text": "Performance without compromising on cost"
+    },
+    {
+      "box": {
+        "h": 54,
+        "w": 896,
+        "x": 272,
+        "y": 2801
+      },
+      "color": "#a0a0a0",
+      "depth": 5,
+      "font": "18px 400",
+      "tag": "p",
+      "text": "Benchmarked against Snowflake, Databricks, BigQuery, and Redshift across 1B, 10B, and 100B rows"
+    },
+    {
+      "box": {
+        "h": 416,
+        "w": 896,
+        "x": 272,
+        "y": 2871
+      },
+      "color": "#dfdfdf",
+      "depth": 5,
+      "font": "16px 400",
+      "tag": "p"
+    },
+    {
+      "alt": "benchmarks-quad.svg",
+      "box": {
+        "h": 416,
+        "w": 456,
+        "x": 492,
+        "y": 2871
+      },
+      "color": "#00000000",
+      "depth": 6,
+      "font": "16px 400",
+      "src": "https://clickhouse.com/uploads/benchmarks_quad_a2512e69bd.svg",
+      "tag": "img"
+    },
+    {
+      "box": {
+        "h": 283,
+        "w": 1280,
+        "x": 80,
+        "y": 3383
+      },
+      "color": "#dfdfdf",
+      "depth": 3,
+      "display": "block",
+      "font": "16px 400",
+      "tag": "section"
+    },
+    {
+      "box": {
+        "h": 45,
+        "w": 768,
+        "x": 336,
+        "y": 3447
+      },
+      "color": "#000000",
+      "depth": 7,
+      "font": "36px 600",
+      "tag": "h2",
+      "text": "Get started for free"
+    },
+    {
+      "box": {
+        "h": 24,
+        "w": 768,
+        "x": 336,
+        "y": 3508
+      },
+      "color": "#000000",
+      "depth": 7,
+      "font": "16px 400",
+      "tag": "p",
+      "text": "We'll get you started on a 30 day trial and $300 credits to spend at your own pace."
+    },
+    {
+      "background": "#151515e6",
+      "box": {
+        "h": 46,
+        "w": 215,
+        "x": 612,
+        "y": 3556
+      },
+      "color": "#ffffff",
+      "depth": 7,
+      "font": "16px 500",
+      "href": "https://console.clickhouse.cloud/signUp",
+      "id": "61",
+      "tag": "a",
+      "text": "Create a free account"
+    },
+    {
+      "background": "#151515",
+      "box": {
+        "h": 84,
+        "w": 1440,
+        "x": 0,
+        "y": 3762
+      },
+      "color": "#dfdfdf",
+      "depth": 2,
+      "display": "block",
+      "font": "16px 400",
+      "tag": "footer"
+    },
+    {
+      "box": {
+        "h": 20,
+        "w": 71,
+        "x": 737,
+        "y": 3794
+      },
+      "color": "#a0a0a0",
+      "depth": 7,
+      "font": "14px 400",
+      "href": "https://clickhouse.com/legal/trademark-policy",
+      "tag": "a",
+      "text": "Trademark"
+    },
+    {
+      "box": {
+        "h": 20,
+        "w": 49,
+        "x": 824,
+        "y": 3794
+      },
+      "color": "#a0a0a0",
+      "depth": 7,
+      "font": "14px 400",
+      "href": "https://clickhouse.com/legal/privacy-policy",
+      "tag": "a",
+      "text": "Privacy"
+    },
+    {
+      "box": {
+        "h": 20,
+        "w": 55,
+        "x": 889,
+        "y": 3794
+      },
+      "color": "#a0a0a0",
+      "depth": 7,
+      "font": "14px 400",
+      "href": "https://trust.clickhouse.com/",
+      "tag": "a",
+      "text": "Security"
+    },
+    {
+      "box": {
+        "h": 20,
+        "w": 36,
+        "x": 960,
+        "y": 3794
+      },
+      "color": "#a0a0a0",
+      "depth": 7,
+      "font": "14px 400",
+      "href": "https://clickhouse.com/legal",
+      "tag": "a",
+      "text": "Legal"
+    },
+    {
+      "box": {
+        "h": 20,
+        "w": 90,
+        "x": 1012,
+        "y": 3794
+      },
+      "color": "#a0a0a0",
+      "depth": 7,
+      "font": "14px 400",
+      "href": "https://clickhouse.com/legal/cookie-policy",
+      "tag": "a",
+      "text": "Cookie policy"
+    },
+    {
+      "box": {
+        "h": 20,
+        "w": 178,
+        "x": 1118,
+        "y": 3794
+      },
+      "color": "#a0a0a0",
+      "depth": 7,
+      "font": "14px 400",
+      "id": "cookie-settings-button",
+      "tag": "button",
+      "text": "Your privacy choices"
+    },
+    {
+      "alt": "",
+      "box": {
+        "h": 15,
+        "w": 32,
+        "x": 1118,
+        "y": 3798
+      },
+      "color": "#00000000",
+      "depth": 8,
+      "font": "14px 400",
+      "src": "https://clickhouse.com/_next/static/immutable/media/opt-out-logo.1--b2jqz2g3r3.svg",
+      "tag": "img"
+    }
+  ],
+  "page": {
+    "h": 3846,
+    "w": 1440
+  },
+  "text": "This website uses cookies to ensure you get the best experience on our website. Learn more Allow cookies Dismiss Cookie preferences Skip to content Fast. Efficient. Effortless. ClickHouse Cloud: the fastest, most cost-efficient way to build real-time analytics, observability, and AI-powered data applications. Fully managed, with sub-second query performance at any scale. Available on all three major cloud marketplaces. Start your free trial Free 30 day trial with $300 in credits. Create a free account OR Sign up with Google Sign up with Microsoft Moving to ClickHouse, we managed to get 70% cheaper costs and improved our search performance by 10x. We're doing more and storing more with less. We needed something to slice and dice real-time data, like rides and driver hours across cities and regions where Lyft runs. Using ClickHouse resulted into a lot of performance benefits for us with huge cost savings for the org. We've consistently run into scaling and performance bottlenecks that limited our ability to deliver the kind of analytics features our users needed. ClickHouse gave us the breakthrough we needed to deliver the kind of features we'd been holding back. Previously, querying the last 10 minutes would take 1-2 minutes. With ClickStack, it was just a case of how fast I could blink. The performance is real. When you're digging into logs during an incident, every second matters. CLICKHOUSE CLOUD IS TRUSTED BY ORGANIZATIONS THAT WORK WITH DATA SCALE Easy start All the speed and power that you expect from ClickHouse available in a cloud offering. Start with $300 credits No upfront sizing Automatic replication No manual data sharding Interactive SQL console The fastest and easiest way to connect, explore, and visualize your ClickHouse Cloud databases. Seamlessly load your data and start querying in just a few clicks. Easy-to-use table explorer Supercharged query interface Data ingestion and import wizard Visualization and collaboration features Reliability Reliable by default, each service is automatically replicated across multiple availability zones. Highly available Seamless upgrades Automated backups Disaster recovery Performance without compromising on cost Benchmarked against Snowflake, Databricks, BigQuery, and Redshift across 1B, 10B, and 100B rows Get started for free We'll get you started on a 30 day trial and $300 credits to spend at your own pace. Create a free account © 2026 ClickHouse, Inc. HQ in the Bay Area, CA and Amsterdam, NL. Trademark Privacy Security Legal Cookie policy Your privacy choices",
+  "title": "ClickHouse Cloud | ClickHouse",
+  "url": "https://clickhouse.com/campaigns/clickhouse-cloud",
+  "viewport": {
+    "h": 900,
+    "w": 1440
+  }
+}

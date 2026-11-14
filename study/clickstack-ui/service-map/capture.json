@@ -1,0 +1,2851 @@
+{
+  "a11y": {
+    "images_without_alt": 0,
+    "landmarks": {
+      "banner": 1
+    },
+    "lang": "en",
+    "unnamed_controls": 2,
+    "unnamed_examples": [
+      "button.AppNav_navItemToggle__tfzhc",
+      "button.AppNav_navItemToggle__tfzhc"
+    ]
+  },
+  "assets": {
+    "background_images": [],
+    "fonts": [
+      "http://localhost:18080/_next/static/media/52fbbbf4f34b425c-s.p.woff2",
+      "http://localhost:18080/_next/static/media/cdec7fa3927eb560-s.p.woff2",
+      "http://localhost:18080/_next/static/media/af5dd2b5d3f396f3-s.p.woff2",
+      "http://localhost:18080/_next/static/media/d9a2293b6b8212a5-s.p.woff2",
+      "http://localhost:18080/_next/static/media/fe486b1aba70499c-s.p.woff2",
+      "http://localhost:18080/_next/static/media/739c2d8941231bb4-s.p.woff2",
+      "http://localhost:18080/_next/static/media/1e41be92c43b3255-s.p.woff2",
+      "http://localhost:18080/_next/static/media/e4af272ccee01ff0-s.p.woff2"
+    ],
+    "images": [
+      {
+        "alt": "",
+        "h": 0,
+        "src": "",
+        "w": 0
+      }
+    ],
+    "inline_scripts": 2,
+    "requests": [
+      {
+        "bytes": 10336,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/media/52fbbbf4f34b425c-s.p.woff2"
+      },
+      {
+        "bytes": 10316,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/media/cdec7fa3927eb560-s.p.woff2"
+      },
+      {
+        "bytes": 10356,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/media/af5dd2b5d3f396f3-s.p.woff2"
+      },
+      {
+        "bytes": 10408,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/media/d9a2293b6b8212a5-s.p.woff2"
+      },
+      {
+        "bytes": 10428,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/media/fe486b1aba70499c-s.p.woff2"
+      },
+      {
+        "bytes": 33052,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/media/739c2d8941231bb4-s.p.woff2"
+      },
+      {
+        "bytes": 37820,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/media/1e41be92c43b3255-s.p.woff2"
+      },
+      {
+        "bytes": 48732,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/media/e4af272ccee01ff0-s.p.woff2"
+      },
+      {
+        "bytes": 388,
+        "type": "script",
+        "url": "http://localhost:18080/__ENV.js"
+      },
+      {
+        "bytes": 3213,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/css/c7c07ac88ef32ecf.css"
+      },
+      {
+        "bytes": 4954,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/css/fe9dab3a64ca617b.css"
+      },
+      {
+        "bytes": 74668,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/css/708b25d0d8acfa8b.css"
+      },
+      {
+        "bytes": 6270,
+        "type": "script",
+        "url": "http://localhost:18080/pyodide/pyodide.js"
+      },
+      {
+        "bytes": 2060,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/webpack-bdaaf71cb9c7b8ab.js"
+      },
+      {
+        "bytes": 60097,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/framework-a1b5449de9d4f7c6.js"
+      },
+      {
+        "bytes": 115662,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/main-2a8034413159b67e.js"
+      },
+      {
+        "bytes": 7837,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/8e6dcae5-b2cb689f848b6e52.js"
+      },
+      {
+        "bytes": 3741,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/2482-dd53d1392b7a3010.js"
+      },
+      {
+        "bytes": 23762,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/f92fad27-e6d630cda0464314.js"
+      },
+      {
+        "bytes": 55210,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/187e7e72-41d0eeef2644ad85.js"
+      },
+      {
+        "bytes": 27116,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/6145-c9bc6573dcd45dac.js"
+      },
+      {
+        "bytes": 3695,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/3116-a1f45d32856b0b40.js"
+      },
+      {
+        "bytes": 9499,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/6345-662673c40addaab1.js"
+      },
+      {
+        "bytes": 44716,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/6947-35611f89dfe0624c.js"
+      },
+      {
+        "bytes": 122474,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/51-64fde5d78b44e32d.js"
+      },
+      {
+        "bytes": 145427,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/1165-74a6cc36f166b781.js"
+      },
+      {
+        "bytes": 1334745,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/pages/_app-a09955781e073f94.js"
+      },
+      {
+        "bytes": 55317,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/2419-82536e82e875cb44.js"
+      },
+      {
+        "bytes": 4235,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/8226-1be2df5dea69a90b.js"
+      },
+      {
+        "bytes": 19103,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/6526-26b6400fe5f1b936.js"
+      },
+      {
+        "bytes": 11636,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/6876-81796a9675b88640.js"
+      },
+      {
+        "bytes": 24137,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/1021-e84cb314e653302e.js"
+      },
+      {
+        "bytes": 25915,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/405-a45bd09dcaea0fd3.js"
+      },
+      {
+        "bytes": 7595,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/6088-8f020db3e5f47673.js"
+      },
+      {
+        "bytes": 25887,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/1182-47cce8774b213734.js"
+      },
+      {
+        "bytes": 377,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/WYbbyN21PT9WY74c80oU0/_ssgManifest.js"
+      },
+      {
+        "bytes": 45467,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/5075-fd55c2afc6e60098.js"
+      },
+      {
+        "bytes": 10202,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/4501-d36b2806a065a876.js"
+      },
+      {
+        "bytes": 2434,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/WYbbyN21PT9WY74c80oU0/_buildManifest.js"
+      },
+      {
+        "bytes": 7268,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/pages/service-map-8774cf6f6260c5fa.js"
+      },
+      {
+        "bytes": 394,
+        "type": "fetch",
+        "url": "http://localhost:18080/api/config"
+      },
+      {
+        "bytes": 372,
+        "type": "fetch",
+        "url": "http://localhost:18080/api/health"
+      },
+      {
+        "bytes": 550,
+        "type": "fetch",
+        "url": "http://localhost:18080/api/team"
+      },
+      {
+        "bytes": 722,
+        "type": "fetch",
+        "url": "http://localhost:18080/api/me"
+      },
+      {
+        "bytes": 302,
+        "type": "fetch",
+        "url": "http://localhost:18080/api/saved-search"
+      },
+      {
+        "bytes": 302,
+        "type": "fetch",
+        "url": "http://localhost:18080/api/favorites"
+      },
+      {
+        "bytes": 566,
+        "type": "fetch",
+        "url": "http://localhost:18080/api/connections"
+      },
+      {
+        "bytes": 1133,
+        "type": "fetch",
+        "url": "http://localhost:18080/api/sources"
+      },
+      {
+        "bytes": 302,
+        "type": "fetch",
+        "url": "http://localhost:18080/api/dashboards"
+      },
+      {
+        "bytes": 1072,
+        "type": "other",
+        "url": "http://localhost:18080/favicons/clickstack/favicon.svg"
+      },
+      {
+        "bytes": 58184,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/chunks/3ca413d9-631ae715cb659f31.js"
+      },
+      {
+        "bytes": 190512,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/chunks/1276-449d77a1e304f89a.js"
+      },
+      {
+        "bytes": 23732,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/chunks/290-c2747f8821da783f.js"
+      },
+      {
+        "bytes": 20153,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/chunks/3063-ca11e6444f4105d2.js"
+      },
+      {
+        "bytes": 3404,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/chunks/8184-0fed7b031a8c6c4e.js"
+      },
+      {
+        "bytes": 182953,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/chunks/4355-1e5facda87b7aa67.js"
+      },
+      {
+        "bytes": 12981,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/chunks/3685-8b4cd2557cd30e28.js"
+      },
+      {
+        "bytes": 22379,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/chunks/7542-843276d22f0943db.js"
+      },
+      {
+        "bytes": 10303,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/chunks/3613-22ab5873a9d3072b.js"
+      },
+      {
+        "bytes": 742,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/chunks/pages/search-e5f0bb847e85ed1d.js"
+      },
+      {
+        "bytes": 55260,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/chunks/1179-1db311eff5be0568.js"
+      },
+      {
+        "bytes": 3846,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/chunks/7948-41c26feba4cc3ad7.js"
+      },
+      {
+        "bytes": 4197,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/chunks/7337-8c422710eda1e850.js"
+      },
+      {
+        "bytes": 3876,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/chunks/pages/search/list-2e867fe263b60493.js"
+      },
+      {
+        "bytes": 5011,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/chunks/8760-71e53f80ab4ce4a0.js"
+      },
+      {
+        "bytes": 24856,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/chunks/7863-460e2bdfc9fd5287.js"
+      },
+      {
+        "bytes": 25896,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/chunks/7130-1e2f12b8b148b204.js"
+      },
+      {
+        "bytes": 7985,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/chunks/8767-e41ba3e51797d0c8.js"
+      },
+      {
+        "bytes": 7401,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/chunks/6558-e5687040bfc34795.js"
+      },
+      {
+        "bytes": 4417,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/chunks/pages/chart-7da10cc1698487bf.js"
+      },
+      {
+        "bytes": 78097,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/chunks/174-254abd61dc29dd38.js"
+      },
+      {
+        "bytes": 9373,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/chunks/pages/alerts-f964cc44ab47139a.js"
+      },
+      {
+        "bytes": 20564,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/chunks/1965-52aa4b4af9f4eef0.js"
+      },
+      {
+        "bytes": 193718,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/chunks/pages/sessions-eba88efe233b7e54.js"
+      },
+      {
+        "bytes": 8741,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/chunks/pages/dashboards/list-51b961a1ee44b13a.js"
+      },
+      {
+        "bytes": 38484,
+        "type": "link",
+        "url": "http://localhost:18080/_next/static/chunks/pages/team-b6ab47b73baf7f30.js"
+      },
+      {
+        "bytes": 0,
+        "type": "script",
+        "url": "https://static.reo.dev/38b2e79cdb32fa7/reo.js"
+      },
+      {
+        "bytes": 23846,
+        "type": "fetch",
+        "url": "http://localhost:18080/api/clickhouse-proxy"
+      },
+      {
+        "bytes": 300,
+        "type": "fetch",
+        "url": "http://localhost:18080/api/sources"
+      },
+      {
+        "bytes": 300,
+        "type": "fetch",
+        "url": "http://localhost:18080/api/connections"
+      },
+      {
+        "bytes": 313,
+        "type": "fetch",
+        "url": "http://localhost:18080/api/pinned-filters"
+      },
+      {
+        "bytes": 2531,
+        "type": "other",
+        "url": "http://localhost:18080/favicons/clickstack/favicon.ico"
+      },
+      {
+        "bytes": 1096,
+        "type": "fetch",
+        "url": "http://localhost:18080/api/clickhouse-proxy"
+      },
+      {
+        "bytes": 300,
+        "type": "other",
+        "url": "http://localhost:18080/favicons/clickstack/favicon.svg"
+      },
+      {
+        "bytes": 300,
+        "type": "other",
+        "url": "http://localhost:18080/favicons/clickstack/favicon.ico"
+      },
+      {
+        "bytes": 0,
+        "type": "fetch",
+        "url": "http://localhost:18080/_next/static/css/c7c07ac88ef32ecf.css"
+      },
+      {
+        "bytes": 0,
+        "type": "fetch",
+        "url": "http://localhost:18080/_next/static/css/fe9dab3a64ca617b.css"
+      },
+      {
+        "bytes": 0,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/290-c2747f8821da783f.js"
+      },
+      {
+        "bytes": 0,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/3063-ca11e6444f4105d2.js"
+      },
+      {
+        "bytes": 0,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/3ca413d9-631ae715cb659f31.js"
+      },
+      {
+        "bytes": 0,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/1276-449d77a1e304f89a.js"
+      },
+      {
+        "bytes": 0,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/8184-0fed7b031a8c6c4e.js"
+      },
+      {
+        "bytes": 0,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/4355-1e5facda87b7aa67.js"
+      },
+      {
+        "bytes": 0,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/3685-8b4cd2557cd30e28.js"
+      },
+      {
+        "bytes": 0,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/7542-843276d22f0943db.js"
+      },
+      {
+        "bytes": 0,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/3613-22ab5873a9d3072b.js"
+      },
+      {
+        "bytes": 0,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/pages/search-e5f0bb847e85ed1d.js"
+      },
+      {
+        "bytes": 0,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/1179-1db311eff5be0568.js"
+      },
+      {
+        "bytes": 10213,
+        "type": "fetch",
+        "url": "http://localhost:18080/_next/static/css/dce52ddc267ba60a.css"
+      },
+      {
+        "bytes": 2315,
+        "type": "fetch",
+        "url": "http://localhost:18080/_next/static/css/52f5ed582c701de5.css"
+      },
+      {
+        "bytes": 0,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/7948-41c26feba4cc3ad7.js"
+      },
+      {
+        "bytes": 0,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/7337-8c422710eda1e850.js"
+      },
+      {
+        "bytes": 0,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/pages/search/list-2e867fe263b60493.js"
+      },
+      {
+        "bytes": 3056,
+        "type": "fetch",
+        "url": "http://localhost:18080/_next/static/css/616d7f9b8e386d9c.css"
+      },
+      {
+        "bytes": 0,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/7863-460e2bdfc9fd5287.js"
+      },
+      {
+        "bytes": 0,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/8760-71e53f80ab4ce4a0.js"
+      },
+      {
+        "bytes": 0,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/8767-e41ba3e51797d0c8.js"
+      },
+      {
+        "bytes": 0,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/7130-1e2f12b8b148b204.js"
+      },
+      {
+        "bytes": 0,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/6558-e5687040bfc34795.js"
+      },
+      {
+        "bytes": 0,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/pages/chart-7da10cc1698487bf.js"
+      },
+      {
+        "bytes": 0,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/174-254abd61dc29dd38.js"
+      },
+      {
+        "bytes": 1663,
+        "type": "fetch",
+        "url": "http://localhost:18080/_next/static/css/da869714c1998b5f.css"
+      },
+      {
+        "bytes": 0,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/pages/alerts-f964cc44ab47139a.js"
+      },
+      {
+        "bytes": 0,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/1965-52aa4b4af9f4eef0.js"
+      },
+      {
+        "bytes": 0,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/pages/dashboards/list-51b961a1ee44b13a.js"
+      },
+      {
+        "bytes": 2008,
+        "type": "fetch",
+        "url": "http://localhost:18080/_next/static/css/bdff720ba26fd999.css"
+      },
+      {
+        "bytes": 3129,
+        "type": "fetch",
+        "url": "http://localhost:18080/_next/static/css/aa2099174686c0ef.css"
+      },
+      {
+        "bytes": 0,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/pages/sessions-eba88efe233b7e54.js"
+      },
+      {
+        "bytes": 0,
+        "type": "script",
+        "url": "http://localhost:18080/_next/static/chunks/pages/team-b6ab47b73baf7f30.js"
+      },
+      {
+        "bytes": 10708,
+        "type": "fetch",
+        "url": "http://localhost:18080/_next/static/css/73750bd2960e21ad.css"
+      },
+      {
+        "bytes": 4164,
+        "type": "fetch",
+        "url": "http://localhost:18080/_next/static/css/a9bcb031ac256c15.css"
+      },
+      {
+        "bytes": 508,
+        "type": "fetch",
+        "url": "http://localhost:18080/api/clickhouse-proxy"
+      },
+      {
+        "bytes": 502,
+        "type": "fetch",
+        "url": "http://localhost:18080/api/clickhouse-proxy"
+      },
+      {
+        "bytes": 2257,
+        "type": "fetch",
+        "url": "http://localhost:18080/api/clickhouse-proxy"
+      },
+      {
+        "bytes": 859,
+        "type": "fetch",
+        "url": "http://localhost:18080/api/clickhouse-proxy"
+      },
+      {
+        "bytes": 528,
+        "type": "fetch",
+        "url": "http://localhost:18080/api/clickhouse-proxy"
+      },
+      {
+        "bytes": 527,
+        "type": "fetch",
+        "url": "http://localhost:18080/api/clickhouse-proxy"
+      },
+      {
+        "bytes": 556,
+        "type": "fetch",
+        "url": "http://localhost:18080/api/clickhouse-proxy"
+      },
+      {
+        "bytes": 579,
+        "type": "fetch",
+        "url": "http://localhost:18080/api/clickhouse-proxy"
+      }
+    ],
+    "scripts": [
+      "http://localhost:18080/__ENV.js",
+      "http://localhost:18080/pyodide/pyodide.js",
+      "http://localhost:18080/_next/static/chunks/polyfills-42372ed130431b0a.js",
+      "http://localhost:18080/_next/static/chunks/webpack-bdaaf71cb9c7b8ab.js",
+      "http://localhost:18080/_next/static/chunks/framework-a1b5449de9d4f7c6.js",
+      "http://localhost:18080/_next/static/chunks/main-2a8034413159b67e.js",
+      "http://localhost:18080/_next/static/chunks/pages/_app-a09955781e073f94.js",
+      "http://localhost:18080/_next/static/chunks/8e6dcae5-b2cb689f848b6e52.js",
+      "http://localhost:18080/_next/static/chunks/187e7e72-41d0eeef2644ad85.js",
+      "http://localhost:18080/_next/static/chunks/f92fad27-e6d630cda0464314.js",
+      "http://localhost:18080/_next/static/chunks/2482-dd53d1392b7a3010.js",
+      "http://localhost:18080/_next/static/chunks/6145-c9bc6573dcd45dac.js",
+      "http://localhost:18080/_next/static/chunks/3116-a1f45d32856b0b40.js",
+      "http://localhost:18080/_next/static/chunks/1165-74a6cc36f166b781.js",
+      "http://localhost:18080/_next/static/chunks/6947-35611f89dfe0624c.js",
+      "http://localhost:18080/_next/static/chunks/6345-662673c40addaab1.js",
+      "http://localhost:18080/_next/static/chunks/51-64fde5d78b44e32d.js",
+      "http://localhost:18080/_next/static/chunks/2419-82536e82e875cb44.js",
+      "http://localhost:18080/_next/static/chunks/6526-26b6400fe5f1b936.js",
+      "http://localhost:18080/_next/static/chunks/8226-1be2df5dea69a90b.js",
+      "http://localhost:18080/_next/static/chunks/6876-81796a9675b88640.js",
+      "http://localhost:18080/_next/static/chunks/1021-e84cb314e653302e.js",
+      "http://localhost:18080/_next/static/chunks/405-a45bd09dcaea0fd3.js",
+      "http://localhost:18080/_next/static/chunks/5075-fd55c2afc6e60098.js",
+      "http://localhost:18080/_next/static/chunks/1182-47cce8774b213734.js",
+      "http://localhost:18080/_next/static/chunks/6088-8f020db3e5f47673.js",
+      "http://localhost:18080/_next/static/chunks/4501-d36b2806a065a876.js",
+      "http://localhost:18080/_next/static/chunks/pages/service-map-8774cf6f6260c5fa.js",
+      "http://localhost:18080/_next/static/WYbbyN21PT9WY74c80oU0/_buildManifest.js",
+      "http://localhost:18080/_next/static/WYbbyN21PT9WY74c80oU0/_ssgManifest.js",
+      "https://static.reo.dev/38b2e79cdb32fa7/reo.js",
+      "http://localhost:18080/_next/static/chunks/3ca413d9-631ae715cb659f31.js",
+      "http://localhost:18080/_next/static/chunks/1276-449d77a1e304f89a.js",
+      "http://localhost:18080/_next/static/chunks/290-c2747f8821da783f.js",
+      "http://localhost:18080/_next/static/chunks/3063-ca11e6444f4105d2.js",
+      "http://localhost:18080/_next/static/chunks/8184-0fed7b031a8c6c4e.js",
+      "http://localhost:18080/_next/static/chunks/4355-1e5facda87b7aa67.js",
+      "http://localhost:18080/_next/static/chunks/3685-8b4cd2557cd30e28.js",
+      "http://localhost:18080/_next/static/chunks/7542-843276d22f0943db.js",
+      "http://localhost:18080/_next/static/chunks/3613-22ab5873a9d3072b.js",
+      "http://localhost:18080/_next/static/chunks/1179-1db311eff5be0568.js",
+      "http://localhost:18080/_next/static/chunks/pages/search-e5f0bb847e85ed1d.js",
+      "http://localhost:18080/_next/static/chunks/7948-41c26feba4cc3ad7.js",
+      "http://localhost:18080/_next/static/chunks/7337-8c422710eda1e850.js",
+      "http://localhost:18080/_next/static/chunks/pages/search/list-2e867fe263b60493.js",
+      "http://localhost:18080/_next/static/chunks/7863-460e2bdfc9fd5287.js",
+      "http://localhost:18080/_next/static/chunks/8760-71e53f80ab4ce4a0.js",
+      "http://localhost:18080/_next/static/chunks/7130-1e2f12b8b148b204.js",
+      "http://localhost:18080/_next/static/chunks/8767-e41ba3e51797d0c8.js",
+      "http://localhost:18080/_next/static/chunks/6558-e5687040bfc34795.js",
+      "http://localhost:18080/_next/static/chunks/174-254abd61dc29dd38.js",
+      "http://localhost:18080/_next/static/chunks/pages/chart-7da10cc1698487bf.js",
+      "http://localhost:18080/_next/static/chunks/1965-52aa4b4af9f4eef0.js",
+      "http://localhost:18080/_next/static/chunks/pages/alerts-f964cc44ab47139a.js",
+      "http://localhost:18080/_next/static/chunks/pages/dashboards/list-51b961a1ee44b13a.js",
+      "http://localhost:18080/_next/static/chunks/pages/sessions-eba88efe233b7e54.js",
+      "http://localhost:18080/_next/static/chunks/pages/team-b6ab47b73baf7f30.js"
+    ],
+    "stylesheets": [
+      "http://localhost:18080/_next/static/css/708b25d0d8acfa8b.css",
+      "http://localhost:18080/_next/static/css/c7c07ac88ef32ecf.css",
+      "http://localhost:18080/_next/static/css/fe9dab3a64ca617b.css"
+    ]
+  },
+  "breakpoints": [
+    {
+      "count": 1,
+      "px": 576,
+      "query": "max-width 576px"
+    },
+    {
+      "count": 1,
+      "px": 576,
+      "query": "min-width 576px"
+    },
+    {
+      "count": 2,
+      "px": 768,
+      "query": "max-width 768px"
+    },
+    {
+      "count": 1,
+      "px": 768,
+      "query": "min-width 768px"
+    },
+    {
+      "count": 1,
+      "px": 992,
+      "query": "max-width 992px"
+    },
+    {
+      "count": 1,
+      "px": 992,
+      "query": "min-width 992px"
+    },
+    {
+      "count": 1,
+      "px": 1200,
+      "query": "max-width 1200px"
+    },
+    {
+      "count": 1,
+      "px": 1200,
+      "query": "min-width 1200px"
+    },
+    {
+      "count": 1,
+      "px": 1408,
+      "query": "max-width 1408px"
+    },
+    {
+      "count": 1,
+      "px": 1408,
+      "query": "min-width 1408px"
+    }
+  ],
+  "design": {
+    "backgrounds": [
+      {
+        "count": 8,
+        "value": "#ffffff"
+      },
+      {
+        "count": 5,
+        "value": "#fbfcff"
+      },
+      {
+        "count": 2,
+        "value": "#f6f7fa"
+      },
+      {
+        "count": 2,
+        "value": "#151515"
+      },
+      {
+        "count": 1,
+        "value": "#e6e7e9"
+      },
+      {
+        "count": 1,
+        "value": "#437eef1a"
+      },
+      {
+        "count": 1,
+        "value": "#302e32"
+      }
+    ],
+    "css_variables": {
+      "--click-accordion-color-default-icon-active": "#161517",
+      "--click-accordion-color-default-icon-default": "#161517",
+      "--click-accordion-color-default-icon-hover": "lch(13.917 1.3308 305.43)",
+      "--click-accordion-color-default-label-active": "#161517",
+      "--click-accordion-color-default-label-default": "#161517",
+      "--click-accordion-color-default-label-hover": "lch(13.917 1.3308 305.43)",
+      "--click-accordion-color-link-icon-active": "#437eef",
+      "--click-accordion-color-link-icon-default": "#437eef",
+      "--click-accordion-color-link-icon-hover": "lch(40.786 66.387 286.32)",
+      "--click-accordion-color-link-label-active": "#437eef",
+      "--click-accordion-color-link-label-default": "#437eef",
+      "--click-accordion-color-link-label-hover": "#104ec6",
+      "--click-accordion-lg-icon-size-height": "1.5rem",
+      "--click-accordion-lg-icon-size-width": "1.5rem",
+      "--click-accordion-lg-space-gap": "0.25rem",
+      "--click-accordion-lg-typography-label-active": "500 1rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Open S",
+      "--click-accordion-lg-typography-label-default": "500 1rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Open S",
+      "--click-accordion-lg-typography-label-hover": "500 1rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Open S",
+      "--click-accordion-md-icon-size-height": "1.25rem",
+      "--click-accordion-md-icon-size-width": "1.25rem",
+      "--click-accordion-md-space-gap": "0.25rem",
+      "--click-accordion-md-typography-label-active": "500 0.875rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Op",
+      "--click-accordion-md-typography-label-default": "500 0.875rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Op",
+      "--click-accordion-md-typography-label-hover": "500 0.875rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Op",
+      "--click-accordion-sm-icon-size-height": "1rem",
+      "--click-accordion-sm-icon-size-width": "1rem",
+      "--click-accordion-sm-space-gap": "0.25rem",
+      "--click-accordion-sm-typography-label-active": "500 0.75rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Ope",
+      "--click-accordion-sm-typography-label-default": "500 0.75rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Ope",
+      "--click-accordion-sm-typography-label-hover": "500 0.75rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Ope",
+      "--click-alert-color-background-danger": "rgb(100% 13.725% 13.725%/0.1)",
+      "--click-alert-color-background-default": "#ffffff",
+      "--click-alert-color-background-info": "rgb(26.275% 49.412% 93.725%/0.1)",
+      "--click-alert-color-background-neutral": "rgb(41.176% 43.137% 47.451%/0.1)",
+      "--click-alert-color-background-success": "rgb(20% 100% 26.667%/0.1)",
+      "--click-alert-color-background-warning": "rgb(100% 46.667% 16.078%/0.1)",
+      "--click-alert-color-iconBackground-danger": "rgb(100% 13.725% 13.725%/0)",
+      "--click-alert-color-iconBackground-default": "#ffffff",
+      "--click-alert-color-iconBackground-info": "rgb(26.275% 49.412% 93.725%/0)",
+      "--click-alert-color-iconBackground-neutral": "rgb(41.176% 43.137% 47.451%/0)",
+      "--click-alert-color-iconBackground-success": "rgb(20% 100% 26.667%/0)",
+      "--click-alert-color-iconBackground-warning": "rgb(100% 46.667% 16.078%/0)",
+      "--click-alert-color-iconForeground-danger": "lch(41.001 86.638 40.858/0.75)",
+      "--click-alert-color-iconForeground-default": "#696e79",
+      "--click-alert-color-iconForeground-info": "lch(53.426 64.605 278.98/0.75)",
+      "--click-alert-color-iconForeground-neutral": "lch(36.838 5.2307 266.96/0.75)",
+      "--click-alert-color-iconForeground-success": "lch(49.786 70.246 135.31/0.75)",
+      "--click-alert-color-iconForeground-warning": "lch(40.227 66.602 51.059/0.75)",
+      "--click-alert-color-text-danger": "#c10000",
+      "--click-alert-color-text-default": "#696e79",
+      "--click-alert-color-text-info": "#437eef",
+      "--click-alert-color-text-neutral": "#53575f",
+      "--click-alert-color-text-success": "#008a0b",
+      "--click-alert-color-text-warning": "#a33c00",
+      "--click-alert-medium-icon-height": "1.25rem",
+      "--click-alert-medium-icon-width": "1.25rem",
+      "--click-alert-medium-space-banner": "0.5rem",
+      "--click-alert-medium-space-gap": "0",
+      "--click-alert-medium-space-x": "0.75rem",
+      "--click-alert-medium-space-y": "0.75rem",
+      "--click-alert-medium-typography-text-default": "400 0.875rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Op",
+      "--click-alert-medium-typography-title-default": "600 0.875rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Op",
+      "--click-alert-radii-center": "0",
+      "--click-alert-radii-end": "0.25rem",
+      "--click-alert-small-icon-height": "1rem",
+      "--click-alert-small-icon-width": "1rem",
+      "--click-alert-small-space-banner": "0.25rem",
+      "--click-alert-small-space-gap": "0",
+      "--click-alert-small-space-x": "0.75rem",
+      "--click-alert-small-space-y": "0.5rem",
+      "--click-alert-small-typography-text-default": "400 0.75rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Ope",
+      "--click-alert-small-typography-title-default": "600 0.75rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Ope",
+      "--click-avatar-color-background-active": "#9a9ea7",
+      "--click-avatar-color-background-default": "#696e79",
+      "--click-avatar-color-background-hover": "#9a9ea7",
+      "--click-avatar-color-text-active": "#ffffff",
+      "--click-avatar-color-text-default": "#ffffff",
+      "--click-avatar-color-text-hover": "#ffffff",
+      "--click-avatar-radii-all": "9999px",
+      "--click-avatar-size-height": "1.5rem",
+      "--click-avatar-size-label-width": "1.5rem",
+      "--click-avatar-size-width": "1.5rem",
+      "--click-avatar-typography-label-md-active": "600 0.75rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Ope",
+      "--click-avatar-typography-label-md-default": "600 0.75rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Ope",
+      "--click-avatar-typography-label-md-hover": "600 0.75rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Ope",
+      "--click-avatar-typography-label-sm-active": "600 0.6875rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"O",
+      "--click-avatar-typography-label-sm-default": "600 0.6875rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"O",
+      "--click-avatar-typography-label-sm-hover": "600 0.6875rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"O",
+      "--click-badge-icon-md-size-height": "0.75rem",
+      "--click-badge-icon-md-size-width": "0.75rem",
+      "--click-badge-icon-sm-size-height": "0.625rem",
+      "--click-badge-icon-sm-size-width": "0.625rem",
+      "--click-badge-opaque-color-background-danger": "rgb(100% 13.725% 13.725%/0.1)",
+      "--click-badge-opaque-color-background-default": "#f6f7fa",
+      "--click-badge-opaque-color-background-disabled": "#dfdfdf",
+      "--click-badge-opaque-color-background-info": "rgb(26.275% 49.412% 93.725%/0.1)",
+      "--click-badge-opaque-color-background-neutral": "rgb(41.176% 43.137% 47.451%/0.1)",
+      "--click-badge-opaque-color-background-success": "rgb(20% 100% 26.667%/0.1)",
+      "--click-badge-opaque-color-background-warning": "rgb(100% 46.667% 16.078%/0.1)",
+      "--click-badge-opaque-color-stroke-danger": "rgb(100% 13.725% 13.725%/0.05)",
+      "--click-badge-opaque-color-stroke-default": "#e6e7e9",
+      "--click-badge-opaque-color-stroke-disabled": "rgb(83.078% 83.078% 83.078%)",
+      "--click-badge-opaque-color-stroke-info": "rgb(26.275% 49.412% 93.725%/0.05)",
+      "--click-badge-opaque-color-stroke-neutral": "rgb(41.176% 43.137% 47.451%/0.1)",
+      "--click-badge-opaque-color-stroke-success": "rgb(20% 100% 26.667%/0.05)",
+      "--click-badge-opaque-color-stroke-warning": "rgb(100% 46.667% 16.078%/0.05)",
+      "--click-badge-opaque-color-text-danger": "#c10000",
+      "--click-badge-opaque-color-text-default": "#696e79",
+      "--click-badge-opaque-color-text-disabled": "#a0a0a0",
+      "--click-badge-opaque-color-text-info": "#437eef",
+      "--click-badge-opaque-color-text-neutral": "#53575f",
+      "--click-badge-opaque-color-text-success": "#008a0b",
+      "--click-badge-opaque-color-text-warning": "#a33c00",
+      "--click-badge-radii-all": "9999px",
+      "--click-badge-solid-color-background-danger": "#c10000",
+      "--click-badge-solid-color-background-default": "#a0a0a0",
+      "--click-badge-solid-color-background-disabled": "#dfdfdf",
+      "--click-badge-solid-color-background-info": "#104ec6",
+      "--click-badge-solid-color-background-neutral": "#606060",
+      "--click-badge-solid-color-background-success": "#008a0b",
+      "--click-badge-solid-color-background-warning": "#d64f00",
+      "--click-badge-solid-color-stroke-danger": "rgb(100% 13.725% 13.725%/0.05)",
+      "--click-badge-solid-color-stroke-default": "#e6e7e9",
+      "--click-badge-solid-color-stroke-disabled": "rgb(83.078% 83.078% 83.078%)",
+      "--click-badge-solid-color-stroke-info": "rgb(26.275% 49.412% 93.725%/0.05)",
+      "--click-badge-solid-color-stroke-neutral": "rgb(41.176% 43.137% 47.451%/0.1)",
+      "--click-badge-solid-color-stroke-success": "rgb(20% 100% 26.667%/0.05)",
+      "--click-badge-solid-color-stroke-warning": "rgb(100% 46.667% 16.078%/0.05)",
+      "--click-badge-solid-color-text-danger": "#ffffff",
+      "--click-badge-solid-color-text-default": "#ffffff",
+      "--click-badge-solid-color-text-disabled": "#a0a0a0",
+      "--click-badge-solid-color-text-info": "#ffffff",
+      "--click-badge-solid-color-text-neutral": "#ffffff",
+      "--click-badge-solid-color-text-success": "#ffffff",
+      "--click-badge-solid-color-text-warning": "#ffffff",
+      "--click-badge-space-md-gap": "0.25rem",
+      "--click-badge-space-md-x": "0.75rem",
+      "--click-badge-space-md-y": "0.125rem",
+      "--click-badge-space-sm-gap": "0.125rem",
+      "--click-badge-space-sm-x": "0.5rem",
+      "--click-badge-space-sm-y": "0.1563rem",
+      "--click-badge-stroke": "1px",
+      "--click-badge-typography-label-md-default": "500 0.75rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Ope",
+      "--click-badge-typography-label-sm-default": "500 0.625rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Op",
+      "--click-bigStat-color-background-default": "#ffffff",
+      "--click-bigStat-color-background-muted": "#f6f7fa",
+      "--click-bigStat-color-label-danger": "#c10000",
+      "--click-bigStat-color-label-default": "#696e79",
+      "--click-bigStat-color-label-muted": "#696e79",
+      "--click-bigStat-color-stroke-danger": "#c10000",
+      "--click-bigStat-color-stroke-default": "#e6e7e9",
+      "--click-bigStat-color-stroke-muted": "#e6e7e9",
+      "--click-bigStat-color-title-default": "lch(11.126 1.374 305.43)",
+      "--click-bigStat-color-title-muted": "lch(11.126 1.374 305.43)",
+      "--click-bigStat-radii-all": "0.25rem",
+      "--click-bigStat-space-all": "1rem",
+      "--click-bigStat-space-lg-gap": "0.5rem",
+      "--click-bigStat-space-sm-gap": "0",
+      "--click-bigStat-stroke": "1px",
+      "--click-bigStat-typography-lg-label-default": "400 0.875rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Op",
+      "--click-bigStat-typography-lg-label-muted": "400 0.875rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Op",
+      "--click-bigStat-typography-lg-title-default": "700 2rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Open S",
+      "--click-bigStat-typography-lg-title-muted": "700 2rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Open S",
+      "--click-bigStat-typography-sm-label-default": "400 0.875rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Op",
+      "--click-bigStat-typography-sm-label-muted": "400 0.875rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Op",
+      "--click-bigStat-typography-sm-title-default": "600 1rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Open S",
+      "--click-bigStat-typography-sm-title-muted": "600 1rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Open S",
+      "--click-button-basic-color-danger-background-active": "rgb(100% 13.725% 13.725%/0.3)",
+      "--click-button-basic-color-danger-background-default": "rgb(100% 13.725% 13.725%/0.1)",
+      "--click-button-basic-color-danger-background-disabled": "#dfdfdf",
+      "--click-button-basic-color-danger-background-hover": "rgb(100% 13.725% 13.725%/0.2)",
+      "--click-button-basic-color-danger-background-loading": "linear-gradient(90deg,rgba(255,211,211,0.1),rgb(255,211,211))",
+      "--click-button-basic-color-danger-stroke-active": "rgb(100% 13.725% 13.725%/0.05)",
+      "--click-button-basic-color-danger-stroke-default": "rgb(100% 13.725% 13.725%/0.1)",
+      "--click-button-basic-color-danger-stroke-disabled": "#dfdfdf",
+      "--click-button-basic-color-danger-stroke-hover": "rgb(100% 13.725% 13.725%/0.05)",
+      "--click-button-basic-color-danger-text-active": "#c10000",
+      "--click-button-basic-color-danger-text-default": "#c10000",
+      "--click-button-basic-color-danger-text-disabled": "#a0a0a0",
+      "--click-button-basic-color-danger-text-hover": "#c10000",
+      "--click-button-basic-color-empty-background-active": "rgba(0,0,0,0)",
+      "--click-button-basic-color-empty-background-default": "rgba(0,0,0,0)",
+      "--click-button-basic-color-empty-background-disabled": "rgba(0,0,0,0)",
+      "--click-button-basic-color-empty-background-hover": "#f6f7fa",
+      "--click-button-basic-color-empty-background-loading": "linear-gradient(90deg,rgba(240,242,248,0.1),rgb(240,242,248))",
+      "--click-button-basic-color-empty-stroke-active": "rgba(0,0,0,0)",
+      "--click-button-basic-color-empty-stroke-default": "rgba(0,0,0,0)",
+      "--click-button-basic-color-empty-stroke-disabled": "rgba(0,0,0,0)",
+      "--click-button-basic-color-empty-stroke-hover": "rgba(0,0,0,0)",
+      "--click-button-basic-color-empty-text-active": "#437eef",
+      "--click-button-basic-color-empty-text-default": "#437eef",
+      "--click-button-basic-color-empty-text-disabled": "#a0a0a0",
+      "--click-button-basic-color-empty-text-hover": "#104ec6",
+      "--click-button-basic-color-primary-background-active": "#161517",
+      "--click-button-basic-color-primary-background-default": "#302e32",
+      "--click-button-basic-color-primary-background-disabled": "#dfdfdf",
+      "--click-button-basic-color-primary-background-hover": "lch(29.47 4.1845 266.96)",
+      "--click-button-basic-color-primary-background-loading": "linear-gradient(90deg,rgb(76,76,76,0.1),rgb(76,76,76))",
+      "--click-button-basic-color-primary-stroke-active": "#161517",
+      "--click-button-basic-color-primary-stroke-default": "#302e32",
+      "--click-button-basic-color-primary-stroke-disabled": "#dfdfdf",
+      "--click-button-basic-color-primary-stroke-hover": "lch(29.47 4.1845 266.96)",
+      "--click-button-basic-color-primary-text-active": "#ffffff",
+      "--click-button-basic-color-primary-text-default": "#ffffff",
+      "--click-button-basic-color-primary-text-disabled": "#a0a0a0",
+      "--click-button-basic-color-primary-text-hover": "#ffffff",
+      "--click-button-basic-color-secondary-background-active": "lch(95.274 1.5364 271.98)",
+      "--click-button-basic-color-secondary-background-default": "rgba(0,0,0,0)",
+      "--click-button-basic-color-secondary-background-disabled": "#dfdfdf",
+      "--click-button-basic-color-secondary-background-hover": "#f6f7fa",
+      "--click-button-basic-color-secondary-background-loading": "linear-gradient(90deg,rgb(232,233,235,0.1),rgb(232,233,235))",
+      "--click-button-basic-color-secondary-stroke-active": "#cccfd3",
+      "--click-button-basic-color-secondary-stroke-default": "#e6e7e9",
+      "--click-button-basic-color-secondary-stroke-disabled": "#dfdfdf",
+      "--click-button-basic-color-secondary-stroke-hover": "#e6e7e9",
+      "--click-button-basic-color-secondary-text-active": "#161517",
+      "--click-button-basic-color-secondary-text-default": "#161517",
+      "--click-button-basic-color-secondary-text-disabled": "#a0a0a0",
+      "--click-button-basic-color-secondary-text-hover": "#161517",
+      "--click-button-basic-size-icon-all": "0.9688rem",
+      "--click-button-basic-size-icon-height": "0.9688rem",
+      "--click-button-basic-size-icon-width": "0.9688rem",
+      "--click-button-basic-space-gap": "0.5rem",
+      "--click-button-basic-space-group": "0.5rem",
+      "--click-button-basic-space-x": "1rem",
+      "--click-button-basic-space-y": "0.2813rem",
+      "--click-button-basic-typography-label-active": "400 0.875rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Op",
+      "--click-button-basic-typography-label-default": "400 0.875rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Op",
+      "--click-button-basic-typography-label-disabled": "400 0.875rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Op",
+      "--click-button-basic-typography-label-hover": "400 0.875rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Op",
+      "--click-button-basic-typography-mobile-label-active": "400 1rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Open S",
+      "--click-button-basic-typography-mobile-label-default": "400 1rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Open S",
+      "--click-button-basic-typography-mobile-label-hover": "400 1rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Open S",
+      "--click-button-iconButton-color-danger-background-active": "rgb(100% 13.725% 13.725%/0.3)",
+      "--click-button-iconButton-color-danger-background-default": "rgb(100% 13.725% 13.725%/0.1)",
+      "--click-button-iconButton-color-danger-background-hover": "rgb(100% 13.725% 13.725%/0.2)",
+      "--click-button-iconButton-color-danger-stroke-active": "rgb(100% 13.725% 13.725%/0.3)",
+      "--click-button-iconButton-color-danger-stroke-default": "rgb(100% 13.725% 13.725%/0.1)",
+      "--click-button-iconButton-color-danger-stroke-hover": "rgb(100% 13.725% 13.725%/0.2)",
+      "--click-button-iconButton-color-danger-text-active": "#c10000",
+      "--click-button-iconButton-color-danger-text-default": "#c10000",
+      "--click-button-iconButton-color-danger-text-hover": "#c10000",
+      "--click-button-iconButton-color-disabled-background-default": "#dfdfdf",
+      "--click-button-iconButton-color-disabled-text-default": "#a0a0a0",
+      "--click-button-iconButton-color-ghost-background-active": "rgb(0% 0% 0%/0)",
+      "--click-button-iconButton-color-ghost-background-default": "rgba(0,0,0,0)",
+      "--click-button-iconButton-color-ghost-background-hover": "rgba(0,0,0,0)",
+      "--click-button-iconButton-color-ghost-stroke-active": "rgba(0,0,0,0)",
+      "--click-button-iconButton-color-ghost-stroke-default": "rgba(0,0,0,0)",
+      "--click-button-iconButton-color-ghost-stroke-hover": "rgba(0,0,0,0)",
+      "--click-button-iconButton-color-ghost-text-active": "#161517",
+      "--click-button-iconButton-color-ghost-text-default": "#696e79",
+      "--click-button-iconButton-color-ghost-text-hover": "#161517",
+      "--click-button-iconButton-color-info-background-active": "#a1bef7",
+      "--click-button-iconButton-color-info-background-default": "rgb(26.275% 49.412% 93.725%/0.1)",
+      "--click-button-iconButton-color-info-background-hover": "#d0dffb",
+      "--click-button-iconButton-color-info-stroke-active": "#a1bef7",
+      "--click-button-iconButton-color-info-stroke-default": "rgb(26.275% 49.412% 93.725%/0.1)",
+      "--click-button-iconButton-color-info-stroke-hover": "#d0dffb",
+      "--click-button-iconButton-color-info-text-active": "#437eef",
+      "--click-button-iconButton-color-info-text-default": "#437eef",
+      "--click-button-iconButton-color-info-text-hover": "#437eef",
+      "--click-button-iconButton-color-primary-background-active": "rgb(86.824% 87.176% 88.235%)",
+      "--click-button-iconButton-color-primary-background-default": "rgba(0,0,0,0)",
+      "--click-button-iconButton-color-primary-background-hover": "#f6f7fa",
+      "--click-button-iconButton-color-primary-stroke-active": "rgb(86.824% 87.176% 88.235%)",
+      "--click-button-iconButton-color-primary-stroke-default": "rgba(0,0,0,0)",
+      "--click-button-iconButton-color-primary-stroke-hover": "#f6f7fa",
+      "--click-button-iconButton-color-primary-text-active": "#161517",
+      "--click-button-iconButton-color-primary-text-default": "#161517",
+      "--click-button-iconButton-color-primary-text-hover": "#161517",
+      "--click-button-iconButton-color-secondary-background-active": "lch(6.5908 1.3668 305.43)",
+      "--click-button-iconButton-color-secondary-background-default": "#302e32",
+      "--click-button-iconButton-color-secondary-background-hover": "lch(29.47 4.1845 266.96)",
+      "--click-button-iconButton-color-secondary-stroke-active": "lch(6.5908 1.3668 305.43)",
+      "--click-button-iconButton-color-secondary-stroke-default": "rgba(0,0,0,0)",
+      "--click-button-iconButton-color-secondary-stroke-hover": "lch(29.47 4.1845 266.96)",
+      "--click-button-iconButton-color-secondary-text-active": "#ffffff",
+      "--click-button-iconButton-color-secondary-text-default": "#ffffff",
+      "--click-button-iconButton-color-secondary-text-hover": "#ffffff",
+      "--click-button-iconButton-default-space-x": "0.4375rem",
+      "--click-button-iconButton-default-space-y": "0.4375rem",
+      "--click-button-iconButton-radii-all": "0.25rem",
+      "--click-button-iconButton-size-large": "1.25rem",
+      "--click-button-iconButton-size-medium": "1rem",
+      "--click-button-iconButton-size-small": "0.75rem",
+      "--click-button-iconButton-sm-space-x": "0.25rem",
+      "--click-button-iconButton-sm-space-y": "0.25rem",
+      "--click-button-iconButton-xs-space-x": "0",
+      "--click-button-iconButton-xs-space-y": "0",
+      "--click-button-radii-all": "0.25rem",
+      "--click-button-split-icon-space-x": "0.3438rem",
+      "--click-button-split-icon-space-y": "0.4375rem",
+      "--click-button-split-space-gap": "0.5rem",
+      "--click-button-split-space-x": "1rem",
+      "--click-button-split-space-y": "0.2813rem",
+      "--click-button-split-typography-label-active": "400 0.875rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Op",
+      "--click-button-split-typography-label-default": "400 0.875rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Op",
+      "--click-button-split-typography-label-hover": "400 0.875rem/1.5 \"Inter\",\"SF Pro Display\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen,Ubuntu,Cantarell,\"Op",
+      "--click-button-stroke": "1px"
+    },
+    "font_faces": [
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "300"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "300"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "300"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "300"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "300"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "300"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "400"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "400"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "400"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "400"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "400"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "400"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "500"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "500"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "500"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "500"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "500"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "500"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "600"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "600"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "600"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "600"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "600"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "600"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "700"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "700"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "700"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "700"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "700"
+      },
+      {
+        "family": "IBM Plex Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "700"
+      },
+      {
+        "family": "IBM Plex Mono Fallback",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "normal"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "100"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "100"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "100"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "100"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "100"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "100"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "300"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "300"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "300"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "300"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "300"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "300"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "400"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "400"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "400"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "400"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "400"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "400"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "500"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "500"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "500"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "500"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "500"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "500"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "700"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "700"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "700"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "700"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "700"
+      },
+      {
+        "family": "Roboto Mono",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "700"
+      },
+      {
+        "family": "Roboto Mono Fallback",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "normal"
+      },
+      {
+        "family": "Inter",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "100"
+      },
+      {
+        "family": "Inter",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "100"
+      },
+      {
+        "family": "Inter",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "100"
+      },
+      {
+        "family": "Inter",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "100"
+      },
+      {
+        "family": "Inter",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "100"
+      },
+      {
+        "family": "Inter",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "100"
+      },
+      {
+        "family": "Inter",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "100"
+      },
+      {
+        "family": "Inter",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "200"
+      },
+      {
+        "family": "Inter",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "200"
+      },
+      {
+        "family": "Inter",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "200"
+      },
+      {
+        "family": "Inter",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "200"
+      },
+      {
+        "family": "Inter",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "200"
+      },
+      {
+        "family": "Inter",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "200"
+      },
+      {
+        "family": "Inter",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "200"
+      },
+      {
+        "family": "Inter",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "300"
+      },
+      {
+        "family": "Inter",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "300"
+      },
+      {
+        "family": "Inter",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "300"
+      },
+      {
+        "family": "Inter",
+        "status": "unloaded",
+        "style": "normal",
+        "weight": "300"
+      }
+    ],
+    "font_sizes": [
+      {
+        "count": 11,
+        "value": "12px"
+      },
+      {
+        "count": 9,
+        "value": "14px"
+      },
+      {
+        "count": 3,
+        "value": "13px"
+      },
+      {
+        "count": 1,
+        "value": "18px"
+      },
+      {
+        "count": 1,
+        "value": "10px"
+      },
+      {
+        "count": 1,
+        "value": "10.4px"
+      },
+      {
+        "count": 1,
+        "value": "11px"
+      }
+    ],
+    "font_weights": [
+      {
+        "count": 21,
+        "value": "400"
+      },
+      {
+        "count": 3,
+        "value": "700"
+      },
+      {
+        "count": 2,
+        "value": "500"
+      },
+      {
+        "count": 1,
+        "value": "600"
+      }
+    ],
+    "fonts": [
+      {
+        "count": 25,
+        "value": "Inter, \"Inter Fallback\""
+      },
+      {
+        "count": 1,
+        "value": "Inter, \"SF Pro Display\", -apple-system, \"system-ui\", \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Open Sans\", \"Helvetica Neue\", sans-serif"
+      },
+      {
+        "count": 1,
+        "value": "monospace"
+      }
+    ],
+    "max_widths": [
+      {
+        "count": 1,
+        "value": "1440px"
+      }
+    ],
+    "radii": [
+      {
+        "count": 22,
+        "value": "4px"
+      },
+      {
+        "count": 7,
+        "value": "0px 4px 4px 0px"
+      },
+      {
+        "count": 4,
+        "value": "32px"
+      },
+      {
+        "count": 4,
+        "value": "4px 0px 0px 4px"
+      },
+      {
+        "count": 1,
+        "value": "9999px"
+      },
+      {
+        "count": 1,
+        "value": "8px"
+      }
+    ],
+    "shadows": [],
+    "spacing": [
+      {
+        "count": 31,
+        "value": "10px"
+      },
+      {
+        "count": 31,
+        "value": "4px"
+      },
+      {
+        "count": 28,
+        "value": "16px"
+      },
+      {
+        "count": 20,
+        "value": "8px"
+      },
+      {
+        "count": 18,
+        "value": "12px"
+      },
+      {
+        "count": 5,
+        "value": "2px"
+      },
+      {
+        "count": 4,
+        "value": "28px"
+      },
+      {
+        "count": 4,
+        "value": "4.5px"
+      },
+      {
+        "count": 4,
+        "value": "6px"
+      },
+      {
+        "count": 4,
+        "value": "25px"
+      },
+      {
+        "count": 2,
+        "value": "20px"
+      },
+      {
+        "count": 2,
+        "value": "2.5008px"
+      },
+      {
+        "count": 2,
+        "value": "14px"
+      },
+      {
+        "count": 2,
+        "value": "34px"
+      },
+      {
+        "count": 2,
+        "value": "-1px"
+      },
+      {
+        "count": 1,
+        "value": "2.4px"
+      }
+    ],
+    "text_colors": [
+      {
+        "count": 15,
+        "value": "#161517"
+      },
+      {
+        "count": 4,
+        "value": "#808691"
+      },
+      {
+        "count": 3,
+        "value": "#437eef"
+      },
+      {
+        "count": 1,
+        "value": "#151515"
+      },
+      {
+        "count": 1,
+        "value": "#ffffff"
+      },
+      {
+        "count": 1,
+        "value": "#302e32"
+      },
+      {
+        "count": 1,
+        "value": "#888888"
+      },
+      {
+        "count": 1,
+        "value": "#9a9ea7"
+      }
+    ]
+  },
+  "forms": [],
+  "headings": [],
+  "health": {
+    "errors": [],
+    "failed_requests": [
+      {
+        "error": "net::ERR_BLOCKED_BY_ORB",
+        "type": "Script",
+        "url": "https://static.reo.dev/38b2e79cdb32fa7/reo.js"
+      }
+    ]
+  },
+  "lang": "en",
+  "layouts": [
+    {
+      "blocks": [
+        {
+          "background": "#ffffff",
+          "gap": 16,
+          "h": 60,
+          "pad": [
+            0,
+            12,
+            0,
+            12
+          ],
+          "per_row": 1,
+          "tag": "header",
+          "w": 1190,
+          "y": 0
+        }
+      ],
+      "page_h": 900,
+      "page_w": 1440,
+      "type": {
+        "body": 18,
+        "h1": 0,
+        "h2": 0,
+        "h3": 0
+      },
+      "width": 1440
+    }
+  ],
+  "links": [
+    {
+      "href": "http://localhost:18080/search",
+      "text": "ClickStack"
+    },
+    {
+      "href": "http://localhost:18080/search",
+      "text": "Search"
+    },
+    {
+      "href": "http://localhost:18080/search/list",
+      "text": "Saved searches"
+    },
+    {
+      "href": "http://localhost:18080/search/list",
+      "text": "Saved searches"
+    },
+    {
+      "href": "http://localhost:18080/chart",
+      "text": "Chart explorer"
+    },
+    {
+      "href": "http://localhost:18080/alerts",
+      "text": "Alerts"
+    },
+    {
+      "href": "http://localhost:18080/sessions",
+      "text": "Client sessions"
+    },
+    {
+      "href": "http://localhost:18080/service-map",
+      "text": "Service map Beta"
+    },
+    {
+      "href": "http://localhost:18080/dashboards/list",
+      "text": "Dashboards"
+    },
+    {
+      "href": "http://localhost:18080/dashboards/list",
+      "text": "Dashboards"
+    },
+    {
+      "href": "http://localhost:18080/team",
+      "text": "Team settings"
+    },
+    {
+      "href": "https://clickhouse.com/docs/use-cases/observability/clickstack/getting-started#deploy-with-clickhouse-cloud",
+      "text": "Get started for free"
+    }
+  ],
+  "meta": {
+    "description": "",
+    "icons": [
+      "http://localhost:18080/favicons/clickstack/favicon.ico",
+      "http://localhost:18080/favicons/clickstack/favicon.svg",
+      "http://localhost:18080/favicons/clickstack/favicon-32x32.png",
+      "http://localhost:18080/favicons/clickstack/favicon-16x16.png",
+      "http://localhost:18080/favicons/clickstack/apple-touch-icon.png"
+    ],
+    "og_image": "",
+    "og_title": "",
+    "theme_color": "#1a1a1a"
+  },
+  "outline": [
+    {
+      "box": {
+        "h": 28,
+        "w": 119,
+        "x": 16,
+        "y": 15
+      },
+      "class": "AppNav_logoLink__FMsYw",
+      "color": "#161517",
+      "depth": 9,
+      "font": "13px 400",
+      "href": "http://localhost:18080/search",
+      "tag": "a",
+      "text": "ClickStack"
+    },
+    {
+      "box": {
+        "h": 23,
+        "w": 20,
+        "x": 16,
+        "y": 17
+      },
+      "color": "#161517",
+      "depth": 12,
+      "font": "13px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 28,
+        "w": 91,
+        "x": 44,
+        "y": 15
+      },
+      "class": "mantine-focus-auto m_b6d8b162 mantine-Text-root",
+      "color": "#161517",
+      "depth": 12,
+      "font": "18px 500",
+      "tag": "p",
+      "text": "ClickStack"
+    },
+    {
+      "box": {
+        "h": 26,
+        "w": 26,
+        "x": 208,
+        "y": 16
+      },
+      "class": "AppNav_collapseButton__FDYcm",
+      "color": "#161517",
+      "depth": 9,
+      "font": "13px 400",
+      "tag": "button"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 213,
+        "y": 21
+      },
+      "color": "#161517",
+      "depth": 10,
+      "font": "13px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 34,
+        "w": 218,
+        "x": 16,
+        "y": 66
+      },
+      "class": "AppNav_navItem__qtSLL",
+      "color": "#161517",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "http://localhost:18080/search",
+      "tag": "a",
+      "text": "Search"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 32,
+        "y": 75
+      },
+      "color": "#161517",
+      "depth": 14,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 34,
+        "w": 218,
+        "x": 16,
+        "y": 102
+      },
+      "class": "AppNav_navItem__qtSLL",
+      "color": "#161517",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "http://localhost:18080/search/list",
+      "tag": "a",
+      "text": "Saved searches"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 32,
+        "y": 111
+      },
+      "color": "#161517",
+      "depth": 14,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 22,
+        "w": 22,
+        "x": 200,
+        "y": 108
+      },
+      "class": "AppNav_navItemToggle__tfzhc",
+      "color": "#696e79",
+      "depth": 12,
+      "font": "14px 400",
+      "tag": "button"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 204,
+        "y": 112
+      },
+      "color": "#696e79",
+      "depth": 13,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 42,
+        "w": 210,
+        "x": 20,
+        "y": 142
+      },
+      "class": "mantine-focus-auto m_b6d8b162 mantine-Text-root",
+      "color": "#808691",
+      "depth": 13,
+      "font": "12px 400",
+      "tag": "p",
+      "text": "No favorites. Star on Saved searches."
+    },
+    {
+      "box": {
+        "h": 32,
+        "w": 155,
+        "x": 40,
+        "y": 146
+      },
+      "class": "mantine-focus-auto m_849cf0da m_b6d8b162 mantine-Text-root mantine-Anchor-root",
+      "color": "#437eef",
+      "depth": 14,
+      "font": "12px 400",
+      "href": "http://localhost:18080/search/list",
+      "tag": "a",
+      "text": "Saved searches"
+    },
+    {
+      "box": {
+        "h": 34,
+        "w": 218,
+        "x": 16,
+        "y": 186
+      },
+      "class": "AppNav_navItem__qtSLL",
+      "color": "#161517",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "http://localhost:18080/chart",
+      "tag": "a",
+      "text": "Chart explorer"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 32,
+        "y": 195
+      },
+      "color": "#161517",
+      "depth": 14,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 34,
+        "w": 218,
+        "x": 16,
+        "y": 222
+      },
+      "class": "AppNav_navItem__qtSLL",
+      "color": "#161517",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "http://localhost:18080/alerts",
+      "tag": "a",
+      "text": "Alerts"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 32,
+        "y": 231
+      },
+      "color": "#161517",
+      "depth": 14,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 34,
+        "w": 218,
+        "x": 16,
+        "y": 258
+      },
+      "class": "AppNav_navItem__qtSLL",
+      "color": "#161517",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "http://localhost:18080/sessions",
+      "tag": "a",
+      "text": "Client sessions"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 32,
+        "y": 267
+      },
+      "color": "#161517",
+      "depth": 14,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "background": "#e6e7e9",
+      "box": {
+        "h": 34,
+        "w": 218,
+        "x": 16,
+        "y": 294
+      },
+      "class": "AppNav_navItem__qtSLL AppNav_navItemActive__GN7le",
+      "color": "#151515",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "http://localhost:18080/service-map",
+      "tag": "a",
+      "text": "Service map Beta"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 32,
+        "y": 303
+      },
+      "color": "#151515",
+      "depth": 14,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 34,
+        "w": 218,
+        "x": 16,
+        "y": 330
+      },
+      "class": "AppNav_navItem__qtSLL",
+      "color": "#161517",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "http://localhost:18080/dashboards/list",
+      "tag": "a",
+      "text": "Dashboards"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 32,
+        "y": 339
+      },
+      "color": "#161517",
+      "depth": 14,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 22,
+        "w": 22,
+        "x": 200,
+        "y": 336
+      },
+      "class": "AppNav_navItemToggle__tfzhc",
+      "color": "#696e79",
+      "depth": 12,
+      "font": "14px 400",
+      "tag": "button"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 204,
+        "y": 340
+      },
+      "color": "#696e79",
+      "depth": 13,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 42,
+        "w": 210,
+        "x": 20,
+        "y": 370
+      },
+      "class": "mantine-focus-auto m_b6d8b162 mantine-Text-root",
+      "color": "#808691",
+      "depth": 13,
+      "font": "12px 400",
+      "tag": "p",
+      "text": "No favorites. Star on Dashboards."
+    },
+    {
+      "box": {
+        "h": 15,
+        "w": 68,
+        "x": 40,
+        "y": 390
+      },
+      "class": "mantine-focus-auto m_849cf0da m_b6d8b162 mantine-Text-root mantine-Anchor-root",
+      "color": "#437eef",
+      "depth": 14,
+      "font": "12px 400",
+      "href": "http://localhost:18080/dashboards/list",
+      "tag": "a",
+      "text": "Dashboards"
+    },
+    {
+      "box": {
+        "h": 34,
+        "w": 218,
+        "x": 16,
+        "y": 413
+      },
+      "class": "mantine-focus-auto AppNav_navItem__qtSLL m_87cf2631 mantine-UnstyledButton-root",
+      "color": "#161517",
+      "depth": 11,
+      "font": "14px 400",
+      "id": "mantine-2cwzm9x6m",
+      "tag": "button",
+      "text": "Help"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 32,
+        "y": 422
+      },
+      "class": "AppNav_helpIcon__if0Vq",
+      "color": "#161517",
+      "depth": 14,
+      "font": "14px 400",
+      "role": "img",
+      "tag": "span"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 32,
+        "y": 422
+      },
+      "color": "#161517",
+      "depth": 15,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 6,
+        "w": 6,
+        "x": 45,
+        "y": 420
+      },
+      "color": "#151515",
+      "depth": 15,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 6,
+        "w": 6,
+        "x": 28,
+        "y": 435
+      },
+      "color": "#151515",
+      "depth": 15,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 5,
+        "w": 5,
+        "x": 26,
+        "y": 425
+      },
+      "color": "#151515",
+      "depth": 15,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 18,
+        "w": 18,
+        "x": 32,
+        "y": 457
+      },
+      "class": "mantine-focus-auto mantine-active m_8d3f4000 mantine-ActionIcon-root m_87cf2631 mantine-UnstyledButton-root",
+      "color": "#161517",
+      "depth": 15,
+      "font": "15px 400",
+      "tag": "button"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 34,
+        "y": 459
+      },
+      "color": "#161517",
+      "depth": 17,
+      "font": "15px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 18,
+        "w": 18,
+        "x": 62,
+        "y": 457
+      },
+      "class": "mantine-focus-auto mantine-active m_8d3f4000 mantine-ActionIcon-root m_87cf2631 mantine-UnstyledButton-root",
+      "color": "#161517",
+      "depth": 14,
+      "font": "15px 400",
+      "tag": "button"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 64,
+        "y": 459
+      },
+      "color": "#161517",
+      "depth": 16,
+      "font": "15px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 62,
+        "x": 84,
+        "y": 459
+      },
+      "class": "mantine-focus-auto AppNav_feedbackLabel__Yj7Ca m_b6d8b162 mantine-Text-root",
+      "color": "#808691",
+      "depth": 14,
+      "font": "12px 400",
+      "tag": "p",
+      "text": "Feedback?"
+    },
+    {
+      "box": {
+        "h": 17,
+        "w": 26,
+        "x": 192,
+        "y": 458
+      },
+      "class": "mantine-focus-auto AppNav_feedbackHide__63CbV m_b6d8b162 mantine-Text-root",
+      "color": "#808691",
+      "depth": 13,
+      "font": "12px 400",
+      "role": "button",
+      "tag": "p",
+      "text": "Hide"
+    },
+    {
+      "box": {
+        "h": 34,
+        "w": 218,
+        "x": 16,
+        "y": 485
+      },
+      "class": "AppNav_navItem__qtSLL",
+      "color": "#161517",
+      "depth": 11,
+      "font": "14px 400",
+      "href": "http://localhost:18080/team",
+      "tag": "a",
+      "text": "Team settings"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 32,
+        "y": 494
+      },
+      "color": "#161517",
+      "depth": 14,
+      "font": "14px 400",
+      "tag": "svg"
+    },
+    {
+      "background": "#302e32",
+      "box": {
+        "h": 30,
+        "w": 141,
+        "x": 53,
+        "y": 795
+      },
+      "class": "mantine-focus-auto mantine-active m_77c9d27d mantine-Button-root m_87cf2631 mantine-UnstyledButton-root",
+      "color": "#ffffff",
+      "depth": 13,
+      "font": "12px 600",
+      "href": "https://clickhouse.com/docs/use-cases/observability/clickstack/getting-started#deploy-with-clickhouse-cloud",
+      "tag": "a",
+      "text": "Get started for free"
+    },
+    {
+      "box": {
+        "h": 13,
+        "w": 156,
+        "x": 53,
+        "y": 858
+      },
+      "class": "mantine-focus-auto AppNav_userMenuName__7bXub m_b6d8b162 mantine-Text-root",
+      "color": "#161517",
+      "depth": 11,
+      "font": "12px 700",
+      "tag": "p",
+      "text": "User"
+    },
+    {
+      "box": {
+        "h": 15,
+        "w": 156,
+        "x": 53,
+        "y": 872
+      },
+      "class": "mantine-focus-auto AppNav_userMenuTeam__qL_0p m_b6d8b162 mantine-Text-root",
+      "color": "#161517",
+      "depth": 11,
+      "font": "11px 400",
+      "tag": "p",
+      "text": "Local App Team"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 219,
+        "y": 866
+      },
+      "color": "#161517",
+      "depth": 10,
+      "font": "13px 400",
+      "tag": "svg"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 60,
+        "w": 1190,
+        "x": 250,
+        "y": 0
+      },
+      "class": "PageHeader_header__Rc2pT",
+      "color": "#161517",
+      "depth": 8,
+      "display": "flex",
+      "flex": "row",
+      "font": "13px 500",
+      "tag": "header"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 269,
+        "y": 22
+      },
+      "color": "#808691",
+      "depth": 14,
+      "font": "13px 500",
+      "tag": "svg"
+    },
+    {
+      "background": "#fbfcff",
+      "box": {
+        "h": 30,
+        "w": 203,
+        "x": 262,
+        "y": 15
+      },
+      "class": "SourceSelectControlled_sourceSelectInput__wjWdw m_8fb7ebe7 mantine-Input-input mantine-Select-input",
+      "color": "#161517",
+      "depth": 13,
+      "font": "12px 500",
+      "id": "mantine-8ttrihljq",
+      "name": "",
+      "placeholder": "Data Source",
+      "role": "combobox",
+      "tag": "input",
+      "type": "text"
+    },
+    {
+      "box": {
+        "h": 18,
+        "w": 18,
+        "x": 441,
+        "y": 21
+      },
+      "color": "#808691",
+      "depth": 14,
+      "font": "13px 500",
+      "tag": "svg"
+    },
+    {
+      "background": "#ffffff",
+      "box": {
+        "h": 30,
+        "w": 30,
+        "x": 464,
+        "y": 15
+      },
+      "class": "mantine-focus-auto mantine-active SourceSelectControlled_sourceMenuButton__k1w4M m_8d3f4000 mantine-ActionIcon-root m_87",
+      "color": "#161517",
+      "depth": 11,
+      "font": "15px 500",
+      "tag": "button"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 472,
+        "y": 23
+      },
+      "color": "#161517",
+      "depth": 13,
+      "font": "15px 500",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 87,
+        "x": 767,
+        "y": 20
+      },
+      "class": "mantine-focus-auto m_b6d8b162 mantine-Text-root",
+      "color": "#161517",
+      "depth": 11,
+      "font": "13px 400",
+      "tag": "p",
+      "text": "Sampling 10%"
+    },
+    {
+      "background": "#151515",
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 958,
+        "y": 22
+      },
+      "class": "mantine-focus-auto m_c9a9a60a mantine-Slider-thumb",
+      "color": "#151515",
+      "depth": 15,
+      "font": "13px 500",
+      "role": "slider",
+      "tag": "div"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 1088,
+        "y": 22
+      },
+      "color": "#808691",
+      "depth": 14,
+      "font": "13px 500",
+      "tag": "svg"
+    },
+    {
+      "background": "#fbfcff",
+      "box": {
+        "h": 36,
+        "w": 350,
+        "x": 1078,
+        "y": 12
+      },
+      "class": "m_8fb7ebe7 mantine-Input-input mantine-TextInput-input",
+      "color": "#161517",
+      "depth": 13,
+      "font": "13px 500",
+      "id": "mantine-udcct17ak",
+      "name": "",
+      "placeholder": "Time Range",
+      "tag": "input",
+      "type": "text"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 210,
+        "x": 273,
+        "y": 78
+      },
+      "class": "mantine-MultiSelect-inputField m_45c4369d mantine-PillsInputField-field",
+      "color": "#161517",
+      "depth": 14,
+      "font": "12px 400",
+      "id": "mantine-raza7uavw",
+      "name": "",
+      "placeholder": "All Services",
+      "role": "combobox",
+      "tag": "input",
+      "type": "text"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 490,
+        "y": 80
+      },
+      "color": "#808691",
+      "depth": 13,
+      "font": "13px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 30,
+        "w": 80,
+        "x": 529,
+        "y": 72
+      },
+      "class": "m_8fb7ebe7 mantine-Input-input mantine-Select-input",
+      "color": "#161517",
+      "depth": 15,
+      "font": "12px 500",
+      "id": "mantine-td55zafdj",
+      "name": "",
+      "placeholder": "",
+      "role": "combobox",
+      "tag": "input",
+      "type": "text"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 587,
+        "y": 80
+      },
+      "color": "#808691",
+      "depth": 16,
+      "font": "13px 400",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 18,
+        "w": 18,
+        "x": 609,
+        "y": 78
+      },
+      "class": "mantine-focus-auto mantine-active m_8d3f4000 mantine-ActionIcon-root m_87cf2631 mantine-UnstyledButton-root",
+      "color": "#161517",
+      "depth": 13,
+      "font": "15px 400",
+      "tag": "button"
+    },
+    {
+      "box": {
+        "h": 14,
+        "w": 14,
+        "x": 611,
+        "y": 80
+      },
+      "color": "#161517",
+      "depth": 15,
+      "font": "15px 400",
+      "tag": "svg"
+    },
+    {
+      "background": "#fbfcff",
+      "box": {
+        "h": 28,
+        "w": 392,
+        "x": 631,
+        "y": 73
+      },
+      "class": "m_8fb7ebe7 mantine-Input-input mantine-Textarea-input",
+      "color": "#161517",
+      "depth": 15,
+      "font": "12px 400",
+      "id": "mantine-14znnsp14",
+      "name": "",
+      "placeholder": "Filter spans w/ Lucene (ex. http.method:GET)",
+      "tag": "textarea",
+      "type": "textarea"
+    },
+    {
+      "box": {
+        "h": 16,
+        "w": 16,
+        "x": 1100,
+        "y": 79
+      },
+      "color": "#161517",
+      "depth": 15,
+      "font": "12px 700",
+      "tag": "svg"
+    },
+    {
+      "box": {
+        "h": 25,
+        "w": 307,
+        "x": 1120,
+        "y": 75
+      },
+      "class": "cm-content cm-lineWrapping",
+      "color": "#161517",
+      "depth": 17,
+      "font": "12px 400",
+      "role": "textbox",
+      "tag": "div",
+      "text": "ResourceAttributes['k8s.pod.name']"
+    },
+    {
+      "box": {
+        "h": 19,
+        "w": 678,
+        "x": 506,
+        "y": 497
+      },
+      "class": "mantine-focus-auto m_b6d8b162 mantine-Text-root",
+      "color": "#9a9ea7",
+      "depth": 10,
+      "font": "13px 400",
+      "tag": "p",
+      "text": "No services found. The Service Map shows links between services with related Client- and Server-kind spans."
+    },
+    {
+      "box": {
+        "h": 50,
+        "w": 332,
+        "x": 1108,
+        "y": 850
+      },
+      "class": "toast-viewport__bflY9 toast-viewport_align_end__QPpTu",
+      "color": "#161517",
+      "depth": 4,
+      "display": "flex",
+      "flex": "column",
+      "font": "13px 400",
+      "tag": "ol"
+    },
+    {
+      "box": {
+        "h": 1,
+        "w": 1,
+        "x": -1,
+        "y": -1
+      },
+      "color": "#161517",
+      "depth": 3,
+      "font": "13px 400",
+      "id": "__next-route-announcer__",
+      "role": "alert",
+      "tag": "p",
+      "text": "Service Map - ClickStack"
+    }
+  ],
+  "page": {
+    "h": 900,
+    "w": 1440
+  },
+  "text": "ClickStack Search Saved searches No favorites. Star on Saved searches. Chart explorer Alerts Client sessions Service map Beta Dashboards No favorites. Star on Dashboards. Help Feedback? Hide Team settings Ready to deploy on ClickHouse Cloud? Get started for free U User Local App Team Sampling 10% Group by ResourceAttributes['k8s.pod.name'] No services found. The Service Map shows links between services with related Client- and Server-kind spans. Service Map - ClickStack",
+  "title": "Service Map - ClickStack",
+  "unreadable_stylesheets": 0,
+  "url": "http://localhost:18080/service-map?source=6af86ba87cb07b3cb7606d15",
+  "viewport": {
+    "h": 900,
+    "w": 1440
+  }
+}

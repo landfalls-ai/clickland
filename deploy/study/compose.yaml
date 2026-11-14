@@ -1,0 +1,15 @@
+# The reference stack we study: ClickStack (ClickHouse + HyperDX UI + OTel collector) in one container, no auth.
+# Local only (OrbStack). Run: docker compose -p clickland-study -f deploy/study/compose.yaml up -d
+services:
+  clickstack:
+    image: clickhouse/clickstack-local:latest
+    ports:
+      - "127.0.0.1:18080:8080"   # ClickStack UI
+      - "127.0.0.1:14317:4317"   # OTLP gRPC
+      - "127.0.0.1:14318:4318"   # OTLP HTTP
+      - "127.0.0.1:18123:8123"   # ClickHouse HTTP
+      - "127.0.0.1:19000:9000"   # ClickHouse native
+    volumes:
+      - clickstack-data:/data
+volumes:
+  clickstack-data:

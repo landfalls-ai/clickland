@@ -1,0 +1,13 @@
+# Upstream sources we study: re-fetch with scripts/fetch-upstream.sh
+/upstream/
+# Downloaded tool binaries: re-fetch with scripts/fetch-tools.sh
+/tools/craft-anything/craft-anything-cli-*/
+/tools/craft-anything/*.zip
+/tools/craft-anything/SHA256SUMS.txt
+.DS_Store
+node_modules/
+.env
+
+# Source graphs copy string literals out of upstream (including test fixtures that look like secrets): regenerate with
+# scripts/study-source-graph.sh
+/study/clickstack-source-graph/
