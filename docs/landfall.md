@@ -60,3 +60,40 @@ room for an alert Clickland already sent.
 A note can point at the room it came from: `POST /api/notes` with `"links": [{ "label": "Landfall room", "url":
 "<the room's workspaceUrl>" }]`. Knowledge search returns the links in the result's `metadata.links`, so the next
 alert on that service finds the note and the room behind it (Landflow's postmortem-to-note flow can write these).
+
+## The Landfall pack: a dashboard and an alert
+
+`scripts/seed-landfall.mjs` creates them through the API:
+
+```bash
+node scripts/seed-landfall.mjs              # create what is missing
+node scripts/seed-landfall.mjs --update     # also reset existing ones to the pack
+node scripts/seed-landfall.mjs --dry-run    # say what it would do
+```
+
+`CLICKLAND_API_URL` (default `http://127.0.0.1:4710`) and `CLICKLAND_API_KEY` (a key with `views:write` and
+`alerts:write`; unset when the API runs without auth). It finds both by name, so running it again changes nothing, and
+a dashboard someone edited keeps their edits unless `--update` is given (which also resets the alert's state, so its
+groups forget their rooms).
+
+- **"Landfall"**, a pinned view (a dashboard) over the last hour of `service:core-api`: requests (server spans), errors
+  (error spans by kind), p95 latency (`http.server.duration`, p95), the count of error log lines, the latest error
+  logs, error spans, slow requests (server spans over 500 ms) and the error patterns.
+- **"Landfall errors"**, an alert: more than 20 error spans from core-api in 5 minutes, `sev2`, label
+  `product: landfall`, no runbook yet. A burst of 5xx answers shows as server spans in error. At `sev2` it takes the
+  triage route (Landflow decides); mark it `direct: true` for the design's check where the burst opens a room with
+  Landflow stopped.
+
+## Limits
+
+- **Not verified inside a running Landfall.** The Source Protocol face passed Landfall's own adapter and remote-source
+  plugin code and its OpenAPI file, but no connection was created in a live Landfall, and the direct route was tested
+  against an in-process stand-in for `POST /triggers`, not a real room.
+- **Landflow must honour `data.route`.** A direct alert also reaches Landflow's standard webhook (with
+  `route: "direct"`); until Landflow's triage skips those, the room could open twice.
+- **Restart the API before adding a `landfall` webhook.** An API process older than the `landfall` format would send
+  its deliveries as standard signed webhooks, without the ingest token.
+- **Editing an alert resets its state**, so its groups forget their rooms: the next firing opens a new room unless
+  Landfall still has one open for the same `dedupKey` (it then attaches, and the link comes back).
+- **Runbooks travel in the summary.** `SourceTriggerPayload` has no links field; Clickland writes the runbook into
+  `summary`. An optional `links[]` there would be Landfall's change to make.
