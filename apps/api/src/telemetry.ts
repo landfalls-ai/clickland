@@ -19,6 +19,7 @@ import {
   facetsQuery,
   histogramQuantile,
   histogramQuery,
+  logServicesQuery,
   metricNamesQuery,
   metricQuery,
   minePatterns,
@@ -27,6 +28,7 @@ import {
   SearchSyntaxError,
   searchRowsQuery,
   serviceLogErrorsQuery,
+  serviceSeriesQuery,
   servicesQuery,
   SIGNALS,
   totalQuery,
@@ -152,10 +154,12 @@ export class Telemetry {
     from?: string | null;
     to?: string | null;
     groupBy?: string | null;
+    /** Internal: a fixed bucket (the Source Protocol's `step`), else one that draws the range in ~120 points. */
+    bucketSeconds?: number;
   }): Promise<SeriesResponse> {
     const schema = SIGNALS[input.signal];
     const raw = resolveRange(input);
-    const bucketSeconds = chooseBucketSeconds(raw);
+    const bucketSeconds = input.bucketSeconds ?? chooseBucketSeconds(raw);
     const range = alignRange(raw, bucketSeconds);
     const q = wrapSearchErrors(() =>
       histogramQuery(schema, input.query, range, bucketSeconds, input.groupBy ?? undefined),
@@ -277,9 +281,9 @@ export class Telemetry {
     return { metrics: rows };
   }
 
-  async metric(input: MetricQueryRequest): Promise<SeriesResponse> {
+  async metric(input: MetricQueryRequest & { bucketSeconds?: number }): Promise<SeriesResponse> {
     const raw = resolveRange(input);
-    const bucketSeconds = chooseBucketSeconds(raw);
+    const bucketSeconds = input.bucketSeconds ?? chooseBucketSeconds(raw);
     const range = alignRange(raw, bucketSeconds);
     const q = wrapSearchErrors(() =>
       metricQuery({
@@ -343,6 +347,40 @@ export class Telemetry {
       sampled,
       total,
     };
+  }
+
+  /** One service's requests and errors per minute and p95 latency per bucket, from its spans. */
+  async serviceSeries(
+    service: string,
+    input: { from?: string | null; to?: string | null; bucketSeconds?: number },
+  ): Promise<SeriesResponse> {
+    const raw = resolveRange(input);
+    const bucketSeconds = input.bucketSeconds ?? chooseBucketSeconds(raw);
+    const range = alignRange(raw, bucketSeconds);
+    const { rows } = await runQuery<{ t: string; requests: number; errors: number; p95: number }>(
+      this.ch,
+      serviceSeriesQuery(service, range, bucketSeconds),
+    );
+    const perMinute = 60 / bucketSeconds;
+    const at = (t: string) => iso(t.slice(0, 19));
+    const round = (n: number) => Math.round(n * 1000) / 1000;
+    return {
+      bucketSeconds,
+      series: [
+        { key: 'requests per minute', points: rows.map((r) => [at(r.t), round(Number(r.requests) * perMinute)]) },
+        { key: 'errors per minute', points: rows.map((r) => [at(r.t), round(Number(r.errors) * perMinute)]) },
+        {
+          key: 'p95 latency (ms)',
+          points: rows.filter((r) => Number.isFinite(Number(r.p95))).map((r) => [at(r.t), round(Number(r.p95))]),
+        },
+      ],
+    };
+  }
+
+  /** The services that wrote logs in the range, busiest first. */
+  async logServices(input: { from?: string | null; to?: string | null }): Promise<{ service: string; rows: number }[]> {
+    const { rows } = await runQuery<{ service: string; c: number }>(this.ch, logServicesQuery(resolveRange(input)));
+    return rows.map((r) => ({ service: r.service, rows: Number(r.c) }));
   }
 
   async sampleRows(signal: Signal, query: string, range: TimeRange, limit: number): Promise<LogRow[] | SpanRow[]> {

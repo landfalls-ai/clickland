@@ -394,3 +394,36 @@ export function totalQuery(schema: SignalSchema, query: string, range: TimeRange
     params: { ...filter.params, ...time.params },
   };
 }
+
+/**
+ * One service's RED figures per bucket, from its server/consumer spans (root spans when it has none): requests,
+ * error spans and the p95 duration in milliseconds. What a "service health" chart draws.
+ */
+export function serviceSeriesQuery(service: string, range: TimeRange, bucketSeconds: number): Query {
+  return {
+    sql: `SELECT toStartOfInterval(Timestamp, toIntervalSecond({bucket:UInt32})) AS t,
+  count() AS requests,
+  countIf(StatusCode = 'Error') AS errors,
+  quantile(0.95)(Duration / 1e6) AS p95
+FROM otel_traces
+WHERE Timestamp >= {from:DateTime64(9)} AND Timestamp < {to:DateTime64(9)} AND ServiceName = {service:String}
+  AND (SpanKind IN ('Server', 'Consumer', 'SPAN_KIND_SERVER', 'SPAN_KIND_CONSUMER') OR ParentSpanId = '')
+GROUP BY t
+ORDER BY t
+LIMIT 10000`,
+    params: { service, from: chTime(range.from), to: chTime(range.to), bucket: bucketSeconds },
+  };
+}
+
+/** The services that wrote logs in the range, with their row counts (Clickland's log "streams"). */
+export function logServicesQuery(range: TimeRange): Query {
+  return {
+    sql: `SELECT ServiceName AS service, count() AS c
+FROM otel_logs
+WHERE Timestamp >= {from:DateTime64(9)} AND Timestamp < {to:DateTime64(9)}
+GROUP BY service
+ORDER BY c DESC
+LIMIT 1000`,
+    params: { from: chTime(range.from), to: chTime(range.to) },
+  };
+}

@@ -1,6 +1,8 @@
 /** The Clickland API's wire contracts. docs/reference/api.md describes them; these schemas are what the API enforces. */
 import { z } from 'zod';
 
+export * from './landfall.js';
+
 export const Signal = z.enum(['logs', 'traces']);
 export type Signal = z.infer<typeof Signal>;
 

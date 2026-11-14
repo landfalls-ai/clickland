@@ -17,7 +17,7 @@ schemas in `libs/contracts/src` are the source of truth; this page describes the
 
 | Scope | Allows |
 |---|---|
-| `read` | every `GET`, search, traces, metrics, patterns, services, knowledge search |
+| `read` | every `GET`, search, traces, metrics, patterns, services, knowledge search, the Landfall Source Protocol (`/v1`) |
 | `alerts:write` | create, change, delete alerts |
 | `webhooks:write` | create and delete webhook subscriptions |
 | `notes:write` | add notes |
@@ -232,6 +232,61 @@ words, and the services the question names. The shape is what Landflow's knowled
 (`io.modelcontextprotocol/ui`): `render_view`, `search_logs`, `search_traces`, `get_trace`, `list_services` and
 `query_metric` declare `ui://clickland/view` as their UI, so a host that supports MCP Apps draws the result as a live
 view; other hosts get the same structured content as JSON text.
+
+## Landfall Source Protocol (`/v1`)
+
+Clickland is a Landfall **remote source**: it implements Landfall's Source Protocol v1 over HTTP, exactly as
+Landfall's `libs/signals/protocol/source-protocol.openapi.yaml` defines it, so a Landfall organisation can connect it
+by URL (Integrations → Remote source, transport `http`, base URL `http://127.0.0.1:4710` locally) and its investigator,
+chart and log widgets and joining agents read Clickland. How to connect: [../landfall.md](../landfall.md).
+
+- Auth: `Authorization: Bearer ck_…`, a key with the `read` scope (the connection's bearer token). `/v1` always needs a
+  key, also with `CLICKLAND_AUTH=dev`. A wrong key is `401`, a key without `read` is `403`.
+- Errors answer the protocol's shape, `{ "error": "…" }`: `400` for a body that does not match the protocol, `404`
+  for an unknown operation or route. A problem Clickland can name while reading (a search syntax error, a missing
+  param, an unknown metric, a failed query) is a `200` `RawResult` with `partial: true`, `error` and `raw: null`, so
+  Landfall shows the reason instead of an empty panel.
+- Every read answers a `RawResult`: `{ source: "clickland", operation, params, fetchedAt, raw, partial?, error?,
+  series?, entries? }`. `raw` is the matching Clickland API answer; `series` (`{ label, unit?, points: [{ t, v }] }`)
+  and `entries` (`{ t, line, labels, stream }`) are sorted by time and are what Landfall's widgets draw.
+- `tenant.ref` is accepted and ignored (Clickland has one tenant).
+
+| Route | Answers |
+|---|---|
+| `GET /v1/health` | `{ ok, detail }`: whether ClickHouse answers (`ok: false` when it does not) |
+| `GET /v1/capabilities` | `{ protocolVersion: "1", source: "clickland", kinds: ["metrics", "logs"], operations }` |
+| `POST /v1/invoke` | `{ operation, params, tenant }` → one operation below |
+| `POST /v1/metrics/list` | `listMetrics`; `namespace` is a service, `match` a substring of the name |
+| `POST /v1/metrics/range` | `{ expr, selector?, window: { fromMs, toMs }, step? }` → `series` (the expression form below) |
+| `POST /v1/logs/streams` | `listStreams`; a stream is a service that wrote logs in the last day |
+| `POST /v1/logs/range` | `{ query, window, limit? }` → `searchLogs` with `entries`; `query` is a Clickland search |
+
+Operations (`POST /v1/invoke`; every windowed one names its window `from`/`to` in ISO 8601, so Landfall fills them;
+epoch seconds, milliseconds and nanoseconds are read too):
+
+| Operation | Kind | Params | Shaped |
+|---|---|---|---|
+| `listMetrics` (canonical list) | metrics | `match?`, `service?` | |
+| `queryMetric` (canonical range) | metrics | `metric`, `aggregation?` (default p95 / rate / avg by type), `type?`, `service?`, `groupBy?` | `series` |
+| `countOverTime` | metrics | `signal` (`logs`, `traces`), `query`, `groupBy?` | `series` |
+| `serviceHealth` | metrics | `service` | `series`: requests per minute, errors per minute, p95 latency (ms) |
+| `listServices` | metrics | | |
+| `listStreams` (canonical streams) | logs | `prefix?` | |
+| `searchLogs` (canonical range) | logs | `query`, `limit?` (1–500, default 100) | `entries` |
+| `searchSpans` | logs | `query`, `limit?` | `entries` (`name 12.3 ms Error: message`) |
+| `getTrace` | logs | `traceId` | `entries`, one per span |
+| `eventPatterns` | logs | `signal?`, `query` | |
+
+`metrics/range` reads `expr` in a small Clickland form, or, when `expr` is empty, `selector` as one operation's params
+(optionally naming it as `operation`):
+
+- `health(core-api)`: `serviceHealth`;
+- `logs: service:core-api level:error`, `traces: status:error`: `countOverTime`;
+- `http.server.duration`, `p95(http.server.duration{service="core-api"}) by (http.route)`: `queryMetric` (only
+  `service="…"` filters a metric).
+
+`step` (seconds) picks the smallest Clickland bucket at least that long; without it a window is drawn in about 120
+points.
 
 ## Assistant
 

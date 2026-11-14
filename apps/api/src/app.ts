@@ -23,6 +23,7 @@ import { authenticate, type Principal, requireScope } from './auth.js';
 import { ApiError } from './errors.js';
 import { createMcpServer, VERSION } from './mcp.js';
 import type { Services } from './services.js';
+import { registerSourceProtocol } from './source-protocol.js';
 
 declare module 'fastify' {
   interface FastifyRequest {
@@ -95,6 +96,9 @@ export async function buildApp(services: Services, options: AppOptions): Promise
   const need = (request: FastifyRequest, scope: ApiScope) => requireScope(request.principal, scope);
 
   for (const plugin of options.plugins ?? []) await plugin(app);
+
+  // Landfall's Source Protocol (`/v1/*`): Clickland as a remote source in Landfall's war room.
+  await registerSourceProtocol(app, services);
 
   app.get('/api/health', async (_request, reply) => {
     const check = async (fn: () => Promise<unknown>) =>
@@ -280,13 +284,11 @@ export async function buildApp(services: Services, options: AppOptions): Promise
     await transport.handleRequest(request.raw, reply.raw, request.body);
   });
   const noSessions = async (_r: FastifyRequest, reply: { status: (n: number) => { send: (b: unknown) => unknown } }) =>
-    reply
-      .status(405)
-      .send({
-        jsonrpc: '2.0',
-        error: { code: -32000, message: 'Clickland’s MCP server is stateless: POST only' },
-        id: null,
-      });
+    reply.status(405).send({
+      jsonrpc: '2.0',
+      error: { code: -32000, message: 'Clickland’s MCP server is stateless: POST only' },
+      id: null,
+    });
   app.get('/api/mcp', noSessions);
   app.delete('/api/mcp', noSessions);
 

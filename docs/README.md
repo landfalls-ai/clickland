@@ -8,6 +8,8 @@
 | [research/clickstack.md](research/clickstack.md) | ClickStack (HyperDX): the OTel schema, the collector, the search-to-SQL compiler, patterns, alerts, MCP |
 | [research/clickhouse-products.md](research/clickhouse-products.md) | Every ClickHouse, Inc. product as of November 2026, a parity matrix with a verdict for each, and the ranked build list |
 | [plan.md](plan.md) | The proposed architecture and waves |
+| [landfall.md](landfall.md) | Clickland and Landfall: Clickland as a remote source, alerts straight to a war room, the Landfall dashboard and alert pack |
+| [reference/api.md](reference/api.md) | The API contract, including Landfall's Source Protocol face (`/v1`) |
 | [history.md](history.md) | Every change, in order |
 | [../study/README.md](../study/README.md) | The evidence: Craft Anything captures, source graphs, live probes |
 - [console.md](console.md): the web app's pages, its MCP App views, and the API gaps it still has
