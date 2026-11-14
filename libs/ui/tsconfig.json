@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "types": ["@testing-library/jest-dom"],
+    "noEmit": true,
+    "declaration": false,
+    "paths": { "@clickland/contracts": ["../contracts/src/index.ts"] }
+  },
+  "include": ["src", "test", "vitest.config.ts"]
+}

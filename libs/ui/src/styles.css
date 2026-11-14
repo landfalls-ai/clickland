@@ -1,0 +1,22 @@
+/*
+ * @clickland/ui/styles.css: import after Tailwind and the land tokens. It points Tailwind at this package's sources
+ * (so their classes are generated in the app that imports them) and tunes uPlot to the tokens.
+ */
+@source './';
+
+.uplot {
+  font-family: var(--font-mono);
+}
+.uplot .u-select {
+  background: var(--acdim);
+}
+.uplot .u-cursor-x,
+.uplot .u-cursor-y {
+  border-color: var(--bd) !important;
+}
+.uplot .u-cursor-y {
+  display: none;
+}
+.uplot .u-cursor-pt {
+  border-color: var(--sf) !important;
+}

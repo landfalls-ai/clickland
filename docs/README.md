@@ -10,5 +10,6 @@
 | [plan.md](plan.md) | The proposed architecture and waves |
 | [history.md](history.md) | Every change, in order |
 | [../study/README.md](../study/README.md) | The evidence: Craft Anything captures, source graphs, live probes |
+- [console.md](console.md): the web app's pages, its MCP App views, and the API gaps it still has
 - [sources.md](sources.md): what sends data to Clickland (the land apps, Docker, Kubernetes) and how
 - [research/land-family-integrations.md](research/land-family-integrations.md): how each land project connects to Clickland (Landfall's war room first), with a phased plan and open questions
