@@ -1,0 +1,158 @@
+# clickland-cluster-metrics: the OrbStack cluster's metrics and events, sent to Clickland's collector.
+#   kubelet_stats node, pod and container CPU, memory, filesystem and network (from the kubelet)
+#   k8s_cluster   deployments, replicas, pod phases, container restarts and readiness, namespaces
+#   k8s_objects   Kubernetes events, as logs (service.name "kubernetes-events")
+# One replica: OrbStack has one node. With more nodes, kubeletstats belongs in a DaemonSet.
+# Apply: kubectl --context orbstack apply -k deploy/k8s/cluster-metrics
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: clickland-cluster-metrics
+  namespace: clickland-dev
+---
+# Read-only: list and watch what k8s_cluster and k8sobjects report, and read node stats from the kubelet.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: clickland-cluster-metrics
+rules:
+  - apiGroups: ['']
+    resources: [events, namespaces, namespaces/status, nodes, nodes/spec, nodes/stats, nodes/proxy, pods, pods/status, replicationcontrollers, replicationcontrollers/status, resourcequotas, services]
+    verbs: [get, list, watch]
+  - apiGroups: [apps]
+    resources: [daemonsets, deployments, replicasets, statefulsets]
+    verbs: [get, list, watch]
+  - apiGroups: [batch]
+    resources: [jobs, cronjobs]
+    verbs: [get, list, watch]
+  - apiGroups: [autoscaling]
+    resources: [horizontalpodautoscalers]
+    verbs: [get, list, watch]
+  - apiGroups: [events.k8s.io]
+    resources: [events]
+    verbs: [get, list, watch]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: clickland-cluster-metrics
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: clickland-cluster-metrics
+subjects:
+  - kind: ServiceAccount
+    name: clickland-cluster-metrics
+    namespace: clickland-dev
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: clickland-cluster-metrics
+  namespace: clickland-dev
+data:
+  config.yaml: |
+    receivers:
+      kubelet_stats:
+        collection_interval: 30s
+        auth_type: serviceAccount
+        endpoint: https://${env:K8S_NODE_NAME}:10250
+        insecure_skip_verify: true
+        metric_groups: [node, pod, container]
+        metrics:
+          k8s.pod.cpu_limit_utilization: { enabled: true }
+          k8s.pod.memory_limit_utilization: { enabled: true }
+          k8s.container.cpu_limit_utilization: { enabled: true }
+          k8s.container.memory_limit_utilization: { enabled: true }
+      k8s_cluster:
+        collection_interval: 30s
+        node_conditions_to_report: [Ready, MemoryPressure, DiskPressure]
+        allocatable_types_to_report: [cpu, memory]
+      k8s_objects:
+        objects:
+          - name: events
+            mode: watch
+            group: events.k8s.io
+    processors:
+      memory_limiter:
+        check_interval: 5s
+        limit_mib: 200
+      resource/metrics:
+        attributes:
+          - { key: service.name, value: kubernetes, action: upsert }
+          - { key: k8s.cluster.name, value: orbstack, action: upsert }
+      # An event arrives as one object; its note is the log body, its reason and object become attributes.
+      transform/events:
+        error_mode: ignore
+        log_statements:
+          - context: log
+            statements:
+              - set(resource.attributes["service.name"], "kubernetes-events")
+              - set(resource.attributes["k8s.cluster.name"], "orbstack")
+              - set(attributes["k8s.event.reason"], body["object"]["reason"])
+              - set(attributes["k8s.event.type"], body["object"]["type"])
+              - set(attributes["k8s.namespace.name"], body["object"]["regarding"]["namespace"])
+              - set(attributes["k8s.object.kind"], body["object"]["regarding"]["kind"])
+              - set(attributes["k8s.object.name"], body["object"]["regarding"]["name"])
+              - set(severity_text, "WARN") where body["object"]["type"] == "Warning"
+              - set(severity_number, 13) where body["object"]["type"] == "Warning"
+              - set(severity_text, "INFO") where body["object"]["type"] == "Normal"
+              - set(severity_number, 9) where body["object"]["type"] == "Normal"
+              - 'set(body, Concat([body["object"]["reason"], ": ", body["object"]["note"], " (", body["object"]["regarding"]["kind"], "/", body["object"]["regarding"]["name"], ")"], ""))'
+      batch:
+        timeout: 10s
+    exporters:
+      otlp_http:
+        endpoint: ${env:CLICKLAND_OTLP_ENDPOINT}
+    service:
+      telemetry:
+        logs:
+          level: warn
+      pipelines:
+        metrics:
+          receivers: [kubelet_stats, k8s_cluster]
+          processors: [memory_limiter, resource/metrics, batch]
+          exporters: [otlp_http]
+        logs:
+          receivers: [k8s_objects]
+          processors: [memory_limiter, transform/events, batch]
+          exporters: [otlp_http]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clickland-cluster-metrics
+  namespace: clickland-dev
+  labels: { app: clickland-cluster-metrics }
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { app: clickland-cluster-metrics }
+  template:
+    metadata:
+      labels: { app: clickland-cluster-metrics }
+    spec:
+      serviceAccountName: clickland-cluster-metrics
+      containers:
+        - name: collector
+          image: otel/opentelemetry-collector-contrib:0.162.0
+          args: ['--config=/etc/clickland/config.yaml']
+          env:
+            - name: K8S_NODE_NAME
+              valueFrom: { fieldRef: { fieldPath: spec.nodeName } }
+            # Clickland's collector runs in Docker on this machine (compose project clickland-infra).
+            - name: CLICKLAND_OTLP_ENDPOINT
+              value: http://host.orb.internal:24318
+          resources:
+            requests: { cpu: 20m, memory: 64Mi }
+            limits: { memory: 256Mi }
+          securityContext:
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: [ALL] }
+          volumeMounts:
+            - { name: config, mountPath: /etc/clickland }
+      volumes:
+        - name: config
+          configMap: { name: clickland-cluster-metrics }

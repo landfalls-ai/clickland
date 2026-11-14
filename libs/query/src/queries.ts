@@ -278,7 +278,11 @@ export function metricQuery(input: MetricQueryInput): Query {
   if (input.groupBy) {
     if (!/^[\w.\-@/]+$/.test(input.groupBy)) throw new SearchFieldError(`Not an attribute: ${input.groupBy}`);
     params.g = input.groupBy;
-    group = input.groupBy === 'service' ? 'ServiceName' : 'Attributes[{g:String}]';
+    // A data-point attribute, else a resource attribute (container.name, k8s.pod.name live on the resource).
+    group =
+      input.groupBy === 'service'
+        ? 'ServiceName'
+        : 'if(mapContains(Attributes, {g:String}), Attributes[{g:String}], ResourceAttributes[{g:String}])';
   }
   const table = METRIC_TABLES[input.type];
   const bucket = 'toStartOfInterval(TimeUnix, toIntervalSecond({bucket:UInt32}))';

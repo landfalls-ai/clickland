@@ -43,6 +43,18 @@ services:
     depends_on:
       clickhouse: { condition: service_healthy }
 
+  # Container metrics of this Docker engine (deploy/collector/docker-metrics.yaml). Root only to read the socket,
+  # which is mounted read-only; it has no ports and sends to the collector above.
+  docker-metrics:
+    image: otel/opentelemetry-collector-contrib:0.162.0
+    command: ['--config=/etc/clickland/docker-metrics.yaml']
+    user: '0:0'
+    volumes:
+      - ./collector/docker-metrics.yaml:/etc/clickland/docker-metrics.yaml:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    depends_on:
+      - collector
+
   postgres:
     image: postgres:18-alpine
     environment:

@@ -10,3 +10,4 @@
 | [plan.md](plan.md) | The proposed architecture and waves |
 | [history.md](history.md) | Every change, in order |
 | [../study/README.md](../study/README.md) | The evidence: Craft Anything captures, source graphs, live probes |
+- [sources.md](sources.md): what sends data to Clickland (the land apps, Docker, Kubernetes) and how
