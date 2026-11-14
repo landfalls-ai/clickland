@@ -88,8 +88,15 @@ count with a threshold.
 
 ```json
 { "name": "API errors", "signal": "logs", "query": "service:api level:error", "groupBy": null,
-  "thresholdType": "above", "threshold": 10, "windowMinutes": 5, "intervalMinutes": 1, "enabled": true }
+  "thresholdType": "above", "threshold": 10, "windowMinutes": 5, "intervalMinutes": 1, "enabled": true,
+  "severity": "sev2", "labels": { "team": "core" }, "runbookUrl": "https://runbooks.example/api-errors" }
 ```
+
+- `severity`: `sev1` (the worst) to `sev4`, Landfall's own scale; default `sev3`, which is also what Landfall assumes
+  for a remote trigger without one.
+- `labels`: up to 30 `name: value` pairs (a name is a field name: letters, digits, `_ . - /`). They ride in the
+  webhook and become Landfall entity hints (`team:core`).
+- `runbookUrl`: an `http(s)` link, or `null`.
 
 - `GET /api/alerts` → `{ "alerts": [Alert] }`, each with `states: [{ groupKey, state, value, changedAt }]`.
 - `POST /api/alerts` (`alerts:write`) → `201 Alert`. `GET|PUT|DELETE /api/alerts/:id`.
@@ -124,7 +131,9 @@ Deliveries follow [Standard Webhooks](https://www.standardwebhooks.com/):
   "timestamp": "2026-11-14T15:03:00.000Z",
   "data": {
     "alert": { "id": "al_…", "name": "API errors", "signal": "logs", "query": "service:api level:error",
-               "groupBy": null, "thresholdType": "above", "threshold": 10, "windowMinutes": 5 },
+               "groupBy": null, "thresholdType": "above", "threshold": 10, "windowMinutes": 5,
+               "severity": "sev2", "labels": { "team": "core" }, "runbookUrl": "https://runbooks.example/api-errors" },
+    "eventId": "ae_…",
     "status": "firing",
     "groupKey": "",
     "value": 42,

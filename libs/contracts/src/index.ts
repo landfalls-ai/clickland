@@ -63,6 +63,21 @@ export const PatternsRequest = z.object({
   sample: z.number().int().min(100).max(20000).default(5000),
 });
 
+/** How bad an alert is: Landfall's own scale (sev1 is the worst). Landfall's remote default is sev3. */
+export const Severity = z.enum(['sev1', 'sev2', 'sev3', 'sev4']);
+export type Severity = z.infer<typeof Severity>;
+
+/** `key: value` labels on an alert (team, tier, …): they ride in the webhook and become Landfall entity hints. */
+export const Labels = z
+  .record(
+    z
+      .string()
+      .regex(/^[A-Za-z_][\w.\-/]*$/, 'a label name')
+      .max(100),
+    z.string().max(300),
+  )
+  .refine((labels) => Object.keys(labels).length <= 30, 'at most 30 labels');
+
 export const AlertInput = z.object({
   name: z.string().min(1).max(200),
   signal: Signal,
@@ -73,6 +88,12 @@ export const AlertInput = z.object({
   windowMinutes: z.number().int().min(1).max(1440),
   intervalMinutes: z.number().int().min(1).max(1440).default(1),
   enabled: z.boolean().default(true),
+  severity: Severity.default('sev3'),
+  labels: Labels.default({}),
+  runbookUrl: z
+    .url({ protocol: /^https?$/ })
+    .max(2000)
+    .nullish(),
 });
 export type AlertInput = z.infer<typeof AlertInput>;
 

@@ -1,4 +1,4 @@
-import type { Alert, AlertEvent, AlertInput } from '@clickland/contracts';
+import type { Alert, AlertEvent, AlertInput, Severity } from '@clickland/contracts';
 import type { TimeRange } from '@clickland/query';
 import type { Sql } from './clients.js';
 import type { Config } from './config.js';
@@ -19,6 +19,9 @@ type AlertRow = {
   window_minutes: number;
   interval_minutes: number;
   enabled: boolean;
+  severity: Severity;
+  labels: Record<string, string>;
+  runbook_url: string | null;
   created_by: string;
   created_at: Date;
   updated_at: Date;
@@ -47,6 +50,9 @@ const toAlert = (r: AlertRow, states: StateRow[]): Alert => ({
   windowMinutes: r.window_minutes,
   intervalMinutes: r.interval_minutes,
   enabled: r.enabled,
+  severity: r.severity,
+  labels: r.labels ?? {},
+  runbookUrl: r.runbook_url,
   createdBy: r.created_by,
   createdAt: r.created_at.toISOString(),
   updatedAt: r.updated_at.toISOString(),
@@ -125,9 +131,11 @@ export class Alerts {
     this.validate(input);
     const id = newId('al');
     await this.pg`
-      INSERT INTO alerts (id, name, signal, query, group_by, threshold_type, threshold, window_minutes, interval_minutes, enabled, created_by)
+      INSERT INTO alerts (id, name, signal, query, group_by, threshold_type, threshold, window_minutes, interval_minutes,
+                          enabled, severity, labels, runbook_url, created_by)
       VALUES (${id}, ${input.name}, ${input.signal}, ${input.query}, ${input.groupBy ?? null}, ${input.thresholdType},
-              ${input.threshold}, ${input.windowMinutes}, ${input.intervalMinutes}, ${input.enabled}, ${createdBy})`;
+              ${input.threshold}, ${input.windowMinutes}, ${input.intervalMinutes}, ${input.enabled}, ${input.severity},
+              ${this.pg.json(input.labels)}, ${input.runbookUrl ?? null}, ${createdBy})`;
     return this.get(id);
   }
 
@@ -136,7 +144,8 @@ export class Alerts {
     const rows = await this.pg`
       UPDATE alerts SET name = ${input.name}, signal = ${input.signal}, query = ${input.query}, group_by = ${input.groupBy ?? null},
         threshold_type = ${input.thresholdType}, threshold = ${input.threshold}, window_minutes = ${input.windowMinutes},
-        interval_minutes = ${input.intervalMinutes}, enabled = ${input.enabled}, updated_at = now(), next_run_at = now()
+        interval_minutes = ${input.intervalMinutes}, enabled = ${input.enabled}, severity = ${input.severity},
+        labels = ${this.pg.json(input.labels)}, runbook_url = ${input.runbookUrl ?? null}, updated_at = now(), next_run_at = now()
       WHERE id = ${id} RETURNING id`;
     if (rows.length === 0) throw notFound('Alert');
     // A changed search makes the old groups meaningless: start again from "ok".
@@ -172,9 +181,7 @@ export class Alerts {
   }
 
   /** What the alert would say now, without changing its state. */
-  async test(
-    id: string,
-  ): Promise<{
+  async test(id: string): Promise<{
     groups: { groupKey: string; value: number; wouldFire: boolean }[];
     window: { from: string; to: string };
   }> {
@@ -279,6 +286,9 @@ export class Alerts {
           thresholdType: row.threshold_type,
           threshold: row.threshold,
           windowMinutes: row.window_minutes,
+          severity: row.severity,
+          labels: row.labels ?? {},
+          runbookUrl: row.runbook_url,
         },
         eventId: event.id,
         status: event.state,

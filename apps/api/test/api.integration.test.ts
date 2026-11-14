@@ -109,6 +109,54 @@ describe.skipIf(!enabled)('API (live stack)', () => {
     await clients.pg`DELETE FROM api_keys WHERE id = ${key.id}`;
   });
 
+  it("keeps an alert's severity, labels and runbook, and sends them in the webhook", async () => {
+    const res = await app.inject({
+      method: 'POST',
+      url: '/api/alerts',
+      headers: auth,
+      payload: {
+        name: 'Test severity alert',
+        signal: 'logs',
+        query: 'service:"clickland-test-nothing-here"',
+        thresholdType: 'below',
+        threshold: 1,
+        windowMinutes: 5,
+        enabled: false,
+        severity: 'sev2',
+        labels: { team: 'core' },
+        runbookUrl: 'https://runbooks.example/landfall-errors',
+      },
+    });
+    expect(res.statusCode).toBe(201);
+    const alert = res.json();
+    expect(alert).toMatchObject({
+      severity: 'sev2',
+      labels: { team: 'core' },
+      runbookUrl: 'https://runbooks.example/landfall-errors',
+    });
+    const hook = await services.webhooks.create({
+      url: 'http://127.0.0.1:9/hook',
+      events: ['alert.firing'],
+      alertId: alert.id,
+      description: 'test',
+    });
+    try {
+      const [row] = await clients.pg`SELECT * FROM alerts WHERE id = ${alert.id}`;
+      const events = await services.alerts.evaluate(row as never);
+      expect(events.map((e) => e.state)).toEqual(['firing']);
+      const [delivery] = await clients.pg<{ payload: { data: { alert: Record<string, unknown> } } }[]>`
+        SELECT payload FROM webhook_deliveries WHERE webhook_id = ${hook.id}`;
+      expect(delivery!.payload.data.alert).toMatchObject({
+        severity: 'sev2',
+        labels: { team: 'core' },
+        runbookUrl: 'https://runbooks.example/landfall-errors',
+      });
+    } finally {
+      await clients.pg`DELETE FROM webhooks WHERE id = ${hook.id}`;
+      await clients.pg`DELETE FROM alerts WHERE id = ${alert.id}`;
+    }
+  });
+
   it('serves MCP: tools/list includes the view tools', async () => {
     const res = await app.inject({
       method: 'POST',

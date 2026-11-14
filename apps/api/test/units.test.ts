@@ -1,3 +1,4 @@
+import { AlertInput } from '@clickland/contracts';
 import { createHmac } from 'node:crypto';
 import { describe, expect, it } from 'vitest';
 import { breaches, groupSearch, groupValues } from '../src/alerts.js';
@@ -26,6 +27,30 @@ describe('alerts', () => {
       ['api', 3],
       ['web', 0],
     ]);
+  });
+});
+
+describe('alert severity, labels and runbook', () => {
+  const base = { name: 'a', signal: 'logs', thresholdType: 'above', threshold: 1, windowMinutes: 5 };
+
+  it("defaults to sev3 (Landfall's remote default), no labels and no runbook", () => {
+    expect(AlertInput.parse(base)).toMatchObject({ severity: 'sev3', labels: {} });
+    expect(AlertInput.parse(base).runbookUrl).toBeUndefined();
+  });
+
+  it("takes Landfall's scale only, label names that are fields, and an http(s) runbook", () => {
+    const ok = {
+      ...base,
+      severity: 'sev1',
+      labels: { team: 'core', 'k8s.ns': 'landfall' },
+      runbookUrl: 'https://r.example/x',
+    };
+    expect(AlertInput.parse(ok)).toMatchObject(ok);
+    expect(AlertInput.safeParse({ ...base, severity: 'critical' }).success).toBe(false);
+    expect(AlertInput.safeParse({ ...base, labels: { 'bad key': 'x' } }).success).toBe(false);
+    expect(AlertInput.safeParse({ ...base, runbookUrl: 'javascript:alert(1)' }).success).toBe(false);
+    const many = Object.fromEntries(Array.from({ length: 31 }, (_, i) => [`k${i}`, 'v']));
+    expect(AlertInput.safeParse({ ...base, labels: many }).success).toBe(false);
   });
 });
 
