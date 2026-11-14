@@ -1,0 +1,33 @@
+{
+  "name": "@clickland/api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The Clickland API: search, traces, metrics, patterns, alerts, webhooks, notes, knowledge search, views and the MCP server.",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "serve": "tsx watch src/main.ts",
+    "start": "node dist/main.js",
+    "test": "vitest run",
+    "test:integration": "vitest run --config vitest.integration.config.ts"
+  },
+  "dependencies": {
+    "@clickhouse/client": "^1.12.1",
+    "@clickland/contracts": "workspace:*",
+    "@clickland/query": "workspace:*",
+    "@clickland/schema": "workspace:*",
+    "@fastify/cors": "^11.4.3",
+    "@modelcontextprotocol/ext-apps": "^2.0.4",
+    "@modelcontextprotocol/node": "^2.1.2",
+    "@modelcontextprotocol/server": "^2.4.0",
+    "fastify": "^5.12.8",
+    "postgres": "^3.4.7",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.5"
+  }
+}

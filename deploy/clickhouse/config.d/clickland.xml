@@ -1,4 +1,6 @@
 <clickhouse>
+  <!-- A browser shell into ClickHouse is on by default in 26.x (research/clickhouse-products.md): Clickland never needs it. -->
+  <enable_webterminal>false</enable_webterminal>
   <!-- ClickHouse watches itself (research.md §5): Prometheus metrics for the collector to scrape. -->
   <prometheus>
     <endpoint>/metrics</endpoint>

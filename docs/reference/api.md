@@ -7,7 +7,8 @@ schemas in `libs/contracts/src` are the source of truth; this page describes the
   OrbStack cluster.
 - Bodies are JSON. Times are ISO 8601 strings in UTC (`2026-11-14T15:00:00.000Z`), durations are milliseconds.
 - Errors: `{ "error": { "code": "bad_request" | "unauthorized" | "forbidden" | "not_found" | "conflict" |
-  "query_failed" | "internal", "message": "…" } }` with the matching HTTP status. A search syntax error is
+  "query_failed" | "assistant_unavailable" | "internal", "message": "…" } }` with the matching HTTP status
+  (`assistant_unavailable` is 503). A search syntax error is
   `400 bad_request` with `details.position`.
 
 ## Authentication
@@ -20,6 +21,7 @@ schemas in `libs/contracts/src` are the source of truth; this page describes the
 | `alerts:write` | create, change, delete alerts |
 | `webhooks:write` | create and delete webhook subscriptions |
 | `notes:write` | add notes |
+| `views:write` | save, change and delete dashboards (pinned views); creating an unpinned view only needs `read` |
 | `admin` | everything, including API keys |
 
 `CLICKLAND_BOOTSTRAP_KEY` (dev: `ck_dev_bootstrap_key_000000000000000`) is an `admin` key that exists while the
@@ -104,6 +106,8 @@ The evaluator runs every alert when it is due, and on each change of a group's s
   only here.
 - `GET /api/webhooks` → `{ "webhooks": [{ id, url, events, alertId, description, createdAt }] }`.
   `GET /api/webhooks/:id` → one, or `404`. `DELETE /api/webhooks/:id` → `204` (`404` when already gone).
+- `GET /api/webhooks/:id/deliveries` → `{ "deliveries": [{ id, eventId, type, status, attempts, lastError, createdAt,
+  deliveredAt }] }` (newest 50).
 
 Deliveries follow [Standard Webhooks](https://www.standardwebhooks.com/):
 
@@ -174,6 +178,20 @@ Endpoints:
 
 A chat answer that contains `[[clickland:view:<id>]]` shows that view inline in Clickland's assistant panel.
 
+### Dashboards
+
+A dashboard is a saved view (`pinned: true`) with a name. The console lists dashboards in its navigation; opening one
+draws it live, and its editor adds, removes, reorders and resizes panels and changes each panel's query, title and
+type (every save is a `PUT` of the whole spec). Saving a view from the assistant's chat ("Save as dashboard") pins it.
+
+- `POST /api/views` with `"pinned": true` creates a dashboard directly.
+- `PUT /api/views/:id` — `{ "spec"?, "pinned"?, "title"? }` → the updated view; `version` increases on each change, and
+  a `PUT` that sends `"version": n` fails with `409 conflict` when someone saved in between.
+- `POST /api/views/:id/panels` — `{ "panel": Panel, "position"? }` → the updated view (append, or insert at
+  `position`); `DELETE /api/views/:id/panels/:index`. These let an agent change a dashboard without resending it.
+- MCP: `render_view` (create, optionally `pinned`), `update_view` (`{ id, spec?, title?, pinned? }`), `add_panel`
+  (`{ id, panel, position? }`), `remove_panel`, `list_dashboards`, `get_view`.
+
 ## Notes
 
 What people and agents learned about an incident or a service: Clickland's long-term knowledge.
@@ -199,12 +217,23 @@ words, and the services the question names. The shape is what Landflow's knowled
 
 ## MCP
 
-`POST /api/mcp`: a stateless Streamable HTTP MCP server, same API keys. Tools: `search_logs`, `search_traces`,
-`get_trace`, `list_services`, `query_metric`, `list_metrics`, `event_patterns`, `list_alerts`, `search_knowledge`,
-`add_note`, `render_view`. Each takes the matching endpoint's body. The server supports the MCP Apps extension
+`POST /api/mcp`: a stateless Streamable HTTP MCP server, same API keys and scopes. Tools: `search_logs`, `search_traces`,
+`histogram`, `count`, `get_trace`, `list_services`, `query_metric`, `list_metrics`, `event_patterns`, `list_alerts`, `search_knowledge`,
+`add_note`, `render_view`, `update_view`, `add_panel`, `remove_panel`, `list_dashboards`, `get_view`. Each takes the matching endpoint's body. The server supports the MCP Apps extension
 (`io.modelcontextprotocol/ui`): `render_view`, `search_logs`, `search_traces`, `get_trace`, `list_services` and
 `query_metric` declare `ui://clickland/view` as their UI, so a host that supports MCP Apps draws the result as a live
 view; other hosts get the same structured content as JSON text.
+
+## Assistant
+
+`POST /api/assistant/chat` (`read`) — `{ "sessionId", "message" }` → `text/event-stream` of
+`{ "type": "text", "delta" }`, `{ "type": "tool", "name", "status": "started" | "done" | "failed" }`, `{ "type": "done",
+"runId"? }` and `{ "type": "error", "message" }`. Clickland forwards the message to the Landflow chat flow of the
+observability assistant (`CLICKLAND_ASSISTANT_URL`, with `CLICKLAND_ASSISTANT_SECRET` in the
+`CLICKLAND_ASSISTANT_AUTH_HEADER` header) and passes its answer through; `503 assistant_unavailable` when it is not
+configured or does not answer. The answer's `[[clickland:view:…]]` markers are views the panel draws inline.
+
+`GET /api/auth/me` → `{ "user": { "name", "email", "roles" }, "authMode", "scopes" }` (`401` when not signed in).
 
 ## API keys
 
