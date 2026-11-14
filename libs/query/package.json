@@ -1,0 +1,27 @@
+{
+  "name": "@clickland/query",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The Clickland search language and its compiler to index-aware ClickHouse SQL, the chart and metric queries, Drain pattern mining and trace trees.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:integration": "vitest run --config vitest.integration.config.ts"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.5",
+    "@clickhouse/client": "^1.12.1"
+  }
+}
