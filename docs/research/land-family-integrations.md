@@ -452,22 +452,23 @@ Each slice is small and has a local check. S is under a day, M is one to three d
 15. **Landbright's SCIM client (wave 2).** Landbright session. L.
     Check: removing a person from a group in Landbright removes their access in Clickland and Landfall.
 
-**Later, only if wanted:** `links[]` on Landfall's trigger payload (S), the trace as an artifact (S), metric
-alerts in Clickland (M), embedded views in the room (L), agent telemetry in the lab (S).
+**Phase 5 (decided):** `links[]` on Landfall's trigger payload and a generic external-view link in the room (S),
+agent telemetry from the cluster, MySQL and agent-kit agents (S). **Later, only if wanted:** the trace as an artifact
+(S), metric alerts in Clickland (M). Embedded Clickland views in the room: no (decision 3).
 
-## 5. Questions for you
+## 5. Decisions (the user, 2026-11-14)
 
-1. **The default route for alerts.** Landflow triage for everything, with a direct Clickland-to-Landfall route only
-   for sev1 and for alerts about Landflow itself (my recommendation)? Or direct for everything, with Landflow as
-   an optional step?
-2. **Recovery never closes a room.** That is Landfall's rule today. Keep it for Clickland alerts too?
-3. **Views inside the room.** Are native Landfall widgets fed by Clickland, plus links, enough? Or do you want
-   Clickland's live views embedded, which is a large Landfall change?
-4. **Sign-in.** Should the local Landfall organisation sign in through Landbright, leaving Keycloak for production?
-5. **Who changes Landfall, and when.** Its `dev` branch deploys. Should the small Landfall changes (log bridge,
-   namespace, `links[]`) wait, go through a Landfall session you start, or be proposed as pull requests from here?
-6. **Agent telemetry.** Do you want the cluster and MySQL agents' own telemetry in Clickland for the local lab, or
-   leave them as they are?
+1. **Alert route:** Landflow triage is the default; Clickland posts straight to Landfall only for sev1 and for alerts
+   about Landflow itself.
+2. **Recovery never closes a room**, for Clickland alerts too.
+3. **Landfall stays isolated and agnostic of Clickland.** Landfall core gets nothing Clickland-specific: Clickland
+   speaks Landfall's generic interfaces (the Source Protocol face, `SourceTriggerPayload`, the MCP-server source),
+   and a room links to or shows a Clickland view through a generic mechanism (a link on the trigger, a generic
+   external-view link), not embedded Clickland code.
+4. **Landfall signs in only through Landbright** (locally Keycloak goes; the AWS deployment is never touched here).
+5. **Landfall may change, preferably by a plugin:** the Clickland connection lives in a Landfall plugin; core changes
+   are generic only (OTel logs, `links[]`, the external-view link).
+6. **Everything sends telemetry:** Landfall's cluster, MySQL and agent-kit agents too.
 
 ## What I could not verify
 
