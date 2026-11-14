@@ -33,7 +33,9 @@ Everything goes to the collector (compose project `clickland-infra`): OTLP/HTTP 
 - **Pod logs** (`deploy/k8s/cluster-metrics/node-logs.yaml`, DaemonSet `clickland-node-logs`): every pod's stdout
   and stderr from `/var/log/pods`, with namespace, pod, container, workload and app labels; the service is the
   `app.kubernetes.io/name` or `app` label, else the deployment (statefulset, daemonset), else the container;
-  `log.source=kubernetes`. The Landflow host's container is left out (it sends the same lines over OTLP).
+  `log.source=kubernetes`. Left out, because they send the same lines over OTLP: the Landflow host's container (by
+  path), and any pod with the label or annotation `clickland.io/logs: otlp` (the Landfall cluster agent). A pod that
+  exports its own logs adds that label so its lines arrive once.
 - **Both log agents** parse JSON lines (`msg`/`message` → body, the rest → attributes), set the severity from
   `level`/`severity` or, for plain text, from words like error and warn, and take `trace_id`/`span_id` from the line,
   so a plugin's log line links to its trace.

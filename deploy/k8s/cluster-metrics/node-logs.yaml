@@ -3,8 +3,9 @@
 # files are symlinks into Docker's container logs, /var/lib/docker/containers, both read-only; it keeps its read
 # offsets in a hostPath directory so a restart neither loses nor resends lines.
 #
-# Left out: this agent itself, and the Landflow host's container, whose lines Landflow already exports over OTLP
-# (LANDFLOW_LOG_OTLP), so they would arrive twice.
+# Left out: this agent itself, the Landflow host's container, whose lines Landflow already exports over OTLP
+# (LANDFLOW_LOG_OTLP), and any pod labelled or annotated `clickland.io/logs: otlp` (it sends its own logs over OTLP, so
+# they would arrive twice; the Landfall cluster agent is one). See docs/sources.md.
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -43,9 +44,19 @@ data:
           labels:
             - { tag_name: app.label.name, key: app.kubernetes.io/name, from: pod }
             - { tag_name: app.label.app, key: app, from: pod }
+            - { tag_name: clickland.logs.label, key: clickland.io/logs, from: pod }
+          annotations:
+            - { tag_name: clickland.logs.annotation, key: clickland.io/logs, from: pod }
         pod_association:
           - sources: [{ from: resource_attribute, name: k8s.pod.uid }]
           - sources: [{ from: resource_attribute, name: k8s.pod.name }, { from: resource_attribute, name: k8s.namespace.name }]
+      # A pod that sends its own logs over OTLP says so with `clickland.io/logs: otlp` (a label or an annotation).
+      filter/otlp-pods:
+        error_mode: ignore
+        logs:
+          log_record:
+            - resource.attributes["clickland.logs.label"] == "otlp"
+            - resource.attributes["clickland.logs.annotation"] == "otlp"
       # The service: the app label, else the workload, else the container; JSON lines become body + attributes + severity.
       transform/logs:
         error_mode: ignore
@@ -62,6 +73,8 @@ data:
               - set(resource.attributes["service.namespace"], resource.attributes["k8s.namespace.name"])
               - delete_key(resource.attributes, "app.label.app")
               - delete_key(resource.attributes, "app.label.name")
+              - delete_key(resource.attributes, "clickland.logs.label")
+              - delete_key(resource.attributes, "clickland.logs.annotation")
               - merge_maps(attributes, ParseJSON(body), "upsert") where IsString(body) and IsMatch(body, "^\\s*\\{")
               - set(body, attributes["msg"]) where attributes["msg"] != nil
               - set(trace_id.string, attributes["trace_id"]) where IsString(attributes["trace_id"]) and IsMatch(attributes["trace_id"], "^[0-9a-f]{32}$")
@@ -94,7 +107,7 @@ data:
       pipelines:
         logs:
           receivers: [filelog/pods]
-          processors: [memory_limiter, k8s_attributes, transform/logs, batch]
+          processors: [memory_limiter, k8s_attributes, filter/otlp-pods, transform/logs, batch]
           exporters: [otlp_http]
 ---
 apiVersion: apps/v1
