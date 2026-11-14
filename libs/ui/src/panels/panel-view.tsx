@@ -2,6 +2,8 @@ import type { ReactNode } from 'react';
 import {
   Activity,
   BarChart3,
+  Bot,
+  CircleDollarSign,
   ExternalLink,
   FileText,
   Hash,
@@ -12,6 +14,7 @@ import {
   Server,
   Shapes,
   Waypoints,
+  Workflow,
 } from 'lucide-react';
 import type { LogRow, Panel, SpanRow } from '@clickland/contracts';
 import { cn } from '../cn';
@@ -49,6 +52,9 @@ export const PANEL_TYPES: Record<PanelType, { label: string; icon: LucideIcon; h
   patterns: { label: 'Patterns', icon: Shapes, hint: 'Log lines grouped into templates' },
   metric: { label: 'Metric', icon: ListTree, hint: 'An OpenTelemetry metric over time' },
   markdown: { label: 'Text', icon: FileText, hint: 'Notes in Markdown' },
+  agents: { label: 'Agents', icon: Bot, hint: 'The AI agents seen in telemetry: runs, success, latency, cost' },
+  agent_value: { label: 'Agent value', icon: CircleDollarSign, hint: 'Net value, ROI and cost of the AI agents' },
+  run_graph: { label: 'Run graph', icon: Workflow, hint: "One agent run's decision path" },
 };
 
 export interface PanelViewProps {

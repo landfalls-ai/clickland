@@ -13,6 +13,7 @@ import { registerAppResource, registerAppTool, RESOURCE_MIME_TYPE } from '@model
 import { McpServer, type CallToolResult } from '@modelcontextprotocol/server';
 import { readFile } from 'node:fs/promises';
 import { z } from 'zod';
+import { registerAgentTools } from './agent-tools.js';
 import { type Principal, requireScope } from './auth.js';
 import { ApiError } from './errors.js';
 import type { Services } from './services.js';
@@ -76,7 +77,7 @@ export function createMcpServer(services: Services, principal: Principal, viewHt
     { name: 'clickland', title: 'Clickland', version: VERSION },
     {
       instructions:
-        'Clickland holds the land family\'s logs, traces and metrics (ClickHouse, OpenTelemetry). Search with search_logs / search_traces (a Lucene-like language: words, "phrases", field:value, field:>n, AND/OR/NOT), open a trace with get_trace, compare services with list_services, chart with histogram / query_metric, cluster messages with event_patterns, and look up what people learned with search_knowledge. To show a person a screen, call render_view with panels; put the returned marker in your answer.',
+        'Clickland holds the land family\'s logs, traces and metrics (ClickHouse, OpenTelemetry). Search with search_logs / search_traces (a Lucene-like language: words, "phrases", field:value, field:>n, AND/OR/NOT), open a trace with get_trace, compare services with list_services, chart with histogram / query_metric, cluster messages with event_patterns, and look up what people learned with search_knowledge. For AI agents use list_agents, get_agent, run_graph and agent_value (what the agents cost and are worth, with the arithmetic). To show a person a screen, call render_view with panels; put the returned marker in your answer.',
     },
   );
   const { telemetry, alerts, notes, views, knowledge } = services;
@@ -227,7 +228,7 @@ export function createMcpServer(services: Services, principal: Principal, viewHt
     {
       title: 'Show a view',
       description:
-        'Build a screen for the person: a title, a range ({"lastMinutes":60}) and 1–12 panels (timeseries, bar, stat, logs, spans, trace, services, patterns, metric, markdown; width half|full). Set pinned to save it as a dashboard.',
+        'Build a screen for the person: a title, a range ({"lastMinutes":60}) and 1–12 panels (timeseries, bar, stat, logs, spans, trace, services, patterns, metric, markdown, agents, agent_value, run_graph; width half|full). Set pinned to save it as a dashboard.',
       inputSchema: z.object({ spec: ViewSpec, pinned: z.boolean().default(false) }),
       ui: true,
       readOnly: false,
@@ -295,6 +296,9 @@ export function createMcpServer(services: Services, principal: Principal, viewHt
     { title: 'List dashboards', description: 'The saved dashboards (pinned views).', inputSchema: z.object({}) },
     async () => ok({ dashboards: await views.list({ pinned: true }) }),
   );
+
+  // AI agents: list_agents, get_agent, agent_value, run_graph (agent-tools.ts).
+  registerAgentTools(tool, services);
 
   registerAppResource(
     server,

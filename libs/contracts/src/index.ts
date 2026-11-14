@@ -2,6 +2,7 @@
 import { z } from 'zod';
 
 export * from './landfall.js';
+export * from './agents.js';
 
 export const Signal = z.enum(['logs', 'traces']);
 export type Signal = z.infer<typeof Signal>;
@@ -209,6 +210,16 @@ export const Panel = z.discriminatedUnion('type', [
     groupBy: field.nullish(),
   }),
   z.object({ ...panelBase, type: z.literal('markdown'), text: z.string().max(20_000) }),
+  // AI agents (docs/agent-value.md): the inventory, the value report and one run's decision path.
+  z.object({ ...panelBase, type: z.literal('agents'), service: z.string().max(300).nullish() }),
+  z.object({
+    ...panelBase,
+    type: z.literal('agent_value'),
+    agent: z.string().max(700).nullish(),
+    team: z.string().max(200).nullish(),
+    service: z.string().max(300).nullish(),
+  }),
+  z.object({ ...panelBase, type: z.literal('run_graph'), traceId: z.string().regex(/^[0-9a-fA-F]{1,64}$/) }),
 ]);
 export type Panel = z.infer<typeof Panel>;
 export type PanelInput = z.input<typeof Panel>;

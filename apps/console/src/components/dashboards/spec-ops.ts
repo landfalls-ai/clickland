@@ -36,6 +36,12 @@ export function newPanel(type: PanelType, id: string = shortId()): Panel {
       } as unknown as Panel;
     case 'markdown':
       return { ...base, type, title: 'Notes', text: '' };
+    case 'agents':
+      return { ...base, type, title: 'Agents', width: 'full' };
+    case 'agent_value':
+      return { ...base, type, title: 'Agent value', width: 'full' };
+    case 'run_graph':
+      return { ...base, type, title: 'A run', traceId: '', width: 'full' } as unknown as Panel;
   }
 }
 

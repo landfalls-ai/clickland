@@ -4,3 +4,6 @@ export * from './parse.js';
 export * from './queries.js';
 export * from './signals.js';
 export * from './trace.js';
+export * from './agents.js';
+export * from './agent-safety.js';
+export * from './agent-value.js';

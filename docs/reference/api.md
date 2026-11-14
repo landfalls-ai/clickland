@@ -211,13 +211,19 @@ any other MCP Apps host. Dashboards are pinned views.
     { "type": "trace", "title": "A slow trace", "traceId": "4bf92f3577b34da6a3ce929d0e0e4736", "width": "full" },
     { "type": "services", "title": "Services" },
     { "type": "patterns", "title": "Error patterns", "query": "level:error" },
-    { "type": "markdown", "title": "Finding", "text": "Timeouts to **payments** since 14:05." }
+    { "type": "markdown", "title": "Finding", "text": "Timeouts to **payments** since 14:05." },
+    { "type": "agent_value", "title": "What the agents are worth", "team": "platform", "width": "full" },
+    { "type": "agents", "title": "Agents", "service": "landflow-host" },
+    { "type": "run_graph", "title": "A run's decision path", "traceId": "4bf92f3577b34da6a3ce929d0e0e4736" }
   ]
 }
 ```
 
 - `range`: `{ "lastMinutes": n }` (relative, refreshes) or `{ "from", "to" }`.
 - Panel `width`: `"half"` (default) or `"full"`. `timeseries` takes `signal`, `query`, `groupBy`; `stat` counts `query`.
+- The agent panels ([AI agents](#ai-agents)): `agents` (`service?`), `agent_value` (`agent?`: an agent id or name,
+  `team?`, `service?`) and `run_graph` (`traceId`). The view app does not draw them yet
+  ([the spec](../agent-value.md#console-spec)).
 
 Endpoints:
 
@@ -242,6 +248,148 @@ type (every save is a `PUT` of the whole spec). Saving a view from the assistant
   `position`); `DELETE /api/views/:id/panels/:index`. These let an agent change a dashboard without resending it.
 - MCP: `render_view` (create, optionally `pinned`), `update_view` (`{ id, spec?, title?, pinned? }`), `add_panel`
   (`{ id, panel, position? }`), `remove_panel`, `list_dashboards`, `get_view`.
+
+## AI agents
+
+Every AI agent seen in telemetry, how it runs, and what it is worth. [agent-value.md](../agent-value.md) defines each
+figure. Nothing is stored: every answer is computed from spans, logs and metrics. All of these take `from` and `to`
+(default: the last 7 days) and `service` (a name, or a prefix ending in `*`, e.g. `demo-*`). All need `read`.
+
+- `GET /api/agents?family=` → `{ "from", "to", "agents": [AgentSummary], "truncated", "spansRead" }`. `family` is
+  `landflow`, `a2a`, `landfall`, `claude_code` or `genai`. `truncated` is true when the period held more than 200,000
+  spans: the figures then cover the newest.
+- `GET /api/agents/:id` → `{ "from", "to", "agent": AgentSummary, "recentRuns": [AgentRunSummary] (newest 50),
+  "value": ValueAgentRow | null }`. `404` when the agent has no telemetry in the period.
+- `GET /api/agents/runs/:traceId/graph` → the run's decision path:
+  `{ "traceId", "startedAt", "durationMs", "nodes": [RunGraphNode], "edges": [{ "from", "to" }], "summary", "loops" }`.
+  `404` for an unknown trace.
+- `GET /api/agents/value?agent=&team=` → the value report (below). `agent` is an agent id; `team` is a team name, or
+  `unassigned`.
+- `GET /api/agents/safety?limit=` → `{ "contentCaptured", "scanned", "flags": [SafetyFlag], "totals": { "pii",
+  "secret", "prompt_injection" }, "detectors", "note" }`. Scans the newest `limit` (default 500, max 2000) spans that
+  carry captured content. A flag's `sample` is masked.
+- `GET /api/agents/alert-templates` → `{ "templates": [{ "key", "kind": "cost" | "errors" | "quality", "title",
+  "description", "alert": AlertInput }] }`; `POST /api/agents/alert-templates/:key/install` (`alerts:write`) →
+  `201 Alert`, a normal alert.
+
+An `AgentSummary`:
+
+```json
+{
+  "id": "ag_bGFuZGZsb3ctaG9zdC9TdXBwb3J0IHRyaWFnZQ", "key": "landflow-host/Support triage",
+  "service": "landflow-host", "name": "Support triage", "family": "landflow",
+  "sources": ["schedule", "slack"], "teams": ["platform"],
+  "runUnit": "run", "runs": 5, "subAgentRuns": 0, "failedRuns": 0, "successRate": 1,
+  "p50Ms": 3506, "p95Ms": 3506, "latencyOf": "run",
+  "modelCalls": 12, "toolCalls": 6, "stepErrors": 1, "rateLimits": 1, "retries": 1, "loops": 0,
+  "inputTokens": 9500, "outputTokens": 2320, "cacheReadTokens": 0, "cacheWriteTokens": 0,
+  "costUsd": 0.0422,
+  "costHow": "claude-sonnet-5-5: 9,500 input × $2/MTok + 2,320 output × $10/MTok = $0.0422 (price claude-sonnet-5-5*)",
+  "unpricedModels": [],
+  "models": [{ "model": "claude-sonnet-5-5", "calls": 12, "inputTokens": 9500, "outputTokens": 2320,
+               "cacheReadTokens": 0, "cacheWriteTokens": 0, "costUsd": 0.0422,
+               "costSource": "priced", "reportedCostUsd": 0.0426, "how": "…" }],
+  "tools": [{ "name": "search_logs", "kind": "node", "calls": 3, "errors": 0 }],
+  "evaluations": [{ "name": "relevance", "count": 1, "averageScore": 0.9, "labels": { "pass": 1 } }],
+  "feedback": { "up": 1, "down": 1 }, "approvals": { "approved": 0, "denied": 0 },
+  "permissions": { "tools": [{ "name": "search_logs", "kind": "node", "allowed": 3, "denied": 0, "sources": {} }],
+                   "modes": [], "needsApproval": [], "note": "…" },
+  "endReasons": { "done": 5 }, "users": 2, "sessions": 5, "activity": {},
+  "firstSeen": "2026-11-14T16:35:08.000Z", "lastSeen": "2026-11-14T16:35:46.000Z"
+}
+```
+
+- `costSource`: `priced` (tokens × the price table), `reported` (the emitter's own figure, used when the model has no
+  price), `unpriced` (tokens and no price: cost 0) or `none` (no tokens).
+- For Claude Code, `runUnit` is `prompt` (or `session` when its events are not exported), `latencyOf` is
+  `model call`, `successRate` is `null`, and `activity` holds `commits`, `pullRequests`, `linesAdded`, `linesRemoved`,
+  `activeSeconds`, `sessionsStarted`, `editsAccepted`, `editsRejected`.
+
+A `RunGraphNode`: `{ "id" (the span id), "parentId", "kind": "agent" | "subagent" | "model" | "tool" | "span",
+"label", "service", "spanName", "depth", "offsetMs", "durationMs", "status": "ok" | "error", "errorType",
+"statusMessage", "model", "inputTokens", "outputTokens", "costUsd", "costHow", "tool", "toolKind", "agent", "retry",
+"loop", "hiddenSpans" }`. Nodes come in tree order. Spans that are not a step are folded into the step above
+(`hiddenSpans`), except the root and any span that failed.
+
+The value report:
+
+```json
+{
+  "from": "…", "to": "…", "currency": "USD", "hourlyRate": 60,
+  "model": "An outcome is a search over telemetry. …",
+  "totals": { "value": 185, "cost": 0.8519, "net": 184.15, "roi": 216.16, "outcomes": 14, "costPerOutcome": 0.0609,
+              "how": { "net": "$185.00 value − $0.85 cost = $184.15",
+                       "roi": "($185.00 − $0.85) ÷ $0.85 = 21616%",
+                       "costPerOutcome": "$0.85 ÷ 14 outcomes = $0.06" } },
+  "agents": [{ "key": "landflow-host/Support triage", "name": "Support triage", "service": "landflow-host",
+               "family": "landflow", "seen": true,
+               "value": 25, "cost": 0.0422, "net": 24.96, "roi": 591.42, "outcomes": 5, "costPerOutcome": 0.0084,
+               "how": { "net": "…", "roi": "…", "costPerOutcome": "…" }, "costHow": "…",
+               "lines": [{ "outcomeId": "oc_…", "name": "Landflow agent run completed", "count": 5,
+                           "unitValue": 5, "value": 25, "how": "5 × $5.00 = $25.00" }],
+               "adoption": { "users": 2, "sessions": 5, "runs": 5, "runUnit": "run" },
+               "quality": { "successRate": 1, "evaluations": [], "feedback": { "up": 1, "down": 1 },
+                            "approvals": { "approved": 0, "denied": 0 } } }],
+  "teams": [{ "team": "platform", "value": 125, "cost": 0.7544, "net": 124.25, "roi": 164.69, "outcomes": 10,
+              "costPerOutcome": 0.0754, "how": { } }],
+  "outcomes": [{ "id": "oc_…", "name": "Landflow agent run completed", "signal": "traces",
+                 "search": "traces: gen_ai.operation.name:invoke_agent …", "attribution": { "mode": "field", "field": "gen_ai.agent.name" },
+                 "unitValue": 5, "unitHow": "5 min saved × $60.00/h ÷ 60 = $5.00 each",
+                 "credited": 5, "unattributed": 0, "value": 25, "unattributedValue": 0,
+                 "how": "5 credited × $5.00 = $25.00" }],
+  "unattributed": { "outcomes": 1, "value": 10, "note": "…" },
+  "truncated": false
+}
+```
+
+`roi` is `(value − cost) ÷ cost` as a ratio (`216.16` is 21616%), and `null` when no cost was recorded. Outcomes that
+matched but that no agent took part in are in `unattributed` and in no total. With `team`, the agent rows show value
+only (their cost is not split by team) and the totals use the team's cost; with `agent`, the team rows show that
+agent's value only.
+
+### Value settings, prices and outcomes
+
+What the figures are computed from. Reading needs `read`; changing needs `admin`.
+
+- `GET /api/value/settings` → `{ "hourlyRate": 60, "currency": "USD", "teamAttribute": "team.id", "loopThreshold": 5,
+  "updatedBy", "updatedAt" }`; `PUT /api/value/settings` — any of `hourlyRate`, `currency` (three letters),
+  `teamAttribute` (the attribute that names a team; `service.namespace` when a row has none) and `loopThreshold`
+  (2–100).
+- `GET /api/value/prices` → `{ "prices": [ModelPrice] }`; `POST /api/value/prices` → `201`; `PUT /api/value/prices/:id`;
+  `DELETE /api/value/prices/:id`. A price: `{ "model": "claude-opus-5-5*", "provider": "anthropic", "inputPerMTok": 4,
+  "outputPerMTok": 20, "cacheReadPerMTok": 0.2, "cacheWritePerMTok": 5, "source": "https://…", "asOf": "2026-11-14",
+  "note" }` (USD per million tokens). `model` is an id or a prefix ending in `*`; the longest match prices a model.
+  The response adds `id`, `seeded` (the seed wrote it and nobody changed it), `editable: true`, `updatedBy`,
+  `updatedAt`. `409` when the model already has a price.
+- `GET /api/value/outcomes` → `{ "outcomes": [OutcomeDefinition] }`; `POST /api/value/outcomes` → `201`;
+  `GET`, `PUT`, `DELETE /api/value/outcomes/:id`. An outcome:
+
+  ```json
+  {
+    "name": "Alert triaged", "description": "…",
+    "signal": "traces",
+    "query": "name:workflow.execute landflow.execution.status:success landflow.workflow.name:*riage*",
+    "metricFilter": {},
+    "attribution": { "mode": "trace" },
+    "valueKind": "minutes", "minutesSaved": 15, "amount": 0,
+    "rationale": "First look at an alert by an on-call engineer.", "enabled": true
+  }
+  ```
+
+  - `signal`: `traces` or `logs` (the rows a search matches are counted) or `metric` (`query` is a counter's name,
+    summed; `metricFilter` keeps only data points with those attribute values).
+  - `attribution`: `{ "mode": "trace" }` (the agents in the row's trace share it), `{ "mode": "correlate", "field":
+    "incident.id" }` (the agents whose runs carry the same value), `{ "mode": "field", "field": "gen_ai.agent.name" }`
+    (the row names its agent) or `{ "mode": "agent", "agent": "claude-code/Claude Code" }` (one agent; found by name
+    when it reports under another service). A metric takes `field` or `agent`.
+  - `valueKind`: `minutes` (`minutesSaved` × the hourly rate ÷ 60) or `amount` (`amount` each).
+  - A search that does not compile is `400` with `details.position`, as in search.
+- `POST /api/value/outcomes/preview` (`read`) — `{ "outcome": Outcome, "from"?, "to"?, "service"? }` → `{ "search",
+  "matched", "credited", "unattributed", "unitValue", "unitHow", "value", "agents": [{ "key", "count", "value" }] }`:
+  what an outcome would count before it is saved.
+- `POST /api/value/seed` (`admin`) → `{ "prices": { "added", "refreshed", "kept" }, "outcomes": { … } }`: writes
+  Anthropic's list prices for the Claude models and the starting outcomes. Safe to repeat: a row a person edited is
+  kept. `node scripts/seed-agent-value.mjs` calls it.
 
 ## Notes
 
@@ -274,7 +422,11 @@ words, and the services the question names. The shape is what Landflow's knowled
 
 `POST /api/mcp`: a stateless Streamable HTTP MCP server, same API keys and scopes. Tools: `search_logs`, `search_traces`,
 `histogram`, `count`, `get_trace`, `list_services`, `query_metric`, `list_metrics`, `event_patterns`, `list_alerts`, `search_knowledge`,
-`add_note`, `render_view`, `update_view`, `add_panel`, `remove_panel`, `list_dashboards`, `get_view`. Each takes the matching endpoint's body. The server supports the MCP Apps extension
+`add_note`, `render_view`, `update_view`, `add_panel`, `remove_panel`, `list_dashboards`, `get_view`, and for AI agents
+`list_agents`, `get_agent`, `agent_value` and `run_graph`. Each takes the matching endpoint's body; the agent tools
+take `{ "lastDays"? (default 7), "from"?, "to"?, "service"? }`, `get_agent` and `agent_value` also `agent` (an id or a
+name), `agent_value` also `team`, and `run_graph` takes `{ "traceId" }`. `agent_value` answers in words with the
+arithmetic, and carries the whole report as structured content. The server supports the MCP Apps extension
 (`io.modelcontextprotocol/ui`): `render_view`, `search_logs`, `search_traces`, `get_trace`, `list_services` and
 `query_metric` declare `ui://clickland/view` as their UI, so a host that supports MCP Apps draws the result as a live
 view; other hosts get the same structured content as JSON text.
