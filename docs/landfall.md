@@ -97,8 +97,9 @@ a dashboard someone edited keeps their edits unless `--update` is given.
   `dedupKey` if the room is open, and the link comes back with the answer.
 - **Runbooks travel in the summary.** `SourceTriggerPayload` has no links field; Clickland writes the runbook into
   `summary`. An optional `links[]` there would be Landfall's change to make.
-- **The cluster agent's chart should label its pods.** The Landfall cluster agent exports its own logs over OTLP, so
-  Clickland's node-log DaemonSet must skip its pod files. The DaemonSet skips any pod labelled or annotated
-  `clickland.io/logs: otlp` ([sources.md](sources.md)). In `clickland-dev` the live Deployment
-  (`landfall-cluster-agent-landfall-agent`) was patched with that pod label on 2026-11-14. The Landfall chart should
-  set it in the pod template, or the next `helm upgrade` removes it and the lines arrive twice again.
+- **The cluster agent's pods carry the log label through their Helm values.** The Landfall cluster agent exports its
+  own logs over OTLP, so Clickland's node-log DaemonSet must skip its pod files. The DaemonSet skips any pod labelled or
+  annotated `clickland.io/logs: otlp` ([sources.md](sources.md)). The Landfall chart stays agnostic; the release in
+  `clickland-dev` sets the label through the chart's generic `podLabels` value
+  (`helm upgrade … --reuse-values --set-string 'podLabels.clickland\.io/logs=otlp'`, revision 2 on 2026-11-14), so an
+  upgrade keeps it.
