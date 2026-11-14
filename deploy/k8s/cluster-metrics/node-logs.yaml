@@ -1,0 +1,145 @@
+# clickland-node-logs: every pod's stdout and stderr, from the node's log files, with its pod, namespace, deployment
+# and app labels, sent to Clickland. One per node (a DaemonSet). It reads /var/log/pods and, because on OrbStack those
+# files are symlinks into Docker's container logs, /var/lib/docker/containers, both read-only; it keeps its read
+# offsets in a hostPath directory so a restart neither loses nor resends lines.
+#
+# Left out: this agent itself, and the Landflow host's container, whose lines Landflow already exports over OTLP
+# (LANDFLOW_LOG_OTLP), so they would arrive twice.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: clickland-node-logs
+  namespace: clickland-dev
+data:
+  config.yaml: |
+    receivers:
+      filelog/pods:
+        include: [/var/log/pods/*/*/*.log]
+        exclude:
+          - /var/log/pods/clickland-dev_clickland-node-logs-*/*/*.log
+          - /var/log/pods/landflow-dev_landflow-host-*/host/*.log
+        include_file_path: true
+        start_at: end
+        storage: file_storage
+        max_log_size: 256KiB
+        operators:
+          # Parses the runtime's format and sets k8s.namespace.name, k8s.pod.name, k8s.pod.uid,
+          # k8s.container.name and k8s.container.restart_count from the path.
+          - type: container
+          - type: add
+            field: attributes["log.source"]
+            value: kubernetes
+    processors:
+      memory_limiter:
+        check_interval: 5s
+        limit_mib: 200
+      k8s_attributes:
+        auth_type: serviceAccount
+        passthrough: false
+        filter:
+          node_from_env_var: K8S_NODE_NAME
+        extract:
+          metadata: [k8s.deployment.name, k8s.statefulset.name, k8s.daemonset.name, k8s.job.name, k8s.node.name]
+          labels:
+            - { tag_name: app.label.name, key: app.kubernetes.io/name, from: pod }
+            - { tag_name: app.label.app, key: app, from: pod }
+        pod_association:
+          - sources: [{ from: resource_attribute, name: k8s.pod.uid }]
+          - sources: [{ from: resource_attribute, name: k8s.pod.name }, { from: resource_attribute, name: k8s.namespace.name }]
+      # The service: the app label, else the workload, else the container; JSON lines become body + attributes + severity.
+      transform/logs:
+        error_mode: ignore
+        log_statements:
+          - context: log
+            statements:
+              - set(resource.attributes["k8s.cluster.name"], "orbstack")
+              - set(resource.attributes["service.name"], resource.attributes["k8s.container.name"])
+              - set(resource.attributes["service.name"], resource.attributes["k8s.daemonset.name"]) where resource.attributes["k8s.daemonset.name"] != nil
+              - set(resource.attributes["service.name"], resource.attributes["k8s.statefulset.name"]) where resource.attributes["k8s.statefulset.name"] != nil
+              - set(resource.attributes["service.name"], resource.attributes["k8s.deployment.name"]) where resource.attributes["k8s.deployment.name"] != nil
+              - set(resource.attributes["service.name"], resource.attributes["app.label.app"]) where resource.attributes["app.label.app"] != nil
+              - set(resource.attributes["service.name"], resource.attributes["app.label.name"]) where resource.attributes["app.label.name"] != nil
+              - set(resource.attributes["service.namespace"], resource.attributes["k8s.namespace.name"])
+              - delete_key(resource.attributes, "app.label.app")
+              - delete_key(resource.attributes, "app.label.name")
+              - merge_maps(attributes, ParseJSON(body), "upsert") where IsString(body) and IsMatch(body, "^\\s*\\{")
+              - set(body, attributes["msg"]) where attributes["msg"] != nil
+              - set(trace_id.string, attributes["trace_id"]) where IsString(attributes["trace_id"]) and IsMatch(attributes["trace_id"], "^[0-9a-f]{32}$")
+              - set(span_id.string, attributes["span_id"]) where IsString(attributes["span_id"]) and IsMatch(attributes["span_id"], "^[0-9a-f]{16}$")
+              - set(body, attributes["message"]) where attributes["message"] != nil and attributes["msg"] == nil
+              - set(severity_text, ToUpperCase(attributes["level"])) where IsString(attributes["level"])
+              - set(severity_text, ToUpperCase(attributes["severity"])) where IsString(attributes["severity"]) and severity_text == ""
+              - set(severity_text, "ERROR") where severity_text == "" and IsString(body) and IsMatch(body, "(?i)\\b(error|fatal|panic|exception)\\b")
+              - set(severity_text, "WARN") where severity_text == "" and IsString(body) and IsMatch(body, "(?i)\\bwarn(ing)?\\b")
+              - set(severity_text, "INFO") where severity_text == ""
+              - set(severity_text, "WARN") where severity_text == "WARNING"
+              - set(severity_number, 17) where severity_text == "ERROR" or severity_text == "ERR"
+              - set(severity_number, 21) where severity_text == "FATAL" or severity_text == "CRITICAL" or severity_text == "PANIC"
+              - set(severity_number, 13) where severity_text == "WARN"
+              - set(severity_number, 9) where severity_text == "INFO"
+              - set(severity_number, 5) where severity_text == "DEBUG"
+      batch:
+        timeout: 5s
+    extensions:
+      file_storage:
+        directory: /var/lib/clickland-node-logs
+    exporters:
+      otlp_http:
+        endpoint: ${env:CLICKLAND_OTLP_ENDPOINT}
+    service:
+      extensions: [file_storage]
+      telemetry:
+        logs:
+          level: warn
+      pipelines:
+        logs:
+          receivers: [filelog/pods]
+          processors: [memory_limiter, k8s_attributes, transform/logs, batch]
+          exporters: [otlp_http]
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: clickland-node-logs
+  namespace: clickland-dev
+  labels: { app: clickland-node-logs }
+spec:
+  selector:
+    matchLabels: { app: clickland-node-logs }
+  template:
+    metadata:
+      labels: { app: clickland-node-logs }
+    spec:
+      serviceAccountName: clickland-cluster-metrics
+      containers:
+        - name: collector
+          image: otel/opentelemetry-collector-contrib:0.162.0
+          args: ['--config=/etc/clickland/config.yaml']
+          env:
+            - name: K8S_NODE_NAME
+              valueFrom: { fieldRef: { fieldPath: spec.nodeName } }
+            - name: CLICKLAND_OTLP_ENDPOINT
+              value: http://clickland-collector.clickland-dev:4318
+          resources:
+            requests: { cpu: 20m, memory: 64Mi }
+            limits: { memory: 256Mi }
+          # Root to read the node's log files (owned by root); no capabilities, nothing writable but its offsets.
+          securityContext:
+            runAsUser: 0
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: [ALL] }
+          volumeMounts:
+            - { name: config, mountPath: /etc/clickland }
+            - { name: pods, mountPath: /var/log/pods, readOnly: true }
+            - { name: containers, mountPath: /var/lib/docker/containers, readOnly: true }
+            - { name: state, mountPath: /var/lib/clickland-node-logs }
+      volumes:
+        - name: config
+          configMap: { name: clickland-node-logs }
+        - name: pods
+          hostPath: { path: /var/log/pods }
+        - name: containers
+          hostPath: { path: /var/lib/docker/containers }
+        - name: state
+          hostPath: { path: /var/lib/clickland-node-logs, type: DirectoryOrCreate }

@@ -46,17 +46,30 @@ services:
     depends_on:
       clickhouse: { condition: service_healthy }
 
-  # Container metrics of this Docker engine (deploy/collector/docker-metrics.yaml). Root only to read the socket,
-  # which is mounted read-only; it has no ports and sends to the collector above.
-  docker-metrics:
+  # Container metrics and logs of this Docker engine (deploy/collector/docker-agent.yaml). Root only to read the Docker
+  # socket and the container logs, both mounted read-only; it has no ports and sends to the collector above.
+  docker-agent:
     image: otel/opentelemetry-collector-contrib:0.162.0
-    command: ['--config=/etc/clickland/docker-metrics.yaml']
+    command: ['--config=/etc/clickland/docker-agent.yaml']
     user: '0:0'
     volumes:
-      - ./collector/docker-metrics.yaml:/etc/clickland/docker-metrics.yaml:ro
+      - ./collector/docker-agent.yaml:/etc/clickland/docker-agent.yaml:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - docker-log-links:/links:ro
+      - docker-agent-state:/var/lib/clickland-agent
     depends_on:
       - collector
+      - docker-log-links
+
+  # Names each container's log file for the agent above (deploy/collector/docker-log-links.sh).
+  docker-log-links:
+    image: docker:27-cli
+    entrypoint: ['/bin/sh', '/docker-log-links.sh']
+    volumes:
+      - ./collector/docker-log-links.sh:/docker-log-links.sh:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - docker-log-links:/links
 
   postgres:
     image: postgres:18-alpine
@@ -76,3 +89,5 @@ services:
 volumes:
   clickhouse-data:
   postgres-data:
+  docker-log-links:
+  docker-agent-state:

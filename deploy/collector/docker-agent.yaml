@@ -1,0 +1,124 @@
+# clickland-docker-agent: what this Docker engine (OrbStack) knows that apps don't send themselves.
+#   metrics  CPU, memory, network and block I/O of every container (docker_stats), service "docker"
+#   logs     every container's stdout and stderr (json-file logs, named through docker-log-links.sh), one service per
+#            compose service (or container name), JSON lines parsed, severity detected
+# Kubernetes pods also run as containers on OrbStack: their metrics show here (labelled with namespace and pod), but
+# their logs are left to the cluster's node agent (deploy/k8s/cluster-metrics), which knows their deployments.
+# It reads the Docker socket and the container logs read-only, as root, in its own container; the main collector
+# stays unprivileged.
+receivers:
+  docker_stats:
+    endpoint: unix:///var/run/docker.sock
+    collection_interval: 30s
+    timeout: 20s
+    container_labels_to_metric_labels:
+      com.docker.compose.project: compose.project
+      com.docker.compose.service: compose.service
+      io.kubernetes.pod.namespace: k8s.namespace.name
+      io.kubernetes.pod.name: k8s.pod.name
+      io.kubernetes.container.name: k8s.container.name
+    metrics:
+      container.cpu.utilization:
+        enabled: true
+      container.memory.percent:
+        enabled: true
+      container.restarts:
+        enabled: true
+      container.uptime:
+        enabled: true
+
+  filelog/containers:
+    include: [/links/*.log]
+    include_file_path: true
+    include_file_name: false
+    start_at: end # the first run starts now; the stored offsets carry on after a restart
+    storage: file_storage
+    max_log_size: 256KiB
+    operators:
+      # <project>__<service>__<name>__<id>.log
+      - type: regex_parser
+        parse_from: attributes["log.file.path"]
+        regex: '^/links/(?P<project>.*?)__(?P<service>.*?)__(?P<name>.*?)__(?P<id>[0-9a-f]{12})\.log$'
+      - type: move
+        from: attributes.project
+        to: resource["compose.project"]
+      - type: move
+        from: attributes.service
+        to: resource["compose.service"]
+      - type: move
+        from: attributes.name
+        to: resource["container.name"]
+      - type: move
+        from: attributes.id
+        to: resource["container.id"]
+      - type: remove
+        field: attributes["log.file.path"]
+      # Docker's json-file line: {"log": "...", "stream": "stdout", "time": "..."}
+      - type: container
+        format: docker
+        add_metadata_from_filepath: false
+      - type: add
+        field: attributes["log.source"]
+        value: docker
+
+processors:
+  filter/pause:
+    error_mode: ignore
+    metrics:
+      metric:
+        - 'IsMatch(resource.attributes["container.image.name"], ".*pause.*")'
+  resource/metrics:
+    attributes:
+      - { key: service.name, value: docker, action: upsert }
+      - { key: host.name, value: orbstack, action: upsert }
+  # A log's service: the compose service, else the container name; JSON lines become body + attributes + severity.
+  transform/logs:
+    error_mode: ignore
+    log_statements:
+      - context: log
+        statements:
+          - set(resource.attributes["host.name"], "orbstack")
+          - set(resource.attributes["service.name"], resource.attributes["container.name"])
+          - set(resource.attributes["service.name"], resource.attributes["compose.service"]) where resource.attributes["compose.service"] != nil and resource.attributes["compose.service"] != "-"
+          - set(resource.attributes["service.namespace"], resource.attributes["compose.project"]) where resource.attributes["compose.project"] != nil and resource.attributes["compose.project"] != "-"
+          - merge_maps(attributes, ParseJSON(body), "upsert") where IsString(body) and IsMatch(body, "^\\s*\\{")
+          - set(body, attributes["msg"]) where attributes["msg"] != nil
+          - set(trace_id.string, attributes["trace_id"]) where IsString(attributes["trace_id"]) and IsMatch(attributes["trace_id"], "^[0-9a-f]{32}$")
+          - set(span_id.string, attributes["span_id"]) where IsString(attributes["span_id"]) and IsMatch(attributes["span_id"], "^[0-9a-f]{16}$")
+          - set(body, attributes["message"]) where attributes["message"] != nil and attributes["msg"] == nil
+          - set(severity_text, ToUpperCase(attributes["level"])) where IsString(attributes["level"])
+          - set(severity_text, ToUpperCase(attributes["severity"])) where IsString(attributes["severity"]) and severity_text == ""
+          - set(severity_text, "ERROR") where severity_text == "" and IsString(body) and IsMatch(body, "(?i)\\b(error|fatal|panic|exception)\\b")
+          - set(severity_text, "WARN") where severity_text == "" and IsString(body) and IsMatch(body, "(?i)\\bwarn(ing)?\\b")
+          - set(severity_text, "INFO") where severity_text == ""
+          - set(severity_text, "WARN") where severity_text == "WARNING"
+          - set(severity_number, 17) where severity_text == "ERROR" or severity_text == "ERR"
+          - set(severity_number, 21) where severity_text == "FATAL" or severity_text == "CRITICAL" or severity_text == "PANIC"
+          - set(severity_number, 13) where severity_text == "WARN"
+          - set(severity_number, 9) where severity_text == "INFO"
+          - set(severity_number, 5) where severity_text == "DEBUG"
+  batch:
+    timeout: 5s
+
+extensions:
+  file_storage:
+    directory: /var/lib/clickland-agent
+
+exporters:
+  otlp_http:
+    endpoint: http://collector:4318
+
+service:
+  extensions: [file_storage]
+  telemetry:
+    logs:
+      level: warn
+  pipelines:
+    metrics:
+      receivers: [docker_stats]
+      processors: [filter/pause, resource/metrics, batch]
+      exporters: [otlp_http]
+    logs:
+      receivers: [filelog/containers]
+      processors: [transform/logs, batch]
+      exporters: [otlp_http]

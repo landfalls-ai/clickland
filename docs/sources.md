@@ -17,14 +17,26 @@ Everything goes to the collector (compose project `clickland-infra`): OTLP/HTTP 
 
 ## The machine
 
-- **Docker** (`deploy/collector/docker-metrics.yaml`, service `docker-metrics` in `clickland-infra`): CPU, memory,
-  network and block I/O of every container on the engine, every 30 s. Service `docker`; group by `container.name`,
-  `compose.project`, or `k8s.namespace.name` / `k8s.pod.name` for pod containers. It reads the Docker socket
-  read-only, as root, in its own container so the main collector stays unprivileged.
+- **Docker** (`deploy/collector/docker-agent.yaml`, service `docker-agent` in `clickland-infra`):
+  - metrics: CPU, memory, network and block I/O of every container on the engine, every 30 s, under service
+    `docker`; group by `container.name`, `compose.project`, or `k8s.namespace.name` / `k8s.pod.name`;
+  - logs: every container's stdout and stderr (not the Kubernetes pods', which the node agent collects), one service
+    per compose service (else the container name), `service.namespace` = the compose project, `log.source=docker`.
+    `docker-log-links.sh` (service `docker-log-links`) names each json-file log by project, service and container,
+    because the file itself holds no names. Offsets live in the `docker-agent-state` volume.
+  - It reads the Docker socket and the logs read-only, as root, in its own container, so the main collector stays
+    unprivileged. Clickland's own collectors are left out, so their logs never feed back.
 - **Kubernetes** (`deploy/k8s/cluster-metrics`, namespace `clickland-dev`): kubelet stats (node, pod, container
   CPU, memory, filesystem, network) and cluster state (deployments, replicas, pod phases, restarts, node conditions)
   every 30 s under service `kubernetes`, and every Kubernetes event as a log under `kubernetes-events` (`WARN` for
   warnings). Read-only ClusterRole. `kubectl --context orbstack apply -k deploy/k8s/cluster-metrics`.
+- **Pod logs** (`deploy/k8s/cluster-metrics/node-logs.yaml`, DaemonSet `clickland-node-logs`): every pod's stdout
+  and stderr from `/var/log/pods`, with namespace, pod, container, workload and app labels; the service is the
+  `app.kubernetes.io/name` or `app` label, else the deployment (statefulset, daemonset), else the container;
+  `log.source=kubernetes`. The Landflow host's container is left out (it sends the same lines over OTLP).
+- **Both log agents** parse JSON lines (`msg`/`message` → body, the rest → attributes), set the severity from
+  `level`/`severity` or, for plain text, from words like error and warn, and take `trace_id`/`span_id` from the line,
+  so a plugin's log line links to its trace.
 - **ClickHouse** itself: scraped from its Prometheus endpoint, service `clickhouse`.
 
 ## Try it
