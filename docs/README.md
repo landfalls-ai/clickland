@@ -11,3 +11,4 @@
 | [history.md](history.md) | Every change, in order |
 | [../study/README.md](../study/README.md) | The evidence: Craft Anything captures, source graphs, live probes |
 - [sources.md](sources.md): what sends data to Clickland (the land apps, Docker, Kubernetes) and how
+- [research/land-family-integrations.md](research/land-family-integrations.md): how each land project connects to Clickland (Landfall's war room first), with a phased plan and open questions
