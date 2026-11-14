@@ -1,4 +1,4 @@
-import { AlertInput, NoteInput } from '@clickland/contracts';
+import { AlertInput, MetricQueryRequest, NoteInput } from '@clickland/contracts';
 import { createHmac } from 'node:crypto';
 import { describe, expect, it } from 'vitest';
 import { breaches, groupSearch, groupValues } from '../src/alerts.js';
@@ -191,5 +191,21 @@ describe('assistant', () => {
   it('finds the text in common answer shapes', () => {
     expect(pickText([{ output: 'a' }])).toBe('a');
     expect(pickText({ message: { content: 'b' } })).toBe('b');
+  });
+});
+
+describe('metric query contract', () => {
+  const req = { metric: 'container.cpu.usage', type: 'gauge', aggregation: 'avg' };
+  it('takes attribute equality filters', () => {
+    expect(MetricQueryRequest.parse({ ...req, where: { 'k8s.namespace.name': 'shop' } }).where).toEqual({
+      'k8s.namespace.name': 'shop',
+    });
+    expect(MetricQueryRequest.parse(req).where).toBeUndefined();
+  });
+  it('refuses keys that are not attribute names, values that are not strings, and more than ten filters', () => {
+    expect(MetricQueryRequest.safeParse({ ...req, where: { "a'b": 'x' } }).success).toBe(false);
+    expect(MetricQueryRequest.safeParse({ ...req, where: { a: 1 } }).success).toBe(false);
+    const many = Object.fromEntries(Array.from({ length: 11 }, (_, i) => [`k${i}`, 'v']));
+    expect(MetricQueryRequest.safeParse({ ...req, where: many }).success).toBe(false);
   });
 });

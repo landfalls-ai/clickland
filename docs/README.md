@@ -19,3 +19,4 @@
 - [identity.md](identity.md): sign-in through Landbright (OIDC), roles from Landbright groups, the SCIM 2.0 server Landbright pushes people and groups to, precedence and deactivation
 - [usage.md](usage.md): resource usage rollups for Landledger: used, requested and allocated CPU and memory, storage, network, node capacity and volume claims, the math, and what is not measured
 - [reference/api.md](reference/api.md): the API contract, with `/api/agents/*`, `/api/value/*` and `/api/usage/rollup`
+- [../specs/](../specs/): features as spec, plan and tasks, from [001 metric filters](../specs/001-metrics-filters/spec.md)

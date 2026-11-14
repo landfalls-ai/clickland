@@ -49,3 +49,11 @@ Everything goes to the collector (compose project `clickland-infra`): OTLP/HTTP 
 curl -s -XPOST 127.0.0.1:4710/api/metrics/query -H 'content-type: application/json' \
   -d '{"metric":"k8s.pod.memory.working_set","type":"gauge","aggregation":"max","service":"kubernetes","groupBy":"k8s.pod.name"}'
 ```
+
+One pod's containers, with `where` ([reference/api.md](reference/api.md#metrics)):
+
+```bash
+curl -s -XPOST 127.0.0.1:4710/api/metrics/query -H "authorization: Bearer $KEY" -H 'content-type: application/json' \
+  -d '{"metric":"container.memory.working_set","type":"gauge","aggregation":"avg","service":"kubernetes",
+       "groupBy":"k8s.container.name","where":{"k8s.namespace.name":"landlens-dev","k8s.pod.name":"<pod>"}}'
+```

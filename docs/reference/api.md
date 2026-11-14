@@ -120,7 +120,21 @@ rows with severity `error` or worse.
 "description", "services": [] }] }`.
 
 `POST /api/metrics/query` — `{ "metric", "type", "aggregation": "avg" | "min" | "max" | "sum" | "rate" | "p50" |
-"p95" | "p99", "from", "to", "service"?, "groupBy"? (an attribute key) }` → the histogram shape above.
+"p95" | "p99", "from", "to", "service"?, "groupBy"? (an attribute key), "where"? }` → the histogram shape above (the
+ten largest series and `other`).
+
+`where` keeps only the samples whose attributes equal the given values, all of them:
+`{ "k8s.namespace.name": "landlens-dev", "k8s.pod.name": "catalog-api-958745469-248dk" }`. A key is a data-point
+attribute, else the resource attribute of that name (as `groupBy` reads them); `service` is the service name. Keys
+are attribute names (letters, digits, `_ . - @ /`, at most 200 characters), values strings of at most 500, at most
+ten filters; anything else is `400`. Keys and values reach ClickHouse as query parameters, never as SQL text. The MCP
+tool `query_metric` takes the same field. A pod's CPU per container:
+
+```json
+{ "metric": "container.cpu.usage", "type": "gauge", "aggregation": "avg", "service": "kubernetes",
+  "groupBy": "k8s.container.name",
+  "where": { "k8s.cluster.name": "orbstack", "k8s.namespace.name": "landlens-dev", "k8s.pod.name": "catalog-api-958745469-248dk" } }
+```
 
 ## Patterns
 

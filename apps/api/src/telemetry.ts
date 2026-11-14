@@ -294,6 +294,7 @@ export class Telemetry {
         bucketSeconds,
         service: input.service ?? undefined,
         groupBy: input.groupBy ?? undefined,
+        where: input.where ?? undefined,
       }),
     );
     if (input.type === 'histogram' && input.aggregation.startsWith('p')) {

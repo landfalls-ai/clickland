@@ -182,7 +182,8 @@ export function createMcpServer(services: Services, principal: Principal, viewHt
     'query_metric',
     {
       title: 'Query a metric',
-      description: 'A metric over time: avg/min/max/sum, rate for counters, p50/p95/p99 for histograms.',
+      description:
+        'A metric over time: avg/min/max/sum, rate for counters, p50/p95/p99 for histograms. `where` keeps the series whose attributes equal the given values, e.g. { "k8s.namespace.name": "shop" }.',
       inputSchema: MetricQueryRequest,
       ui: true,
     },

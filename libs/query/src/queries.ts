@@ -250,6 +250,30 @@ export interface MetricQueryInput {
   bucketSeconds: number;
   service?: string;
   groupBy?: string;
+  /** Attribute equality filters, all of which must match (see `metricWhere`). */
+  where?: Record<string, string>;
+}
+
+/** An attribute name as `groupBy` and `where` take it. */
+const ATTRIBUTE = /^[A-Za-z_@][\w.\-@/]*$/;
+export const METRIC_WHERE_LIMIT = 10;
+
+/**
+ * The SQL for `where`: one condition per key, `service` against ServiceName, any other key against the data-point
+ * attribute, else the resource attribute of that name (as `groupBy` reads it). Keys and values are both query
+ * parameters (`w0k`, `w0v`, …); a key must still look like an attribute name, so a mistake fails loudly.
+ */
+export function metricWhere(where: Record<string, string> | undefined, params: Record<string, ParamValue>): string[] {
+  const entries = Object.entries(where ?? {});
+  if (entries.length > METRIC_WHERE_LIMIT) throw new SearchFieldError(`At most ${METRIC_WHERE_LIMIT} filters`);
+  return entries.map(([key, value], i) => {
+    if (!ATTRIBUTE.test(key) || key.length > 200) throw new SearchFieldError(`Not an attribute: ${key.slice(0, 80)}`);
+    if (typeof value !== 'string') throw new SearchFieldError(`The filter on ${key} takes a string`);
+    params[`w${i}v`] = value;
+    if (key === 'service') return `ServiceName = {w${i}v:String}`;
+    params[`w${i}k`] = key;
+    return `if(mapContains(Attributes, {w${i}k:String}), Attributes[{w${i}k:String}], ResourceAttributes[{w${i}k:String}]) = {w${i}v:String}`;
+  });
 }
 
 /**
@@ -272,6 +296,7 @@ export function metricQuery(input: MetricQueryInput): Query {
     'TimeUnix >= {from:DateTime64(9)}',
     'TimeUnix < {to:DateTime64(9)}',
     ...(input.service ? ['ServiceName = {service:String}'] : []),
+    ...metricWhere(input.where, params),
   ];
   if (input.service) params.service = input.service;
   let group = "''";

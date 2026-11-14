@@ -50,6 +50,24 @@ export const FacetsRequest = z.object({ signal: Signal, ...bounds });
 
 export const MetricType = z.enum(['gauge', 'sum', 'histogram']);
 export const MetricAggregation = z.enum(['avg', 'min', 'max', 'sum', 'rate', 'p50', 'p95', 'p99']);
+/** The most `where` filters one metric query takes. */
+export const METRIC_WHERE_MAX = 10;
+/**
+ * Attribute equality filters: `{ "k8s.namespace.name": "shop", "k8s.pod.name": "api-7d9c" }`. Each key is a
+ * data-point attribute, else a resource attribute (as `groupBy` reads them); `service` is the service name. All must
+ * match. Keys are attribute names (letters, digits, `_ . - @ /`); values go to ClickHouse as query parameters.
+ */
+export const MetricWhere = z
+  .record(
+    z
+      .string()
+      .regex(/^[A-Za-z_@][\w.\-@/]*$/, 'an attribute name')
+      .max(200),
+    z.string().max(500),
+  )
+  .refine((w) => Object.keys(w).length <= METRIC_WHERE_MAX, `at most ${METRIC_WHERE_MAX} filters`);
+export type MetricWhere = z.infer<typeof MetricWhere>;
+
 export const MetricQueryRequest = z.object({
   metric: z.string().min(1).max(300),
   type: MetricType,
@@ -57,6 +75,7 @@ export const MetricQueryRequest = z.object({
   ...bounds,
   service: z.string().max(300).nullish(),
   groupBy: field.nullish(),
+  where: MetricWhere.nullish(),
 });
 export type MetricQueryRequest = z.infer<typeof MetricQueryRequest>;
 
